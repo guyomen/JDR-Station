@@ -7,14 +7,18 @@ function viewGlobal() {
   const live = id => !!byId(id);
   const sheet = c => (S.isMJ ? '#/mj/c/' : '#/c/') + c.id;
   const online = new Set(S.peers.filter(p => !p.mj).flatMap(p => p.chars.filter(live)));
+  /* Le nom du joueur en titre ; ses personnages (et son rôle de MJ) en détail. */
   const peerWho = p => {
     const names = p.chars.filter(live).map(id => byId(id).name || 'Sans nom');
-    return { names, who: p.mj ? 'Meneur de jeu' : names.length ? names.join(', ') : p.screen ? 'Écran partagé' : p.player || 'Spectateur' };
+    const players = p.player ? [p.player] : [...new Set(p.chars.filter(live).map(id => byId(id).player).filter(Boolean))];
+    const who = p.screen ? 'Écran partagé' : players.join(', ') || (p.mj ? 'Meneur de jeu' : names.join(', ') || 'Spectateur');
+    /* Sans nom de joueur ni rôle MJ, le titre est déjà ses personnages. */
+    const detail = players.length || p.mj ? [p.mj && players.length ? 'Meneur de jeu' : '', ...names].filter(Boolean).join(', ') : '';
+    return { who, detail };
   };
   const peer = p => {
-    const { names, who } = peerWho(p);
-    const players = p.player ? [p.player] : [...new Set(p.chars.filter(live).map(id => byId(id).player).filter(Boolean))];
-    const sub = [p.mj && names.length ? [p.player, ...names].filter(Boolean).join(', ') : players.join(', '), p.dev, `depuis ${mins(p.since)} min`].filter(Boolean).join(' · ');
+    const { who, detail } = peerWho(p);
+    const sub = [detail, p.dev, `depuis ${mins(p.since)} min`].filter(Boolean).join(' · ');
     return `<div class="item peer">
       <span class="dot"></span>
       <b>${p.mj ? '🎲 ' : ''}${esc(who)}${p.id === S.me ? ' <small>(vous)</small>' : ''}</b>
