@@ -12,3 +12,6 @@ typedef struct {
 
 /* Fichier correspondant à l'URI (« / » = index.html, paramètres « ?… » ignorés), ou NULL. */
 const webapp_asset_t *webapp_find(const char *uri);
+
+/* i-ième fichier embarqué (pour les énumérer), ou NULL au-delà du dernier. */
+const webapp_asset_t *webapp_at(size_t i);

@@ -15,6 +15,8 @@ const S = {
   screen: load('screen', false),   // mode écran partagé (espace global plein écran)
   openCaps: new Set(),             // descriptions de capacités dépliées
   needRender: false, ws: null,
+  rules: 'loading', rulesV: null, reload: false, // règles : chargement (load.js), version de la station, rechargement prévu
+  rulesDraft: null, rulesBusy: false, // règles de la table en préparation (MJ, cf. rules_admin.js)
   peers: [], me: -1,               // appareils connectés (cf. presence), dont celui-ci
   avatars: {},                     // id -> version de la miniature gardée par la station
   lieux: [],                       // lieux connus de la station [{id, n}] : le MJ choisit parmi eux

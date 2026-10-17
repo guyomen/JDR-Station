@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include <stddef.h>
 
 /*
@@ -19,3 +20,9 @@ void game_handle(const char *msg, size_t len, int fd, game_out_t *out);
 
 /* Socket fermée : renvoie le message peers à diffuser (malloc), ou NULL. */
 char *game_disconnect(int fd);
+
+/* Vrai si pin est le code du MJ (envoi des documents de règles par HTTP). */
+bool game_check_pin(const char *pin);
+
+/* Les documents de règles de la table ont changé : nouvelle version, et message « regles » à diffuser (malloc). */
+char *game_rules_changed(void);

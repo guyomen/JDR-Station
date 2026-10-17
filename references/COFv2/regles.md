@@ -75,6 +75,31 @@ Sac d'aventurier : couverture, torche, briquet à silex, outre, gamelle, bourse 
 - Idéal héroïque et travers (d20), secret intime (2 tables d20) : optionnels. Bien jouer un trait peut rapporter 1 PC.
 - Âge, espérance de vie, taille et poids : voir [Peuples](peuples.md).
 
+Idéaux et travers proposés sur la fiche :
+
+| Idéal héroïque | Travers |
+|---|---|
+| Abnégation | Alcoolique |
+| Clémence | Couard |
+| Compassion | Crédule |
+| Courage | Cupide |
+| Égalité | Colérique |
+| Éducation | Distrait |
+| Fraternité | Dragueur |
+| Frugalité | Fanfaron |
+| Générosité | Gourmand |
+| Honnêteté | Grossier |
+| Honneur | Impatient |
+| Humilité | Indécis |
+| Justice | Menteur |
+| Liberté | Orgueilleux |
+| Loyauté | Paranoïaque |
+| Pacifisme | Paresseux |
+| Protection | Phobie |
+| Sens du sacrifice | Timide |
+| Solidarité | Violent |
+| Vérité | Voleur |
+
 ### Exemples du livre (niveau 1)
 
 - **Lhagva**, barbare humaine : AGI +1, CON +2, FOR +3, PER +1, CHA −1, INT 0, VOL +1 · DR 4d10 · PC 2 · DEF 16 · PV 15 · Init 14 · contact +4, distance +2, magie +2 · épée courbe 1d8+3.
@@ -256,6 +281,8 @@ Chaque peuple donne une **voie de peuple** (rang 1 gratuit). Les mages peuvent l
 
 #### États préjudiciables (p. 214-215)
 
+Ce tableau donne les états proposés sur la fiche et dans l'initiative du MJ.
+
 | État | Effet |
 |---|---|
 | **Aveuglé** | −5 en Init., attaque et DEF ; −10 en attaque à distance ; attaques magiques qui doivent voir la cible impossibles |
@@ -268,6 +295,7 @@ Chaque peuple donne une **voie de peuple** (rang 1 gratuit). Les mages peuvent l
 | **Ralenti** | une seule action par round (A ou M) |
 | **Renversé** | −5 en attaque et DEF ; une action d'attaque pour se relever |
 | **Surpris** | aucune action et −5 DEF au 1er round |
+| **Inconscient** | à 0 PV : −1 DR, mort sans soins dans l'heure |
 
 **Rendement décroissant** : +5 cumulatif au test de la cible pour résister à la même capacité répétée au cours d'un combat.
 

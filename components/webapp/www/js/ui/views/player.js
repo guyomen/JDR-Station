@@ -22,8 +22,8 @@ function viewPlayer() {
     <form class="col" data-form="create">
       <div class="grid2">
         <input class="full" name="name" placeholder="Nom du personnage" maxlength="40" required>
-        ${selectHTML('', '', PEUPLE_OPTS, ' name="peuple"')}
-        ${selectHTML('', '', PROFIL_OPTS, ' name="profil"')}
+        ${selectHTML('', '', peupleOpts(), ' name="peuple"')}
+        ${selectHTML('', '', profilOpts(), ' name="profil"')}
       </div>
       <button class="btn">Créer</button>
     </form>

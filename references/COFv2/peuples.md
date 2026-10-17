@@ -1,8 +1,8 @@
 # Peuples
 
-> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Extraction automatique, voir [README](README.md).
+> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
-Le texte complet des voies de peuple est dans [voies.md](voies.md#voies-de-peuple).
+Le texte complet des voies de peuple est dans [voies.md](voies.md#famille-peuple). Un peuple a une section « Caractéristiques » ; la ligne **Voie(s)** donne ses voies de peuple.
 
 <a id="demi-elfe"></a>
 ## Demi-elfe

@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include <stddef.h>
 
 /* Réponse à un message WebSocket. */
@@ -18,6 +19,20 @@ typedef struct {
      * lit files_root + URI ("/data/av/c1.jpg"). Les URL doivent être versionnées : cache d'un an. NULL : aucun. */
     const char *files_uri;
     const char *files_root;
+    /* Documents embarqués remplaçables par le MJ (règles de la table), sous docs_uri (ex. "/regles/") :
+     *   GET    uri + nom      : docs_root + nom + ".gz" s'il existe, sinon le document embarqué
+     *                           (« ?origine » : toujours l'embarqué) ;
+     *   PUT    uri + nom      : en-tête X-Pin (vérifié par docs_auth), corps compressé en gzip : remplace le document ;
+     *   DELETE uri + nom      : revient au document embarqué ;
+     *   GET    uri index.json : { "nom": octets, … } des documents remplacés.
+     * Seuls les noms de documents embarqués sous docs_uri sont acceptés. Après un changement (sauf en-tête
+     * X-Suite : d'autres suivent), docs_changed renvoie le message à diffuser aux clients WebSocket (malloc).
+     * docs_free : place libre (octets). docs_uri NULL : aucun document remplaçable. */
+    const char *docs_uri;
+    const char *docs_root;
+    bool (*docs_auth)(const char *pin);
+    size_t (*docs_free)(void);
+    char *(*docs_changed)(void);
 } web_server_config_t;
 
 /* Sert l'appli web (composant webapp) et le WebSocket /ws. */

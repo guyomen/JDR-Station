@@ -1,6 +1,6 @@
 # Voies de prestige
 
-> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Extraction automatique, voir [README](README.md).
+> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
 Accessibles à partir du niveau 5, une seule par personnage, dans la famille de son profil principal ou parmi les voies génériques. Rangs 4 à 8 (niveaux requis 5 / 7 / 9 / 11 / 13).
 
@@ -12,6 +12,7 @@ Accessibles à partir du niveau 5, une seule par personnage, dans la famille de 
 - **Mages** : [de l'archimage](#archimage) · [de l'enchanteur](#enchanteur) · [de l'invocation majeure](#invocation-majeure) · [de l'élémentaliste](#elementaliste) · [de la magie de l'esprit](#magie-de-l-esprit) · [de la magie des mots](#magie-des-mots) · [de la magie du temps](#magie-du-temps) · [de la vision](#vision) · [des cristaux](#cristaux) · [du chaos](#chaos) · [du gel](#gel) · [du mage de guerre](#mage-de-guerre) · [du maître des sorts](#maitre-des-sorts)
 - **Mystiques** : [de l'armure dorée](#armure-doree) · [des saisons](#saisons) · [des vermines](#vermines) · [du changeforme](#changeforme) · [du combat mystique](#combat-mystique) · [du guérisseur](#guerisseur) · [du maître de la nature](#maitre-de-la-nature) · [du templier](#templier) · [élémentaire de l'air](#elementaire-de-l-air) · [élémentaire de l'eau](#elementaire-de-l-eau) · [élémentaire de la terre](#elementaire-de-la-terre) · [élémentaire du feu](#elementaire-du-feu)
 
+<a id="famille-generique"></a>
 ## Génériques
 
 <a id="expert"></a>
@@ -313,6 +314,7 @@ Le joueur choisit une capacité que connaît son personnage. Lorsqu’il utilise
 
 Le joueur choisit une capacité (A), (M) ou (L) que connaît son personnage. Une fois par combat, il peut utiliser cette capacité en plus de ses actions normales à son tour (sauf s’il est surpris), sans dépasser les limitations normalement imposées par la capacité (par exemple, une seule fois par round, ou une seule fois par combat, etc.). Si la capacité est un sort, il doit payer le coût normal de points de mana.
 
+<a id="famille-aventurier"></a>
 ## Aventuriers
 
 <a id="archer-arcanique"></a>
@@ -645,6 +647,7 @@ Si le personnage réussit une attaque contre une créature humanoïde surprise d
 
 Le personnage a atteint le stade ou un simple regard suffit à dissuader son adversaire de tenter quelque chose. S’il réussit un test opposé d’attaque magique contre une ou plusieurs cibles humanoïdes à une portée de 10 m, elles renoncent à l’attaquer. En cas d’échec, il ne peut plus tenter cette capacité contre ces cibles durant ce combat. Si la cible est d’un NC supérieur au niveau du personnage, l’effet ne dure qu’un seul round. Le personnage obtient un *dé bonus* à toutes les tentatives d’intimidation ou de persuasion après l’utilisation réussie d’un simple regard. L’effet de la capacité cesse immédiatement s’il attaque la cible et il ne peut plus utiliser la capacité contre elle pour ce combat. Les créatures sans esprit ou d’une intelligence animale sont immunisées à cette capacité.
 
+<a id="famille-combattant"></a>
 ## Combattants
 
 <a id="arme-liee"></a>
@@ -973,6 +976,7 @@ Le tueur de géants réalise une attaque aux jambes contre une créature de tail
 
 Le personnage est habitué à combattre les géants et les énormes créatures. Il obtient +1d6 DM contre les créatures de taille grande, +1d4° DM contre les créatures de taille énorme et +2d4° DM contre celles de taille colossale. Si votre PJ n’est pas un nain, c’est sans doute parce qu’il est capable de sauter sur sa victime pour atteindre des points vitaux. S’il s’agit d’un nain, c’est plutôt parce que sa victime a posé genoux à terre !
 
+<a id="famille-mage"></a>
 ## Mages
 
 <a id="archimage"></a>
@@ -1451,6 +1455,7 @@ Le personnage apprend deux sorts de rang 5 de magie profane de son choix.
 
 Les sorts de magie profane sont tous les sorts des profils de mage plus les sorts de barde.
 
+<a id="famille-mystique"></a>
 ## Mystiques
 
 <a id="armure-doree"></a>

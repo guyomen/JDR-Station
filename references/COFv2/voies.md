@@ -1,8 +1,8 @@
 # Voies de profil et de peuple
 
-> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Extraction automatique, voir [README](README.md).
+> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
-Chaque voie a 5 capacités (rangs 1 à 5). `*` / « sort » = capacité de sort (compte pour les PM). Actions : A = attaque, L = limitée, M = mouvement, G = gratuite.
+Chaque voie a 5 capacités (rangs 1 à 5). `*` / « sort » = capacité de sort (compte pour les PM). Actions : A = attaque, L = limitée, M = mouvement, G = gratuite. **Bonus** : bonus permanents appliqués automatiquement par la fiche.
 
 ## Sommaire
 
@@ -12,6 +12,7 @@ Chaque voie a 5 capacités (rangs 1 à 5). `*` / « sort » = capacité de sort 
 - **Mystiques** : [Druide](#profil-druide) · [Moine](#profil-moine) · [Prêtre](#profil-pretre)
 - **Peuples** : [Voie du demi-orc](#demi-orc) · [Voie de l'elfe haut](#elfe-haut) · [Voie de l'elfe sylvain](#elfe-sylvain) · [Voie du gnome](#gnome) · [Voie du halfelin](#halfelin) · [Voie de l'humain](#humain) · [Voie du mage](#mage) · [Voie du nain](#nain)
 
+<a id="famille-aventurier"></a>
 ## Aventuriers
 
 <a id="profil-arquebusier"></a>
@@ -55,6 +56,8 @@ L’arquebusier peut préparer un explosif qui lui permet de démolir facilement
 
 L’arquebusier sait préparer une poudre plus puissante, il ajoute +10 m à la portée et +1 aux DM des armes à poudre. Le bonus aux DM augmente de +1 à chaque fois que le personnage atteint le rang 5 dans une voie d’arquebusier. De plus, sa poudre est magique et elle permet à ses L’arquebusier sait préparer une poudre plus puissante, il ajoute +10 m à la portée et +1 aux DM des armes à poudre. Le bonus aux DM augmente de +1 à chaque fois que le personnage atteint le rang 5 dans une voie d’arquebusier. De  plus, sa poudre est magique et elle permet à ses
 
+**Bonus** : armes poudre : DM +1
+
 **4. Piège explosif** (L)
 
 Il faut 1 min à l’arquebusier pour installer un piège qui explose dans un rayon de 5 m en infligeant [5d4° + INT] DM de feu (test d’AGI difficulté 15 pour ne subir que la moitié des DM). Le piège est déclenché à l’intrusion de toute créature dans une zone d’un à deux mètres autour du piège. Une créature peut détecter le piège avec un test d’INT difficulté [15 + INT de l’arquebusier] avant de le déclencher.
@@ -78,15 +81,21 @@ L’arquebusier effectue une attaque au contact ou à distance (avec l’arme en
 
 L’arquebusier choisit une capacité de rang 1 de son choix de guerrier, de voleur (armure de cuir) ou de rôdeur (armure de cuir renforcé). Il gagne aussi +1 en DEF.
 
+**Bonus** : DEF +1
+
 **4. Constitution héroïque**
 
 L’arquebusier augmente sa valeur de CON de +1 et il obtient un *dé bonus* aux tests de CON.
+
+**Bonus** : CON +1
 
 **5. Combat de masse**
 
 Si le combat implique au moins 10 créatures actives (en comptant l’arquebusier et ses alliés), l’arquebusier obtient, au choix, une action d’attaque ou une action de mouvement supplémentaire à son tour. De plus, l’arquebusier gagne +1 en DEF.
 
 **Note :** à titre exceptionnel, si la voie du mercenaire est choisie pour construire un profil hybride, elle ne donne pas accès à la maîtrise des armes à poudre. En revanche, elle n’interdit pas le port du bouclier.
+
+**Bonus** : DEF +1
 
 <a id="pistolero"></a>
 #### Voie du pistolero
@@ -106,6 +115,8 @@ L’arquebusier est capable de tirer simultanément avec une pétoire (ou une ar
 **4. Agilité héroïque**
 
 L’arquebusier augmente sa valeur d’AGI de +1 et il obtient un *dé bonus* aux tests d’AGI.
+
+**Bonus** : AGI +1
 
 **5. As de la gâchette**
 
@@ -198,6 +209,8 @@ Le barde ajoute son rang + 2 à tous les tests qu’il effectue pour réaliser d
 
 Le barde gagne son CHA en Initiative et +1 en DEF (+2 au rang 4). De plus, le barde ajoute son rang +  2 aux tests de danse, de mime ou de jonglerie.
 
+**Bonus** : DEF +1 · Init +CHA
+
 **3. Lanceur de couteaux** (G)
 
 Une fois par round, en plus de ses autres actions, le barde peut lancer un couteau sur une cible à distance (portée 10 m) en réussissant un test d’attaque à distance. Cette attaque occasionne [1d4 + AGI] DM. Il peut exécuter cette action sans pénalité, même s’il est engagé en combat au contact avec un autre adversaire. Les DM passent à 1d4° au rang 5.
@@ -205,6 +218,8 @@ Une fois par round, en plus de ses autres actions, le barde peut lancer un coute
 **4. Liberté d'action**
 
 Le barde est immunisé à la peur et à tous les sorts qui asservissent l’esprit (possession, charme), il est immunisé aux états *ralenti* et *immobilisé*.
+
+**Bonus** : DEF +1
 
 **5. Esquive acrobatique** (G)
 
@@ -228,6 +243,8 @@ Si le barde peut passer 10 minutes avec un humanoïde dont le niveau est inféri
 **4. Charisme héroïque**
 
 Le barde augmente sa valeur de CHA de +1. Désormais, il obtient un *dé bonus* aux tests de CHA. De plus, le barde peut désormais utiliser son CHA au lieu de sa VOL pour calculer le nombre de PM dont il dispose.
+
+**Bonus** : CHA +1 · PM = CHA + sorts
 
 **5. Suggestion** (sort, A)
 
@@ -266,17 +283,25 @@ Ce sort permet au barde de prendre l’apparence de n’importe quelle humanoïd
 
 Le rôdeur ajoute sa PER aux DM qu’il inflige à l’arc et +1 par rang dans la voie en initiative. Le joueur peut souhaiter une variante de cette capacité s’appliquant aux armes de jet (dague, hachette, javelot) plutôt qu’à l’arc (rebaptisez‑la voie du lancer). Dans ce cas, le PJ ajoute sa FOR aux DM qu’il inflige et double la portée de jet (pas de bonus d’Init.). Par ailleurs, toutes les capacités de la voie qui suivent s’appliquent aux armes de jet plutôt qu’à l’arc.
 
+**Bonus** : Init +1 · armes arc : DM +PER
+
 **2. Tir chirurgical**
 
 Le rôdeur peut tirer sur une cible engagée en mêlée sans pénalité (mais pas sur une cible à couvert). Il ne risque jamais de toucher un allié, même en cas d’échec critique.
+
+**Bonus** : Init +1
 
 **3. Dans le mille**
 
 Pour une attaque à distance, le rôdeur peut choisir de s’imposer un dé malus en attaque. Si elle est réussie, il ajoute 2d4° aux DM. Cette capacité peut être utilisée avec *Tir rapide* ou *Flèche de mort* par exemple. Transformez cette capacité en action limitée (L) pour obtenir +3d4° aux DM au lieu de 2d4°.
 
+**Bonus** : Init +1
+
 **4. Tir rapide** (L)
 
 Le rôdeur peut faire deux attaques à distance pendant son tour avec un malus de ‑2.
+
+**Bonus** : Init +1
 
 **5. Flèche de mort** (L)
 
@@ -285,6 +310,16 @@ Vous obtenez un *dé bonus* en attaque à distance et vous ajoutez 1d4° aux DM.
 **Note :** Si le MJ le permet, cette voie peut être déclinée pour une autre catégorie d’arme à distance : arbalètes, armes à poudre, etc.
 
 **Conseil aux joueurs :** utilisez plutôt *Flèche de mort* contre une cible avec une haute DEF et *Tir rapide* contre des cibles multiples et une faible DEF.
+
+**Bonus** : Init +1
+
+**Version standard** : Arc
+
+**Variante** (lancer) : Lancer (dague, hachette, javelot…) — Voie du lancer
+
+Les capacités de la voie s’appliquent aux armes de jet plutôt qu’à l’arc ; pas de bonus d’Init.
+
+**Bonus rang 1** : armes jet : DM +FOR, portée ×2
 
 <a id="combat-deux-armes"></a>
 #### Voie du combat à deux armes
@@ -357,6 +392,12 @@ Le loup du rôdeur devient un spécimen particulièrement puissant.
 
 Lorsque le loup attaque la même cible que le rôdeur, il obtient un bonus de 1d4° aux DM. Chaque fois que le rôdeur dépense 1 PV pour soigner son loup, le loup récupère 2 PV. De plus, le rôdeur et son loup augmentent leur DEF de +1 chaque fois que le personnage atteint le rang 5 dans une voie de rôdeur (celle‑ci incluse).
 
+**Version standard** : Loup
+
+**Variante** (ours) : Ours — Voie du montreur d’ours
+
+Rang 2 : bonus en intimidation et en spectacle au lieu de pister et surprise. Compagnon : −2 DEF, +2 FOR (+2 DM).
+
 <a id="survie"></a>
 #### Voie de la survie
 
@@ -375,6 +416,8 @@ En milieu naturel, le rôdeur obtient +1 en DEF (ce bonus passe à +2 au rang 5)
 **4. Constitution héroïque**
 
 Le rôdeur augmente sa valeur de CON de +1. Désormais, il obtient un *dé bonus* aux tests de CON.
+
+**Bonus** : CON +1
 
 **5. Increvable** (L)
 
@@ -400,6 +443,8 @@ Le rôdeur obtient +1d4° aux DM de ses attaques au contact ou à distance lorsq
 **4. Perception héroïque**
 
 Le rôdeur augmente sa valeur de PER de +1. Désormais, il obtient un *dé bonus* aux tests de PER.
+
+**Bonus** : PER +1
 
 **5. Repli** (L)
 
@@ -450,13 +495,19 @@ Le voleur maîtrise l’art de se rendre désagréable, voire insupportable. S�
 
 Le voleur possède une démarche et une façon de se déplacer à la fois élégante, féline et souple. Il ajoute +2 en DEF et en Initiative. Ce bonus passe à +3 au rang 5. Il lui faut seulement une action de mouvement pour se relever.
 
+**Bonus** : DEF +2 · Init +2
+
 **4. Charisme héroïque**
 
 Le voleur augmente sa valeur de CHA de +1. Désormais, il obtient un *dé bonus* aux tests de CHA.
 
+**Bonus** : CHA +1
+
 **5. Attaque paralysante** (L)
 
 Une fois par combat, le voleur peut, en réussissant une attaque de contact, paralyser un adversaire humanoïde de douleur. La cible ne subit aucun DM, mais elle est *immobilisée* pendant 1d4 rounds ou, si son NC est inférieur à la moitié du niveau du voleur, elle est *paralysée*. De plus, le voleur peut désormais utiliser au choix l’*attaque sournoise* (s’il détient cette capacité) ou infliger +1d4° DM contre tout adversaire *immobilisé* ou *paralysé*.
+
+**Bonus** : DEF +1 · Init +1
 
 <a id="deplacement"></a>
 #### Voie du déplacement
@@ -464,6 +515,8 @@ Une fois par combat, le voleur peut, en réussissant une attaque de contact, par
 **1. Agile**
 
 Le voleur ajoute son rang + 2 à tous tests liés à un déplacement (esquive, saut, course, équilibre, escalade, se glisser entre des barreaux ou échapper à une créature qui l’agrippe). De plus, il bénéficie d’un bonus de +1 en DEF et en Initiative. Ce bonus passe à +2 au rang 3 et +3 au rang 5.
+
+**Bonus** : DEF +1 · Init +1
 
 **2. Réflexes félins**
 
@@ -473,13 +526,19 @@ Le voleur divise par 2 tous les DM de chute. De plus, une fois par combat, il ob
 
 Une fois par round, si le voleur réussit un **test d’AGI difficulté 15**, il peut effectuer une acrobatie pour franchir un obstacle (qui peut être un adversaire) ou attaquer de dos un adversaire au contact. Il peut alors au choix utiliser l’*attaque sournoise* ou infliger +1d4° DM.
 
+**Bonus** : DEF +1 · Init +1
+
 **4. Agilité héroïque**
 
 Le voleur augmente sa valeur d’AGI de +1. Désormais, il obtient un *dé bonus* aux tests d’AGI.
 
+**Bonus** : AGI +1
+
 **5. Esquive de la magie** (G)
 
 Une fois par round, lorsqu’un sort qui inflige des DM physiques (feu, froid, projectile magique, etc.) le prend pour cible (y compris un sort de zone ou l’affectant en plus de la personne visée), le voleur peut effectuer un test d’attaque à distance opposé à un test d’attaque magique du lanceur sort. S’il réussit, il échappe au sort. S’il échoue, il subit les DM normaux.
+
+**Bonus** : DEF +1 · Init +1
 
 <a id="roublard"></a>
 #### Voie du roublard
@@ -487,6 +546,8 @@ Une fois par round, lorsqu’un sort qui inflige des DM physiques (feu, froid, p
 **1. Doigts agiles**
 
 Le voleur ajoute son rang + 2 aux tests liés à la précision manuelle (crocheter une serrure, désamorcer un piège, pickpocket…) ainsi qu’aux tests pour évaluer un objet précieux (joyaux, bijoux, etc.). De plus il obtient +1 aux DM des attaques à distance avec les dagues et couteaux. Ce bonus passe à +2 au rang 3 de la voie et +3 au rang 5.
+
+**Bonus** : armes couteau : DM +1
 
 **2. Aux aguets**
 
@@ -496,6 +557,8 @@ Le voleur ajoute son rang + 2 aux tests effectués pour fouiller une pièce à l
 
 Une fois par combat, le voleur peut feindre la mort après avoir reçu une blessure (même à 0 PV). Il peut ainsi passer pour mort aussi longtemps qu’il le souhaite et un **test d’INT difficulté 20** est nécessaire pour révéler la supercherie. Lorsqu’il décide de se relever (action gratuite), le voleur récupère immédiatement 1d4° PV et s’il est au contact d’un adversaire, celui‑ci est *surpris*. Un adversaire qui a déjà été victime de cette stratégie du voleur lors d’un précédent combat ne se laisse pas surprendre une seconde fois (sauf si son INT est de ‑4).
 
+**Bonus** : armes couteau : DM +1
+
 **4. Expert en criminalité**
 
 Le voleur obtient un *dé bonus* sur tous les tests de recherche d’indice (Trouver une preuve [PER], Faire une déduction [INT] et Obtenir un aveu [CHA]) ainsi que pour tous les tests réalisés pour brouiller des pistes, réaliser de faux indices ou de faux documents. De plus, lorsqu’il est dans un lieu, s’il dépense 1 PC, le MJ devra lui donner un indice qui lui a échappé jusque‑là. S’il n’y a pas d’indice, le PC n’est pas dépensé.
@@ -504,12 +567,16 @@ Le voleur obtient un *dé bonus* sur tous les tests de recherche d’indice (Tro
 
 Le voleur peut utiliser 3 doses de poison par jour sans risque de s’empoisonner lui‑même. Une dose permet d’enduire une dague, une flèche ou un carreau pour infliger +2d4° DM supplémentaire et demande un **test de CON difficulté (10 + INT du voleur)** ou une cible vivante est affaiblie pour le reste du combat. Alternativement, une dose peut être versée dans les aliments pour une personne ; si la cible rate son test de CON, elle sombre dans l’inconscience pour 2d6 min (4d6 min pour 2 doses, etc.).
 
+**Bonus** : armes couteau : DM +1
+
 <a id="spadassin"></a>
 #### Voie du spadassin
 
 **1. Attaque en finesse**
 
 Le voleur ajoute son AGI à son Init. et peut remplacer sa FOR par son AGI pour ses tests d’attaque au contact (mais pas aux DM) lorsqu’il utilise une arme légère à une main (dague, épée courte ou rapière). Enfin, il obtient un bonus égal à son rang + 2 aux tests d’intimidation.
+
+**Bonus** : Init +AGI
 
 **2. Esquive fatale** (G)
 
@@ -527,6 +594,7 @@ Avec sa main gauche, le voleur peut effectuer une attaque au contact gratuite av
 
 Lorsque le voleur obtient un critique sur le dé d’une attaque au contact de sa main principale avec une *arme légère* (mais pas sur une *ouverture mortelle*), il inflige à sa cible un état préjudiciable au choix parmi *affaibli*, *aveuglé*, *étourdi*, *immobilisé* ou *ralenti* pendant 1 round. Vous ne pouvez infliger chaque état préjudiciable qu’une seule fois par combat. Alternativement, le voleur peut choisir que l’attaque devienne une *attaque sournoise* dont les DM s’ajoutent au critique (au lieu d’infliger un état préjudiciable).
 
+<a id="famille-combattant"></a>
 ## Combattants
 
 <a id="profil-barbare"></a>
@@ -538,6 +606,8 @@ Lorsque le voleur obtient un critique sur le dé d’une attaque au contact de s
 **1. Argument de taille**
 
 Le barbare ajoute sa FOR à son maximum de PV ainsi qu’à ses tests de CHA et à ceux de ses alliés au contact pour les tests de négociation, de persuasion ou d’intimidation. Allez savoir pourquoi, sa simple présence donne de la force aux arguments de ses alliés…
+
+**Bonus** : PV +FOR
 
 **2. Tour de force** (G)
 
@@ -551,6 +621,8 @@ Le barbare effectue une puissante attaque au contact qui inflige +1d4° aux DM. 
 
 Le barbare augmente sa FOR de +1. Désormais, il obtient un *dé bonus* aux tests de FOR.
 
+**Bonus** : FOR +1
+
 **5. Briseur d'os**
 
 Le barbare augmente de 1 point les chances d’obtenir un critique sur les attaques au contact (par exemple 19‑20 au lieu de 20). Lorsqu’il obtient un critique sur une attaque au contact, en plus des DM doublés, la cible est étourdie pendant 1 round. Enfin, le barbare peut désormais porter une cotte de mailles et utiliser toutes les capacités des voies de barbare auparavant autorisées avec une chemise de mailles.
@@ -562,9 +634,13 @@ Le barbare augmente de 1 point les chances d’obtenir un critique sur les attaq
 
 Le barbare est un athlète capable de prouesses physiques extraordinaires, il ajoute son rang + 2 aux tests de course, de saut ou d’escalade. De plus, il gagne 1  PV supplémentaire par rang atteint dans la voie.
 
+**Bonus** : PV +1
+
 **2. Peau de pierre**
 
 Le barbare est particulièrement endurci, il encaisse les coups plutôt que de les esquiver. Il peut choisir de remplacer son AGI par sa CON pour calculer sa DEF (la limitation du bonus maximal en fonction de l’armure portée s’applique toujours, mais cette fois elle s’applique à la CON). Autrement (si son AGI est supérieure ou égale à sa CON), il reçoit +1 en DEF et ce bonus passe à +2 au rang 4.
+
+**Bonus** : PV +1
 
 **3. Tatouages**
 
@@ -572,13 +648,19 @@ Le barbare possède un tatouage magique* qui améliore ses performances physique
 
 * Ce bonus n’est pas un bonus de compétence, mais un bonus de magie qui ne peut donc pas se cumuler à un bonus fourni par un objet magique.
 
+**Bonus** : PV +1
+
 **4. Constitution héroïque**
 
 Le barbare augmente sa valeur de CON de +1 et obtient un *dé bonus* aux tests de CON.
 
+**Bonus** : CON +1 · PV +1
+
 **5. Peau d'acier**
 
 Le barbare ne sent plus la douleur et ignore les égratignures, il réduit tous les DM subis de 3 points (RD 3). Une attaque lui inflige toujours au minimum 1 DM.
+
+**Bonus** : PV +1
 
 <a id="pourfendeur"></a>
 #### Voie du pourfendeur
@@ -586,6 +668,8 @@ Le barbare ne sent plus la douleur et ignore les égratignures, il réduit tous 
 **1. Réflexes éclair**
 
 Le barbare ajoute son rang + 2 à tous les tests d’AGI destinés à esquiver (*Explosion de feu*, souffle, pièges, etc.). De plus, il gagne +3 en Init. et +1 en DEF. Le bonus de DEF passe à +2 au rang 5.
+
+**Bonus** : DEF +1 · Init +3
 
 **2. Charge** (L)
 
@@ -603,12 +687,16 @@ Le barbare parcourt 10 m en ligne droite en dépassant autant d’ennemis qu’i
 
 Une fois par combat, le barbare tourne sur lui‑même en assénant des attaques à toutes les cibles au contact. Il inflige automatiquement des DM correspondant à l’arme utilisée (plus tous les bonus habituels) à toutes les cibles dans un rayon de 5 m autour de lui.
 
+**Bonus** : DEF +1
+
 <a id="primitif"></a>
 #### Voie du primitif
 
 **1. Proche de la nature**
 
 Le barbare ajoute son rang + 2 à ses tests de survie (dont les tests de récupération) et de discrétion en milieu naturel. De plus, il gagne 1 PV supplémentaire.
+
+**Bonus** : PV +1
 
 **2. Armure de vent**
 
@@ -721,6 +809,8 @@ Lorsque le chevalier réalise cette attaque au contact, si le test d’attaque e
 
 Le chevalier augmente sa FOR de +1. Désormais, il obtient un *dé bonus* aux tests de FOR.
 
+**Bonus** : FOR +1
+
 **5. Mon armure est une arme** (G)
 
 Une fois par combat, le chevalier peut donner un coup avec son armure (gantelet, heaume, spallière, etc.) en action gratuite. Il inflige automatiquement [1d4° + FOR] DM, et si la FOR de la cible est inférieure à celle du chevalier, elle est (au choix du chevalier) *renversée* ou *étourdie* pour 1 round ou recule de 3 m.
@@ -792,6 +882,8 @@ Le chevalier met un point d’honneur à combattre le leader ennemi. Lorsqu’il
 
 Le chevalier augmente son CHA de +1. Désormais, il obtient un *dé bonus* aux tests de CHA.
 
+**Bonus** : CHA +1
+
 **5. Seul contre tous**
 
 Le chevalier sait faire face à de nombreux adversaires. Lorsque au moins 3 adversaires l’attaquent au contact à ce round, il obtient une action d’attaque (A) supplémentaire à ce round.
@@ -830,6 +922,8 @@ Le guerrier peut décider de renvoyer un sort qu’il vient d’absorber grâce 
 **1. Vivacité**
 
 Le guerrier gagne +3 en Initiative et aux tests d’AGI ou de FOR pour éviter d’être *immobilisé* ou *renversé*. De plus, une fois par combat, il obtient une action de mouvement supplémentaire à son tour.
+
+**Bonus** : Init +3
 
 **2. Manoœuvre**
 
@@ -879,9 +973,13 @@ Lorsqu’un adversaire rate une attaque de contact contre lui, le personnage obt
 
 Le guerrier augmente sa valeur maximale de PV de rang + 2. De plus, vous ajoutez votre rang + 2 à tous les tests destinés à résister aux efforts physiques, à la chaleur ou au froid (conditions naturelles).
 
+**Bonus** : PV +3
+
 **2. Résilient**
 
 Désormais, il suffit de 10 min au guerrier pour bénéficier des effets d’une récupération rapide (au lieu de 30 min) et cela passe à 5 min au rang 4 de la voie. De plus, le guerrier obtient un bonus égal au rang atteint dans la voie pour tous les tests destinés à résister aux états *étourdi* et *affaibli*.
+
+**Bonus** : PV +1
 
 **3. Armure lourde**
 
@@ -889,13 +987,19 @@ Au choix le guerrier gagne +1 en DEF ou il apprend à porter l’armure de plaqu
 
 * Dans le cas d’un profil hybride, le personnage apprend à utiliser une armure d’une catégorie au‑dessus de celles autorisées par son profil principal et il peut désormais utiliser toutes les capacités de ce profil avec cette armure. Par exemple, un barbare qui choisit cette capacité peut désormais entrer en rage en portant une chemise de mailles.
 
+**Bonus** : PV +1
+
 **4. Constitution héroïque**
 
 Le guerrier augmente sa CON de +1. Désormais, il obtient un *dé bonus* aux tests de CON.
 
+**Bonus** : CON +1 · PV +1
+
 **5. Dur à cuire**
 
 Le guerrier gagne +1 en DEF et, une fois par combat, lorsqu’il tombe à 0 PV, il peut encore agir un round avant de tomber inconscient. De plus, il ne subit plus de dé malus lorsqu’il est *immobilisé* et lorsqu’il est *étourdi* ; il peut encore attaquer, mais avec un *dé malus*.
+
+**Bonus** : DEF +1 · PV +1
 
 <a id="soldat"></a>
 #### Voie du soldat
@@ -916,10 +1020,15 @@ Vous n’admettez pas qu’un adversaire vous ignore. Une fois par round, si un 
 
 Le guerrier augmente sa FOR de +1. Désormais, il obtient un *dé bonus* aux tests de FOR.
 
+**Bonus** : FOR +1
+
 **5. Rempart**
 
 Vous pouvez désormais utiliser *Teigneux* contre un nombre d’adversaires égal à votre AGI + 2 à chaque round. Si vous réussissez cette attaque, le déplacement de votre adversaire est stoppé à l’endroit où vous l’avez attaqué. De plus vous gagnez +1 en DEF.
 
+**Bonus** : DEF +1
+
+<a id="famille-mage"></a>
 ## Mages
 
 <a id="profil-ensorceleur"></a>
@@ -931,6 +1040,8 @@ Vous pouvez désormais utiliser *Teigneux* contre un nombre d’adversaires éga
 **1. Murmures dans le vent** (sort, G)
 
 L’ensorceleur chuchote un message d’une dizaine de mots qui voyage jusqu’à son destinataire. Il peut entendre sa réponse immédiatement. La portée est de CHA × 100 m et le personnage doit connaître la cible ou la voir. En plus de ce sort, l’ensorceleur gagne un bonus permanent de +1 en Init. et en DEF, car parfois une bourrasque venue de nulle part vient gêner son attaquant, dévier un projectile ou lui permettre d’entendre un adversaire.
+
+**Bonus** : DEF +1 · Init +1
 
 **2. Sous tension** (sort, M)
 
@@ -955,6 +1066,8 @@ L’ensorceleur et tout son équipement deviennent translucides et intangibles p
 
 S’il emporte un test opposé d’attaque magique contre une créature de NC inférieur à son niveau (portée 10 m), l’ensorceleur devine son nom d’usage, son métier et quelques autres renseignements, tous de notoriété publique (si la cible agit sous couverture, ce sont les informations qui concernent la couverture que l’ensorceleur apprend). Si la cible du sort est volontaire et qu’il lit les lignes de sa main, il n’y a pas besoin de test et l’ensorceleur peut utiliser ce sort sur une créature de NC supérieur ou égal à son niveau. En plus de ce sort, l’ensorceleur gagne +1 en Init. et en DEF. Ce bonus augmente de +1 au rang 3 de la voie et de +1 chaque fois que le personnage atteint le rang 5 dans une voie d’ensorceleur.
 
+**Bonus** : DEF +1 · Init +1
+
 **2. Détection de l'invisible** (sort, L)
 
 Pendant CHA minutes, l’ensorceleur détecte les créatures invisibles (le sort révèle une silhouette, mais pas l’apparence exacte de la créature) ou cachées à moins de 20 m et si un sort de *Clairvoyance* affecte l’endroit. *Aveuglé* (par magie ou dans l’obscurité), ce sort lui permet de détecter les créatures présentes (et donc d’attaquer sans malus), mais pas de distinguer son environnement.
@@ -963,9 +1076,13 @@ Pendant CHA minutes, l’ensorceleur détecte les créatures invisibles (le sort
 
 L’ensorceleur peut voir et entendre à distance ce qui se passe dans un lieu qu’il connaît (pas de limite de portée) ou juste derrière une porte qu’il touche pendant CHA rounds (action limitée à chaque round). Les créatures présentes ont droit à un test de PER difficulté [12 + CHA de l’ensorceleur] : en cas de réussite, elles se sentent observées.
 
+**Bonus** : DEF +1 · Init +1
+
 **4. Perception héroïque**
 
 L’ensorceleur augmente sa valeur de PER de +1. Désormais, il obtient un *dé bonus* aux tests de PER, et il ajoute sa PER au nombre de PM dont il bénéficie.
+
+**Bonus** : PER +1 · PM +PER
 
 **5. Prescience**
 
@@ -1172,6 +1289,8 @@ Sur un test opposé d’attaque magique réussi (portée 10 m), le forgesort dé
 
 Le forgesort est habitué aux travaux et à la chaleur de la forge. Il divise par deux tous les DM de feu subis et augmente sa CON de +1. Désormais, il obtient un dé bonus aux tests de CON. Finalement, il peut ajouter sa valeur de CON au nombre de PM qu’il obtient.
 
+**Bonus** : CON +1 · PM +CON
+
 <a id="runes"></a>
 #### Voie des runes
 
@@ -1184,6 +1303,8 @@ Profile hybride
 
 Exceptionnellement, un profil hybride peut utiliser cette capacité avec une armure qu’il est capable de porter, supérieure à l’armure de cuir, bien que, dans ce cas, le bonus de DEF soit alors divisé par deux (+1 en DEF au rang 1, +2 au rang 4). Bien que cette capacité ne soit pas considérée comme un sort, elle requiert au moins +1 en INT pour être apprise, comme toutes les runes de forgesort.
 
+**Bonus** : DEF +2
+
 **2. Rune de puissance** (sort, L)
 
 Le forgesort enchante une arme pour 24 h. Une fois par combat, celle‑ci peut d’infliger les DM maximaux sur une attaque au contact ou à distance. Les *dés bonus* ne sont pas maximisés (*attaque sournoise* ou *puissante*, *rage*, etc.). Le joueur doit annoncer l’utilisation de la rune avant de lancer les dés de DM.
@@ -1191,6 +1312,8 @@ Le forgesort enchante une arme pour 24 h. Une fois par combat, celle‑ci peut d
 **3. Rune de protection** (sort, A)
 
 Le forgesort enchante une armure (ou des vêtements) pour 24 h. Une fois par jour, celle‑ci permet d’ignorer les dommages d’une attaque que le personnage subit (au contact, magique ou à distance). Si l’attaque est un critique, le personnage subit tout de même les DM normaux (non‑critique). Pour activer la rune, le personnage doit être conscient et ne pas être *surpris* (action gratuite). Le joueur doit activer la rune avant de connaître le montant des DM.
+
+**Bonus** : DEF +1
 
 **4. Rune d'énergie** (sort, A)
 
@@ -1203,6 +1326,8 @@ En réalisant un rituel de 10 min, le forgesort inscrit des runes invisibles au 
 - Alarme : un puissant gong retentit et la cible est *étourdie* pendant 1 round à moins de réussir un **test de CON difficulté 15**.
 
 - Feu : [3d4°+INT] DM de feu (un autre élément peut être choisi parmi foudre, froid, acide).
+
+**Bonus** : DEF +1
 
 <a id="profil-magicien"></a>
 ### Magicien
@@ -1404,6 +1529,8 @@ Le sorcier désigne une cible vivante à portée (10 m) et doit réussir un test
 
 Le sorcier peut désormais porter une armure d’os (souvent camouflée sous une robe) qui lui offre un bonus de +3 en DEF et n’empêche pas l’utilisation des capacités de sorcier. Son bonus de DEF augmente de +1 chaque fois que le personnage atteint le rang 4 dans une voie de sorcier. Le sorcier doit confectionner cette armure lui‑même à partir d’ossements et l’entretenir par magie 10 min chaque jour.
 
+**Bonus** : DEF +3
+
 **3. Animation des morts** (sort, L)
 
 Le sorcier anime le cadavre d’un humanoïde de taille moyenne, décédé depuis moins d’INT jours. Le zombie comprend les ordres « Attaquer », « Suivre », « Garder » et « Pas bouger ». Le sorcier peut contrôler un seul zombie, plus un zombie chaque fois qu’il atteint le rang 5 dans une voie de sorcier. Un zombie réduit à 0 PV tombe en poussière.
@@ -1439,6 +1566,8 @@ Pendant INT minutes, le sang du sorcier se transforme en un acide qui gicle lors
 
 Le corps du sorcier devient cadavérique. Il gagne +2 en DEF et ce bonus passe à +3 au rang 5 (Si le personnage porte une armure autre qu’une armure d’os de sorcier, le bonus est réduit de 1 point, donc +1 DEF et +2 DEF au rang 5). De plus, lorsqu’il tombe à 0 PV, il peut continuer à agir, mais avec un dé malus à tous ses tests. S’il subit encore au moins 1 DM, il sombre dans l’inconscience.
 
+**Bonus** : DEF +2
+
 **4. Rituel du sang** (sort, A)
 
 Le sorcier s’ouvre les veines et sacrifie 1d4° PV pour cibler une créature vivante (portée 20 m), la victime saigne à la moindre blessure. Tous les DM infligés à la cible par des armes tranchantes ou perçantes (griffes et crocs inclus) augmentent de +1d4° pendant INT rounds.
@@ -1446,6 +1575,8 @@ Le sorcier s’ouvre les veines et sacrifie 1d4° PV pour cibler une créature v
 **5. Lien de sang** (sort, A)
 
 En réussissant un test opposé d’attaque magique (portée 20 m), le sorcier tisse un lien avec sa victime. Pendant INT minutes, la moitié des DM reçus par le sorcier sont également subis par la cible (les DM infligés au sorcier ne sont pas pour autant réduits) et le sorcier peut lui lancer un sort sans la voir (si elle est à portée).
+
+**Bonus** : DEF +1
 
 <a id="sombre-magie"></a>
 #### Voie de la sombre magie
@@ -1470,6 +1601,9 @@ Le sorcier s’enveloppe d’ombre pendant INT minutes. Il gagne un dé bonus à
 
 Le sorcier augmente sa CON de +1. Désormais, il obtient un *dé bonus* aux tests de CON et voit dans le noir comme s’il s’agissait de pénombre. De plus, lorsqu’il lance un sort, il peut sacrifier 1d4° PV pour ajouter +2d4° aux DM de ce sort. S’il s’agit d’un sort dont les DM durent de round en round (comme strangulation), il peut sacrifier 1d4° PV chaque round.
 
+**Bonus** : CON +1
+
+<a id="famille-mystique"></a>
 ## Mystiques
 
 <a id="profil-druide"></a>
@@ -1516,6 +1650,8 @@ Dans le cadre de la forme animale du druide tout animal qui vit sur notre planè
 
 Le druide ajoute son rang + 2 aux tests de course, d’escalade ou de saut. De plus, il gagne +3 en Initiative et +1 en DEF. Le bonus de DEF passe à +2 au rang 3 et +3 au rang 5.
 
+**Bonus** : DEF +1 · Init +3
+
 **2. Panthère**
 
 Le druide apprivoise une panthère (ou un puma) qui lui obéit au doigt et à l’œil.
@@ -1541,6 +1677,8 @@ Gérer un compagnon animal
 
 Le druide ou son félin parcourt de 5 à 10 m et bénéficie d’un dé bonus au test d’attaque et de +1d4° aux DM contre sa cible. Il ne peut pas effectuer d’attaque bondissante s’il est au contact d’un adversaire.
 
+**Bonus** : DEF +1
+
 **4. Grand félin**
 
 La panthère devient un animal fabuleux ou est remplacée par un félin plus grand (tigre, lion). Le grand félin peut servir de monture au druide et il se déplace de 20 m par action de mouvement. Le druide peut communiquer avec son félin par télépathie et le guérir à distance en dépensant ses propres PV (‑1 PV au druide par PV octroyé au félin).
@@ -1554,6 +1692,14 @@ La panthère devient un animal fabuleux ou est remplacée par un félin plus gra
 **5. Les sept vies du chat**
 
 Cette capacité ne peut être utilisée que six fois, et pas plus d’une fois par niveau. Lorsque les PV du druide tombent à 0 ou qu’il meurt, le druide peut choisir d’ignorer ce qui a provoqué la mort ou l’inconscience ! Le MJ et le joueur doivent se mettre d’accord et trouver une raison plausible (ou pas!) pour expliquer la survie du personnage, et le faire réapparaître immédiatement ou un peu plus tard dans l’aventure si nécessaire.
+
+**Bonus** : DEF +1
+
+**Version standard** : Fauve
+
+**Variante** (ours) : Ours — Voie du montreur d’ours
+
+Rang 2 : bonus en intimidation et en spectacle au lieu de pister et surprise. Compagnon : −2 DEF, +2 FOR (+2 DM).
 
 <a id="nature"></a>
 #### Voie de la nature
@@ -1573,6 +1719,8 @@ Le druide combat avec les deux extrémités de son bâton de bois noueux (ou de 
 **4. Constitution héroïque**
 
 Le druide augmente sa CON de +1. Désormais, il obtient un *dé bonus* aux tests de CON.
+
+**Bonus** : CON +1
 
 **5. Résistant**
 
@@ -1598,6 +1746,8 @@ Une cible touchée par le druide récupère [3d4°+PER] PV par un rituel de 10 m
 **4. Perception héroïque**
 
 Le druide augmente sa PER de +1. Désormais, il obtient un *dé bonus* aux tests de PER. De plus, il ajoute désormais sa PER pour calculer ses PM (en plus de sa VOL).
+
+**Bonus** : PER +1 · PM +PER
 
 **5. Forme d'arbre** (sort, A)
 
@@ -1668,12 +1818,16 @@ Le moine frappe les points par lesquels circule l’énergie vitale d’une cré
 
 Le moine ne mange presque plus, et il peut subsister sans eau et sans sommeil pendant [5 + VOL] jour. Il ne subit aucune pénalité durant cette période. De plus, le moine augmente sa CON de +1 et obtient un *dé bonus* aux tests de CON.
 
+**Bonus** : CON +1
+
 <a id="maitrise"></a>
 #### Voie de la maîtrise
 
 **1. Agilité du singe**
 
 Le moine ajoute son rang + 2 à tous ses tests pour effectuer des acrobaties ou esquiver et il gagne +2 en DEF. Ce bonus passe à +3 au rang 4. Se relever (si le personnage est *renversé*) devient une action gratuite.
+
+**Bonus** : DEF +2
 
 **2. Griffes du tigre**
 
@@ -1686,6 +1840,8 @@ Lorsqu’il attaque à mains nues, le moine augmente de 1 point les chances d’
 **4. Fureur du dragon** (L)
 
 Une fois par combat, le moine peut effectuer une attaque tournoyante qui inflige automatiquement [3d4° + FOR] DM à tous les adversaires au contact et oblige ceux‑ci à réussir un **test de FOR difficulté 10** pour ne pas être *renversés*.
+
+**Bonus** : DEF +1
 
 **5. Moment de perfection**
 
@@ -1706,13 +1862,19 @@ Le moine peut méditer pendant 10 min et récupérer ainsi [1d4°+VOL] PV. Les s
 
 Le moine utilise sa force mentale pour augmenter son efficacité en combat. Il ajoute sa VOL à son Initiative et à ses PV. De plus, il gagne +2 en DEF (ce bonus passe à +3 au rang 5).
 
+**Bonus** : DEF +2 · Init +VOL · PV +VOL
+
 **4. Volonté héroïque**
 
 Le moine augmente sa VOL de +1. Désormais, il obtient un *dé bonus* aux tests de VOL.
 
+**Bonus** : VOL +1
+
 **5. Projection mentale** (L)
 
 Une fois par jour, le moine entre en méditation et projette son esprit hors de son corps pendant [1d4°+VOL] minutes. Il ressemble à un ectoplasme de couleur blanche qui se déplace en volant à la vitesse de 10 m par round. Il peut passer au travers des murs, mais pas des êtres vivants ou des barrières magiques. Le moine ne perçoit le monde que par sa projection mentale, mais ressent les DM qui sont infligés à son corps. Il peut utiliser cette capacité une fois de plus chaque jour par rang 5 atteint dans une autre voie de moine. De plus le moine augmente définitivement de +1 la valeur de sa plus faible caractéristique (choisir en cas d’égalité).
+
+**Bonus** : DEF +1
 
 <a id="poing"></a>
 #### Voie du poing
@@ -1724,6 +1886,8 @@ Lorsqu’il combat à mains nues, le moine peut (s’il le souhaite) remplacer s
 **2. Peau de fer**
 
 Le moine gagne un bonus de +2 en DEF et il divise tous les DM temporaires subis par deux. Le bonus de DEF passe à +3 au rang 5.
+
+**Bonus** : DEF +2
 
 **3. Parade de projectiles** (G)
 
@@ -1737,6 +1901,8 @@ Le moine peut dévier un projectile (flèche, javelot…) une fois par round (sa
 
 Le moine peut choisir de s’imposer un *dé malus* sur une attaque au contact et ajoute +2d4° aux DM. Cette capacité peut aussi être utilisée avec Projection du ki qui est une attaque magique.
 
+**Bonus** : DEF +1
+
 <a id="vent"></a>
 #### Voie du vent
 
@@ -1744,9 +1910,13 @@ Le moine peut choisir de s’imposer un *dé malus* sur une attaque au contact e
 
 Le moine peut se déplacer avant et après avoir attaqué (mais il couvre toujours une distance normale, il divise son mouvement en deux). De plus, il gagne +3 en Initiative et son rang + 2 à tous les tests de saut, de course ou d’escalade.
 
+**Bonus** : Init +3
+
 **2. Course du vent**
 
 Le moine se déplace à une vitesse surhumaine, il gagne +1 en DEF et une action de mouvement lui permet de couvrir 15 m. Au rang 5, le bonus de DEF passe à +2 et l’action de mouvement lui permet de couvrir 20 m.
+
+**Bonus** : DEF +1
 
 **3. Course des airs**
 
@@ -1756,9 +1926,13 @@ Le moine défie les lois de la pesanteur et peut se déplacer sur des surfaces q
 
 Le moine augmente son AGI de +1. Désormais, il obtient un *dé bonus* aux tests d’AGI.
 
+**Bonus** : AGI +1
+
 **5. Passe-muraille** (L)
 
 Une fois par combat, le moine peut rendre son corps intangible le temps de passer au travers d’un mur d’une épaisseur maximal de VOL mètres. Il ne peut rester immatériel qu’un court instant et reprend corps dès qu’il émerge du mur. Si le mur est trop épais, la capacité ne fonctionne pas. De plus le moine augmente définitivement de +1 la valeur de sa plus faible caractéristique (choisir en cas d’égalité).
+
+**Bonus** : DEF +1
 
 <a id="profil-pretre"></a>
 ### Prêtre
@@ -1828,6 +2002,8 @@ Tous les morts‑vivants et les démons dans un rayon de 10 m autour du prêtre 
 
 Le prêtre augmente sa VOL de +1. Désormais, il obtient un *dé bonus* aux tests de VOL.
 
+**Bonus** : VOL +1
+
 **5. Intervention divine** (G)
 
 Le prêtre fait appel à son dieu pour changer le cours des événements. Une fois par combat, il peut décider qu’un test du MJ ou des joueurs est une réussite ou un échec, même après que les dés ont révélé leur résultat. Il ne peut pas modifier le résultat du test obtenu par une créature d’un NC supérieur à son niveau.
@@ -1874,34 +2050,20 @@ En touchant sa cible, le prêtre annule les pénalités infligées par les sorts
 
 Le prêtre augmente son CHA de +1. Désormais, il obtient un *dé bonus* aux tests de CHA.
 
+**Bonus** : CHA +1
+
 **5. Marche des plans** (sort, L)
 
 Une fois par jour, le prêtre peut passer dans une dimension entre les plans d’existence où le temps et l’espace sont déformés pendant un maximum de CHA rounds. Il se déplace dans une sorte de brouillard gris où le paysage défile à toute vitesse. Pour chaque round de Marche des plans, il se déplace en réalité de 10 km. Le lieu de sortie n’est cependant pas très précis et le MJ doit déterminer une position au hasard autour du point visé (à 1d6 km près).
 
+**Version standard** : Standard
+
+**Variante** (guerrier) : Divinité guerrière
+
+Vêtements sacrés : maîtrise de la cotte de mailles (DEF +5) et capacités de prêtre utilisables avec cette armure (profil hybride : maîtrise de la chemise de mailles requise).
+
+<a id="famille-peuple"></a>
 ## Voies de peuple
-
-<a id="demi-orc"></a>
-### Voie du demi-orc
-
-**1. Impressionnant**
-
-Le demi‑orc gagne un bonus de +3 à tous les tests d’intimidation. De plus, dans le noir total, le demi‑orc voit comme dans la pénombre jusqu’à 30 m.
-
-**2. Talent pour la violence**
-
-Le joueur choisit une capacité de rang 1 de n’importe quelle voie de barbare ou de guerrier.
-
-**3. Critique brutal**
-
-Le demi‑orc augmente de 1 point la zone de critique sur une attaque au contact (19‑20 au d20) et ajoute +1d4° aux DM en cas de critique.
-
-**4. Attaque sanglante** (L)
-
-Le demi‑orc réalise une attaque de contact qui provoque une hémorragie. En plus des DM normaux, l’attaque produit un saignement qui inflige à la victime 1d4° DM à chaque round suivant jusqu’à ce que la cible soit soignée (tout effet de soins ou une action limitée utilisée à cet effet). On ne peut pas cumuler plusieurs effets de saignement.
-
-**5. Colosse**
-
-Le demi‑orc augmente ses valeurs de FOR et de CON de +1.
 
 <a id="elfe-haut"></a>
 ### Voie de l'elfe haut
@@ -1926,6 +2088,8 @@ L’elfe n’a besoin que de la moitié du repos, de la nourriture ou de la bois
 
 L’elfe augmente sa valeur de VOL de +1 et sa valeur d’INT ou de CHA de +1.
 
+**Bonus** : VOL +1
+
 <a id="elfe-sylvain"></a>
 ### Voie de l'elfe sylvain
 
@@ -1941,6 +2105,8 @@ Le joueur choisit une capacité de rang 1 de n’importe quelle voie de druide o
 
 L’elfe augmente de 1 la zone de critique lorsqu’il utilise un arc (19‑20 au d20) et ajoute +1d4° aux DM en cas de critique. Il sait utiliser les arcs courts, quel que soit son profil.
 
+**Bonus** : armes arc : critique +1
+
 **4. Flèche sanglante**
 
 L’elfe fait une attaque à distance qui provoque une hémorragie. En plus des DM normaux, la flèche produit un effet de saignement qui inflige à la victime 1d4° DM à chaque round suivant jusqu’à ce que la cible soit soignée (tout effet de soins ou une action limitée utilisée à cet effet). On ne peut cumuler plusieurs effets de saignement.
@@ -1949,51 +2115,7 @@ L’elfe fait une attaque à distance qui provoque une hémorragie. En plus des 
 
 L’elfe augmente ses valeurs d’AGI et PER de +1.
 
-<a id="gnome"></a>
-### Voie du gnome
-
-**1. Don étrange**
-
-Le gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires. Il gagne un bonus de +3 à tous les tests scientifiques (INT) et il choisit une capacité de rang 1 d’ensorceleur. S’il porte une armure, il ne peut pas utiliser ce sort plus d’une fois par jour (il doit payer le coût en PM de façon normale). Dans le noir total, le gnome voit comme dans la pénombre jusqu’à 10 m.
-
-**2. Petit pote**
-
-Le gnome est un compagnon sympathique et difficile à considérer comme dangereux ou malintentionné. Il gagne +3 à tous les tests d’interaction sociale sauf pour intimider. Il gagne aussi 1 point de chance.
-
-**3. Insignifiant**
-
-Le gnome sait comment échapper aux attaques des grandes créatures comme les géants. Il gagne un bonus de +2 en DEF contre les créatures de taille grande ou supérieure. Ce bonus passe à +3 au rang 5.
-
-**4. Merveille technologique**
-
-Le gnome sait utiliser les arbalètes (et les armes à poudre si votre MJ autorise leur usage), quel que soit son profil. Il ajoute son AGI aux DM qu’il inflige avec ces armes.
-
-**5. Bonne nature**
-
-Le gnome augmente ses valeurs de CON et de CHA de +1.
-
-<a id="halfelin"></a>
-### Voie du halfelin
-
-**1. Petite taille**
-
-Le halfelin obtient un bonus de +1 en DEF et de +3 à tous les tests de discrétion ainsi qu’à tous les tests effectués pour subtiliser quelque chose (pickpocket, vol à l’étalage, etc.). En revanche, un halfelin ne peut pas utiliser à une main une arme dont les DM dépassent 1d6 (épée courte, masse, etc., mais pas rapière). Il lui faut utiliser les deux mains pour les armes qui infligent 1d8 à 1d10 de DM (épée longue) et il lui est interdit d’utiliser les armes qui infligent plus de 1d10 DM. Il ne peut pas utiliser d’arc long ni d’arbalète lourde.
-
-**2. Résistance légendaire**
-
-Le halfelin obtient un bonus égal à son rang à tous les tests opposés d’attaque magique effectués pour résister à un sort.
-
-**3. Bon pour le moral**
-
-Un halfelin qui mange bien est un halfelin heureux. À chaque repas (jusqu’à 4 fois par jour, espacés d’au moins 3 h) au cours duquel le personnage boit et mange des mets de qualité et en quantité, il récupère 1d4° PV.
-
-**4. Petit veinard**
-
-Le halfelin gagne 1 PC supplémentaire. De plus, il peut esquiver une attaque de son choix par combat (avant d’avoir pris connaissance des DM, mais pas un critique).
-
-**5. Vif et bien nourri**
-
-Le halfelin augmente ses valeurs d’AGI et de CON de +1.
+**Bonus** : AGI +1 · PER +1
 
 <a id="humain"></a>
 ### Voie de l'humain
@@ -2016,6 +2138,8 @@ Le MJ peut en inventer d’autres selon les cultures présentes dans son univers
 
 **Exemple :** Un citadin étudiant en magie pourrait obtenir un bonus de +3 aux tests de commerce et +3 aux tests d’érudition occulte, même si son personnage est finalement devenu guerrier.
 
+**Bonus** : PC +1
+
 **2. Instinct de survie**
 
 Une fois par combat, lorsqu’une attaque devrait amener l’humain à 0 PV, les DM qu’elle inflige sont divisés par 2 (minimum 1). Après avoir bénéficié de cette capacité, l’humain gagne pour le reste du combat un bonus de +2 en DEF.
@@ -2032,6 +2156,93 @@ Une fois par round, l’humain gagne +1d4° aux DM qu’il inflige lorsqu’il c
 
 Le personnage augmente sa caractéristique la plus faible de +1 et sa Volonté de +1.
 
+**Bonus** : VOL +1
+
+<a id="demi-orc"></a>
+### Voie du demi-orc
+
+**1. Impressionnant**
+
+Le demi‑orc gagne un bonus de +3 à tous les tests d’intimidation. De plus, dans le noir total, le demi‑orc voit comme dans la pénombre jusqu’à 30 m.
+
+**2. Talent pour la violence**
+
+Le joueur choisit une capacité de rang 1 de n’importe quelle voie de barbare ou de guerrier.
+
+**3. Critique brutal**
+
+Le demi‑orc augmente de 1 point la zone de critique sur une attaque au contact (19‑20 au d20) et ajoute +1d4° aux DM en cas de critique.
+
+**Bonus** : armes contact : critique +1
+
+**4. Attaque sanglante** (L)
+
+Le demi‑orc réalise une attaque de contact qui provoque une hémorragie. En plus des DM normaux, l’attaque produit un saignement qui inflige à la victime 1d4° DM à chaque round suivant jusqu’à ce que la cible soit soignée (tout effet de soins ou une action limitée utilisée à cet effet). On ne peut pas cumuler plusieurs effets de saignement.
+
+**5. Colosse**
+
+Le demi‑orc augmente ses valeurs de FOR et de CON de +1.
+
+**Bonus** : FOR +1 · CON +1
+
+<a id="gnome"></a>
+### Voie du gnome
+
+**1. Don étrange**
+
+Le gnome possède un talent inné pour les sciences, qu’elles soient occultes ou plus ordinaires. Il gagne un bonus de +3 à tous les tests scientifiques (INT) et il choisit une capacité de rang 1 d’ensorceleur. S’il porte une armure, il ne peut pas utiliser ce sort plus d’une fois par jour (il doit payer le coût en PM de façon normale). Dans le noir total, le gnome voit comme dans la pénombre jusqu’à 10 m.
+
+**2. Petit pote**
+
+Le gnome est un compagnon sympathique et difficile à considérer comme dangereux ou malintentionné. Il gagne +3 à tous les tests d’interaction sociale sauf pour intimider. Il gagne aussi 1 point de chance.
+
+**Bonus** : PC +1
+
+**3. Insignifiant**
+
+Le gnome sait comment échapper aux attaques des grandes créatures comme les géants. Il gagne un bonus de +2 en DEF contre les créatures de taille grande ou supérieure. Ce bonus passe à +3 au rang 5.
+
+**4. Merveille technologique**
+
+Le gnome sait utiliser les arbalètes (et les armes à poudre si votre MJ autorise leur usage), quel que soit son profil. Il ajoute son AGI aux DM qu’il inflige avec ces armes.
+
+**Bonus** : armes arbalète/poudre : DM +AGI
+
+**5. Bonne nature**
+
+Le gnome augmente ses valeurs de CON et de CHA de +1.
+
+**Bonus** : CON +1 · CHA +1
+
+<a id="halfelin"></a>
+### Voie du halfelin
+
+**1. Petite taille**
+
+Le halfelin obtient un bonus de +1 en DEF et de +3 à tous les tests de discrétion ainsi qu’à tous les tests effectués pour subtiliser quelque chose (pickpocket, vol à l’étalage, etc.). En revanche, un halfelin ne peut pas utiliser à une main une arme dont les DM dépassent 1d6 (épée courte, masse, etc., mais pas rapière). Il lui faut utiliser les deux mains pour les armes qui infligent 1d8 à 1d10 de DM (épée longue) et il lui est interdit d’utiliser les armes qui infligent plus de 1d10 DM. Il ne peut pas utiliser d’arc long ni d’arbalète lourde.
+
+**Bonus** : DEF +1
+
+**2. Résistance légendaire**
+
+Le halfelin obtient un bonus égal à son rang à tous les tests opposés d’attaque magique effectués pour résister à un sort.
+
+**3. Bon pour le moral**
+
+Un halfelin qui mange bien est un halfelin heureux. À chaque repas (jusqu’à 4 fois par jour, espacés d’au moins 3 h) au cours duquel le personnage boit et mange des mets de qualité et en quantité, il récupère 1d4° PV.
+
+**4. Petit veinard**
+
+Le halfelin gagne 1 PC supplémentaire. De plus, il peut esquiver une attaque de son choix par combat (avant d’avoir pris connaissance des DM, mais pas un critique).
+
+**Bonus** : PC +1
+
+**5. Vif et bien nourri**
+
+Le halfelin augmente ses valeurs d’AGI et de CON de +1.
+
+**Bonus** : AGI +1 · CON +1
+
 <a id="nain"></a>
 ### Voie du nain
 
@@ -2042,6 +2253,8 @@ Dans le noir total, le nain voit comme dans la pénombre jusqu’à 30 m. De plu
 **2. Haches et marteaux**
 
 Le nain gagne un bonus de +1 en attaque et aux DM lorsqu’il utilise une hache ou un marteau de guerre. Il sait utiliser ces armes, quel que soit son profil.
+
+**Bonus** : armes hache/marteau : attaque +1, DM +1
 
 **3. Résistance à la magie**
 
@@ -2054,6 +2267,8 @@ Le nain réduit tous les DM subis de 2 points (mais il subit toujours au moins 1
 **5. Ténacité**
 
 Le nain augmente ses valeurs de CON et de VOL de +1.
+
+**Bonus** : CON +1 · VOL +1
 
 <a id="mage"></a>
 ### Voie du mage
@@ -2070,9 +2285,13 @@ Le mage peut détecter la présence de magie (y compris la présence d’objets 
 
 Le mage peut réaliser un tour de magie (portée 10 m) par round en action gratuite sans dépenser aucun PM. Par exemple, fermer une porte à distance, éteindre ou allumer une bougie en claquant des doigts. Il ne peut réaliser aucune action qui nécessite une valeur de caractéristique supérieure à 0 (par exemple, s’il faut au moins +1 ou un test de FOR pour pousser une porte lourde, ce sort ne permet pas de la fermer). Cette capacité ne peut produire aucun DM direct. De plus, le mage gagne +1 en DEF et +2 PM (en plus de celui gagné avec cette capacité ; au total, en apprenant ce sort, le mage acquiert donc 3 PM d’un coup).
 
+**Bonus** : DEF +1 · PM +2
+
 **4. Esprit supérieur**
 
 Le mage augmente son INT et sa VOL de +1. Désormais, il obtient un *dé bonus* aux tests d’INT.
+
+**Bonus** : INT +1 · VOL +1
 
 **5. Tempête de mana**
 

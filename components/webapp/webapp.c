@@ -18,3 +18,8 @@ const webapp_asset_t *webapp_find(const char *uri)
     }
     return NULL;
 }
+
+const webapp_asset_t *webapp_at(size_t i)
+{
+    return i < webapp_asset_count ? &webapp_assets[i] : NULL;
+}

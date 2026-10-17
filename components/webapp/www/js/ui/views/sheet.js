@@ -31,12 +31,12 @@ function viewSheet(id, mj) {
     </div>
     <div class="grid2">
       ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
-      ${sel('peuple', 'Peuple', PEUPLE_OPTS)}${sel('profil', 'Profil', PROFIL_OPTS)}
+      ${sel('peuple', 'Peuple', peupleOpts())}${sel('profil', 'Profil', profilOpts())}
       ${sel('niveau', 'Niveau', niveaux, ' data-num')}
     </div>
     ${prof ? `<div class="info small">
-        <b>${esc(prof.n)}</b> · ${esc(COF2.familles[prof.f].n)}${COF2.familles[prof.f].note ? ` (${esc(COF2.familles[prof.f].note)})` : ''}<br>
-        Caractéristiques clés : <b>${esc(prof.car)}</b>${prof.magie ? ` · magie : <b>${prof.magie}</b>` : ''}
+        <b>${esc(prof.n)}</b>${k.fam ? ` · ${esc(k.fam.n)}${k.fam.note ? ` (${esc(k.fam.note)})` : ''}` : ''}<br>
+        Caractéristiques clés : <b>${esc(prof.car)}</b>${prof.magie ? ` · magie : <b>${esc(prof.magie)}</b>` : ''}
         <details data-k="profil"><summary>Description, armes, équipement</summary>
           <p><i>${esc(prof.desc)}</i></p>${prof.bonus.map(md).join('')}
           <b>Armes & armures.</b>${md(prof.armes)}<b>Équipement de départ.</b>${md(prof.equip)}
@@ -52,7 +52,7 @@ function viewSheet(id, mj) {
         <small>${l} <b class="eff" data-calc="car.${key}"></b></small>
       </div>`).join('')}
     </div>
-    <p class="muted small">Valeurs de base (série + peuple). Création : ${COF2.series.map(([s, v]) => `${s} ${v}`).join(' · ')}. Les bonus des capacités (→) s’ajoutent automatiquement.</p>
+    <p class="muted small">Valeurs de base (série + peuple). Création : ${esc(COF2.series.map(([s, v]) => `${s} ${v}`).join(' · '))}. Les bonus des capacités (→) s’ajoutent automatiquement.</p>
     <div class="grid2">
       ${sel('ideal', 'Idéal héroïque', [['', '—'], ...COF2.ideaux.map(x => [x, x])])}
       ${sel('travers', 'Travers', [['', '—'], ...COF2.travers.map(x => [x, x])])}
@@ -77,23 +77,23 @@ function viewSheet(id, mj) {
     <details data-k="div"><summary>Bonus divers & calculs</summary>
       <div class="grid3">${DIVERS.map(([key, s]) => num('div.' + key, s)).join('')}</div>
       <p class="muted small">
-        PV = (niveau + 1) × ${k.fam ? k.fam.pv : '?'} + niveau × CON · DR = 2 + CON${k.fam && k.fam.drb ? ' + 1' : ''} (d${k.drType}) ·
-        PC = 2 + CHA${k.fam && k.fam.pc ? ' + 1' : ''} · PM = VOL + ${k.sorts} sort(s) · Init = 10 + PER ·
+        PV = ${k.prof.pv1} + (niveau − 1) × ${k.prof.pvniv} + niveau × CON · DR = ${k.prof.drn} + CON (d${k.drType}) ·
+        PC = ${k.prof.pc} + CHA · PM = VOL + ${k.sorts} sort(s) · Init = 10 + PER ·
         DEF = 10 + AGI (max. armure) + armure + bouclier · attaques = niveau (max. 10) + FOR / AGI / VOL.
         Les bonus permanents des capacités sont inclus ; ajoutez ici les autres (objets, conditions…).
       </p>
     </details>
     <h3>Protection</h3>
     <div class="grid2">
-      ${sel('armure', 'Armure', COF2.armures.map(([v, l, d]) => [v, d ? `${l} (DEF +${d})` : l]))}
-      ${sel('bouclier', 'Bouclier', COF2.boucliers.map(([v, l, d]) => [v, d ? `${l} (DEF +${d})` : l]))}
+      ${sel('armure', 'Armure', COF2.armures.map(a => [a.id, a.def ? `${a.nom} (DEF +${a.def})` : a.nom]))}
+      ${sel('bouclier', 'Bouclier', COF2.boucliers.map(b => [b.id, b.def ? `${b.nom} (DEF +${b.def})` : b.nom]))}
     </div>
     ${k.agiCap < k.car.AGI ? `<p class="small warn">L’armure limite l’AGI à ${sgn(k.agiCap)} pour la DEF.</p>` : ''}
     <h3>Armes</h3>
     ${c.armes.map((w, i) => weaponRow(c, w, i, k, dis, del)).join('')}
     <button data-a="add" data-list="armes">+ Ajouter une arme</button>
     <h3>États</h3>
-    <div class="chips">${COF2.etats.map(([e, d]) => `<button class="chip ${c.etats.includes(e) ? 'on' : ''}" data-a="etat" data-v="${e}" title="${esc(d)}"${dis}>${e}</button>`).join('')}</div>
+    <div class="chips">${COF2.etats.map(([e, d]) => `<button class="chip ${c.etats.includes(e) ? 'on' : ''}" data-a="etat" data-v="${esc(e)}" title="${esc(d)}"${dis}>${esc(e)}</button>`).join('')}</div>
     ${c.etats.length ? `<ul class="small muted">${c.etats.map(e => `<li><b>${esc(e)}</b> : ${esc(ETAT_INFO[e] || '')}</li>`).join('')}</ul>` : ''}`;
 
   const sac = `
@@ -124,8 +124,8 @@ function viewSheet(id, mj) {
 function weaponRow(c, w, i, k, dis, del) {
   const st = weaponStats(c, w, k);
   const opts = {
-    'Contact': COF2.armes.filter(a => a[2] === 'contact').map(a => [a[0], a[1]]),
-    'Distance': COF2.armes.filter(a => a[2] === 'distance').map(a => [a[0], a[1] + (a[4] && a[4].portee ? ` (${a[4].portee} m)` : '')]),
+    'Contact': COF2.armes.filter(a => a.att !== 'distance').map(a => [a.id, a.nom]),
+    'Distance': COF2.armes.filter(a => a.att === 'distance').map(a => [a.id, a.nom + (a.portee ? ` (${a.portee} m)` : '')]),
     'Autre': [['autre', 'Autre / arme spéciale…']],
   };
   const custom = st.W.custom ? `

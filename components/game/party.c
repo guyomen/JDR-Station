@@ -8,7 +8,18 @@
 
 static char s_mj_pin[33];
 
-void party_init(const char *mj_pin) { strlcpy(s_mj_pin, mj_pin, sizeof(s_mj_pin)); }
+static int s_rules_v;
+
+void party_init(const char *mj_pin)
+{
+    strlcpy(s_mj_pin, mj_pin, sizeof(s_mj_pin));
+    /* Au hasard : un appareil resté hors ligne pendant un envoi puis un redémarrage voit quand même le changement. */
+    s_rules_v = (int)(esp_random() & 0x3fffffff);
+}
+
+int party_rules_version(void) { return s_rules_v; }
+void party_rules_bump(void) { s_rules_v = (s_rules_v + 1) & 0x3fffffff; }
+bool party_pin_ok(const char *pin) { return pin && s_mj_pin[0] && strcmp(pin, s_mj_pin) == 0; }
 
 cJSON *party_chars(void)  { return cJSON_GetObjectItem(store_root(), "chars"); }
 cJSON *party_tokens(void) { return cJSON_GetObjectItem(store_root(), "tokens"); }

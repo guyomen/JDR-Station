@@ -1,6 +1,8 @@
 /* Utilitaires purs : nombres, échappement HTML, mini-Markdown, chemins d'objets, ID d'images. */
 
 const n = v => (Number.isFinite(+v) ? +v : 0);
+/* Comparaison souple : sans accents ni casse. */
+const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 const sgn = v => (v >= 0 ? '+' : '') + v;

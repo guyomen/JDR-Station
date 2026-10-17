@@ -40,7 +40,7 @@ function mjGroup() {
       </header>
       ${RES.map(([key, s, l]) => resRow(c, key, s, l, true, k)).join('')}
       <div class="statline">${DERIVED.map(([key, s]) => `<span>${s} <b data-calc="${key}"></b></span>`).join('')}</div>
-      <div class="chips">${COF2.etats.map(([e, d]) => `<button class="chip sm ${c.etats.includes(e) ? 'on' : ''}" data-a="etat" data-v="${e}" title="${esc(d)}">${e}</button>`).join('')}</div>
+      <div class="chips">${COF2.etats.map(([e, d]) => `<button class="chip sm ${c.etats.includes(e) ? 'on' : ''}" data-a="etat" data-v="${esc(e)}" title="${esc(d)}">${esc(e)}</button>`).join('')}</div>
       <div class="gear small">${gear.join(' · ') || 'Aucun équipement'}</div>
       ${voies ? `<div class="gear small">✦ ${voies}</div>` : ''}
       <small class="muted">${esc(c.bourse.po)} po · ${esc(c.inventaire.length)} objet(s) · code <span class="code small">${esc(S.tokens[c.id] || '?')}</span></small>
@@ -52,7 +52,7 @@ function mjInit() {
   const C = S.combat;
   const rows = initOrder(C.npcs);
   const cur = curKey(rows, C.turn.cur);
-  const etats = p => COF2.etats.map(([e, d]) => `<button class="chip sm ${p.etats.includes(e) ? 'on' : ''}" data-a="npc-etat" data-n="${p.id}" data-v="${e}" title="${esc(d)}">${e}</button>`).join('');
+  const etats = p => COF2.etats.map(([e, d]) => `<button class="chip sm ${p.etats.includes(e) ? 'on' : ''}" data-a="npc-etat" data-n="${p.id}" data-v="${esc(e)}" title="${esc(d)}">${esc(e)}</button>`).join('');
   return `<div class="row"><b class="grow">Tour ${C.turn.round}</b>
       <button data-a="turn-next" class="btn">Suivant ▶</button><button data-a="turn-reset" title="Recommencer au tour 1">↺</button></div>
     <ul class="init">${rows.map(r => {
@@ -86,6 +86,7 @@ function mjInit() {
 }
 
 function mjTools() {
+  if (!RULES.custom) refreshRulesIndex();
   const bg = S.combat.bg;
   const gone = bg && !S.lieux.some(l => l.id === bg);
   return `<section class="card"><h3>Lieu affiché sur l’écran partagé</h3>
@@ -101,6 +102,12 @@ function mjTools() {
     <section class="card"><h3>Repos</h3>
       <div class="row"><button data-a="rest-full">Récupération complète du groupe</button></div>
       <p class="muted small">8 h : +1 DR (sans dépasser le maximum) et tous les PM. Les PV se regagnent en dépensant des DR (récupération rapide : 1 DR + ½ niveau PV).</p>
+    </section>
+    <section class="card"><h3>Règles de la table</h3>
+      <p class="muted small">Les documents de l’Espace Règles sont aussi les données de la fiche : voies, bonus des capacités,
+        profils, peuples, armes, armures, états. Téléchargez-les, modifiez-les (texte, nouvelles voies, bonus…), puis envoyez
+        les fichiers modifiés : ils sont vérifiés, puis toute la table passe aux nouvelles règles.</p>
+      <div data-rules-admin>${rulesAdminHTML()}</div>
     </section>
     <section class="card"><h3>Sauvegarde</h3>
       <div class="row"><button data-a="export">⬇ Exporter (JSON)</button>

@@ -2,7 +2,7 @@
   "_comment": [
     "Fichiers servis par la station (clé = URL) et sources concaténées dans l'ordre, chemins relatifs à www/.",
     "Les scripts partagent une seule portée : l'ordre compte pour le code exécuté au chargement",
-    "(données avant règles, règles avant interface, main.js en dernier).",
+    "(règles avant interface, main.js en dernier). Les données de jeu sont lues au démarrage dans regles/*.md.",
     "Les fichiers regles/*.md sont lus dans references/COFv2/ et affichés dans l'Espace Règles (#/regles)."
   ],
   "index.html": ["index.html"],
@@ -29,14 +29,13 @@
     "js/core/dom.js",
     "js/core/storage.js",
 
-    "js/data/cof2_drs.js",
-    "js/data/cof2.js",
-
+    "js/rules/parse.js",
     "js/rules/tables.js",
     "js/rules/character.js",
     "js/rules/normalize.js",
     "js/rules/dice.js",
     "js/rules/combat.js",
+    "js/rules/load.js",
 
     "js/state.js",
     "js/net.js",
@@ -46,6 +45,7 @@
     "js/features/images.js",
     "js/features/avatars.js",
     "js/features/screen.js",
+    "js/features/rules_admin.js",
 
     "js/ui/render.js",
     "js/ui/widgets.js",

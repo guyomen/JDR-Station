@@ -39,6 +39,10 @@ void party_new_id(char *out, size_t len);
 void party_new_token(char out[7]);
 bool party_char_fits(const cJSON *c);
 bool party_is_mj(const cJSON *m);
+bool party_pin_ok(const char *pin);
+/* Version des règles de la table (change à chaque envoi du MJ ; tirée au hasard au démarrage). */
+int party_rules_version(void);
+void party_rules_bump(void);
 bool party_is_owner(const cJSON *m, const char *id);
 
 /* ---------- messages.c : messages envoyés aux clients ---------- */

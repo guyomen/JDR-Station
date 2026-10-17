@@ -38,6 +38,13 @@ static void on_ws_message(int fd, const char *msg, size_t len, web_ws_out_t *out
     out->broadcast = res.broadcast;
 }
 
+/* Place libre sur la partition de données, pour les documents de règles envoyés par le MJ. */
+static size_t data_free(void)
+{
+    size_t total, used;
+    return store_usage(&total, &used) && total > used ? total - used : 0;
+}
+
 void app_main(void)
 {
     nvs_init();
@@ -64,6 +71,11 @@ void app_main(void)
         .on_close = game_disconnect,
         .files_uri = "/av/", /* miniatures des personnages, écrites par game dans STORE_BASE_PATH "/av/" */
         .files_root = STORE_BASE_PATH,
+        .docs_uri = "/regles/", /* règles de la table : documents remplaçant ceux de l'appli embarquée */
+        .docs_root = STORE_BASE_PATH "/regles/",
+        .docs_auth = game_check_pin,
+        .docs_free = data_free,
+        .docs_changed = game_rules_changed,
     };
     web_server_start(&web);
 

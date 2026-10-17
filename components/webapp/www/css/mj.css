@@ -33,3 +33,10 @@
   .sys { grid-template-columns: 1fr; gap: 0; }
   .sys dd { margin-bottom: .4rem; }
 }
+
+/* ---------- Règles de la table ---------- */
+.rulesdocs { list-style: none; padding: 0; margin: .4rem 0 .8rem; display: flex; flex-direction: column; gap: .3rem; }
+.rulesdocs li { display: flex; align-items: center; gap: .5rem; padding: .35rem .5rem; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; }
+.rulesdocs .badge.on { color: var(--gold); border-color: var(--gold); }
+.draft { margin-top: .8rem; padding: .7rem .8rem; border: 1px solid var(--gold); border-radius: 8px; background: var(--bg); }
+.draft ul, .card details ul { margin: .4rem 0; padding-left: 1.2rem; }

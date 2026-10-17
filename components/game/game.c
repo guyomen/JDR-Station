@@ -65,6 +65,21 @@ void game_handle(const char *msg, size_t len, int fd, game_out_t *out)
     cJSON_Delete(m);
 }
 
+bool game_check_pin(const char *pin)
+{
+    return party_pin_ok(pin);
+}
+
+char *game_rules_changed(void)
+{
+    store_lock();
+    party_rules_bump();
+    cJSON *o = msg_new("regles");
+    cJSON_AddNumberToObject(o, "v", party_rules_version());
+    store_unlock();
+    return json_print_free(o);
+}
+
 char *game_disconnect(int fd)
 {
     store_lock();

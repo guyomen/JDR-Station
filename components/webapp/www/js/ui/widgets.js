@@ -7,12 +7,15 @@ function selectHTML(p, value, options, attrs = '') {
     : Object.entries(options).filter(([, o]) => o.length).map(([g, o]) => `<optgroup label="${esc(g)}">${o.map(opt).join('')}</optgroup>`).join('');
   return `<select${p ? ` data-p="${p}"` : ''}${attrs}>${body}</select>`;
 }
-const PEUPLE_OPTS = [['', '— Peuple —'], ...Object.entries(COF2.peuples).map(([id, p]) => [id, p.n])];
-const PROFIL_OPTS = (() => {
+const peupleOpts = () => [['', '— Peuple —'], ...Object.entries(COF2.peuples).map(([id, p]) => [id, p.n])];
+function profilOpts() {
   const g = {};
-  for (const [id, p] of Object.entries(COF2.profils)) (g[COF2.familles[p.f].n] = g[COF2.familles[p.f].n] || []).push([id, p.n]);
+  for (const [id, p] of Object.entries(COF2.profils)) {
+    const fam = COF2.familles[p.f] ? COF2.familles[p.f].n : 'Autres profils';
+    (g[fam] = g[fam] || []).push([id, p.n]);
+  }
   return { '': [['', '— Profil —']], ...g };
-})();
+}
 
 const wstatHTML = st => {
   const info = [st.portee ? `portée ${st.portee} m` : '', st.crit < 20 ? `critique ${st.crit}-20` : '', st.W.note, ...st.src].filter(Boolean).join(' · ');

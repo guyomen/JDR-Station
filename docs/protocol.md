@@ -1,6 +1,7 @@
 # Protocole WebSocket
 
-L'appli web et la station échangent des messages JSON sur `ws://192.168.4.1/ws`.
+L'appli web et la station échangent des messages JSON sur `ws://192.168.4.1/ws`
+(et, pour les règles de la table, quelques requêtes HTTP : voir plus bas).
 Le champ `t` donne le type du message.
 
 - Côté station : [components/game/](../components/game/) (un fichier par domaine, aiguillage dans `game.c`).
@@ -59,7 +60,7 @@ Précisions :
 
 | `t` | Contenu |
 |---|---|
-| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique), `lieux`, `avatars` (`{id: v}`) |
+| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique), `lieux`, `avatars` (`{id: v}`), `rv` (version des règles de la table) |
 | `char` | `char` : fiche créée ou modifiée |
 | `del` | `id` : fiche supprimée |
 | `log` | `e` : jet de dés `{ts, who, label, f, faces, rolls, nat, total, keep, rq, secret}` |
@@ -67,9 +68,35 @@ Précisions :
 | `lieux` | `list` : lieux disponibles `[{id, n}]` |
 | `avatar` | `id`, `v` : nouvelle version de la miniature (0 = retirée) |
 | `combat` | `combat` : version publique du combat |
+| `regles` | `v` : nouvelle version des règles de la table (voir plus bas) |
 | `sys` | `sys` : `{up` (s), `temp` (°C, absent sans capteur), `heap {free, min, big, total}`, `fs {total, used}` (octets), `wifi {ch, rssi: [dBm]}`, `chip`, `cpu` (MHz), `flash` (octets), `idf`, `app`, `built`, `reset`, `tasks}` ; `peers` |
 | `auth`, `created`, `claim`, `you` | réponses (voir plus haut) |
 | `err` | `m` : message d'erreur à afficher |
+
+## Règles de la table (HTTP)
+
+L'appli lit ses règles au démarrage dans les documents Markdown de l'Espace Règles
+(`GET /regles/<doc>.md`, docs : `regles`, `familles`, `profils`, `peuples`, `voies`, `prestige`, `equipement`).
+Le MJ peut les remplacer, en HTTP et non en WebSocket, car un document dépasse la limite d'un message.
+Côté station : [components/web_server/](../components/web_server/) ; côté appli :
+[js/rules/load.js](../components/webapp/www/js/rules/load.js) et
+[js/features/rules_admin.js](../components/webapp/www/js/features/rules_admin.js).
+
+| Requête | Effet |
+|---|---|
+| `GET /regles/<doc>.md` | le document de la table s'il existe, sinon celui d'origine (embarqué dans le firmware) |
+| `GET /regles/<doc>.md?origine` | toujours le document d'origine (repli si ceux de la table sont illisibles) |
+| `GET /regles/index.json` | `{ "voies.md": 48236, … }` : documents de la table et leur taille compressée |
+| `PUT /regles/<doc>.md` | en-tête `X-Pin` (code MJ), corps : le document compressé en gzip (256 Ko au plus) |
+| `DELETE /regles/<doc>.md` | en-tête `X-Pin` : revient au document d'origine |
+
+- Seuls les noms de documents embarqués sont acceptés. Erreurs : 403 (code MJ), 404 (document inconnu),
+  413 (trop gros), 507 (pas assez de place : 96 Ko restent réservés à la partie et aux miniatures).
+- L'écriture se fait dans un fichier temporaire, renommé à la fin : un envoi interrompu ne laisse rien.
+- Après un `PUT` ou un `DELETE`, la station diffuse `regles {v}` et chaque appareil recharge l'appli.
+  L'en-tête `X-Suite` (envoi de plusieurs documents) retarde cette diffusion jusqu'au dernier document.
+  `v` est aussi dans `state` (`rv`) : un appareil hors ligne pendant l'envoi recharge à sa reconnexion.
+  Il est tiré au hasard au démarrage de la station, si bien qu'un redémarrage déclenche aussi un rechargement.
 
 ## Persistance
 
@@ -82,9 +109,12 @@ L'état est sauvegardé dans `/data/party.json` (SPIFFS), quelques secondes apr�
 
 Les fiches sont du JSON libre : c'est l'appli web qui définit leur contenu.
 Les miniatures sont des fichiers à part (`/data/av/<id>.jpg`) ; `avnext` donne la prochaine version.
+Les documents de règles de la table sont dans `/data/regles/<doc>.md.gz`.
 
 ## Limites
 
 Définies dans [components/game/game_priv.h](../components/game/game_priv.h) :
 12 personnages, 6 Ko par fiche, 60 jets dans le journal, 6 Ko par version du combat,
 40 lieux, 16 Ko par miniature (192 Ko au plus en flash), 80 Ko par message reçu.
+Documents de règles de la table : 256 Ko compressés par document
+([components/web_server/web_server.c](../components/web_server/web_server.c)).

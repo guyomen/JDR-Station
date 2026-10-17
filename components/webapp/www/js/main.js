@@ -7,6 +7,7 @@ app.addEventListener('input', e => { if (e.target.tagName !== 'SELECT') onField(
 app.addEventListener('change', e => {
   const el = e.target;
   if (el.matches('[data-import]')) return importFile(el.files[0]);
+  if (el.matches('[data-rules-upload]')) { pickRulesFiles([...el.files]); el.value = ''; return; }
   if (el.dataset.fit) return setFit(el.dataset.fit, el.value);
   if (el.dataset.aChange === 'addvoie') {
     const c = charOf(el);
@@ -43,7 +44,7 @@ window.addEventListener('hashchange', () => { render(); if (!rulesScroll()) wind
 /* Retour au premier plan : reconnexion et écran maintenu allumé (mode écran). */
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) return;
-  connect();
+  if (S.rules === 'ok') connect();
   keepAwake();
 });
 
@@ -53,9 +54,16 @@ setInterval(() => { if (route()[0] === 'global' && !isEditing()) render(); }, 30
 setInterval(pollSys, 5000);
 
 /* ---------- Démarrage ---------- */
+/* Les règles d'abord : les fiches reçues de la station sont lues avec elles. */
+async function startApp() {
+  render();
+  await loadRules();
+  render();
+  if (S.rules === 'ok') connect();
+}
 if (S.role === 'ecran' && !S.screen) { S.screen = true; save('screen', true); }
 if (S.screen && route()[0] !== 'global') location.hash = '#/global';
 else if (!route().length && S.role) location.hash = homeOf(S.role);
 keepAwake();
 refreshImgs();
-connect();
+startApp();

@@ -18,9 +18,10 @@ const NEW_ITEM = {
 /* ===================== Calculs COF2 ===================== */
 const famille = c => {
   const p = COF2.profils[c.profil];
-  return p ? COF2.familles[p.f] : null;
+  return p ? COF2.familles[p.f] || null : null;
 };
-const DEFAULT_FAM = { pv: 4, dr: 8, pc: 0, drb: 0 };
+/* Sans profil : valeurs d'un aventurier, pour afficher une fiche cohérente. */
+const DEFAULT_PROF = { pv1: 8, pvniv: 4, dr: 8, drn: 2, pc: 2, magie: '' };
 
 /* Toutes les valeurs dérivées d'une fiche (caractéristiques effectives, maxima, attaques…). */
 function calc(c) {
@@ -32,7 +33,7 @@ function calc(c) {
     const d = COF2.voies[v.id];
     if (!d) continue;
     const vfx = variante(v) && 'fx' in variante(v) ? variante(v).fx : d.fx;
-    for (let r = 1; r <= Math.min(5, n(v.rang)); r++) {
+    for (let r = 1; r <= Math.min(d.caps.length, n(v.rang)); r++) {
       if (d.caps[r - 1].spell) sorts++;
       if (vfx && vfx[r]) acquired.push({ ...vfx[r], src: d.caps[r - 1].name });
     }
@@ -50,21 +51,20 @@ function calc(c) {
       arme.push({ cat, src: e.src, att: val(b.att), dm: val(b.dm), crit: n(b.crit), portee: n(b.portee) || 1 });
     }
   }
-  const f = famille(c) || DEFAULT_FAM;
   const niv = Math.max(1, n(c.niveau));
   const atk = Math.min(niv, 10);
   const arm = ARMURES[c.armure] || ARMURES[''];
   const bou = BOUCLIERS[c.bouclier] || BOUCLIERS[''];
   const div = c.div;
-  const prof = COF2.profils[c.profil];
+  const prof = COF2.profils[c.profil] || DEFAULT_PROF;
   return {
-    car, sorts, arme, fam: famille(c), drType: f.dr,
-    lanceur: !!(prof && prof.magie) || sorts > 0 || fx.pm > 0 || n(div.pm) > 0,
+    car, sorts, arme, fam: famille(c), prof, drType: prof.dr,
+    lanceur: !!prof.magie || sorts > 0 || fx.pm > 0 || n(div.pm) > 0,
     agiCap: Math.min(car.AGI, arm.agi),
     max: {
-      pv: Math.max(1, (niv + 1) * f.pv + niv * car.CON + fx.pv + n(div.pv)),
-      dr: Math.max(0, 2 + car.CON + f.drb + fx.dr + n(div.dr)),
-      pc: Math.max(0, 2 + car.CHA + f.pc + fx.pc + n(div.pc)),
+      pv: Math.max(1, prof.pv1 + (niv - 1) * prof.pvniv + niv * car.CON + fx.pv + n(div.pv)),
+      dr: Math.max(0, prof.drn + car.CON + fx.dr + n(div.dr)),
+      pc: Math.max(0, prof.pc + car.CHA + fx.pc + n(div.pc)),
       pm: Math.max(0, (sorts ? car[pmcar] + sorts : 0) + fx.pm + n(div.pm)),
     },
     def: 10 + Math.min(car.AGI, arm.agi) + arm.def + bou.def + fx.def + n(div.def),
@@ -80,7 +80,7 @@ const voieNom = v => (variante(v) && variante(v).v) || voieDef(v).n;
 const curOf = (c, k, k2 = calc(c)) => (c[k].cur == null ? k2.max[k] : n(c[k].cur));
 
 function weaponOf(w) {
-  if (w.id === 'autre' || !WEAPONS[w.id]) return { nom: w.nom || 'Arme', att: w.att || 'contact', dm: w.dm || '1d6', note: '', custom: true };
+  if (w.id === 'autre' || !WEAPONS[w.id]) return { nom: w.nom || 'Arme', att: w.att || 'contact', dm: w.dm || '1d6', note: '', cats: [], custom: true };
   return WEAPONS[w.id];
 }
 /* Bonus saisi à la main : nombres et caractéristiques (« PER », « 2 », « AGI+1 »…) ; null si illisible. */
@@ -105,7 +105,7 @@ function weaponStats(c, w, k = calc(c)) {
   let portee = W.portee;
   if (W.att === 'contact' && !W.nofor && !W.custom) mod += k.car.FOR;
   /* Bonus des capacités de voie liés à la catégorie d'arme (Archer émérite, Haches et marteaux…). */
-  const cats = [W.att, ...String(W.cat || '').split(' ')];
+  const cats = [W.att, ...(W.cats || [])];
   const src = bdm == null ? ['bonus DM illisible (ex. PER, 2, AGI+1)'] : [];
   for (const b of k.arme) {
     if (!cats.includes(b.cat)) continue;
@@ -122,5 +122,5 @@ function weaponStats(c, w, k = calc(c)) {
 function voieDef(v) {
   const d = COF2.voies[v.id];
   if (d) return { ...d, kind: d.prestige ? 'prestige' : 'std' };
-  return { n: v.nom || 'Voie personnalisée', caps: [1, 2, 3, 4, 5].map(r => ({ name: `Rang ${r}`, spell: false, act: '', text: '' })), kind: 'libre' };
+  return { n: v.nom || 'Voie personnalisée', caps: [1, 2, 3, 4, 5].map(r => ({ name: `Rang ${r}`, rang: r, spell: false, act: '', text: '' })), kind: 'libre' };
 }

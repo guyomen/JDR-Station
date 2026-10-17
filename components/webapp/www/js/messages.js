@@ -10,6 +10,7 @@ function onMsg(m) {
       S.peers = m.peers || [];
       S.lieux = m.lieux || [];
       S.avatars = m.avatars || {};
+      rulesVersion(m.rv);
       if (!S.isMJ) S.pub = normCombat(m.combat);
       peersChanged();
       update();
@@ -94,6 +95,9 @@ function onMsg(m) {
         update();
       }
       else toast('Code incorrect');
+      break;
+    case 'regles':
+      rulesVersion(m.v);
       break;
     case 'err':
       toast(m.m);

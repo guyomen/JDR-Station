@@ -1,17 +1,27 @@
 # Familles de profils
 
-> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Extraction automatique, voir [README](README.md).
+> Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
+
+La famille d'un profil se règle dans [profils.md](profils.md) ; les lignes **Particularité**, **Rang 2 dès le niveau 1** et **Voie remplaçant la voie de peuple** sont lues par la fiche. Les listes de profils et de voies sont un récapitulatif.
 
 | Famille | Profils | PV niv. 1 | PV / niveau | DR | PC | Particularité |
 |---|---|---|---|---|---|---|
 | Aventuriers | [Arquebusier](profils.md#arquebusier), [Barde](profils.md#barde), [Rôdeur](profils.md#rodeur), [Voleur](profils.md#voleur) | 8 + CON | 4 + CON | d8 | 3 + CHA | +1 PC |
 | Combattants | [Barbare](profils.md#barbare), [Chevalier](profils.md#chevalier), [Guerrier](profils.md#guerrier) | 10 + CON | 5 + CON | d10 | 2 + CHA | — |
-| Mages | [Ensorceleur](profils.md#ensorceleur), [Forgesort](profils.md#forgesort), [Magicien](profils.md#magicien), [Sorcier](profils.md#sorcier) | 6 + CON | 3 + CON | d6 | 2 + CHA | +1 capacité de rang 2 à la création du personnage; Accès à la voie du mage en remplacement de la voie de peuple. |
-| Mystiques | [Druide](profils.md#druide), [Moine](profils.md#moine), [Prêtre](profils.md#pretre) | 8 + CON | 4 + CON | d8 | 2 + CHA | +1 dé de récupération |
+| Mages | [Ensorceleur](profils.md#ensorceleur), [Forgesort](profils.md#forgesort), [Magicien](profils.md#magicien), [Sorcier](profils.md#sorcier) | 6 + CON | 3 + CON | d6 | 2 + CHA | +1 capacité de rang 2 au niveau 1, voie du mage possible |
+| Mystiques | [Druide](profils.md#druide), [Moine](profils.md#moine), [Prêtre](profils.md#pretre) | 8 + CON | 4 + CON | d8 | 2 + CHA | +1 DR |
 
-Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystiques) ; PV = PV niv. 1 puis + (PV / niveau) à chaque niveau ; les mages peuvent remplacer leur voie de peuple par la [voie du mage](voies.md#mage).
+Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystiques) ; PV = PV niv. 1 puis + (PV / niveau) à chaque niveau.
 
+<a id="famille-generique"></a>
+## Génériques
+
+**Voies de prestige :** [Voie de l'expert](prestige.md#expert), [Voie du familier fantastique](prestige.md#familier-fantastique), [Voie du lycanthrope](prestige.md#lycanthrope), [Voie du sang-dragon](prestige.md#sang-dragon), [Voie du spécialiste](prestige.md#specialiste)
+
+<a id="famille-aventurier"></a>
 ## Aventuriers
+
+**Particularité :** +1 PC
 
 **Profils :** [Arquebusier](profils.md#arquebusier), [Barde](profils.md#barde), [Rôdeur](profils.md#rodeur), [Voleur](profils.md#voleur)
 
@@ -19,6 +29,7 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 **Voies de prestige :** [Voie de l'archer arcanique](prestige.md#archer-arcanique), [Voie de l'espion](prestige.md#espion), [Voie des ombres](prestige.md#ombres), [Voie du casse-cou](prestige.md#casse-cou), [Voie du chasseur de primes](prestige.md#chasseur-de-primes), [Voie du duelliste](prestige.md#duelliste), [Voie du flibustier](prestige.md#flibustier), [Voie du héros](prestige.md#heros), [Voie du maître des poisons](prestige.md#maitre-des-poisons), [Voie du pacte féerique](prestige.md#pacte-feerique), [Voie du touche-à-tout](prestige.md#touche-a-tout), [Voie du tueur à gages](prestige.md#tueur-a-gages)
 
+<a id="famille-combattant"></a>
 ## Combattants
 
 **Profils :** [Barbare](profils.md#barbare), [Chevalier](profils.md#chevalier), [Guerrier](profils.md#guerrier)
@@ -27,7 +38,14 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 **Voies de prestige :** [Voie de l'arme liée](prestige.md#arme-liee), [Voie de l'ours](prestige.md#ours), [Voie de l'écorcheur](prestige.md#ecorcheur), [Voie des armes à deux mains](prestige.md#armes-a-deux-mains), [Voie du chevalier dragon](prestige.md#chevalier-dragon), [Voie du colosse](prestige.md#colosse), [Voie du combat du mal](prestige.md#combat-du-mal), [Voie du combattant des tunnels](prestige.md#combattant-des-tunnels), [Voie du danseur de guerre](prestige.md#danseur-de-guerre), [Voie du guerrier-mage](prestige.md#guerrier-mage), [Voie du porteur de bouclier](prestige.md#porteur-de-bouclier), [Voie du tueur de géants](prestige.md#tueur-de-geants)
 
+<a id="famille-mage"></a>
 ## Mages
+
+**Particularité :** +1 capacité de rang 2 au niveau 1, voie du mage possible
+
+**Rang 2 dès le niveau 1 :** oui
+
+**Voie remplaçant la voie de peuple :** [Voie du mage](voies.md#mage)
 
 **Profils :** [Ensorceleur](profils.md#ensorceleur), [Forgesort](profils.md#forgesort), [Magicien](profils.md#magicien), [Sorcier](profils.md#sorcier)
 
@@ -35,14 +53,13 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 **Voies de prestige :** [Voie de l'archimage](prestige.md#archimage), [Voie de l'enchanteur](prestige.md#enchanteur), [Voie de l'invocation majeure](prestige.md#invocation-majeure), [Voie de l'élémentaliste](prestige.md#elementaliste), [Voie de la magie de l'esprit](prestige.md#magie-de-l-esprit), [Voie de la magie des mots](prestige.md#magie-des-mots), [Voie de la magie du temps](prestige.md#magie-du-temps), [Voie de la vision](prestige.md#vision), [Voie des cristaux](prestige.md#cristaux), [Voie du chaos](prestige.md#chaos), [Voie du gel](prestige.md#gel), [Voie du mage de guerre](prestige.md#mage-de-guerre), [Voie du maître des sorts](prestige.md#maitre-des-sorts)
 
+<a id="famille-mystique"></a>
 ## Mystiques
+
+**Particularité :** +1 DR
 
 **Profils :** [Druide](profils.md#druide), [Moine](profils.md#moine), [Prêtre](profils.md#pretre)
 
 **Voies de profil :** [Voie des animaux](voies.md#animaux), [Voie du fauve](voies.md#fauve), [Voie de la nature](voies.md#nature), [Voie du protecteur](voies.md#protecteur), [Voie des végétaux](voies.md#vegetaux), [Voie de l'énergie vitale](voies.md#energie-vitale), [Voie de la maîtrise](voies.md#maitrise), [Voie de la méditation](voies.md#meditation), [Voie du poing](voies.md#poing), [Voie du vent](voies.md#vent), [Voie de la foi](voies.md#foi), [Voie de la guerre sainte](voies.md#guerre-sainte), [Voie de la prière](voies.md#priere), [Voie des soins](voies.md#soins), [Voie de la spiritualité](voies.md#spiritualite)
 
 **Voies de prestige :** [Voie de l'armure dorée](prestige.md#armure-doree), [Voie des saisons](prestige.md#saisons), [Voie des vermines](prestige.md#vermines), [Voie du changeforme](prestige.md#changeforme), [Voie du combat mystique](prestige.md#combat-mystique), [Voie du guérisseur](prestige.md#guerisseur), [Voie du maître de la nature](prestige.md#maitre-de-la-nature), [Voie du templier](prestige.md#templier), [Voie élémentaire de l'air](prestige.md#elementaire-de-l-air), [Voie élémentaire de l'eau](prestige.md#elementaire-de-l-eau), [Voie élémentaire de la terre](prestige.md#elementaire-de-la-terre), [Voie élémentaire du feu](prestige.md#elementaire-du-feu)
-
-## Voies de prestige génériques
-
-[Voie de l'expert](prestige.md#expert), [Voie du familier fantastique](prestige.md#familier-fantastique), [Voie du lycanthrope](prestige.md#lycanthrope), [Voie du sang-dragon](prestige.md#sang-dragon), [Voie du spécialiste](prestige.md#specialiste)

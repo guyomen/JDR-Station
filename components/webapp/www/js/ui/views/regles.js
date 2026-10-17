@@ -1,25 +1,7 @@
-/* Vue : Espace Règles, consultation des documents de references/COFv2 (servis en /regles/<doc>.md). */
+/* Vue : Espace Règles, consultation des documents en vigueur (RULES.texts, chargés au démarrage). */
 
-const RULES_DOCS = {
-  regles: 'Aide-mémoire',
-  familles: 'Familles',
-  profils: 'Profils',
-  peuples: 'Peuples',
-  voies: 'Voies',
-  prestige: 'Prestige',
-  equipement: 'Équipement',
-};
-/* doc → HTML rendu ; 'loading' pendant le chargement, 'error' en cas d'échec (bouton Réessayer). */
+/* doc -> HTML rendu (calculé à la première consultation). */
 const rulesDocs = {};
-
-function loadRules(doc) {
-  if (rulesDocs[doc]) return;
-  rulesDocs[doc] = 'loading';
-  fetch(`/regles/${doc}.md`)
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(t => { rulesDocs[doc] = mdDoc(t, doc); }, () => { rulesDocs[doc] = 'error'; })
-    .then(() => { if (route()[0] === 'regles') { update(); rulesScroll(); } });
-}
 
 /* Ancre de la route #/regles/<doc>/<ancre>, ou null. */
 function rulesAnchor() {
@@ -36,13 +18,10 @@ function rulesScroll() {
 
 function viewRules(doc) {
   if (!RULES_DOCS[doc]) doc = 'regles';
-  loadRules(doc);
   const tabs = Object.entries(RULES_DOCS).map(([k, t]) =>
     `<a class="btn sm${k === doc ? '' : ' ghost'}" href="#/regles/${k}">${t}</a>`).join('');
-  const html = rulesDocs[doc];
-  const body = html === 'loading' ? '<p class="muted center">Chargement…</p>'
-    : html === 'error' ? `<p class="center">Impossible de charger le document. <button class="sm" data-a="rules-retry" data-v="${doc}">Réessayer</button></p>`
-    : html;
+  if (S.rules === 'ok' && !rulesDocs[doc]) rulesDocs[doc] = mdDoc(RULES.texts[doc] || '', doc);
+  const body = S.rules === 'ok' ? rulesDocs[doc] : rulesStatus();
   return `<nav class="row rules-tabs">${tabs}</nav>
     <article class="card mddoc">${body}</article>
     <p class="muted small center">Chroniques Oubliées Fantasy 2e édition © Black Book Éditions —

@@ -12,6 +12,10 @@ function update() {
 }
 
 let rulesShown = ''; // HTML de l'Espace Règles affiché
+/* Avant l'appli : chargement des règles, ou échec (bouton Réessayer). */
+const rulesStatus = () => (S.rules === 'error'
+  ? '<p class="center">Impossible de charger les règles depuis la station. <button class="sm" data-a="rules-retry">Réessayer</button></p>'
+  : '<p class="muted center">Chargement des règles…</p>');
 function render() {
   S.needRender = false;
   const app = $('#app');
@@ -19,6 +23,7 @@ function render() {
   const r = route();
   let html;
   if (r[0] === 'regles') html = viewRules(r[1]);
+  else if (S.rules !== 'ok') html = rulesStatus();
   else if (!S.ready) html = '<p class="muted center">Connexion à la station…</p>';
   else if (!S.role) html = viewWelcome();
   else if (r[0] === 'c') html = viewSheet(r[1], false);

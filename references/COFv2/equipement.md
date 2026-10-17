@@ -85,6 +85,8 @@ Appartement (2 pièces) 250 po · Masure (3 p.) 500 po · Maison (4 p.) 1 000 po
 
 ## Armes (p. 181-187)
 
+> **Pour la fiche de personnage** : chaque ligne de ces tableaux est une arme, une armure ou un bouclier proposé sur la fiche. La colonne **Id** identifie l'objet dans les fiches : ne la changez pas pour un objet existant, choisissez-en une nouvelle (lettres minuscules et chiffres) pour un objet ajouté. **Mots-clés** : catégories visées par les bonus des voies (`arc`, `arbalète`, `poudre`, `hache`, `marteau`, `couteau`, `jet`… voir les lignes **Bonus** des voies) et `sans FOR` (pas de FOR aux DM au contact). **Critique** : début de la zone de critique (`19-20`) ; `—` = 20 seulement.
+
 **Règles générales**
 - Configuration : arme 1 main + bouclier, OU arme à 2 mains, OU deux armes à 1 main (voir Combat p. 208), OU une seule arme 1 main (main libre, ex. torche).
 - Dégainer/rengainer = action de mouvement (avec déplacement 10 m possible) ; lâcher = gratuite ; ramasser = action d'attaque. Arme de lancer : se saisir de l'arme inclus dans l'attaque si la main est libre.
@@ -98,30 +100,31 @@ Appartement (2 pièces) 250 po · Masure (3 p.) 500 po · Maison (4 p.) 1 000 po
 
 ### Armes de contact (p. 183)
 
-| Arme | DM | Prix | Type | Mains / notes |
-|---|---|---|---|---|
-| Mains nues | 1d3 | – | Contondants | DM temporaires |
-| Bâton | 1d4 | – | Contondants | 2 mains, DM temporaires possibles |
-| Bâton ferré | 1d6 | 2 pa | Contondants | 2 mains (qui manie le bâton ferré manie le bâton) |
-| Dague | 1d4 | 3 pa | Perforants | Légère (aussi lancer, voir distance) |
-| Épée à deux mains | 2d6 | 10 pa | Tranchants | 2 mains |
-| Épée bâtarde | 1d8/1d12 | 9 pa | Tranchants | 1 ou 2 mains |
-| Épée courte | 1d6 | 5 pa | Perforants | Légère |
-| Épée longue | 1d8 | 6 pa | Tranchants | 1 main |
-| Épieu | 1d6/1d10 | 4 pa | Perforants | 1 ou 2 mains ; lancé 1d6 à 10 m |
-| Fléau | 1d6 | 5 pa | Contondants | 1 main (voir règles spéciales) |
-| Fléau à deux mains | 1d10 | 8 pa | Contondants | 2 mains, relance 1 attaque ratée/combat |
-| Gourdin | (1d4) | 1 pa | Contondants | DM temporaires possibles |
-| Hache | 1d8 | 6 pa | Tranchants | 1 main |
-| Hache à deux mains | 2d6 | 10 pa | Tranchants | 2 mains |
-| Lance | 1d6/1d10 | 4 pa | Perforants | 1 ou 2 mains ; lancée 1d6 à 10 m |
-| Lance de cavalerie | 2d6 | 8 pa | Perforants | Dé malus au contact (sauf après déplacement à cheval) |
-| Marteau | 1d6 | 4 pa | Contondants | 1 main |
-| Masse | 1d6 | 4 pa | Contondants | 1 main |
-| Pique | 1d10 | 5 pa | Perforants | 2 mains, spécial |
-| Rapière | 1d6 | 6 pa | Perforants | Légère, critique sur 19-20 |
-| Stylet | 1d3 | 1 pa | Perforants | Légère ; pas de FOR aux DM, mais 1d6+AGI DM si cible surprise |
-| Vivelame | 1d10 | 15 pa | Tranchants | 2 mains, critique sur 19-20 |
+| Arme | DM | Critique | Prix | Type | Mots-clés | Notes | Id |
+|---|---|---|---|---|---|---|---|
+| Mains nues | 1d3 | — | – | Contondants | — | DM temporaires | `mains` |
+| Bâton | 1d4 | — | – | Contondants | — | 2 mains | `baton` |
+| Bâton ferré | 1d6 | — | 2 pa | Contondants | — | 2 mains | `batonferre` |
+| Dague | 1d4 | — | 3 pa | Perforants | — | légère | `dague` |
+| Épée à deux mains | 2d6 | — | 10 pa | Tranchants | — | 2 mains | `epee2m` |
+| Épée bâtarde (1 main) | 1d8 | — | 9 pa | Tranchants | — | — | `batarde1` |
+| Épée bâtarde (2 mains) | 1d12 | — | 9 pa | Tranchants | — | 2 mains | `batarde2` |
+| Épée courte | 1d6 | — | 5 pa | Perforants | — | légère | `epeecourte` |
+| Épée longue | 1d8 | — | 6 pa | Tranchants | — | — | `epeelongue` |
+| Épieu / lance (1 main) | 1d6 | — | 4 pa | Perforants | — | — | `epieu1` |
+| Épieu / lance (2 mains) | 1d10 | — | 4 pa | Perforants | — | 2 mains | `epieu2` |
+| Fléau | 1d6 | — | 5 pa | Contondants | — | relance 1 attaque ratée/combat | `fleau` |
+| Fléau à deux mains | 1d10 | — | 8 pa | Contondants | — | 2 mains, relance 1 attaque ratée/combat | `fleau2m` |
+| Gourdin | 1d4 | — | 1 pa | Contondants | — | DM temporaires possibles | `gourdin` |
+| Hache | 1d8 | — | 6 pa | Tranchants | hache | — | `hache` |
+| Hache à deux mains | 2d6 | — | 10 pa | Tranchants | hache | 2 mains | `hache2m` |
+| Lance de cavalerie | 2d6 | — | 8 pa | Perforants | — | dé malus sauf en charge à cheval | `lancecav` |
+| Marteau | 1d6 | — | 4 pa | Contondants | marteau | — | `marteau` |
+| Masse | 1d6 | — | 4 pa | Contondants | — | — | `masse` |
+| Pique | 1d10 | — | 5 pa | Perforants | — | 2 mains, spécial | `pique` |
+| Rapière | 1d6 | 19-20 | 6 pa | Perforants | — | légère | `rapiere` |
+| Stylet | 1d3 | — | 1 pa | Perforants | sans FOR | légère ; 1d6+AGI sur cible surprise | `stylet` |
+| Vivelame | 1d10 | 19-20 | 15 pa | Tranchants | — | 2 mains | `vivelame` |
 
 **Règles spéciales (armes en italique)**
 - **Fléau / fléau à deux mains** : 1×/combat, relancer le dé d'une attaque ratée contre un adversaire utilisant un bouclier ou une arme (pas les armes naturelles).
@@ -132,38 +135,41 @@ Appartement (2 pièces) 250 po · Masure (3 p.) 500 po · Maison (4 p.) 1 000 po
 
 ### Armes à distance (p. 185-187)
 
-| Arme | Portée | DM | Prix | Type | Notes |
-|---|---|---|---|---|---|
-| Arbalète de poing | 10 m | 1d6 | 8 pa | Perforants | Recharge : action de mouvement |
-| Arbalète légère | 30 m | 2d4 | 10 pa | Perforants | Recharge : action de mouvement ; 2 mains |
-| Arbalète lourde | 60 m | 2d6 | 15 pa | Perforants | Recharge : action limitée ; 2 mains |
-| Arc court | 30 m | 1d6 | 4 pa | Perforants | 2 mains |
-| Arc long | 50 m | 1d8 | 8 pa | Perforants | 2 mains ; FOR min. +1 |
-| Couteaux de lancer | 10 m | 1d4 | 3 pa | Perforants | 1d3 au contact ; 3 couteaux en un test (action limitée), + AGI aux DM |
-| Dague | 5 m | 1d4 | 3 pa | Perforants | |
-| Fronde | 20 m | 1d4 | – | Contondants | |
-| Hachette | 5 m | 1d6 | 2 pa | Tranchants | |
-| Javelot | 20 m | 1d6 | 1 pa | Perforants | Avec propulseur : portée doublée, action limitée |
-| Lance | 10 m | 1d6 | 3 pa | Perforants | voir épieu/lance |
-| Lance-pierre | 10 m | 1d3 | 1 pc | Contondants | |
-| Pétoire | 20 m | 1d10 | 50 pa | Perforants | Arme à poudre (autorisation MJ) ; recharge action limitée |
-| Mousquet | 50 m | 2d6 | 100 pa | Perforants | Arme à poudre ; recharge action limitée ; 2 mains |
+| Arme | DM | Portée | Critique | Prix | Type | Mots-clés | Notes | Id |
+|---|---|---|---|---|---|---|---|---|
+| Arbalète de poing | 1d6 | 10 m | — | 8 pa | Perforants | arbalète | recharge (M) | `arbpoing` |
+| Arbalète légère | 2d4 | 30 m | — | 10 pa | Perforants | arbalète | recharge (M), 2 mains | `arblegere` |
+| Arbalète lourde | 2d6 | 60 m | — | 15 pa | Perforants | arbalète | recharge (L), 2 mains | `arblourde` |
+| Arc court | 1d6 | 30 m | — | 4 pa | Perforants | arc | 2 mains | `arccourt` |
+| Arc long | 1d8 | 50 m | — | 8 pa | Perforants | arc | 2 mains, FOR +1 min. | `arclong` |
+| Couteaux de lancer | 1d4 | 10 m | — | 3 pa | Perforants | jet, couteau | — | `couteaux` |
+| Dague (lancer) | 1d4 | 5 m | — | 3 pa | Perforants | jet, couteau | — | `daguel` |
+| Fronde | 1d4 | 20 m | — | – | Contondants | — | — | `fronde` |
+| Hachette (lancer) | 1d6 | 5 m | — | 2 pa | Tranchants | jet, hache | — | `hachette` |
+| Javelot | 1d6 | 20 m | — | 1 pa | Perforants | jet | — | `javelot` |
+| Lance / épieu (lancer) | 1d6 | 10 m | — | 3 pa | Perforants | jet | — | `lancel` |
+| Lance-pierre | 1d3 | 10 m | — | 1 pc | Contondants | — | — | `lancepierre` |
+| Pétoire | 1d10 | 20 m | — | 50 pa | Perforants | poudre | arme à poudre, recharge (L) | `petoire` |
+| Mousquet | 2d6 | 50 m | — | 100 pa | Perforants | poudre | arme à poudre, recharge (L), 2 mains | `mousquet` |
 
 **Armes à poudre** (p. 187) : soumises à l'accord du MJ. Seul l'**arquebusier** les maîtrise par défaut. Sans maîtrise : dé malus et, sur 1-2 au d20, la poudre explose (1d4° DM au tireur, arme inutilisable pour le combat). Max raisonnable : 3 armes chargées (ex. 2 pétoires + 1 mousquet, + éventuellement une couleuvrine hors calcul) ; changer d'arme = action de mouvement. Halfelin avec arme humaine : dé malus (sauf pétoire tenue à 2 mains) ; versions de petit calibre : pétoire 1d8, mousquet 1d12.
 
 ## Armures et boucliers (p. 188)
 
-| Armure | DEF | AGI max | Prix |
+| Armure | DEF | AGI max | Prix | Id |
+|---|---|---|---|---|
+| Tissus matelassés, fourrures | +1 | +7 | 2 pa | `matelasse` |
+| Cuir simple | +2 | +6 | 4 pa | `cuir` |
+| Cuir renforcé, broigne | +3 | +5 | 8 pa | `cuirrenforce` |
+| Chemise de mailles | +4 | +4 | 15 pa | `chemise` |
+| Cotte de mailles | +5 | +3 | 25 pa | `cotte` |
+| Armure de plaques | +6 | +2 | 60 pa | `plaques` |
+| Plaque complète ¹ | +7 | +1 | 200 pa | `plaquecomplete` |
+
+| Bouclier | DEF | Prix | Id |
 |---|---|---|---|
-| Tissus matelassés, fourrures | +1 | +7 | 2 pa |
-| Cuir simple | +2 | +6 | 4 pa |
-| Cuir renforcé, broigne | +3 | +5 | 8 pa |
-| Chemise de mailles | +4 | +4 | 15 pa |
-| Cotte de mailles | +5 | +3 | 25 pa |
-| Armure de plaques | +6 | +2 | 60 pa |
-| Plaque complète ¹ | +7 | +1 | 200 pa |
-| Petit bouclier | +1 | – | 2 pa |
-| Grand bouclier | +2 | – | 4 pa |
+| Petit bouclier | +1 | 2 pa | `petit` |
+| Grand bouclier | +2 | 4 pa | `grand` |
 
 ¹ Sur mesure ; seul le chevalier peut la porter (capacité de rang 3 de la voie de la noblesse).
 

@@ -1,4 +1,6 @@
-"""Analyse les pages rendues du DRS (Chroniques Oubliées Fantasy 2) et produit drs.json.
+"""Analyse les pages rendues du DRS (Chroniques Oubliées Fantasy 2) : extraction brute pour un import initial.
+
+Le résultat (sans balises Bonus, variantes ni familles) ne remplace pas drs.json : voir references/COFv2/README.md.
 
 usage : python -I parse_drs.py <dossier raw> <sortie.json>
 """

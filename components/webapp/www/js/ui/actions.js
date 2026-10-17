@@ -6,8 +6,12 @@ const ACTIONS = {
     $$('[data-a=tab]').forEach(b => b.classList.toggle('on', b === el));
     $$('[data-pane]').forEach(p => p.classList.toggle('on', p.dataset.pane === S.tab));
   },
-  mjtab(el) { S.mjtab = el.dataset.v; render(); pollSys(); },
-  'rules-retry'(el) { delete rulesDocs[el.dataset.v]; render(); },
+  mjtab(el) { S.mjtab = el.dataset.v; render(); pollSys(); if (S.mjtab === 'outils') refreshRulesIndex(); },
+  'rules-dl'(el) { downloadRules(el.dataset.v); },
+  'rules-reset'(el) { resetRules(el.dataset.v); },
+  'rules-send'() { sendRules(); },
+  'rules-cancel'() { S.rulesDraft = null; paintRulesAdmin(); },
+  'rules-retry'() { startApp(); },
   keep(el) {
     S.keep = el.dataset.v;
     $$('[data-a=keep]').forEach(b => b.classList.toggle('on', b.dataset.v === S.keep));

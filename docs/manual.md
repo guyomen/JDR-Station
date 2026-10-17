@@ -74,6 +74,7 @@ La fiche est découpée en onglets :
 
 Presque tout se choisit dans des listes issues des règles : armures, armes (DM, portée, critique),
 les 132 voies du DRS avec le texte de chaque capacité (bouton ⓘ), sorts (✦), états…
+Pour lire une voie que vous n'avez pas encore, ou comparer des armes, ouvrez l'[Espace Règles](#espace-règles).
 
 ### Lancer les dés
 
@@ -105,12 +106,26 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 - **Lieu affiché sur l'écran partagé** : choisissez un lieu dans la liste, ou « Aucun ».
   La liste vient de l'écran partagé (voir ci-dessous) et reste disponible même quand
   l'écran est éteint.
+- **Règles de la table** : les documents de l'Espace Règles sont aussi les règles de la fiche
+  (voies et leurs bonus, profils, peuples, armes, armures, états). Pour les adapter à votre table :
+  1. **⬇ Tout télécharger** (un fichier .zip), ou ⬇ à côté d'un seul document ;
+  2. modifiez les fichiers `.md` sur un ordinateur (n'importe quel éditeur de texte) : corriger une
+     capacité, ajouter une voie, une arme… Le format est expliqué au début de chaque document et en
+     détail dans `references/COFv2/README.md` ;
+  3. **⬆ Envoyer des .md modifiés** : l'appli vérifie les fichiers et affiche un rapport (voies, profils,
+     armes ajoutés ou modifiés, points à vérifier comme un bonus mal écrit). Rien n'est envoyé avant
+     **⬆ Envoyer à la station** ;
+  4. tous les appareils rechargent l'appli avec les nouvelles règles.
+
+  Un document modifié porte le badge « de la table » ; **↺** le remet d'origine (pensez à le télécharger
+  avant). Si des documents envoyés sont illisibles, la partie continue avec les règles d'origine et
+  l'appli le signale ici.
 - **Repos** : récupération complète du groupe (+1 DR, tous les PM).
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
   personnages de la station). Les images des personnages ne sont pas dans l'export : après un
   import, chacun remet la sienne.
-- **Station** : température de la puce, stockage restant (la partie et les images des
-  personnages), mémoire vive, Wi-Fi (canal, appareils et force du signal), durée de
+- **Station** : température de la puce, stockage restant (la partie, les images des
+  personnages et les règles de la table), mémoire vive, Wi-Fi (canal, appareils et force du signal), durée de
   fonctionnement et cause du dernier démarrage, version du logiciel. Actualisé toutes les 5 s.
   Une jauge passe au rouge au-delà de 85 %, la température au-delà de 70 °C.
 - Vider le journal des dés, quitter le mode MJ.
@@ -174,7 +189,11 @@ d'utilisateur. Sept documents, un par onglet :
 - **Équipement** : monnaie, matériel, montures, armes, armures et boucliers, avec leurs prix.
 
 Les liens des sommaires et les renvois d'un document à l'autre (par exemple d'un profil vers ses
-voies) mènent directement au bon passage.
+voies) mènent directement au bon passage. Le bouton **Précédent** du navigateur ramène au document
+d'où vous veniez.
+
+Ce sont les règles en vigueur à la table : si le MJ a modifié des documents (Outils › *Règles de la
+table*), l'Espace Règles affiche sa version.
 
 ## Comment la fiche est calculée
 
@@ -194,6 +213,9 @@ Attaques = niveau (max. 10) + FOR / AGI / VOL     DM contact = dé + FOR, distan
 - Les bonus conditionnels (sans armure, avec bouclier, objet magique…) se saisissent dans
   « Bonus divers ».
 - Les fiches de l'ancienne version sont converties à l'ouverture (les « PR » deviennent des DR).
+- Il n'y a pas de points d'expérience dans COF2 : le MJ annonce le passage de niveau (en général à la
+  fin d'une aventure) et chacun change le niveau sur sa fiche.
+- Le détail des règles est dans l'[Espace Règles](#espace-règles) (*Aide-mémoire*).
 
 ## Problèmes fréquents
 
@@ -204,6 +226,8 @@ Attaques = niveau (max. 10) + FOR / AGI / VOL     DM contact = dé + FOR, distan
 | J'ai changé de téléphone | Reprenez votre personnage avec son code de reprise. |
 | Tout est oublié sur un appareil | La navigation privée ou l'effacement des données du site effacent le profil, les personnages et les images de l'appareil. Les fiches restent sur la station. |
 | L'écran affiche « Lieu absent de cet écran » | L'image n'est pas sur cet appareil : touchez l'avertissement et rechargez le dossier d'images. |
+| « Impossible de charger les règles depuis la station » | La connexion à la station a été coupée : revenez sur le Wi-Fi **JDR-Station** et appuyez sur **Réessayer**. |
+| L'appli se recharge toute seule | Le MJ vient de changer les règles de la table : c'est normal, rien n'est perdu. |
 | « Code MJ incorrect » | Demandez le code à la personne qui a préparé la station (par défaut `1234`). |
 
 La station sauvegarde la partie automatiquement : rien n'est perdu quand on la débranche.
