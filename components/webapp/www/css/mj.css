@@ -1,0 +1,22 @@
+/* Cartes de personnages et liste d'initiative (MJ et espace global). */
+
+/* ---------- MJ ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: .8rem; }
+.mjcard { margin: 0; }
+.mjcard header { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+.mjcard header b { font-size: 1.1rem; font-family: Georgia, serif; }
+.mjcard header small { display: block; color: var(--muted); }
+.mjcard .adj button { min-height: 32px; }
+.statline { display: flex; flex-wrap: wrap; gap: .3rem .8rem; margin: .5rem 0; font-size: .9rem; color: var(--muted); }
+.statline b { color: var(--text); }
+.gear { margin: .5rem 0; color: var(--muted); }
+
+.init { list-style: none; padding: 0; margin: .5rem 0; display: flex; flex-direction: column; gap: .35rem; }
+.init li {
+  display: grid; grid-template-columns: 3.2rem 1fr 4.5rem auto; gap: .4rem; align-items: center;
+  padding: .4rem .5rem; background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+}
+.init li.cur { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 10px rgba(217, 165, 74, .35); }
+.init li.pj .who { font-weight: 600; }
+.init .ini { font-size: 1.25rem; font-weight: 700; text-align: center; }
+.init input { min-height: 34px; padding: .3rem; }

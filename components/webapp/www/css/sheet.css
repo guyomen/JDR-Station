@@ -1,0 +1,85 @@
+/* Fiche de personnage. */
+
+/* ---------- Fiche ---------- */
+.sheet-head {
+  position: sticky; top: 46px; z-index: 10; display: flex; gap: .6rem; align-items: center;
+  background: var(--bg); padding: .4rem 0 .5rem; margin: -.4rem 0 0;
+}
+.sheet-head h1 { font-size: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.back { font-size: 1.8rem; line-height: 1; padding: 0 .3rem; }
+.pill { padding: .15rem .45rem; border-radius: 99px; background: var(--panel2); border: 1px solid var(--line); white-space: nowrap; }
+
+.tabs {
+  display: flex; gap: .25rem; overflow-x: auto; margin-bottom: .8rem; scrollbar-width: none;
+  position: sticky; top: 98px; z-index: 9; background: var(--bg); padding-bottom: .4rem;
+}
+.mj > .tabs { top: 46px; padding-top: .3rem; }
+.tabs button { flex: 1 0 auto; background: transparent; border-color: transparent; color: var(--muted); }
+.tabs button.on { background: var(--panel2); border-color: var(--line); color: var(--gold); font-weight: 600; }
+.pane { display: none; }
+.pane.on { display: block; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+.f { display: flex; flex-direction: column; gap: .15rem; }
+.f > span { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+.caracs { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.carac {
+  display: flex; flex-direction: column; align-items: center; gap: .2rem; padding: .4rem;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.carac input { font-size: 1.4rem; font-weight: 700; padding: .2rem; }
+.carac small { color: var(--muted); font-size: .7rem; }
+.carac .roll { width: 100%; min-height: 30px; padding: .1rem; font-weight: 700; color: var(--gold); }
+
+.resrow { padding: .5rem 0; border-bottom: 1px solid var(--line); }
+.resrow:last-child { border-bottom: 0; }
+.reshead { display: flex; align-items: center; gap: .5rem; }
+.reshead > b { width: 2.2rem; }
+.bar { flex: 1; height: 10px; border-radius: 99px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--green); transition: width .25s; }
+[data-res=pm] .bar i { background: var(--blue); }
+[data-res=pc] .bar i { background: var(--gold); }
+.bar i.low { background: var(--red); }
+.resnum { display: flex; align-items: center; gap: .2rem; }
+.resnum input { width: 3.4rem; padding: .3rem; min-height: 34px; }
+.adj { display: flex; gap: .35rem; margin-top: .4rem; }
+.adj button { flex: 1; min-height: 36px; padding: .2rem; }
+.adj button:nth-child(-n+2) { color: #f0a090; }
+.adj button:nth-child(n+3) { color: #a6dc9f; }
+
+.derived { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: .5rem; }
+.stat {
+  display: flex; flex-direction: column; align-items: center; padding: .5rem .3rem;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.stat small { color: var(--muted); font-size: .7rem; text-align: center; }
+.stat b { font-size: 1.5rem; }
+.stat button { margin-top: .2rem; }
+
+details { margin-top: .6rem; }
+summary { cursor: pointer; color: var(--muted); padding: .3rem 0; }
+
+.entry {
+  display: grid; grid-template-columns: 1fr auto; gap: .45rem; padding: .6rem;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: .5rem;
+}
+.entry .full { grid-column: 1 / -1; }
+.entry .tools { display: flex; gap: .3rem; flex-wrap: wrap; }
+.entry .x { color: var(--red); border-color: transparent; background: transparent; min-height: 34px; }
+.weapon { grid-template-columns: 2fr 1.3fr 1fr; }
+.weapon .tools { grid-column: 1 / -1; }
+.item3 { grid-template-columns: 2fr 4rem auto; }
+
+.chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chip { min-height: 32px; padding: .2rem .6rem; border-radius: 99px; font-size: .85rem; color: var(--muted); }
+.chip.on { background: #4a2020; border-color: var(--red); color: #ffd2c8; }
+
+.ro .adj, .ro [data-a=add], .ro .x { display: none; }
+.code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .15em; color: var(--gold); font-size: 1.1rem; }
+
+@media (min-width: 700px) {
+  .caracs { grid-template-columns: repeat(7, 1fr); }
+  .sheet-wrap { max-width: 760px; margin: 0 auto; }
+}

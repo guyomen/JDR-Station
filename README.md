@@ -43,7 +43,7 @@ Prérequis : ESP-IDF v5.4 (déjà installé dans `C:\Users\gga\esp\v5.4\esp-idf`
 
 ```powershell
 . C:\Users\gga\esp\v5.4\esp-idf\export.ps1
-cd C:\Users\gga\workspace\test\esp\JDR-station
+cd <dossier du projet>
 idf.py set-target esp32c6     # une seule fois
 idf.py menuconfig             # optionnel : menu « JDR Station »
 idf.py -p COM5 flash monitor  # adaptez le port COM
@@ -78,8 +78,8 @@ Conseils :
 ## Règles et personnalisation
 
 Le résumé des règles et la référence complète (profils, voies, prestige, JSON) sont dans [references/COFv2/](references/COFv2/README.md). Les données de jeu (profils, peuples, voies,
-armes, armures, états…) sont dans [main/www/cof2.js](main/www/cof2.js) et les calculs dans la
-fonction `calc()` de [main/www/app.js](main/www/app.js) :
+armes, armures, états…) sont dans [cof2.js](components/webapp/www/js/data/cof2.js) et les calculs dans la
+fonction `calc()` de [rules/character.js](components/webapp/www/js/rules/character.js) :
 
 ```
 PV  = (niveau + 1) × PV de famille + niveau × CON     (aventurier/mystique 4, combattant 5, mage 3)
@@ -101,23 +101,48 @@ armure et voies reconnus par leur nom ; les « PR » sont remplacés par les DR)
 ## Architecture
 
 ```
-main/
-  main.c          démarrage
-  wifi_ap.c       point d'accès Wi-Fi
-  dns_server.c    DNS de portail captif (tout nom → 192.168.4.1)
-  web_server.c    HTTP (fichiers embarqués) + WebSocket /ws
-  game.c          protocole : fiches, droits, dés, journal, import
-  store.c         état de la partie + sauvegarde /data/party.json
-  www/            appli web (HTML/CSS/JS, sans dépendance externe)
-    cof2_drs.js   peuples, profils et voies du DRS (généré, servi en gzip)
-    cof2.js       familles, bonus automatiques des capacités, équipement, états…
-references/COFv2/ règles et référence complète en Markdown + drs.json (voir son README)
-tools/drs/        extraction du DRS et génération des références / données de l'appli
+main/                 démarrage : lit la configuration (menuconfig) et relie les composants
+components/
+  network/            point d'accès Wi-Fi + DNS de portail captif (tout nom → 192.168.4.1)
+  store/              état de la partie + sauvegarde /data/party.json (SPIFFS)
+  game/               protocole : aiguillage (game.c), fiches (characters.c), dés et journal (dice.c),
+                      appareils connectés (peers.c), initiative (combat.c), droits (party.c)
+  web_server/         HTTP + WebSocket /ws, redirection du portail captif (ne connaît pas game)
+  webapp/             appli web embarquée (HTML/CSS/JS, sans dépendance externe)
+    www/index.html
+    www/css/          un fichier par écran
+    www/js/
+      core/           utilitaires, DOM, stockage local
+      data/           cof2_drs.js (DRS, généré) et cof2.js (familles, bonus des capacités, équipement…)
+      rules/          règles COF2 : tables, calculs de la fiche, conversion des anciennes fiches, dés
+      features/       initiative du MJ, images de lieux, mode écran partagé
+      ui/             rendu, composants, actions ; ui/views/ : un fichier par écran
+      state.js, net.js, messages.js, main.js
+    bundles.json      fichiers servis et ordre de concaténation des sources
+    gen_assets.py     assemblage + gzip + tableau C (lancé à la compilation)
+docs/protocol.md      messages WebSocket, droits, persistance, limites
+references/COFv2/     règles et référence complète en Markdown + drs.json (voir son README)
+tools/drs/            extraction du DRS et génération des références / données de l'appli
 ```
 
-Les fiches sont du JSON libre côté firmware : on peut enrichir la fiche dans `app.js`
-ou les données dans `cof2.js` sans toucher au C. Les modifications sont envoyées champ par champ (« patch »), ce qui évite
-qu'un joueur et le MJ s'écrasent mutuellement.
+**Firmware.** Chaque composant expose une API minimale dans son dossier `include/` et déclare ses
+dépendances dans son `CMakeLists.txt`. Seul `main` lit la configuration et connaît tout le monde :
+`web_server` transmet les messages WebSocket à `game` par des fonctions de rappel.
+
+**Appli web.** Les sources sont découpées par responsabilité, mais la station ne sert que trois fichiers
+(`index.html`, `app.css`, `app.js`) : à la compilation, `gen_assets.py` les concatène dans l'ordre de
+`bundles.json` et les compresse en gzip. Peu de requêtes par téléphone, donc peu de sockets ouvertes sur
+l'ESP. Les scripts partagent une seule portée : l'ordre de `bundles.json` compte pour le code exécuté
+au chargement (données, puis règles, puis interface, `main.js` en dernier). Un fichier ajouté à `www/`
+doit être déclaré dans `bundles.json`, sinon la compilation s'arrête. Pour voir le résultat sans compiler :
+
+```powershell
+python -I components/webapp/gen_assets.py --dist build/www
+```
+
+Les fiches sont du JSON libre côté firmware : on peut enrichir la fiche ou les données de jeu dans
+l'appli web sans toucher au C. Les modifications sont envoyées champ par champ (« patch »), ce qui évite
+qu'un joueur et le MJ s'écrasent mutuellement. Détails : [docs/protocol.md](docs/protocol.md).
 
 Droits : chaque personnage a un code secret, connu du téléphone qui l'a créé.
 Le PIN du MJ donne tous les droits. C'est une protection « entre amis » : le réseau est local

@@ -1,4 +1,4 @@
-"""Génère main/www/cof2_drs.js (données du DRS pour l'appli) à partir de references/COFv2/drs.json.
+"""Génère components/webapp/www/js/data/cof2_drs.js (données du DRS pour l'appli) à partir de references/COFv2/drs.json.
 
 Format compact (servi compressé en gzip par l'ESP32) :
   COF2_DRS.voies[slug]   = [nom, famille, prestige 0/1, intro, [[nom, sort 0/1, action, texte] × 5]]
@@ -37,7 +37,7 @@ js = ("'use strict';\n/* Généré par tools/drs/gen_app.py depuis references/CO
       " * Source : DRS Chroniques Oubliées Fantasy, © Black Book Éditions. */\n"
       "const COF2_DRS = " + json.dumps({"voies": voies, "profils": profils, "peuples": peuples},
                                          ensure_ascii=False, separators=(",", ":")) + ";\n")
-out = ROOT / "main" / "www" / "cof2_drs.js"
-out.write_text(js, encoding="utf-8")
+out = ROOT / "components" / "webapp" / "www" / "js" / "data" / "cof2_drs.js"
+out.write_text(js, encoding="utf-8", newline="\n")
 raw = js.encode("utf-8")
 print(f"{out.name} : {len(raw)} octets, {len(gzip.compress(raw, 9))} en gzip")

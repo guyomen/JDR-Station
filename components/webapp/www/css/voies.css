@@ -1,0 +1,58 @@
+/* Données COF2 : profil, armes, voies et capacités. */
+
+/* ---------- Données COF2 : profil, voies, armes ---------- */
+.info { margin-top: .6rem; padding: .55rem .7rem; border-left: 3px solid var(--gold); background: var(--panel); border-radius: 0 8px 8px 0; }
+.warn { color: #f0a090; }
+.eff { color: #a6dc9f; font-weight: 700; }
+.f.inline { flex-direction: row; align-items: center; gap: .4rem; }
+.f.inline select { width: auto; min-height: 32px; padding: .2rem .4rem; }
+.f.inline input { width: 4.5rem; min-height: 32px; padding: .2rem .4rem; }
+.wstat { padding: .1rem 0; }
+.wstat b { color: var(--gold); }
+.voie { grid-template-columns: 1fr; }
+.vhead { display: flex; align-items: center; gap: .5rem; }
+.vhead b { flex: 1; font-family: Georgia, serif; }
+.caps { display: flex; flex-direction: column; gap: .3rem; }
+.cap {
+  justify-content: flex-start; text-align: left; gap: .6rem; padding: .4rem .55rem;
+  background: transparent; color: var(--muted);
+}
+.cap b { color: var(--muted); font-weight: 600; }
+.cap.on { background: var(--panel2); border-color: var(--gold); color: var(--text); }
+.cap.on b { color: var(--text); }
+.cap.late { border-color: var(--red); }
+.cap .rk {
+  flex: none; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); font-weight: 700;
+}
+.cap.on .rk { background: var(--gold); color: #1a120a; border-color: var(--gold); }
+.spell { color: var(--violet); }
+.ro .cap { pointer-events: none; }
+
+/* Les listes aux libellés longs ne doivent jamais élargir la page. */
+select, input, textarea { max-width: 100%; min-width: 0; }
+.f, .grid2 > *, .grid3 > *, .entry > *, .stat, .carac { min-width: 0; }
+.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.voie { grid-template-columns: minmax(0, 1fr); }
+.weapon { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cards { grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); }
+
+/* ---------- Capacités : badge d'action, description dépliable ---------- */
+.caprow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .3rem; }
+.caprow .cap { min-width: 0; }
+.info-btn { min-height: 0; width: 2.4rem; padding: 0; color: var(--muted); }
+.info-btn.on { color: var(--gold); border-color: var(--gold); }
+.captext {
+  grid-column: 1 / -1; padding: .2rem .7rem .5rem; margin-top: -.15rem; font-size: .88rem; line-height: 1.45;
+  border-left: 2px solid var(--gold); background: var(--panel2); border-radius: 0 0 8px 8px;
+}
+.captext p, .info p { margin: .35rem 0; }
+.captext ul, .info ul { margin: .3rem 0; padding-left: 1.2rem; }
+.captext table { border-collapse: collapse; margin: .4rem 0; font-size: .82rem; }
+.captext td { border: 1px solid var(--line); padding: .15rem .35rem; }
+.act {
+  display: inline-block; min-width: 1.15rem; padding: 0 .25rem; border-radius: 4px; text-align: center;
+  font-size: .7rem; font-weight: 700; background: var(--line); color: var(--text);
+}
+.info details summary { color: var(--gold); }

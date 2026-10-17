@@ -54,5 +54,5 @@ Les scripts sont dans [tools/drs/](../../tools/drs/) (Python 3, Microsoft Edge p
 python -I tools/drs/scrape.py <dossier_brut> tools/drs/slugs.txt    # ~170 pages, 1 requête/s
 python -I tools/drs/parse_drs.py <dossier_brut> references/COFv2/drs.json
 python -I tools/drs/gen_refs.py                                      # fichiers .md
-python -I tools/drs/gen_app.py                                       # données de l'appli (main/www/cof2_drs.js)
+python -I tools/drs/gen_app.py                                       # données de l'appli (components/webapp/www/js/data/cof2_drs.js)
 ```

@@ -1,0 +1,23 @@
+/* Initiative : PNJ / monstres. */
+
+/* ---------- Initiative : PNJ / monstres ---------- */
+.init li.npc { grid-template-columns: 3.2rem minmax(0, 1fr) auto auto; border-left: 4px solid var(--line); }
+.init li.npc[data-hp=g] { border-left-color: var(--green); }
+.init li.npc[data-hp=y] { border-left-color: var(--yellow); }
+.init li.npc[data-hp=r] { border-left-color: var(--red); }
+.init li.masked { opacity: .6; border-style: dashed; }
+.init .who { display: flex; align-items: center; gap: .3rem; min-width: 0; }
+.init .pvs { display: flex; align-items: center; gap: .15rem; }
+.init .pvs input { width: 3.2rem; }
+.init .acts { display: flex; gap: .25rem; }
+.init .eye { min-width: 2.2rem; }
+.npcx { grid-column: 1 / -1; font-size: .85rem; }
+.npcx summary { color: var(--muted); cursor: pointer; }
+.npcx .chips { margin-top: .35rem; }
+.npcform { display: grid; grid-template-columns: 8rem minmax(0, 1fr) 4.5rem 4.5rem 4rem auto auto; gap: .4rem; align-items: center; margin: .6rem 0; }
+@media (max-width: 640px) {
+  .npcform { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .npcform input[name=name] { grid-column: span 2; }
+  .init li.npc { grid-template-columns: 3rem minmax(0, 1fr) auto; }
+  .init li.npc .acts { grid-column: 2 / -1; justify-self: end; }
+}
