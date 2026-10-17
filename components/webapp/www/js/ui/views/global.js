@@ -9,7 +9,7 @@ function viewGlobal() {
   const online = new Set(S.peers.filter(p => !p.mj).flatMap(p => p.chars.filter(live)));
   const peerWho = p => {
     const names = p.chars.filter(live).map(id => byId(id).name || 'Sans nom');
-    return { names, who: p.mj ? 'Meneur de jeu' : names.length ? names.join(', ') : p.imgs ? 'Écran partagé' : p.player || 'Spectateur' };
+    return { names, who: p.mj ? 'Meneur de jeu' : names.length ? names.join(', ') : p.screen ? 'Écran partagé' : p.player || 'Spectateur' };
   };
   const peer = p => {
     const { names, who } = peerWho(p);
@@ -54,7 +54,7 @@ function viewGlobal() {
 
   const bg = curBg();
   const missing = bg && !S.imgs.includes(bg)
-    ? `<button class="bgmiss" data-a="fixbg">⚠ Lieu « ${esc(bg)} » absent de cet écran : voir les réglages</button>` : '';
+    ? `<button class="bgmiss" data-a="fixbg">⚠ Lieu « ${esc(lieuLabel(bg))} » absent de cet écran : voir les lieux</button>` : '';
   const head = scr
     ? `<button class="scr-exit" data-a="screen" title="Quitter le mode écran">✕</button>${missing}`
     : `<div class="sheet-head"><a class="back" href="#/">‹</a><h1 class="grow">Espace global</h1>
@@ -80,7 +80,38 @@ function viewGlobal() {
     <div class="gmain">
       <h2>Personnages actifs</h2>
       ${active.length ? `<div class="cards">${active.map(card).join('')}</div>` : '<p class="muted">Aucun joueur connecté avec son personnage.</p>'}
-      ${scr ? awayHTML + peers : peers + awayHTML}
+      ${scr ? awayHTML + peers : peers + awayHTML + lieuxCard()}
     </div>
   </div>`;
+}
+
+/* ---------- Lieux : images chargées sur l'écran partagé, liste annoncée à la station, choix du MJ ---------- */
+const lieuLabel = id => (S.lieux.find(l => l.id === id) || {}).n || S.imgNames[id] || id;
+function lieuxCard() {
+  const bg = curBg();
+  const d = S.imgDir;
+  const when = d && new Date(d.at).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  const others = S.lieux.filter(l => !S.imgs.includes(l.id));
+  const body = `<p class="muted small">Sur l’appareil qui sert d’écran partagé, chargez les images de lieux : leur liste est envoyée à la station
+      et le MJ y choisit le lieu affiché en fond. Le nom du fichier donne le nom du lieu (« Ville du port.jpg » → Ville du port).
+      Les images restent dans le navigateur de cet appareil, jamais sur la station : après avoir modifié le dossier, resynchronisez-le.</p>
+    ${d ? `<p>📁 <b>${esc(d.name)}</b> <small class="muted">· ${d.n} image${d.n > 1 ? 's' : ''} · synchronisé le ${esc(when)}</small></p>` : ''}
+    <div class="row">
+      <button class="btn" data-a="imgdir">📁 ${d ? 'Resynchroniser le dossier' : 'Choisir le dossier d’images'}</button>
+      <button data-a="imgadd">＋ Ajouter des fichiers</button>
+      ${S.imgs.length ? '<button class="danger" data-a="imgclear">Tout effacer</button>' : ''}
+    </div>
+    ${S.imgs.length && !lieuxSynced() ? `<p class="small">⚠ ${S.lieux.length ? 'La station propose d’autres lieux que les images de cet appareil' : 'La station ne connaît pas encore ces lieux'}.
+        <button class="sm" data-a="lieux-send">📡 Annoncer ces ${S.imgs.length} lieux</button></p>` : ''}
+    ${S.imgs.length && bg && !S.imgs.includes(bg) ? `<p class="small">⚠ Le MJ a choisi « ${esc(lieuLabel(bg))} », absent de cet appareil.</p>` : ''}
+    ${S.imgs.length ? `<div class="thumbs">${S.imgs.map(id => `<figure class="thumb${id === bg ? ' on' : ''}">
+        ${S.thumbs[id] ? `<img src="${S.thumbs[id]}" alt="">` : '<span class="noimg">?</span>'}
+        <figcaption><span class="small" title="${esc(id)}">${esc(S.imgNames[id] || id)}</span><button class="x" data-a="imgdel" data-v="${esc(id)}" title="Supprimer">✕</button></figcaption>
+      </figure>`).join('')}</div>`
+      : `<p class="muted">${S.imgErr ? '⚠ Stockage local indisponible dans ce navigateur (navigation privée ?).' : 'Aucune image sur cet appareil.'}</p>`}
+    ${others.length ? `<p class="small muted">Annoncés à la station depuis un autre appareil : ${others.map(l => esc(l.n)).join(', ')}</p>` : ''}`;
+  return `<section class="card" id="lieux">
+    <h2>🖼 Lieux <span class="badge">${S.lieux.length}</span></h2>
+    ${S.role === 'ecran' ? body : `<details data-k="lieux"><summary>Charger les images (sur l’appareil de l’écran partagé)</summary>${body}</details>`}
+  </section>`;
 }

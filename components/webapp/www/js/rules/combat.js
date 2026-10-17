@@ -18,6 +18,6 @@ function normCombat(raw) {
     })),
     turn: { cur: t.cur || '', round: n(t.round) || 1 },
     next: n(o.next) || 1,
-    bg: imgId(o.bg),               // lieu affiché en fond de l'écran partagé (ID d'une image locale à l'écran)
+    bg: imgId(o.bg),               // lieu affiché en fond de l'écran partagé (ID d'un lieu de S.lieux)
   };
 }

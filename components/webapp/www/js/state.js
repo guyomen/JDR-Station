@@ -16,7 +16,8 @@ const S = {
   openCaps: new Set(),             // descriptions de capacités dépliées
   needRender: false, ws: null,
   peers: [], me: -1,               // appareils connectés (cf. presence), dont celui-ci
-  imgs: [], thumbs: {}, imgErr: false, // images de lieux de cet appareil, miniatures, stockage local indisponible
+  lieux: [],                       // lieux connus de la station [{id, n}] : le MJ choisit parmi eux
+  imgs: [], imgNames: {}, thumbs: {}, imgErr: false, // images de lieux de cet appareil (ID, noms, miniatures), stockage local indisponible
   imgDir: load('imgdir', null),    // dossier d'images synchronisé : { name, n, at }
 };
 const byId = id => S.chars.find(c => c.id === id);

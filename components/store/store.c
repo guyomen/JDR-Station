@@ -69,6 +69,7 @@ static void ensure_shape(void)
     ensure_item("log", cJSON_CreateArray, cJSON_IsArray);
     ensure_item("combat", cJSON_CreateObject, cJSON_IsObject);     /* complet : MJ seulement */
     ensure_item("combat_pub", cJSON_CreateObject, cJSON_IsObject); /* version publique */
+    ensure_item("lieux", cJSON_CreateArray, cJSON_IsArray);         /* lieux de l'écran partagé */
 }
 
 static bool write_file(const char *txt)

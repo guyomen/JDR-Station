@@ -1,5 +1,6 @@
 /* Images de lieux du mode écran : stockées dans le navigateur de l'écran (IndexedDB),
- * jamais sur la station : le MJ ne diffuse que l'ID. */
+ * jamais sur la station. L'écran annonce la liste des lieux à la station, le MJ choisit parmi elle
+ * et ne diffuse que l'ID. */
 
 const IMG = (() => {
   let dbp;
@@ -24,19 +25,35 @@ const IMG = (() => {
   };
 })();
 
-/* Liste des images de cet écran, avec une miniature pour chacune. */
-function refreshImgs() {
+/* Liste des images de cet appareil, avec un nom et une miniature pour chacune.
+ * publish : la bibliothèque vient d'être modifiée, la nouvelle liste de lieux part à la station. */
+const lieuName = f => [...String(f || '').replace(/\.[^.]*$/, '').replace(/[_\s]+/g, ' ').trim()].slice(0, 30).join('');
+function refreshImgs(publish) {
   return IMG.keys().then(keys => Promise.all(keys.map(k => IMG.get(k))).then(blobs => {
     Object.values(S.thumbs).forEach(u => URL.revokeObjectURL(u));
     S.thumbs = {};
-    keys.forEach((k, i) => { if (blobs[i]) S.thumbs[k] = URL.createObjectURL(blobs[i]); });
+    S.imgNames = {};
+    keys.forEach((k, i) => {
+      if (!blobs[i]) return;
+      S.thumbs[k] = URL.createObjectURL(blobs[i]);
+      S.imgNames[k] = lieuName(blobs[i].name) || String(k);
+    });
     S.imgs = keys.map(String).sort();
     S.imgErr = false;
-    sendPresence();
+    if (publish) sendLieux();
     bgShown = null; // une image a pu être remplacée
     update();
   })).catch(() => { S.imgErr = true; update(); });
 }
+
+/* Lieux de cet appareil tels qu'annoncés à la station, triés par nom. */
+const localLieux = () => S.imgs.map(id => ({ id, n: S.imgNames[id] || id })).sort((a, b) => a.n.localeCompare(b.n, 'fr'));
+const lieuxKey = list => list.map(l => `${l.id}\n${l.n}`).sort().join('\n');
+const lieuxSynced = () => lieuxKey(localLieux()) === lieuxKey(S.lieux);
+function sendLieux() {
+  if (!send({ t: 'lieux', list: localLieux() })) toast('Hors ligne : la liste des lieux sera à renvoyer à la station');
+}
+
 /* Sélection de fichiers ou d'un dossier entier (sous-dossiers compris). Le navigateur ne peut pas relire
  * un dossier tout seul depuis une page http : on copie son contenu, à resynchroniser après modification.
  * Champ hors de #app : un re-rendu pendant la sélection ne doit pas faire perdre l'import. */
@@ -59,7 +76,7 @@ function importImgs(files, dir) {
         S.imgDir = { name: (list[0].webkitRelativePath || '').split('/')[0] || 'Dossier', n: new Set(list.map(idOf)).size, at: Date.now() };
         save('imgdir', S.imgDir);
       }
-      toast(dir ? `${S.imgDir.n} image(s) synchronisée(s)` : `Ajouté : ${list.map(idOf).join(', ')}`);
-      refreshImgs();
+      toast(dir ? `${S.imgDir.n} lieu(x) synchronisé(s)` : `Ajouté : ${list.map(f => lieuName(f.name)).join(', ')}`);
+      refreshImgs(true);
     }, () => toast('Enregistrement impossible (stockage plein ou navigation privée ?)'));
 }

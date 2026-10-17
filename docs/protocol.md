@@ -29,8 +29,9 @@ C'est une protection « entre amis » : le réseau est local et le trafic n'est 
 | `roll` | `who`, `label`, `n`, `f`, `mod`, `keep: "h"\|"l"`, `rq`, `secret`, `pin` | `log` (jet secret du MJ) | `log` |
 | `import` | `pin`, `chars`, `tokens` | `auth` | `state` |
 | `clearlog` | `pin` | | `state` |
-| `presence` | `dev`, `player`, `mine: {id: token}`, `pin`, `imgs: [id]` | `you {id}` | `peers` |
+| `presence` | `dev`, `player`, `mine: {id: token}`, `pin`, `screen` | `you {id}` | `peers` |
 | `combat` | `pin`, `full`, `pub` | | `combat {combat: pub}` |
+| `lieux` | `list: [{id, n}]` | `err` si invalide | `lieux {list}` |
 
 Précisions :
 
@@ -38,8 +39,11 @@ Précisions :
   Tout ou rien : si un chemin est invalide, aucune modification n'est appliquée. `id` n'est pas modifiable.
 - **roll** : `n` dés à `f` faces + `mod`. `keep` (dé bonus / malus) lance deux d20 et garde le
   meilleur / le pire. `rq` identifie la demande pour que seul l'expéditeur affiche le résultat.
-- **presence** : un appareil annonce le nom de son utilisateur, ses personnages (vérifiés par leur code), son rôle MJ et,
-  en mode écran partagé, les ID des images de lieux qu'il possède.
+- **presence** : un appareil annonce le nom de son utilisateur, ses personnages (vérifiés par leur code), son rôle MJ et
+  s'il est en mode écran partagé (`screen: true`).
+- **lieux** : l'appareil de l'écran partagé annonce les lieux dont il a l'image (`id` : 32 caractères ASCII,
+  `n` : nom affiché). La liste remplace la précédente et est sauvegardée ; le MJ choisit le lieu affiché parmi elle.
+  Les images restent dans le navigateur de l'écran. Pas de preuve demandée : l'écran n'a ni PIN ni personnage.
 - **combat** : le MJ envoie la version complète (`full`, gardée pour lui, renvoyée dans `auth`)
   et la version publique (`pub` : PNJ visibles, santé en couleur, lieu affiché `bg`).
 
@@ -47,11 +51,12 @@ Précisions :
 
 | `t` | Contenu |
 |---|---|
-| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique) |
+| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique), `lieux` |
 | `char` | `char` : fiche créée ou modifiée |
 | `del` | `id` : fiche supprimée |
 | `log` | `e` : jet de dés `{ts, who, label, f, faces, rolls, nat, total, keep, rq, secret}` |
-| `peers` | `list` : appareils connectés `[{id, mj, dev, player, chars, since, imgs}]` |
+| `peers` | `list` : appareils connectés `[{id, mj, dev, player, chars, since, screen}]` |
+| `lieux` | `list` : lieux disponibles `[{id, n}]` |
 | `combat` | `combat` : version publique du combat |
 | `auth`, `created`, `claim`, `you` | réponses (voir plus haut) |
 | `err` | `m` : message d'erreur à afficher |
@@ -61,7 +66,7 @@ Précisions :
 L'état est sauvegardé dans `/data/party.json` (SPIFFS), quelques secondes après chaque modification :
 
 ```json
-{ "next": 1, "chars": [], "tokens": { "c1": "ABC123" }, "log": [], "combat": {}, "combat_pub": {} }
+{ "next": 1, "chars": [], "tokens": { "c1": "ABC123" }, "log": [], "combat": {}, "combat_pub": {}, "lieux": [] }
 ```
 
 Les fiches sont du JSON libre : c'est l'appli web qui définit leur contenu.
@@ -70,4 +75,4 @@ Les fiches sont du JSON libre : c'est l'appli web qui définit leur contenu.
 
 Définies dans [components/game/game_priv.h](../components/game/game_priv.h) :
 12 personnages, 6 Ko par fiche, 60 jets dans le journal, 6 Ko par version du combat,
-40 images annoncées par écran, 80 Ko par message reçu.
+40 lieux, 80 Ko par message reçu.

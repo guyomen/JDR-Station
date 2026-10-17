@@ -24,6 +24,7 @@ char *msg_state(void)
     cJSON_AddItemReferenceToObject(o, "log", party_log());
     cJSON_AddItemReferenceToObject(o, "peers", peers_list());
     cJSON_AddItemReferenceToObject(o, "combat", cJSON_GetObjectItem(store_root(), "combat_pub"));
+    cJSON_AddItemReferenceToObject(o, "lieux", lieux_list());
     return json_print_free(o);
 }
 

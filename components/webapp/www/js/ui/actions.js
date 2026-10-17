@@ -91,17 +91,23 @@ const ACTIONS = {
     render();
   },
   screenon() { if (!S.screen) setScreen(true); location.hash = '#/global'; },
-  fixbg() { setScreen(false); location.hash = '#/config'; },
+  fixbg() {
+    setScreen(false);
+    const d = $('#lieux details');
+    if (d) d.open = true;
+    if ($('#lieux')) $('#lieux').scrollIntoView();
+  },
   imgdir() { pickImgs(true); },
   imgadd() { pickImgs(false); },
   imgclear() {
     if (!confirm('Effacer toutes les images de cet appareil ?')) return;
-    IMG.clear().then(() => { S.imgDir = null; save('imgdir', null); refreshImgs(); }, () => toast('Effacement impossible'));
+    IMG.clear().then(() => { S.imgDir = null; save('imgdir', null); refreshImgs(true); }, () => toast('Effacement impossible'));
   },
   imgdel(el) {
-    if (!confirm(`Supprimer l’image « ${el.dataset.v} » de cet écran ?`)) return;
-    IMG.del(el.dataset.v).then(refreshImgs, () => toast('Suppression impossible'));
+    if (!confirm(`Supprimer le lieu « ${lieuLabel(el.dataset.v)} » de cet appareil et de la station ?`)) return;
+    IMG.del(el.dataset.v).then(() => refreshImgs(true), () => toast('Suppression impossible'));
   },
+  'lieux-send'() { sendLieux(); },
   'bg-set'(el) { setBg(el.dataset.v); },
   'bg-clear'() { setBg(''); },
   'turn-next'() {

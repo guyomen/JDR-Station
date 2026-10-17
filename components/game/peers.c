@@ -1,4 +1,4 @@
-/* Appareils connectés (en mémoire seulement) : [{id: fd, mj, dev, player, chars: [ids], since, imgs?}]. */
+/* Appareils connectés (en mémoire seulement) : [{id: fd, mj, dev, player, chars: [ids], since, screen?}]. */
 #include <string.h>
 #include <strings.h>
 #include "game_priv.h"
@@ -47,20 +47,7 @@ void peers_on_presence(const cJSON *m, int fd, game_out_t *out)
             cJSON_AddItemToArray(ids, cJSON_CreateString(kv->string));
     }
 
-    /* Écran partagé : ID des images de lieux qu'il a en local (proposés au MJ). */
-    const cJSON *imgs = cJSON_GetObjectItem(m, "imgs");
-    if (cJSON_IsArray(imgs)) {
-        cJSON *arr = cJSON_AddArrayToObject(p, "imgs");
-        int count = 0;
-        const cJSON *img;
-        cJSON_ArrayForEach(img, imgs) {
-            if (!cJSON_IsString(img) || count++ >= MAX_IMGS) continue;
-            cJSON *tmp = cJSON_CreateObject();
-            json_add_str_trunc(tmp, "v", img->valuestring, 32);
-            cJSON_AddItemToArray(arr, cJSON_DetachItemFromObject(tmp, "v"));
-            cJSON_Delete(tmp);
-        }
-    }
+    if (cJSON_IsTrue(cJSON_GetObjectItem(m, "screen"))) cJSON_AddTrueToObject(p, "screen");
 
     if (old) cJSON_ReplaceItemInArray(peers_list(), index, p);
     else cJSON_AddItemToArray(peers_list(), p);

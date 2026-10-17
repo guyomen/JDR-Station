@@ -85,14 +85,17 @@ function mjInit() {
 }
 
 function mjTools() {
-  const ids = [...new Set(S.peers.flatMap(p => p.imgs || []))].sort();
   const bg = S.combat.bg;
+  const gone = bg && !S.lieux.some(l => l.id === bg);
   return `<section class="card"><h3>Lieu affiché sur l’écran partagé</h3>
-      <form class="row" data-form="bg"><input name="bg" list="bglist" placeholder="ID du lieu (ex : ville)" value="${esc(bg)}" autocomplete="off">
-        <datalist id="bglist">${ids.map(id => `<option value="${esc(id)}">`).join('')}</datalist>
-        <button class="btn">Afficher</button>${bg ? '<button type="button" data-a="bg-clear">Aucun</button>' : ''}</form>
-      ${ids.length ? `<div class="chips">${ids.map(id => `<button class="chip sm ${id === bg ? 'on' : ''}" data-a="bg-set" data-v="${esc(id)}">${esc(id)}</button>`).join('')}</div>` : ''}
-      <p class="muted small">Les images sont sur l’appareil en mode écran (⚙ Réglages de cet appareil → dossier d’images) ; leurs ID s’affichent ici quand il est connecté.</p>
+      ${S.lieux.length ? `<div class="chips">
+          <button class="chip sm ${bg ? '' : 'on'}" data-a="bg-clear">Aucun</button>
+          ${S.lieux.map(l => `<button class="chip sm ${l.id === bg ? 'on' : ''}" data-a="bg-set" data-v="${esc(l.id)}">${esc(l.n)}</button>`).join('')}
+        </div>`
+        : '<p class="muted">Aucun lieu disponible.</p>'}
+      ${gone ? `<p class="small">⚠ Le lieu affiché (« ${esc(bg)} ») n’est plus dans la liste. <button class="sm" data-a="bg-clear">Ne plus l’afficher</button></p>` : ''}
+      <p class="muted small">Les lieux se chargent dans l’espace global, sur l’appareil de l’écran partagé (🖼 Lieux → dossier d’images) :
+        la liste est gardée par la station, même quand l’écran est déconnecté.</p>
     </section>
     <section class="card"><h3>Expérience</h3>
       <form class="row" data-form="xp"><input name="xp" type="number" inputmode="numeric" placeholder="XP" required><button class="btn">Donner à tout le groupe</button></form>

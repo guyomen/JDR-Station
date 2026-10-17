@@ -22,7 +22,6 @@ const FORMS = {
     render();
   },
   player(d) { setPlayer(d.player); toast('Nom enregistré'); render(); },
-  bg(d) { setBg(d.bg); },
   login(d) { S.pin = d.pin; if (!send({ t: 'auth', pin: d.pin })) toast('Hors ligne'); },
   roll(d, form) {
     const c = charOf(form);

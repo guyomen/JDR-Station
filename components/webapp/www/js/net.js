@@ -30,7 +30,7 @@ function deviceName() {
     : /Windows/.test(ua) ? 'PC' : /Mac/.test(ua) ? 'Mac' : /Linux|CrOS/.test(ua) ? 'Ordinateur' : 'Appareil';
 }
 /* Annonce à la station qui est derrière cet appareil (à refaire quand S.mine ou le rôle MJ change). */
-const sendPresence = () => send({ t: 'presence', dev: deviceName(), player: S.player, mine: S.mine, ...(S.pin ? { pin: S.pin } : {}), ...(S.screen ? { imgs: S.imgs } : {}) });
+const sendPresence = () => send({ t: 'presence', dev: deviceName(), player: S.player, mine: S.mine, ...(S.pin ? { pin: S.pin } : {}), ...(S.screen ? { screen: true } : {}) });
 
 const authFor = id => (S.isMJ ? { pin: S.pin } : { token: S.mine[id] });
 

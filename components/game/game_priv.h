@@ -11,7 +11,7 @@
 #define MAX_CHAR_JSON   6144
 #define MAX_LOG         60
 #define MAX_COMBAT_JSON 6144
-#define MAX_IMGS        40   /* ID d'images annoncés par un écran partagé */
+#define MAX_LIEUX       40   /* lieux de l'écran partagé */
 
 /* Gestionnaire d'un type de message (champ "t"). */
 typedef void (*game_handler_t)(const cJSON *m, int fd, game_out_t *out);
@@ -67,3 +67,7 @@ char *peers_remove(int fd);
 
 /* ---------- combat.c : initiative et PNJ ---------- */
 void combat_on_update(const cJSON *m, int fd, game_out_t *out);
+
+/* ---------- lieux.c : lieux de l'écran partagé (persistés) ---------- */
+cJSON *lieux_list(void);
+void lieux_on_update(const cJSON *m, int fd, game_out_t *out);

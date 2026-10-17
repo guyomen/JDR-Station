@@ -34,8 +34,8 @@ function viewHome() {
   const perso = mine ? `${mine} personnage${mine > 1 ? 's' : ''} sur cet appareil` : 'Créer ou reprendre son personnage';
   return `<div class="tiles">
     ${tile('#/joueur', '🧝', 'Espace joueur', S.player ? `${esc(S.player)} · ${perso}` : perso)}
-    ${tile('#/global', '👥', 'Espace global', `${S.peers.length} connecté${S.peers.length > 1 ? 's' : ''} · état du groupe`)}
+    ${tile('#/global', '👥', 'Espace global', `${S.peers.length} connecté${S.peers.length > 1 ? 's' : ''} · état du groupe · lieux`)}
     ${tile('#/mj', '🎲', 'Espace MJ', S.isMJ ? 'Connecté en MJ' : 'Réservé au meneur de jeu')}
-    ${tile('#/config', '⚙', 'Réglages de cet appareil', S.imgs.length ? `${S.imgs.length} image${S.imgs.length > 1 ? 's' : ''} de lieux` : 'Dossier d’images pour l’écran partagé')}
+    ${tile('#/config', '⚙', 'Réglages de cet appareil', 'Utilisateur, écran partagé')}
   </div>`;
 }

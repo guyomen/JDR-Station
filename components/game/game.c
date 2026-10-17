@@ -21,6 +21,7 @@ static const struct {
     { "clearlog", dice_on_clearlog },
     { "presence", peers_on_presence },
     { "combat",   combat_on_update },
+    { "lieux",    lieux_on_update },
 };
 
 void game_init(const char *mj_pin)

@@ -5,7 +5,8 @@
 
 /*
  * État de la partie, persisté dans /data/party.json (SPIFFS) :
- *   { "next": 1, "chars": [ {fiche}... ], "tokens": { "c1": "ABC123" }, "log": [ {jet}... ] }
+ *   { "next": 1, "chars": [ {fiche}... ], "tokens": { "c1": "ABC123" }, "log": [ {jet}... ],
+ *     "combat": {}, "combat_pub": {}, "lieux": [ {id, n}... ] }
  * Les fiches sont du JSON libre : c'est l'appli web qui définit leur contenu.
  */
 esp_err_t store_init(void);

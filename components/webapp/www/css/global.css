@@ -68,6 +68,6 @@ html.hasbg .gmain > h2, html.hasbg .gfoot { text-shadow: 0 1px 4px #000; }
 .thumb img, .thumb .noimg { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .thumb .noimg { display: grid; place-items: center; color: var(--muted); }
 .thumb figcaption { display: flex; align-items: center; justify-content: space-between; gap: .3rem; padding: .2rem .35rem; }
-.thumb figcaption .code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.thumb figcaption span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bgmiss { position: fixed; bottom: .5rem; right: .5rem; z-index: 30; min-height: 0; padding: .35rem .7rem; font-size: .85rem; opacity: .6; }
 .bgmiss:hover, .bgmiss:focus { opacity: 1; }

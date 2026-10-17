@@ -8,6 +8,7 @@ function onMsg(m) {
       S.chars = m.chars.map(norm);
       S.log = m.log || [];
       S.peers = m.peers || [];
+      S.lieux = m.lieux || [];
       if (!S.isMJ) S.pub = normCombat(m.combat);
       peersChanged();
       update();
@@ -49,6 +50,10 @@ function onMsg(m) {
     case 'peers':
       S.peers = m.list || [];
       peersChanged();
+      break;
+    case 'lieux':
+      S.lieux = m.list || [];
+      if (['global', 'mj'].includes(route()[0])) update();
       break;
     case 'combat':
       if (S.isMJ) break; // le MJ a déjà la version complète

@@ -1,60 +1,34 @@
 # JDR Station — ESP32-C6
 
 Une station de jeu de rôle autonome pour **Chroniques Oubliées Fantasy (2e édition)**.
-L'ESP32-C6 crée son propre réseau Wi-Fi : les joueurs s'y connectent avec leur téléphone,
-remplissent leur fiche de personnage, lancent les dés, et le MJ suit tout le groupe en direct.
-Une tablette ou un écran posé sur la table peut afficher l'état du groupe pour tous.
-Aucune connexion Internet n'est nécessaire.
+L'ESP32-C6 crée son propre réseau Wi-Fi et sert une appli web : les joueurs y remplissent leur fiche
+et lancent les dés depuis leur téléphone, le MJ suit tout le groupe en direct, et un écran partagé
+affiche l'état du groupe et le lieu en cours. Aucune connexion Internet n'est nécessaire.
 
-## Disclaimer 
+**Joueurs et MJ : voir le [manuel d'utilisation](docs/manual.md).**
+Ce README s'adresse à ceux qui compilent, flashent ou modifient la station.
 
-Toutes les informations relative a Chroniques oubliées ont été copier a partir de https://drs.chroniques-oubliees.fr en acces libre.
+## Disclaimer
 
-**IL EST NECESSAIRE TOUTE FOIS D'AVOIR LE LIVRE OFFICIEL POUR LES REGLES ET AUTRES, IL NE S'AGIT QUE D'UN OUTIL D'AIDE PAS UN SUBSTITUE A LA LECTURE**
+Toutes les informations relatives à Chroniques Oubliées ont été copiées à partir de
+https://drs.chroniques-oubliees.fr, en accès libre.
+
+**Il est nécessaire toutefois d'avoir le livre officiel pour les règles : il ne s'agit que d'un outil
+d'aide, pas d'un substitut à sa lecture.**
 
 ## Fonctionnalités
 
-**Un appareil = un utilisateur**
-- À la première connexion, l'appli demande qui utilise l'appareil : joueur / joueuse (son nom),
-  meneur de jeu (nom + code PIN) ou écran partagé.
-- Ce profil est retenu par le navigateur : ensuite, l'appareil s'ouvre directement sur son espace
-  (Espace joueur, Espace MJ ou espace global en plein écran).
-- « Réglages de cet appareil » permet de renommer l'utilisateur, de changer de profil ou de
-  changer d'utilisateur (l'appareil oublie alors ses personnages, récupérables avec leur code).
+- **Un appareil = un utilisateur** : joueur, MJ (code PIN) ou écran partagé, profil retenu par le navigateur.
+- **Joueurs** : fiche COF2 complète (132 voies du DRS, équipement, états), valeurs calculées selon les
+  règles, jets en un clic, code de reprise pour changer de téléphone.
+- **MJ** : tableau de bord du groupe en temps réel, toutes les fiches, initiative avec PNJ visibles
+  ou masqués, journal des jets et jets secrets, XP, repos, export / import JSON.
+- **Écran partagé** : espace global en plein écran, initiative publique, lieu choisi par le MJ en fond.
+  Les images de lieux restent dans le navigateur de l'écran ; seule leur liste est envoyée à la station.
+- **Station** : point d'accès Wi-Fi + portail captif, synchronisation par WebSocket, dés tirés par le
+  générateur aléatoire matériel, sauvegarde automatique en flash (SPIFFS).
 
-**Joueurs** (téléphone, Espace joueur)
-- Le nom du joueur est saisi une seule fois et repris sur ses personnages (création, reprise, renommage).
-- Création de personnage puis fiche en onglets : *Perso*, *Combat*, *Voies*, *Sac*, *Notes*, *Dés*.
-- Tout se choisit dans des listes issues des règles : peuple, profil, niveau, armure, bouclier,
-  armes (DM, portée, critique), les 132 voies du DRS officiel (78 de profil/peuple, 54 de prestige)
-  avec le texte complet de chaque capacité (ⓘ), sorts ✦ et type d'action, idéal et travers, états.
-- Valeurs calculées selon les règles COF2 : PV, DR (nombre et type de dé), PC, PM, DEF
-  (avec plafond d'AGI de l'armure), initiative, attaques, DM des armes. Les bonus permanents
-  des capacités acquises s'appliquent automatiquement.
-- Jets en un clic : test de caractéristique, attaque, dégâts, dé bonus / dé malus.
-- Code de reprise (6 caractères) pour retrouver son personnage sur un autre téléphone.
-
-**Espace global et écran partagé**
-- Qui est connecté (nom du joueur, appareil, depuis quand), personnages actifs avec PV / PM et états,
-  personnages hors ligne.
-- Ordre d'initiative public : tour en cours, PNJ rendus visibles par le MJ, leur santé en couleur.
-- Mode écran : plein écran, écran maintenu allumé, lieu choisi par le MJ affiché en fond.
-  Les images de lieux sont copiées dans le navigateur de l'appareil (dossier synchronisé depuis
-  « Réglages de cet appareil »), jamais sur la station.
-
-**MJ** (code PIN)
-- Tableau de bord du groupe : PV / DR / PC / PM avec boutons ±1 / ±5, DEF, attaques,
-  états, armes, voies — mis à jour en temps réel.
-- Ouverture et modification de n'importe quelle fiche.
-- Ordre d'initiative (PJ + PNJ ajoutés à la volée, visibles ou masqués pour les joueurs), compteur de tours.
-- Choix du lieu affiché sur l'écran partagé.
-- Journal de tous les jets, jets secrets, distribution d'XP, récupération complète du groupe.
-- Export / import JSON pour sauvegarder la campagne.
-
-**Station**
-- Point d'accès Wi-Fi + portail captif : l'appli s'ouvre automatiquement à la connexion.
-- Synchronisation instantanée par WebSocket, dés tirés par le générateur aléatoire matériel de l'ESP.
-- Sauvegarde automatique en flash (SPIFFS) : rien n'est perdu au redémarrage.
+Le détail de chaque écran est dans le [manuel](docs/manual.md).
 
 ## Compilation et flash
 
@@ -80,50 +54,21 @@ Réglages du menu **JDR Station** (`idf.py menuconfig`) :
 
 > La table de partitions vise une flash de 4 Mo (app 1,5 Mo + données 1 Mo).
 
-## Utilisation
+Une fois flashée, la station répond sur **http://192.168.4.1** depuis son réseau Wi-Fi.
+Si vous changez les valeurs par défaut, pensez à les donner aux joueurs : le manuel cite celles-ci.
 
-1. Alimentez l'ESP32-C6.
-2. Sur chaque téléphone, rejoignez le Wi-Fi **JDR-Station** (mot de passe `chroniques`).
-3. L'appli s'ouvre toute seule ; sinon, allez sur **http://192.168.4.1**.
-4. À la première connexion, chaque appareil indique qui l'utilise : joueur / joueuse (son nom),
-   meneur de jeu (nom + code PIN) ou écran partagé. Ce choix est retenu : ensuite, l'appareil
-   s'ouvre directement sur son espace. Il se change dans « Réglages de cet appareil ».
-5. Joueurs : « Créer » un personnage dans l'Espace joueur (le nom du joueur y est repris).
-6. Écran partagé (facultatif) : dans « Réglages de cet appareil », choisissez le dossier d'images
-   de lieux. L'ID d'un lieu est le nom du fichier sans extension (« Ville.jpg » → `ville`) ;
-   le MJ le choisit dans l'onglet *Outils* de l'Espace MJ.
+## Règles et données de jeu
 
-Conseils :
-- Si le téléphone affiche « Pas d'accès Internet », choisissez **Rester connecté**.
-- La fenêtre de portail captif d'iOS/Android est limitée (elle oublie vos personnages).
-  Pour jouer, ouvrez plutôt **http://192.168.4.1** dans le vrai navigateur, ou ajoutez-le
-  à l'écran d'accueil.
-- Notez le **code de reprise** de votre personnage (onglet Perso).
-- Le profil de l'appareil, ses personnages et ses images sont gardés par le navigateur :
-  la navigation privée ou l'effacement des données du site les fait oublier.
+Le résumé des règles et la référence complète (profils, voies, prestige, JSON) sont dans
+[references/COFv2/](references/COFv2/README.md). Dans l'appli :
 
-## Règles et personnalisation
-
-Le résumé des règles et la référence complète (profils, voies, prestige, JSON) sont dans [references/COFv2/](references/COFv2/README.md). Les données de jeu (profils, peuples, voies,
-armes, armures, états…) sont dans [cof2.js](components/webapp/www/js/data/cof2.js) et les calculs dans la
-fonction `calc()` de [rules/character.js](components/webapp/www/js/rules/character.js) :
-
-```
-PV  = (niveau + 1) × PV de famille + niveau × CON     (aventurier/mystique 4, combattant 5, mage 3)
-DR  = 2 + CON (+1 mystique), dé d8 / d10 / d6 / d8 selon la famille
-PC  = 2 + CHA (+1 aventurier)
-PM  = VOL + nombre de sorts connus (0 sans sort)
-Init = 10 + PER          DEF = 10 + AGI (plafonnée par l'armure) + armure + bouclier
-Attaques = niveau (max. 10) + FOR / AGI / VOL     DM contact = dé + FOR, distance = dé
-```
-
-Les capacités acquises ajoutent leurs bonus permanents (champ `fx` de chaque voie dans `cof2.js`).
-Les bonus conditionnels (sans armure, avec bouclier, objet magique…) se saisissent dans
-« Bonus divers ». Les caractéristiques saisies sont les valeurs de base ; les bonus de
-capacité (« Force héroïque »…) s'affichent en vert et s'ajoutent automatiquement.
-
-Les fiches créées avec l'ancienne version sont converties à l'ouverture (peuple, profil,
-armure et voies reconnus par leur nom ; les « PR » sont remplacés par les DR).
+- données de jeu (profils, peuples, voies, armes, armures, états…) : [cof2.js](components/webapp/www/js/data/cof2.js) ;
+  `cof2_drs.js` est généré depuis le DRS par les scripts de [tools/drs/](tools/drs/) ;
+- calculs de la fiche : fonction `calc()` de [rules/character.js](components/webapp/www/js/rules/character.js)
+  (formules rappelées dans le [manuel](docs/manual.md#comment-la-fiche-est-calculée)) ;
+- bonus permanents des capacités : champ `fx` de chaque voie dans `cof2.js` ;
+- conversion des fiches de l'ancienne version (peuple, profil, armure et voies reconnus par leur nom,
+  « PR » remplacés par les DR) : [rules/normalize.js](components/webapp/www/js/rules/normalize.js).
 
 ## Architecture
 
@@ -133,7 +78,7 @@ components/
   network/            point d'accès Wi-Fi + DNS de portail captif (tout nom → 192.168.4.1)
   store/              état de la partie + sauvegarde /data/party.json (SPIFFS)
   game/               protocole : aiguillage (game.c), fiches (characters.c), dés et journal (dice.c),
-                      appareils connectés (peers.c), initiative (combat.c), droits (party.c)
+                      appareils connectés (peers.c), initiative (combat.c), lieux (lieux.c), droits (party.c)
   web_server/         HTTP + WebSocket /ws, redirection du portail captif (ne connaît pas game)
   webapp/             appli web embarquée (HTML/CSS/JS, sans dépendance externe)
     www/index.html
@@ -147,6 +92,7 @@ components/
       state.js, net.js, messages.js, main.js
     bundles.json      fichiers servis et ordre de concaténation des sources
     gen_assets.py     assemblage + gzip + tableau C (lancé à la compilation)
+docs/manual.md        manuel d'utilisation (joueurs, MJ, écran partagé)
 docs/protocol.md      messages WebSocket, droits, persistance, limites
 references/COFv2/     règles et référence complète en Markdown + drs.json (voir son README)
 tools/drs/            extraction du DRS et génération des références / données de l'appli
@@ -171,9 +117,14 @@ Les fiches sont du JSON libre côté firmware : on peut enrichir la fiche ou les
 l'appli web sans toucher au C. Les modifications sont envoyées champ par champ (« patch »), ce qui évite
 qu'un joueur et le MJ s'écrasent mutuellement. Détails : [docs/protocol.md](docs/protocol.md).
 
-Droits : chaque personnage a un code secret, connu de l'appareil qui l'a créé (ou repris avec ce code).
-Le PIN du MJ donne tous les droits. Le profil et le nom de l'utilisateur restent dans le navigateur
-de l'appareil ; la station ne reçoit le nom que pour la liste des connectés. C'est une protection « entre amis » : le réseau est local
-et le trafic n'est pas chiffré.
+**Lieux de l'écran partagé.** Les images ne passent jamais par la station (1 Mo de SPIFFS) : l'écran les
+garde dans IndexedDB et annonce leur liste `{id, n}` par le message `lieux`. La station la persiste dans
+`party.json` et la diffuse ; le MJ choisit un `id` parmi elle (champ `bg` du combat public).
 
-Limites : 12 personnages, ~6 Ko par fiche, 8 téléphones (10 max. pour le Wi-Fi de l'ESP32).
+**Droits.** Chaque personnage a un code secret, connu de l'appareil qui l'a créé (ou repris avec ce code).
+Le PIN du MJ donne tous les droits. Le profil et le nom de l'utilisateur restent dans le navigateur
+de l'appareil ; la station ne reçoit le nom que pour la liste des connectés. C'est une protection
+« entre amis » : le réseau est local et le trafic n'est pas chiffré.
+
+**Limites.** 12 personnages, ~6 Ko par fiche, 40 lieux, 8 téléphones (10 max. pour le Wi-Fi de l'ESP32).
+Valeurs exactes dans [docs/protocol.md](docs/protocol.md#limites).
