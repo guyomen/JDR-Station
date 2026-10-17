@@ -1,0 +1,25 @@
+menu "JDR Station"
+
+    config JDR_WIFI_SSID
+        string "Nom du réseau Wi-Fi"
+        default "JDR-Station"
+
+    config JDR_WIFI_PASSWORD
+        string "Mot de passe Wi-Fi (vide = réseau ouvert, sinon 8 caractères min.)"
+        default "chroniques"
+
+    config JDR_WIFI_CHANNEL
+        int "Canal Wi-Fi"
+        range 1 13
+        default 6
+
+    config JDR_MAX_STA
+        int "Nombre maximum d'appareils connectés"
+        range 1 10
+        default 8
+
+    config JDR_MJ_PIN
+        string "Code PIN du MJ"
+        default "1234"
+
+endmenu

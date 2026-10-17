@@ -1,0 +1,19 @@
+CONFIG_IDF_TARGET="esp32c6"
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# Serveur web : WebSocket + en-têtes plus longs (navigateurs mobiles)
+CONFIG_HTTPD_WS_SUPPORT=y
+CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
+CONFIG_HTTPD_MAX_URI_LEN=512
+
+# Assez de sockets pour ~8 téléphones (HTTP + WebSocket) + DNS
+CONFIG_LWIP_MAX_SOCKETS=20
+
+# Connexions TCP : les sockets fermées par l'ESP restent en TIME_WAIT (2 × MSL).
+# Avec 16 PCB et MSL = 60 s, sondes du portail captif + rechargements saturent
+# la table et lwIP avorte les connexions en attente (accept -> errno 113).
+CONFIG_LWIP_MAX_ACTIVE_TCP=32
+CONFIG_LWIP_TCP_MSL=10000
+CONFIG_LWIP_TCP_ACCEPTMBOX_SIZE=12
