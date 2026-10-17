@@ -84,6 +84,7 @@ void chars_on_delete(const cJSON *m, int fd, game_out_t *out)
     cJSON *o = msg_new("del");
     cJSON_AddStringToObject(o, "id", id); /* copie avant suppression de la fiche */
     cJSON_DeleteItemFromObjectCaseSensitive(party_tokens(), id);
+    avatar_remove(id);
     cJSON_DeleteItemFromArray(party_chars(), index);
     store_mark_dirty();
     out->broadcast = json_print_free(o);
@@ -110,7 +111,9 @@ void chars_on_import(const cJSON *m, int fd, game_out_t *out)
     if (!cJSON_IsArray(src)) { out->reply = msg_err("Fichier invalide"); return; }
     const cJSON *src_tokens = cJSON_GetObjectItem(m, "tokens");
 
-    /* On repart de zéro : les ids importés sont conservés quand c'est possible. */
+    /* On repart de zéro : les ids importés sont conservés quand c'est possible.
+     * Les miniatures ne font pas partie de l'export : un id réutilisé ne doit pas hériter d'une ancienne image. */
+    avatar_clear_all();
     cJSON *old_tokens = cJSON_DetachItemFromObject(store_root(), "tokens");
     cJSON_ReplaceItemInObject(store_root(), "chars", cJSON_CreateArray());
     cJSON_AddItemToObject(store_root(), "tokens", cJSON_CreateObject());

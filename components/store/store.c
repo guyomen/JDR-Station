@@ -7,7 +7,7 @@
 #include "esp_spiffs.h"
 #include "store.h"
 
-#define BASE_PATH     "/data"
+#define BASE_PATH     STORE_BASE_PATH
 #define FILE_MAIN     BASE_PATH "/party.json"
 #define FILE_TMP      BASE_PATH "/party.tmp"
 #define MAX_FILE      (128 * 1024)
@@ -70,6 +70,8 @@ static void ensure_shape(void)
     ensure_item("combat", cJSON_CreateObject, cJSON_IsObject);     /* complet : MJ seulement */
     ensure_item("combat_pub", cJSON_CreateObject, cJSON_IsObject); /* version publique */
     ensure_item("lieux", cJSON_CreateArray, cJSON_IsArray);         /* lieux de l'écran partagé */
+    ensure_item("avatars", cJSON_CreateObject, cJSON_IsObject);     /* id -> version de la miniature */
+    ensure_item("avnext", create_one, cJSON_IsNumber);
 }
 
 static bool write_file(const char *txt)
@@ -82,6 +84,25 @@ static bool write_file(const char *txt)
     if (!ok) return false;
     remove(FILE_MAIN);
     return rename(FILE_TMP, FILE_MAIN) == 0;
+}
+
+bool store_file_write(const char *name, const void *data, size_t len)
+{
+    char path[64];
+    snprintf(path, sizeof(path), BASE_PATH "/%s", name);
+    FILE *f = fopen(path, "wb");
+    if (!f) return false;
+    bool ok = fwrite(data, 1, len, f) == len;
+    ok = (fclose(f) == 0) && ok;
+    if (!ok) remove(path); /* pas de fichier tronqué */
+    return ok;
+}
+
+void store_file_remove(const char *name)
+{
+    char path[64];
+    snprintf(path, sizeof(path), BASE_PATH "/%s", name);
+    remove(path);
 }
 
 static void save_task(void *arg)

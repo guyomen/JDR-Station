@@ -7,6 +7,7 @@ app.addEventListener('input', e => { if (e.target.tagName !== 'SELECT') onField(
 app.addEventListener('change', e => {
   const el = e.target;
   if (el.matches('[data-import]')) return importFile(el.files[0]);
+  if (el.dataset.fit) return setFit(el.dataset.fit, el.value);
   if (el.dataset.aChange === 'addvoie') {
     const c = charOf(el);
     if (c && el.value) change(c, 'voies', [...c.voies, { id: el.value, rang: el.value === 'libre' ? 0 : 1, notes: '', ...(el.value === 'libre' ? { nom: '' } : {}) }], true);

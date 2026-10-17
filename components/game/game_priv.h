@@ -12,6 +12,7 @@
 #define MAX_LOG         60
 #define MAX_COMBAT_JSON 6144
 #define MAX_LIEUX       40   /* lieux de l'écran partagé */
+#define MAX_AVATAR      (16 * 1024) /* miniature JPEG d'un personnage (12 × 16 Ko au pire en flash) */
 
 /* Gestionnaire d'un type de message (champ "t"). */
 typedef void (*game_handler_t)(const cJSON *m, int fd, game_out_t *out);
@@ -67,6 +68,12 @@ char *peers_remove(int fd);
 
 /* ---------- combat.c : initiative et PNJ ---------- */
 void combat_on_update(const cJSON *m, int fd, game_out_t *out);
+
+/* ---------- avatar.c : miniatures des personnages (fichiers à part) ---------- */
+cJSON *avatar_list(void);
+void avatar_on_update(const cJSON *m, int fd, game_out_t *out);
+void avatar_remove(const char *id);
+void avatar_clear_all(void);
 
 /* ---------- lieux.c : lieux de l'écran partagé (persistés) ---------- */
 cJSON *lieux_list(void);

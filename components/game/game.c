@@ -22,6 +22,7 @@ static const struct {
     { "presence", peers_on_presence },
     { "combat",   combat_on_update },
     { "lieux",    lieux_on_update },
+    { "avatar",   avatar_on_update },
 };
 
 void game_init(const char *mj_pin)

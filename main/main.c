@@ -59,6 +59,8 @@ void app_main(void)
         .portal_url = portal_url,
         .on_message = on_ws_message,
         .on_close = game_disconnect,
+        .files_uri = "/av/", /* miniatures des personnages, écrites par game dans STORE_BASE_PATH "/av/" */
+        .files_root = STORE_BASE_PATH,
     };
     web_server_start(&web);
 

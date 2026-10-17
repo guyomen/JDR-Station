@@ -35,6 +35,7 @@
 
     "js/features/combat.js",
     "js/features/images.js",
+    "js/features/avatars.js",
     "js/features/screen.js",
 
     "js/ui/render.js",

@@ -34,6 +34,7 @@ function mjGroup() {
     const voies = c.voies.map(v => `${esc(voieNom(v).replace(/^Voie (de la |du |des |de l’|de l'|d’)?/, ''))} ${n(v.rang)}`).join(', ');
     return `<article class="card mjcard" data-id="${c.id}">
       <header>
+        ${avatarHTML(c)}
         <div class="grow"><b data-calc="name"></b><small>${esc(prof ? prof.n : 'Profil ?')} niv. ${esc(c.niveau)} · ${esc(c.player || '—')}</small></div>
         <a class="btn sm ghost" href="#/mj/c/${c.id}">Fiche ›</a>
       </header>

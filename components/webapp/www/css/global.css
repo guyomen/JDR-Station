@@ -14,6 +14,8 @@
 /* Espace global : tour en cours entouré, santé des PNJ en couleur */
 .ginit li { grid-template-columns: 3.2rem minmax(0, 1fr) auto; }
 .ginit .who { flex-direction: column; align-items: flex-start; gap: 0; }
+.ginit .who.hasav { flex-direction: row; align-items: center; gap: .45rem; }
+.ginit .who.hasav > span { display: flex; flex-direction: column; min-width: 0; }
 .ginit .etats { color: #ffd2c8; }
 .ginit .hp { width: 14px; height: 14px; border-radius: 50%; background: var(--line); }
 .ginit [data-hp=g] .hp { background: var(--green); }
@@ -47,6 +49,8 @@ html.screen .ginit .ini { font-size: 1.5rem; }
 html.screen .ginit .hp { width: 1.1rem; height: 1.1rem; }
 html.screen .cards { grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr)); }
 html.screen .gcard header b { font-size: 1.3rem; }
+html.screen .gcard .av { width: 4rem; height: 4rem; }
+html.screen .ginit .av { width: 2.4rem; height: 2.4rem; }
 html.screen .gcard .bar { height: .8rem; }
 html.screen .gcard .resnum input { border: 0; font-size: 1.1rem; font-weight: 700; width: 2.6em; opacity: 1; }
 html.screen .gcard .resnum { font-size: 1.1rem; }
@@ -68,6 +72,9 @@ html.hasbg .gmain > h2, html.hasbg .gfoot { text-shadow: 0 1px 4px #000; }
 .thumb img, .thumb .noimg { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .thumb .noimg { display: grid; place-items: center; color: var(--muted); }
 .thumb figcaption { display: flex; align-items: center; justify-content: space-between; gap: .3rem; padding: .2rem .35rem; }
+.thumb .opts { display: flex; border-top: 1px solid var(--line); }
+.thumb .fit { flex: 1; width: auto; min-height: 30px; padding: .1rem .3rem; border: 0; border-radius: 0; font-size: .8rem; }
+.thumb .bgc { flex: none; min-height: 30px; padding: 0 .45rem; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: transparent; }
 .thumb figcaption span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bgmiss { position: fixed; bottom: .5rem; right: .5rem; z-index: 30; min-height: 0; padding: .35rem .7rem; font-size: .85rem; opacity: .6; }
 .bgmiss:hover, .bgmiss:focus { opacity: 1; }

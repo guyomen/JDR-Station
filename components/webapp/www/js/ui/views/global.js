@@ -29,6 +29,7 @@ function viewGlobal() {
     const prof = COF2.profils[c.profil];
     return `<article class="card mjcard gcard${'c:' + c.id === turn ? ' cur' : ''}" data-id="${c.id}">
       <header>
+        ${avatarHTML(c)}
         <div class="grow"><b data-calc="name"></b><small>${esc(prof ? prof.n : 'Profil ?')} niv. ${esc(c.niveau)} · ${esc(c.player || '—')}</small></div>
         <span class="pill">DEF <b data-calc="def"></b></span>
         ${scr ? '' : `<a class="btn sm ghost" href="${sheet(c)}">Fiche ›</a>`}
@@ -45,7 +46,9 @@ function viewGlobal() {
     const on = r.key === turn ? ' cur' : '';
     if (r.pj) {
       const k = calc(r.c);
-      return `<li class="pj${on}"><span class="ini">${r.init}</span><span class="who">${esc(r.c.name || 'Sans nom')}${tags(r.c.etats)}</span>
+      const av = avatarHTML(r.c, 'sm');
+      const who = `${esc(r.c.name || 'Sans nom')}${tags(r.c.etats)}`;
+      return `<li class="pj${on}"><span class="ini">${r.init}</span><span class="who${av ? ' hasav' : ''}">${av ? `${av}<span>${who}</span>` : who}</span>
         <span class="small muted">${curOf(r.c, 'pv', k)}/${k.max.pv} PV</span></li>`;
     }
     const p = r.p;
@@ -109,8 +112,12 @@ function lieuxCard() {
         <button class="sm" data-a="lieux-send">📡 Annoncer ces ${S.imgs.length} lieux</button></p>` : ''}
     ${S.imgs.length && bg && !S.imgs.includes(bg) ? `<p class="small">⚠ Le MJ a choisi « ${esc(lieuLabel(bg))} », absent de cet appareil.</p>` : ''}
     ${S.imgs.length ? `<div class="thumbs">${S.imgs.map(id => `<figure class="thumb${id === bg ? ' on' : ''}">
-        ${S.thumbs[id] ? `<img src="${S.thumbs[id]}" alt="">` : '<span class="noimg">?</span>'}
+        ${S.thumbs[id] ? `<img src="${S.thumbs[id]}" alt="" style="background:${BG_COLORS[S.imgBg[id]] || BG_COLORS.black}">` : '<span class="noimg">?</span>'}
         <figcaption><span class="small" title="${esc(id)}">${esc(S.imgNames[id] || id)}</span><button class="x" data-a="imgdel" data-v="${esc(id)}" title="Supprimer">✕</button></figcaption>
+        <div class="opts">
+          <select class="fit" data-fit="${esc(id)}" title="Cadrage sur l’écran">${Object.entries(FITS).map(([f, [l]]) => `<option value="${f}"${(S.imgFit[id] || 'cover') === f ? ' selected' : ''}>${l}</option>`).join('')}</select>
+          <button class="bgc" data-a="imgbg" data-v="${esc(id)}" title="Fond ${S.imgBg[id] ? 'blanc' : 'noir'} (toucher pour changer)">${S.imgBg[id] ? '⬜' : '⬛'}</button>
+        </div>
       </figure>`).join('')}</div>`
       : `<p class="muted">${S.imgErr ? '⚠ Stockage local indisponible dans ce navigateur (navigation privée ?).' : 'Aucune image sur cet appareil.'}</p>`}
     ${others.length ? `<p class="small muted">Annoncés à la station depuis un autre appareil : ${others.map(l => esc(l.n)).join(', ')}</p>` : ''}`;

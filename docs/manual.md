@@ -50,13 +50,21 @@ dernier cas, l'appareil oublie ses personnages ; on les retrouve avec leur code 
 Dans l'**Espace joueur**, donnez un nom au personnage, choisissez son peuple et son profil, puis
 appuyez sur **Créer**. Votre nom de joueur est repris automatiquement sur la fiche.
 
+### L'image du personnage
+
+En haut de l'onglet *Perso*, **📷 Choisir une image** : prenez une photo ou choisissez une image.
+Elle est recadrée en carré (centrée, un peu vers le haut pour un portrait) et réduite en miniature,
+qui s'affiche sur l'écran partagé, dans l'ordre d'initiative et chez le MJ. L'image d'origine reste
+sur votre téléphone ; seule la miniature est envoyée à la station. **Retirer** l'enlève.
+Le MJ peut aussi changer ou retirer l'image d'un personnage.
+
 ### La fiche
 
 La fiche est découpée en onglets :
 
 | Onglet | Contenu |
 |---|---|
-| *Perso* | identité, peuple, profil, niveau, caractéristiques, idéal et travers, **code de reprise** |
+| *Perso* | image, identité, peuple, profil, niveau, caractéristiques, idéal et travers, **code de reprise** |
 | *Combat* | PV, DR, PC, PM, DEF, initiative, armure, bouclier, armes, états |
 | *Voies* | voies de profil, de peuple et de prestige, rangs acquis |
 | *Sac* | équipement |
@@ -98,7 +106,8 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 - **Expérience** : donner des XP à tout le groupe.
 - **Repos** : récupération complète du groupe (+1 DR, tous les PM).
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
-  personnages de la station).
+  personnages de la station). Les images des personnages ne sont pas dans l'export : après un
+  import, chacun remet la sienne.
 - Vider le journal des dés, quitter le mode MJ.
 
 ## Écran partagé et lieux
@@ -117,6 +126,20 @@ ses images qui sont affichées :
 4. Repassez en mode écran avec **📺 Mode écran**.
 
 Le nom du fichier donne le nom du lieu : « Ville du port.jpg » devient *Ville du port*.
+
+Sous chaque miniature, choisissez le cadrage de l'image sur l'écran :
+
+| Cadrage | Effet |
+|---|---|
+| Plein écran | l'image remplit tout l'écran, quitte à être rognée (par défaut) |
+| Ajusté en hauteur | toute la hauteur de l'image est visible, bandes sur les côtés si besoin |
+| Ajusté en largeur | toute la largeur de l'image est visible, bandes en haut et en bas si besoin |
+
+Le bouton ⬛ / ⬜ à côté choisit la couleur du fond, **noir** (par défaut) ou **blanc** : elle remplit
+les bandes d'un cadrage ajusté et apparaît à travers les parties transparentes d'une image
+(PNG détouré, carte sur fond transparent…).
+
+Cadrage et fond sont retenus pour chaque lieu par l'appareil de l'écran.
 
 Bon à savoir :
 - Les images sont copiées dans le navigateur de l'écran, jamais sur la station. Si vous modifiez

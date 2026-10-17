@@ -1,5 +1,8 @@
+#include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <string.h>
+#include <strings.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "esp_http_server.h"
@@ -14,6 +17,7 @@ static const char *TAG = "web";
 static httpd_handle_t s_server;
 static web_server_config_t s_cfg;
 static char s_portal_url[48];
+static char s_files_uri[24];
 
 /* Portail captif : toute URL inconnue (tests de connectivité Android/iOS/Windows…)
  * renvoie vers l'appli. */
@@ -38,6 +42,42 @@ static esp_err_t asset_handler(httpd_req_t *req)
     httpd_resp_set_hdr(req, "Cache-Control", "no-cache");
     httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
     return httpd_resp_send(req, (const char *)a->data, a->len);
+}
+
+static const char *mime_of(const char *path)
+{
+    const char *ext = strrchr(path, '.');
+    if (ext && (strcasecmp(ext, ".jpg") == 0 || strcasecmp(ext, ".jpeg") == 0)) return "image/jpeg";
+    if (ext && strcasecmp(ext, ".png") == 0) return "image/png";
+    return "application/octet-stream";
+}
+
+/* Fichier du système de fichiers : nom limité à [A-Za-z0-9._-], sans "..", requête (?v=…) ignorée. */
+static esp_err_t file_handler(httpd_req_t *req)
+{
+    const char *name = req->uri + strlen(s_files_uri);
+    size_t len = strcspn(name, "?#");
+    bool ok = len > 0 && len < 32 && !strstr(name, "..");
+    for (size_t i = 0; ok && i < len; i++) ok = isalnum((unsigned char)name[i]) || strchr("._-", name[i]);
+    char path[96];
+    FILE *f = NULL;
+    if (ok && snprintf(path, sizeof(path), "%s%s%.*s", s_cfg.files_root, s_files_uri, (int)len, name) < (int)sizeof(path))
+        f = fopen(path, "rb");
+    if (!f) {
+        httpd_resp_set_status(req, "404 Not Found");
+        return httpd_resp_send(req, NULL, 0);
+    }
+
+    httpd_resp_set_type(req, mime_of(path));
+    httpd_resp_set_hdr(req, "Cache-Control", "public, max-age=31536000, immutable");
+    char *buf = malloc(2048);
+    esp_err_t err = buf ? ESP_OK : ESP_ERR_NO_MEM;
+    size_t n;
+    while (err == ESP_OK && (n = fread(buf, 1, 2048, f)) > 0) err = httpd_resp_send_chunk(req, buf, n);
+    fclose(f);
+    free(buf);
+    if (err == ESP_OK) err = httpd_resp_send_chunk(req, NULL, 0);
+    return err;
 }
 
 static void ws_send(int fd, const char *txt)
@@ -127,10 +167,17 @@ void web_server_start(const web_server_config_t *config)
 
     ESP_ERROR_CHECK(httpd_start(&s_server, &cfg));
 
-    /* Ordre d'enregistrement = ordre de recherche : /ws avant le joker. */
+    /* Ordre d'enregistrement = ordre de recherche : /ws et les fichiers avant le joker. */
     const httpd_uri_t ws = { .uri = "/ws", .method = HTTP_GET, .handler = ws_handler, .is_websocket = true };
     const httpd_uri_t assets = { .uri = "/*", .method = HTTP_GET, .handler = asset_handler };
     ESP_ERROR_CHECK(httpd_register_uri_handler(s_server, &ws));
+    if (config->files_uri && config->files_root) {
+        static char pattern[sizeof(s_files_uri) + 1];
+        strlcpy(s_files_uri, config->files_uri, sizeof(s_files_uri));
+        snprintf(pattern, sizeof(pattern), "%s*", s_files_uri);
+        const httpd_uri_t files = { .uri = pattern, .method = HTTP_GET, .handler = file_handler };
+        ESP_ERROR_CHECK(httpd_register_uri_handler(s_server, &files));
+    }
     ESP_ERROR_CHECK(httpd_register_uri_handler(s_server, &assets));
     httpd_register_err_handler(s_server, HTTPD_404_NOT_FOUND, error_handler);
     httpd_register_err_handler(s_server, HTTPD_405_METHOD_NOT_ALLOWED, error_handler);

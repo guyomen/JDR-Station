@@ -20,7 +20,7 @@ d'aide, pas d'un substitut à sa lecture.**
 
 - **Un appareil = un utilisateur** : joueur, MJ (code PIN) ou écran partagé, profil retenu par le navigateur.
 - **Joueurs** : fiche COF2 complète (132 voies du DRS, équipement, états), valeurs calculées selon les
-  règles, jets en un clic, code de reprise pour changer de téléphone.
+  règles, jets en un clic, image du personnage (miniature), code de reprise pour changer de téléphone.
 - **MJ** : tableau de bord du groupe en temps réel, toutes les fiches, initiative avec PNJ visibles
   ou masqués, journal des jets et jets secrets, XP, repos, export / import JSON.
 - **Écran partagé** : espace global en plein écran, initiative publique, lieu choisi par le MJ en fond.
@@ -78,8 +78,9 @@ components/
   network/            point d'accès Wi-Fi + DNS de portail captif (tout nom → 192.168.4.1)
   store/              état de la partie + sauvegarde /data/party.json (SPIFFS)
   game/               protocole : aiguillage (game.c), fiches (characters.c), dés et journal (dice.c),
-                      appareils connectés (peers.c), initiative (combat.c), lieux (lieux.c), droits (party.c)
-  web_server/         HTTP + WebSocket /ws, redirection du portail captif (ne connaît pas game)
+                      appareils connectés (peers.c), initiative (combat.c), lieux (lieux.c),
+                      miniatures (avatar.c), droits (party.c)
+  web_server/         HTTP + WebSocket /ws, fichiers /av/, redirection du portail captif (ne connaît pas game)
   webapp/             appli web embarquée (HTML/CSS/JS, sans dépendance externe)
     www/index.html
     www/css/          un fichier par écran
@@ -87,7 +88,7 @@ components/
       core/           utilitaires, DOM, stockage local
       data/           cof2_drs.js (DRS, généré) et cof2.js (familles, bonus des capacités, équipement…)
       rules/          règles COF2 : tables, calculs de la fiche, conversion des anciennes fiches, dés
-      features/       initiative du MJ, images de lieux, mode écran partagé
+      features/       initiative du MJ, images de lieux, miniatures des personnages, mode écran partagé
       ui/             rendu, composants, actions ; ui/views/ : un fichier par écran
       state.js, net.js, messages.js, main.js
     bundles.json      fichiers servis et ordre de concaténation des sources
@@ -121,10 +122,15 @@ qu'un joueur et le MJ s'écrasent mutuellement. Détails : [docs/protocol.md](do
 garde dans IndexedDB et annonce leur liste `{id, n}` par le message `lieux`. La station la persiste dans
 `party.json` et la diffuse ; le MJ choisit un `id` parmi elle (champ `bg` du combat public).
 
+**Miniatures des personnages.** L'appli recadre l'image en carré de 192 px et la compresse en JPEG
+(≤ 15 Ko) avant l'envoi par le message `avatar`. La station l'écrit dans un fichier à part
+(`/data/av/<id>.jpg`, pas dans la fiche limitée à 6 Ko) et la sert sur `/av/<id>.jpg?v=<version>`,
+avec un cache d'un an côté navigateur : 12 personnages × 16 Ko au plus, soit 192 Ko de la SPIFFS de 1 Mo.
+
 **Droits.** Chaque personnage a un code secret, connu de l'appareil qui l'a créé (ou repris avec ce code).
 Le PIN du MJ donne tous les droits. Le profil et le nom de l'utilisateur restent dans le navigateur
 de l'appareil ; la station ne reçoit le nom que pour la liste des connectés. C'est une protection
 « entre amis » : le réseau est local et le trafic n'est pas chiffré.
 
-**Limites.** 12 personnages, ~6 Ko par fiche, 40 lieux, 8 téléphones (10 max. pour le Wi-Fi de l'ESP32).
+**Limites.** 12 personnages, ~6 Ko par fiche, 16 Ko par miniature, 40 lieux, 8 téléphones (10 max. pour le Wi-Fi de l'ESP32).
 Valeurs exactes dans [docs/protocol.md](docs/protocol.md#limites).

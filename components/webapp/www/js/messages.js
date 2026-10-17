@@ -9,6 +9,7 @@ function onMsg(m) {
       S.log = m.log || [];
       S.peers = m.peers || [];
       S.lieux = m.lieux || [];
+      S.avatars = m.avatars || {};
       if (!S.isMJ) S.pub = normCombat(m.combat);
       peersChanged();
       update();
@@ -25,6 +26,7 @@ function onMsg(m) {
     }
     case 'del': {
       S.chars = S.chars.filter(c => c.id !== m.id);
+      delete S.avatars[m.id];
       const r = route();
       if ((r[0] === 'c' && r[1] === m.id) || (r[2] === m.id)) location.hash = r[0] === 'mj' ? '#/mj' : '#/joueur';
       update();
@@ -50,6 +52,10 @@ function onMsg(m) {
     case 'peers':
       S.peers = m.list || [];
       peersChanged();
+      break;
+    case 'avatar':
+      if (m.v) S.avatars[m.id] = m.v; else delete S.avatars[m.id];
+      update();
       break;
     case 'lieux':
       S.lieux = m.list || [];

@@ -85,3 +85,11 @@ button:disabled { opacity: .4; }
 .item b { flex: 1; }
 .item small { color: var(--muted); }
 .badge { font-size: .75rem; padding: .1rem .45rem; border-radius: 99px; background: var(--bg); border: 1px solid var(--line); }
+
+/* Miniature d'un personnage (photo ronde, ou son initiale sans image). */
+.av { width: 2.6rem; height: 2.6rem; flex: none; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); background: var(--bg); }
+.av.none { display: inline-grid; place-items: center; color: var(--muted); font-family: Georgia, serif; font-weight: 700; }
+.av.sm { width: 1.9rem; height: 1.9rem; }
+.av.lg { width: 6rem; height: 6rem; font-size: 2.4rem; }
+.avrow { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
+.avrow .col { gap: .3rem; min-width: 0; }

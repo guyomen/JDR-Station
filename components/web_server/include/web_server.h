@@ -14,6 +14,10 @@ typedef struct {
     void (*on_message)(int fd, const char *msg, size_t len, web_ws_out_t *out);
     /* Socket fermée : renvoie un message à diffuser aux autres clients (malloc), ou NULL. */
     char *(*on_close)(int fd);
+    /* Fichiers servis depuis le système de fichiers (miniatures) : l'URI files_uri + nom (ex. "/av/c1.jpg")
+     * lit files_root + URI ("/data/av/c1.jpg"). Les URL doivent être versionnées : cache d'un an. NULL : aucun. */
+    const char *files_uri;
+    const char *files_root;
 } web_server_config_t;
 
 /* Sert l'appli web (composant webapp) et le WebSocket /ws. */

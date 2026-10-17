@@ -67,6 +67,8 @@ const ACTIONS = {
   die(el, c) {
     doRoll(rollerName(c), 'd' + el.dataset.f, { n: 1, f: +el.dataset.f, mod: 0 }, { secret: S.secret && !c });
   },
+  'avatar-pick'(el, c) { pickAvatar(c); },
+  'avatar-del'(el, c) { removeAvatar(c); },
   forget(el, c) {
     if (!confirm('Retirer ce personnage de cet appareil ? (gardez le code de reprise)')) return;
     delete S.mine[c.id];
@@ -101,13 +103,14 @@ const ACTIONS = {
   imgadd() { pickImgs(false); },
   imgclear() {
     if (!confirm('Effacer toutes les images de cet appareil ?')) return;
-    IMG.clear().then(() => { S.imgDir = null; save('imgdir', null); refreshImgs(true); }, () => toast('Effacement impossible'));
+    IMG.clear().then(() => { S.imgDir = null; save('imgdir', null); S.imgFit = {}; save('imgfit', {}); S.imgBg = {}; save('imgbg', {}); refreshImgs(true); }, () => toast('Effacement impossible'));
   },
   imgdel(el) {
     if (!confirm(`Supprimer le lieu « ${lieuLabel(el.dataset.v)} » de cet appareil et de la station ?`)) return;
-    IMG.del(el.dataset.v).then(() => refreshImgs(true), () => toast('Suppression impossible'));
+    IMG.del(el.dataset.v).then(() => { setFit(el.dataset.v, 'cover'); setLieuBg(el.dataset.v, 'black'); refreshImgs(true); }, () => toast('Suppression impossible'));
   },
   'lieux-send'() { sendLieux(); },
+  imgbg(el) { setLieuBg(el.dataset.v, S.imgBg[el.dataset.v] ? 'black' : 'white'); render(); },
   'bg-set'(el) { setBg(el.dataset.v); },
   'bg-clear'() { setBg(''); },
   'turn-next'() {

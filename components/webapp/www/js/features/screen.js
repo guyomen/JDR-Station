@@ -7,6 +7,25 @@ function setBg(v) {
   render();
 }
 
+/* Cadrage d'un lieu sur cet écran : plein écran (image rognée), ou image entière ajustée
+ * à la hauteur ou à la largeur de l'écran (bandes de la couleur de fond sur les côtés restants). */
+const FITS = { cover: ['Plein écran', 'cover'], height: ['Ajusté en hauteur', 'auto 100%'], width: ['Ajusté en largeur', '100% auto'] };
+function setFit(id, fit) {
+  if (fit in FITS && fit !== 'cover') S.imgFit[id] = fit; else delete S.imgFit[id];
+  save('imgfit', S.imgFit);
+  bgShown = null;
+  showBg();
+}
+
+/* Couleur derrière l'image : visible à travers sa transparence et dans les bandes d'un cadrage ajusté. */
+const BG_COLORS = { black: '#000', white: '#fff' };
+function setLieuBg(id, color) {
+  if (color === 'white') S.imgBg[id] = color; else delete S.imgBg[id];
+  save('imgbg', S.imgBg);
+  bgShown = null;
+  showBg();
+}
+
 /* Calque de fond derrière l'espace global, uniquement en mode écran. */
 let bgShown = null, bgUrl = '';
 function showBg() {
@@ -20,6 +39,8 @@ function showBg() {
     if (bgUrl) URL.revokeObjectURL(bgUrl);
     bgUrl = blob ? URL.createObjectURL(blob) : '';
     el.style.backgroundImage = bgUrl ? `url("${bgUrl}")` : '';
+    el.style.backgroundSize = (FITS[S.imgFit[id]] || FITS.cover)[1];
+    el.style.backgroundColor = BG_COLORS[S.imgBg[id]] || BG_COLORS.black;
     document.documentElement.classList.toggle('hasbg', !!bgUrl);
   };
   if (!id) set(null); else IMG.get(id).then(set, () => set(null));

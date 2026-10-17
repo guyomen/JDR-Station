@@ -22,6 +22,13 @@ function viewSheet(id, mj) {
   const niveaux = Array.from({ length: 20 }, (_, i) => [i + 1, 'Niveau ' + (i + 1)]);
 
   const perso = `
+    <div class="avrow">${avatarHTML(c, 'lg', true)}
+      ${can ? `<div class="col">
+          <div class="row"><button class="sm" data-a="avatar-pick">📷 ${S.avatars[id] ? 'Changer l’image' : 'Choisir une image'}</button>
+            ${S.avatars[id] ? '<button class="sm" data-a="avatar-del">Retirer</button>' : ''}</div>
+          <small class="muted">Recadrée en carré et réduite (192 px) : affichée sur l’écran partagé et chez le MJ.</small>
+        </div>` : ''}
+    </div>
     <div class="grid2">
       ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
       ${sel('peuple', 'Peuple', PEUPLE_OPTS)}${sel('profil', 'Profil', PROFIL_OPTS)}
@@ -103,6 +110,7 @@ function viewSheet(id, mj) {
   return `<div id="sheet" class="sheet-wrap ${can ? '' : 'ro'}" data-id="${id}">
     <div class="sheet-head">
       <a href="${back}" class="back">‹</a>
+      ${avatarHTML(c)}
       <div class="grow"><h1 data-calc="name"></h1><small class="muted">${esc(prof ? prof.n : 'Profil ?')} · niv. ${esc(c.niveau)}${can ? '' : ' · lecture seule'}</small></div>
       ${keepToggle()}
     </div>
