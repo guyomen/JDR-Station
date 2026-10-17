@@ -3,6 +3,7 @@
 Une station de jeu de rôle autonome pour **Chroniques Oubliées Fantasy (2e édition)**.
 L'ESP32-C6 crée son propre réseau Wi-Fi : les joueurs s'y connectent avec leur téléphone,
 remplissent leur fiche de personnage, lancent les dés, et le MJ suit tout le groupe en direct.
+Une tablette ou un écran posé sur la table peut afficher l'état du groupe pour tous.
 Aucune connexion Internet n'est nécessaire.
 
 ## Disclaimer 
@@ -13,7 +14,16 @@ Toutes les informations relative a Chroniques oubliées ont été copier a parti
 
 ## Fonctionnalités
 
-**Joueurs** (téléphone)
+**Un appareil = un utilisateur**
+- À la première connexion, l'appli demande qui utilise l'appareil : joueur / joueuse (son nom),
+  meneur de jeu (nom + code PIN) ou écran partagé.
+- Ce profil est retenu par le navigateur : ensuite, l'appareil s'ouvre directement sur son espace
+  (Espace joueur, Espace MJ ou espace global en plein écran).
+- « Réglages de cet appareil » permet de renommer l'utilisateur, de changer de profil ou de
+  changer d'utilisateur (l'appareil oublie alors ses personnages, récupérables avec leur code).
+
+**Joueurs** (téléphone, Espace joueur)
+- Le nom du joueur est saisi une seule fois et repris sur ses personnages (création, reprise, renommage).
 - Création de personnage puis fiche en onglets : *Perso*, *Combat*, *Voies*, *Sac*, *Notes*, *Dés*.
 - Tout se choisit dans des listes issues des règles : peuple, profil, niveau, armure, bouclier,
   armes (DM, portée, critique), les 132 voies du DRS officiel (78 de profil/peuple, 54 de prestige)
@@ -24,11 +34,20 @@ Toutes les informations relative a Chroniques oubliées ont été copier a parti
 - Jets en un clic : test de caractéristique, attaque, dégâts, dé bonus / dé malus.
 - Code de reprise (6 caractères) pour retrouver son personnage sur un autre téléphone.
 
+**Espace global et écran partagé**
+- Qui est connecté (nom du joueur, appareil, depuis quand), personnages actifs avec PV / PM et états,
+  personnages hors ligne.
+- Ordre d'initiative public : tour en cours, PNJ rendus visibles par le MJ, leur santé en couleur.
+- Mode écran : plein écran, écran maintenu allumé, lieu choisi par le MJ affiché en fond.
+  Les images de lieux sont copiées dans le navigateur de l'appareil (dossier synchronisé depuis
+  « Réglages de cet appareil »), jamais sur la station.
+
 **MJ** (code PIN)
 - Tableau de bord du groupe : PV / DR / PC / PM avec boutons ±1 / ±5, DEF, attaques,
   états, armes, voies — mis à jour en temps réel.
 - Ouverture et modification de n'importe quelle fiche.
-- Ordre d'initiative (PJ + PNJ ajoutés à la volée), compteur de tours.
+- Ordre d'initiative (PJ + PNJ ajoutés à la volée, visibles ou masqués pour les joueurs), compteur de tours.
+- Choix du lieu affiché sur l'écran partagé.
 - Journal de tous les jets, jets secrets, distribution d'XP, récupération complète du groupe.
 - Export / import JSON pour sauvegarder la campagne.
 
@@ -69,7 +88,10 @@ Réglages du menu **JDR Station** (`idf.py menuconfig`) :
 4. À la première connexion, chaque appareil indique qui l'utilise : joueur / joueuse (son nom),
    meneur de jeu (nom + code PIN) ou écran partagé. Ce choix est retenu : ensuite, l'appareil
    s'ouvre directement sur son espace. Il se change dans « Réglages de cet appareil ».
-5. Joueurs : « Créer » un personnage (le nom du joueur y est repris automatiquement).
+5. Joueurs : « Créer » un personnage dans l'Espace joueur (le nom du joueur y est repris).
+6. Écran partagé (facultatif) : dans « Réglages de cet appareil », choisissez le dossier d'images
+   de lieux. L'ID d'un lieu est le nom du fichier sans extension (« Ville.jpg » → `ville`) ;
+   le MJ le choisit dans l'onglet *Outils* de l'Espace MJ.
 
 Conseils :
 - Si le téléphone affiche « Pas d'accès Internet », choisissez **Rester connecté**.
@@ -77,6 +99,8 @@ Conseils :
   Pour jouer, ouvrez plutôt **http://192.168.4.1** dans le vrai navigateur, ou ajoutez-le
   à l'écran d'accueil.
 - Notez le **code de reprise** de votre personnage (onglet Perso).
+- Le profil de l'appareil, ses personnages et ses images sont gardés par le navigateur :
+  la navigation privée ou l'effacement des données du site les fait oublier.
 
 ## Règles et personnalisation
 
@@ -147,8 +171,9 @@ Les fiches sont du JSON libre côté firmware : on peut enrichir la fiche ou les
 l'appli web sans toucher au C. Les modifications sont envoyées champ par champ (« patch »), ce qui évite
 qu'un joueur et le MJ s'écrasent mutuellement. Détails : [docs/protocol.md](docs/protocol.md).
 
-Droits : chaque personnage a un code secret, connu du téléphone qui l'a créé.
-Le PIN du MJ donne tous les droits. C'est une protection « entre amis » : le réseau est local
+Droits : chaque personnage a un code secret, connu de l'appareil qui l'a créé (ou repris avec ce code).
+Le PIN du MJ donne tous les droits. Le profil et le nom de l'utilisateur restent dans le navigateur
+de l'appareil ; la station ne reçoit le nom que pour la liste des connectés. C'est une protection « entre amis » : le réseau est local
 et le trafic n'est pas chiffré.
 
 Limites : 12 personnages, ~6 Ko par fiche, 8 téléphones (10 max. pour le Wi-Fi de l'ESP32).
