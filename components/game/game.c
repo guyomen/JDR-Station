@@ -1,10 +1,21 @@
 /* Point d'entrée du composant : aiguillage des messages vers leur gestionnaire. */
 #include <string.h>
 #include "store.h"
+#include "sysinfo.h"
 #include "game_priv.h"
 
 static void on_hello(const cJSON *m, int fd, game_out_t *out) { out->reply = msg_state(); }
 static void on_auth(const cJSON *m, int fd, game_out_t *out)  { out->reply = msg_auth(party_is_mj(m)); }
+
+/* État de la station (mémoire, flash, température…) : MJ seulement. */
+static void on_sys(const cJSON *m, int fd, game_out_t *out)
+{
+    if (!party_is_mj(m)) { out->reply = msg_err("Reserve au MJ"); return; }
+    cJSON *o = msg_new("sys");
+    cJSON_AddItemToObject(o, "sys", sysinfo_json());
+    cJSON_AddNumberToObject(o, "peers", cJSON_GetArraySize(peers_list()));
+    out->reply = json_print_free(o);
+}
 
 static const struct {
     const char *type;
@@ -23,6 +34,7 @@ static const struct {
     { "combat",   combat_on_update },
     { "lieux",    lieux_on_update },
     { "avatar",   avatar_on_update },
+    { "sys",      on_sys },
 };
 
 void game_init(const char *mj_pin)

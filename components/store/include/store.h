@@ -25,3 +25,6 @@ void store_mark_dirty(void);
 #define STORE_BASE_PATH "/data"
 bool store_file_write(const char *name, const void *data, size_t len);
 void store_file_remove(const char *name);
+
+/* Espace de la partition de données (octets) ; false si indisponible. */
+bool store_usage(size_t *total, size_t *used);

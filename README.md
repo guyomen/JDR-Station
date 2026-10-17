@@ -22,7 +22,8 @@ d'aide, pas d'un substitut à sa lecture.**
 - **Joueurs** : fiche COF2 complète (132 voies du DRS, équipement, états), valeurs calculées selon les
   règles, jets en un clic, image du personnage (miniature), code de reprise pour changer de téléphone.
 - **MJ** : tableau de bord du groupe en temps réel, toutes les fiches, initiative avec PNJ visibles
-  ou masqués, journal des jets et jets secrets, XP, repos, export / import JSON.
+  ou masqués, journal des jets et jets secrets, XP, repos, export / import JSON,
+  état de la station (température, stockage, mémoire, Wi-Fi).
 - **Écran partagé** : espace global en plein écran, initiative publique, lieu choisi par le MJ en fond.
   Les images de lieux restent dans le navigateur de l'écran ; seule leur liste est envoyée à la station.
 - **Station** : point d'accès Wi-Fi + portail captif, synchronisation par WebSocket, dés tirés par le
@@ -77,6 +78,7 @@ main/                 démarrage : lit la configuration (menuconfig) et relie le
 components/
   network/            point d'accès Wi-Fi + DNS de portail captif (tout nom → 192.168.4.1)
   store/              état de la partie + sauvegarde /data/party.json (SPIFFS)
+  sysinfo/            état de la station pour le MJ : température, mémoire, flash, Wi-Fi
   game/               protocole : aiguillage (game.c), fiches (characters.c), dés et journal (dice.c),
                       appareils connectés (peers.c), initiative (combat.c), lieux (lieux.c),
                       miniatures (avatar.c), droits (party.c)

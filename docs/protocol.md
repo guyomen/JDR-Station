@@ -33,6 +33,7 @@ C'est une protection « entre amis » : le réseau est local et le trafic n'est 
 | `combat` | `pin`, `full`, `pub` | | `combat {combat: pub}` |
 | `lieux` | `list: [{id, n}]` | `err` si invalide | `lieux {list}` |
 | `avatar` | `id`, `data` (JPEG en base64, `""` pour retirer), `token` ou `pin` | `err` si refusé | `avatar {id, v}` |
+| `sys` | `pin` | `sys {sys, peers}` | |
 
 Précisions :
 
@@ -49,6 +50,8 @@ Précisions :
   la signature JPEG, l'écrit dans `/data/av/<id>.jpg` et diffuse sa nouvelle version `v` (0 = retirée).
   Elle est servie en HTTP sur `GET /av/<id>.jpg?v=<v>`, avec un cache d'un an : chaque envoi change `v`.
   Supprimer le personnage supprime sa miniature ; un import les supprime toutes (elles ne sont pas exportées).
+- **sys** : état de la station, demandé toutes les 5 s tant que l'onglet *Outils* du MJ est affiché
+  ([components/sysinfo/](../components/sysinfo/)). `peers` : nombre d'appareils connectés à l'appli.
 - **combat** : le MJ envoie la version complète (`full`, gardée pour lui, renvoyée dans `auth`)
   et la version publique (`pub` : PNJ visibles, santé en couleur, lieu affiché `bg`).
 
@@ -64,6 +67,7 @@ Précisions :
 | `lieux` | `list` : lieux disponibles `[{id, n}]` |
 | `avatar` | `id`, `v` : nouvelle version de la miniature (0 = retirée) |
 | `combat` | `combat` : version publique du combat |
+| `sys` | `sys` : `{up` (s), `temp` (°C, absent sans capteur), `heap {free, min, big, total}`, `fs {total, used}` (octets), `wifi {ch, rssi: [dBm]}`, `chip`, `cpu` (MHz), `flash` (octets), `idf`, `app`, `built`, `reset`, `tasks}` ; `peers` |
 | `auth`, `created`, `claim`, `you` | réponses (voir plus haut) |
 | `err` | `m` : message d'erreur à afficher |
 

@@ -46,6 +46,8 @@ document.addEventListener('visibilitychange', () => {
 
 /* L'espace global affiche des durées (« depuis 5 min ») : rafraîchi régulièrement. */
 setInterval(() => { if (route()[0] === 'global' && !isEditing()) render(); }, 30000);
+/* État de la station : demandé tant que l'onglet Outils du MJ est affiché. */
+setInterval(pollSys, 5000);
 
 /* ---------- Démarrage ---------- */
 if (S.role === 'ecran' && !S.screen) { S.screen = true; save('screen', true); }

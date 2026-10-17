@@ -18,6 +18,7 @@ const S = {
   peers: [], me: -1,               // appareils connectés (cf. presence), dont celui-ci
   avatars: {},                     // id -> version de la miniature gardée par la station
   lieux: [],                       // lieux connus de la station [{id, n}] : le MJ choisit parmi eux
+  sys: null,                       // état de la station (MJ, onglet Outils) : cf. message sys
   imgs: [], imgNames: {}, thumbs: {}, imgErr: false, // images de lieux de cet appareil (ID, noms, miniatures), stockage local indisponible
   imgDir: load('imgdir', null),    // dossier d'images synchronisé : { name, n, at }
   imgFit: load('imgfit', {}),      // cadrage des lieux sur cet écran : id -> 'height' | 'width' (absent = plein écran)

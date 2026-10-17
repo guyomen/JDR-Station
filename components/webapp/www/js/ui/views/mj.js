@@ -110,7 +110,45 @@ function mjTools() {
         <label class="btn ghost">⬆ Importer<input type="file" accept=".json,application/json" data-import hidden></label></div>
       <p class="muted small">L’import remplace tous les personnages de la station.</p>
     </section>
+    <section class="card"><h3>Station</h3>
+      <div data-sys>${sysHTML()}</div>
+    </section>
     <section class="card"><h3>Divers</h3>
       <div class="row"><button data-a="clearlog">Vider le journal des dés</button><button data-a="mjlogout" class="danger">Quitter le mode MJ</button></div>
     </section>`;
+}
+
+/* ---------- État de la station (onglet Outils) ---------- */
+function pollSys() {
+  const r = route();
+  if (S.isMJ && r[0] === 'mj' && !r[1] && S.mjtab === 'outils' && !document.hidden) send({ t: 'sys', pin: S.pin });
+}
+
+function sysHTML() {
+  const y = S.sys;
+  if (!y) return '<p class="muted">Interrogation de la station…</p>';
+  const ko = b => `${Math.round(n(b) / 1024)} Ko`;
+  const bar = (used, total, warn) => {
+    const p = total ? Math.round(used * 100 / total) : 0;
+    return `<span class="sysbar${p >= warn ? ' warn' : ''}"><i style="width:${p}%"></i></span> ${p} %`;
+  };
+  const up = n(y.up);
+  const d = Math.floor(up / 86400), h = Math.floor(up / 3600) % 24, m = Math.floor(up / 60) % 60;
+  const dur = d ? `${d} j ${h} h` : h ? `${h} h ${m} min` : `${m} min`;
+  const fs = y.fs, heap = y.heap || {};
+  const rssi = (y.wifi && y.wifi.rssi) || [];
+  const rows = [
+    ['Température', y.temp != null ? `<span class="${y.temp >= 70 ? 'syswarn' : ''}">${n(y.temp).toFixed(1)} °C</span> <small class="muted">(puce)</small>` : '—'],
+    ['Stockage', fs ? `${bar(fs.used, fs.total, 85)} · ${ko(fs.total - fs.used)} libres sur ${ko(fs.total)}` : '—'],
+    ['Mémoire vive', `${bar(heap.total - heap.free, heap.total, 85)} · ${ko(heap.free)} libres
+      <small class="muted">(minimum atteint : ${ko(heap.min)}, plus grand bloc : ${ko(heap.big)})</small>`],
+    ['Wi-Fi', `canal ${esc(y.wifi && y.wifi.ch)} · ${rssi.length} appareil(s)${rssi.length ? ` · signal ${Math.max(...rssi)} à ${Math.min(...rssi)} dBm` : ''}
+      · ${n(y.peers)} connecté(s) à l’appli`],
+    ['En marche depuis', `${dur} <small class="muted">(démarrage : ${esc(y.reset)})</small>`],
+    ['Puce', `${esc(y.chip)} · ${esc(y.cpu)} MHz · flash ${Math.round(n(y.flash) / 1048576)} Mo · ${esc(y.tasks)} tâches`],
+    ['Logiciel', `${esc(y.app)} · ESP-IDF ${esc(y.idf)} · compilé le ${esc(y.built)}`],
+  ];
+  return `<dl class="sys">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+    <p class="muted small">Actualisé toutes les 5 s. Le stockage contient la partie et les images des personnages ;
+      la mémoire vive « minimum atteint » est le plus bas niveau depuis le démarrage.</p>`;
 }

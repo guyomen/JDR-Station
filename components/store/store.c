@@ -12,6 +12,7 @@
 #define FILE_TMP      BASE_PATH "/party.tmp"
 #define MAX_FILE      (128 * 1024)
 #define SAVE_DELAY_MS 2000
+#define PARTITION     "storage"
 
 static const char *TAG = "store";
 static cJSON *s_root;
@@ -105,6 +106,11 @@ void store_file_remove(const char *name)
     remove(path);
 }
 
+bool store_usage(size_t *total, size_t *used)
+{
+    return esp_spiffs_info(PARTITION, total, used) == ESP_OK;
+}
+
 static void save_task(void *arg)
 {
     for (;;) {
@@ -132,7 +138,7 @@ esp_err_t store_init(void)
 
     esp_vfs_spiffs_conf_t conf = {
         .base_path = BASE_PATH,
-        .partition_label = "storage",
+        .partition_label = PARTITION,
         .max_files = 4,
         .format_if_mount_failed = true,
     };

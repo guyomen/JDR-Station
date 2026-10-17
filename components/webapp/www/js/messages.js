@@ -66,6 +66,12 @@ function onMsg(m) {
       S.pub = normCombat(m.combat);
       if (route()[0] === 'global') update();
       break;
+    case 'sys': {
+      S.sys = { ...m.sys, peers: m.peers };
+      const el = $('[data-sys]');
+      if (el) el.innerHTML = sysHTML();
+      break;
+    }
     case 'you':
       S.me = m.id;
       peersChanged();

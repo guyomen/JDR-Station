@@ -1,7 +1,8 @@
 /*
  * JDR Station : point d'entrée. Lit la configuration (menu « JDR Station » de menuconfig)
  * et relie entre eux les composants, qui ne se connaissent pas :
- *   network (Wi-Fi + DNS captif), store (sauvegarde), game (règles du protocole),
+ *   network (Wi-Fi + DNS captif), store (sauvegarde), sysinfo (état de la station),
+ *   game (règles du protocole),
  *   web_server (HTTP + WebSocket) qui sert webapp (l'appli web embarquée).
  */
 #include <stdio.h>
@@ -12,6 +13,7 @@
 #include "dns_server.h"
 #include "game.h"
 #include "store.h"
+#include "sysinfo.h"
 #include "web_server.h"
 #include "wifi_ap.h"
 
@@ -40,6 +42,7 @@ void app_main(void)
 {
     nvs_init();
     ESP_ERROR_CHECK(store_init());
+    sysinfo_init();
     game_init(CONFIG_JDR_MJ_PIN);
 
     const wifi_ap_settings_t wifi = {

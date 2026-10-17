@@ -109,6 +109,10 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
   personnages de la station). Les images des personnages ne sont pas dans l'export : après un
   import, chacun remet la sienne.
+- **Station** : température de la puce, stockage restant (la partie et les images des
+  personnages), mémoire vive, Wi-Fi (canal, appareils et force du signal), durée de
+  fonctionnement et cause du dernier démarrage, version du logiciel. Actualisé toutes les 5 s.
+  Une jauge passe au rouge au-delà de 85 %, la température au-delà de 70 °C.
 - Vider le journal des dés, quitter le mode MJ.
 
 ## Écran partagé et lieux

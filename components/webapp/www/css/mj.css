@@ -20,3 +20,16 @@
 .init li.pj .who { font-weight: 600; }
 .init .ini { font-size: 1.25rem; font-weight: 700; text-align: center; }
 .init input { min-height: 34px; padding: .3rem; }
+
+/* État de la station (onglet Outils) */
+.sys { display: grid; grid-template-columns: max-content 1fr; gap: .35rem .8rem; margin: 0; }
+.sys dt { color: var(--muted); }
+.sys dd { margin: 0; }
+.sysbar { display: inline-block; width: 6rem; height: .55rem; vertical-align: middle; background: var(--line); border-radius: 4px; overflow: hidden; }
+.sysbar i { display: block; height: 100%; background: var(--green); }
+.sysbar.warn i { background: var(--red); }
+.syswarn { color: var(--red); font-weight: 600; }
+@media (max-width: 480px) {
+  .sys { grid-template-columns: 1fr; gap: 0; }
+  .sys dd { margin-bottom: .4rem; }
+}
