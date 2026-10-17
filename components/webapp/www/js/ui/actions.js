@@ -7,6 +7,7 @@ const ACTIONS = {
     $$('[data-pane]').forEach(p => p.classList.toggle('on', p.dataset.pane === S.tab));
   },
   mjtab(el) { S.mjtab = el.dataset.v; render(); pollSys(); },
+  'rules-retry'(el) { delete rulesDocs[el.dataset.v]; render(); },
   keep(el) {
     S.keep = el.dataset.v;
     $$('[data-a=keep]').forEach(b => b.classList.toggle('on', b.dataset.v === S.keep));

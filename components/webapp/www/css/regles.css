@@ -1,0 +1,26 @@
+/* Espace Règles : onglets des documents et rendu Markdown. */
+
+.rules-tabs { margin-bottom: .8rem; }
+
+.mddoc { line-height: 1.5; overflow-wrap: anywhere; }
+.mddoc [id^="r-"] { scroll-margin-top: 4rem; }
+.mddoc h1 { font-size: 1.45rem; color: var(--gold); margin-bottom: .8rem; }
+.mddoc h2 { font-size: 1.25rem; margin: 1.6rem 0 .6rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+.mddoc h3 { font-size: 1.08rem; margin: 1.3rem 0 .5rem; }
+.mddoc h4 { font-size: 1rem; margin: 1.1rem 0 .4rem; color: var(--text); font-family: Georgia, serif; }
+.mddoc p, .mddoc ul, .mddoc ol { margin: .5rem 0; }
+.mddoc ul, .mddoc ol { padding-left: 1.3rem; }
+.mddoc li { margin: .2rem 0; }
+.mddoc li > ul, .mddoc li > ol { margin: .2rem 0; }
+.mddoc blockquote {
+  margin: .7rem 0; padding: .1rem .9rem; border-left: 3px solid var(--gold);
+  background: var(--panel2); border-radius: 0 8px 8px 0; color: var(--muted);
+}
+.mddoc code { font-size: .88em; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 .25rem; }
+.mddoc pre { overflow-x: auto; background: var(--bg); padding: .6rem; border-radius: 8px; }
+.mddoc pre code { border: 0; padding: 0; }
+
+.mddoc .tbl { overflow-x: auto; margin: .6rem 0; }
+.mddoc table { border-collapse: collapse; font-size: .88rem; overflow-wrap: normal; }
+.mddoc th, .mddoc td { border: 1px solid var(--line); padding: .3rem .5rem; text-align: left; vertical-align: top; }
+.mddoc th { background: var(--panel2); color: var(--gold); font-weight: 600; }

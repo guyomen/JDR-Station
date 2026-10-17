@@ -18,6 +18,7 @@ MIME = {
     ".html": "text/html; charset=utf-8",
     ".css": "text/css; charset=utf-8",
     ".js": "application/javascript; charset=utf-8",
+    ".md": "text/markdown; charset=utf-8",
 }
 
 
@@ -65,10 +66,11 @@ def main():
     manifest = {k: v for k, v in json.loads(args.manifest.read_text(encoding="utf-8")).items() if not k.startswith("_")}
 
     # Un fichier de www/ oublié dans bundles.json ne serait jamais servi : on le signale.
+    # Les sources hors de www/ (« ../… », ex. les règles de references/) sont seulement vérifiées.
     listed = {src for sources in manifest.values() for src in sources}
     on_disk = {p.relative_to(args.www).as_posix() for p in args.www.rglob("*") if p.is_file()}
-    for missing in sorted(listed - on_disk):
-        sys.exit(f"gen_assets: {missing} est dans bundles.json mais absent de www/")
+    for missing in sorted(src for src in listed if not (args.www / src).is_file()):
+        sys.exit(f"gen_assets: {missing} est dans bundles.json mais introuvable (chemin relatif à www/)")
     for extra in sorted(on_disk - listed):
         sys.exit(f"gen_assets: www/{extra} n'est dans aucun bundle de bundles.json")
 
@@ -78,11 +80,11 @@ def main():
             sys.exit(f"gen_assets: type de fichier inconnu pour {url}")
         raw = bundle(args.www, url, sources)
         if args.dist:
-            args.dist.mkdir(parents=True, exist_ok=True)
+            (args.dist / url).parent.mkdir(parents=True, exist_ok=True)
             (args.dist / url).write_bytes(raw)
         gz = gzip.compress(raw, 9, mtime=0)
         assets.append((url, gz))
-        print(f"  /{url:<12} {len(raw):>7} octets -> {len(gz):>6} en gzip")
+        print(f"  /{url:<20} {len(raw):>7} octets -> {len(gz):>6} en gzip")
 
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

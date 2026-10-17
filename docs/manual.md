@@ -17,6 +17,7 @@ pour tous. Aucune connexion Internet n'est nécessaire.
 - [Meneur de jeu](#meneur-de-jeu)
 - [Écran partagé et lieux](#écran-partagé-et-lieux)
 - [Espace global](#espace-global)
+- [Espace Règles](#espace-règles)
 - [Comment la fiche est calculée](#comment-la-fiche-est-calculée)
 - [Problèmes fréquents](#problèmes-fréquents)
 
@@ -104,7 +105,6 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 - **Lieu affiché sur l'écran partagé** : choisissez un lieu dans la liste, ou « Aucun ».
   La liste vient de l'écran partagé (voir ci-dessous) et reste disponible même quand
   l'écran est éteint.
-- **Expérience** : donner des XP à tout le groupe.
 - **Repos** : récupération complète du groupe (+1 DR, tous les PM).
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
   personnages de la station). Les images des personnages ne sont pas dans l'export : après un
@@ -162,6 +162,19 @@ Accessible à tous depuis l'accueil :
 - personnages actifs avec leurs PV / PM et leurs états, personnages hors ligne ;
 - ordre d'initiative public : tour en cours et PNJ rendus visibles par le MJ ;
 - la carte **🖼 Lieux** (voir plus haut).
+
+## Espace Règles
+
+Accessible à tous depuis l'accueil ou le bouton **📖** en haut de l'écran, même sans avoir choisi
+d'utilisateur. Sept documents, un par onglet :
+- **Aide-mémoire** : création, progression, tests, combat, magie, aventure ;
+- **Familles** et **Profils** : PV, DR, PC, armes et armures, équipement de départ, voies de chaque profil ;
+- **Peuples** : caractéristiques, repères, noms, voie de peuple ;
+- **Voies** et **Prestige** : texte complet de chaque capacité ;
+- **Équipement** : monnaie, matériel, montures, armes, armures et boucliers, avec leurs prix.
+
+Les liens des sommaires et les renvois d'un document à l'autre (par exemple d'un profil vers ses
+voies) mènent directement au bon passage.
 
 ## Comment la fiche est calculée
 

@@ -4,7 +4,8 @@ Documentation de règles utilisée par JDR Station (appli et code).
 
 | Fichier | Contenu | Source |
 |---|---|---|
-| [regles.md](regles.md) | Aide-mémoire des règles : création, progression, équipement, tests, combat, magie, aventure | Livre de règles (PDF) |
+| [regles.md](regles.md) | Aide-mémoire des règles : création, progression, tests, combat, magie, aventure (peuples, profils et voies : voir les fichiers suivants) | Livre de règles (PDF) |
+| [equipement.md](equipement.md) | Équipement : monnaie, matériel courant, montures, auberge, armes, armures et boucliers, qualité, exotique | Livre de règles (PDF) |
 | [familles.md](familles.md) | Les 4 familles de profils : PV, DR, PC, particularités, voies de profil et de prestige | DRS |
 | [profils.md](profils.md) | Les 14 profils : description, PV, DR, PC, armes et armures, équipement, résumé des 5 voies | DRS |
 | [peuples.md](peuples.md) | Les 8 peuples et la voie du mage : caractéristiques, repères, noms, voie de peuple | DRS |

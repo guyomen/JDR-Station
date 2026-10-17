@@ -35,6 +35,7 @@ function viewHome() {
   return `<div class="tiles">
     ${tile('#/joueur', '🧝', 'Espace joueur', S.player ? `${esc(S.player)} · ${perso}` : perso)}
     ${tile('#/global', '👥', 'Espace global', `${S.peers.length} connecté${S.peers.length > 1 ? 's' : ''} · état du groupe · lieux`)}
+    ${tile('#/regles', '📖', 'Espace Règles', 'Aide-mémoire, profils, peuples, voies, équipement')}
     ${tile('#/mj', '🎲', 'Espace MJ', S.isMJ ? 'Connecté en MJ' : 'Réservé au meneur de jeu')}
     ${tile('#/config', '⚙', 'Réglages de cet appareil', 'Utilisateur, écran partagé')}
   </div>`;

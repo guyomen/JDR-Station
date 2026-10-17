@@ -2,7 +2,7 @@
 
 function blankChar() {
   return {
-    name: '', player: '', peuple: '', profil: '', niveau: 1, xp: 0, ideal: '', travers: '',
+    name: '', player: '', peuple: '', profil: '', niveau: 1, ideal: '', travers: '',
     car: Object.fromEntries(CARACS.map(([k]) => [k, 0])),
     pv: { cur: null }, dr: { cur: null }, pc: { cur: null }, pm: { cur: null }, // null = plein
     div: Object.fromEntries(DIVERS.map(([k]) => [k, 0])),

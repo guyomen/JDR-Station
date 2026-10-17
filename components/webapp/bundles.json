@@ -2,9 +2,17 @@
   "_comment": [
     "Fichiers servis par la station (clé = URL) et sources concaténées dans l'ordre, chemins relatifs à www/.",
     "Les scripts partagent une seule portée : l'ordre compte pour le code exécuté au chargement",
-    "(données avant règles, règles avant interface, main.js en dernier)."
+    "(données avant règles, règles avant interface, main.js en dernier).",
+    "Les fichiers regles/*.md sont lus dans references/COFv2/ et affichés dans l'Espace Règles (#/regles)."
   ],
   "index.html": ["index.html"],
+  "regles/regles.md": ["../../../references/COFv2/regles.md"],
+  "regles/familles.md": ["../../../references/COFv2/familles.md"],
+  "regles/profils.md": ["../../../references/COFv2/profils.md"],
+  "regles/peuples.md": ["../../../references/COFv2/peuples.md"],
+  "regles/voies.md": ["../../../references/COFv2/voies.md"],
+  "regles/prestige.md": ["../../../references/COFv2/prestige.md"],
+  "regles/equipement.md": ["../../../references/COFv2/equipement.md"],
   "app.css": [
     "css/base.css",
     "css/sheet.css",
@@ -13,7 +21,8 @@
     "css/voies.css",
     "css/home.css",
     "css/initiative.css",
-    "css/global.css"
+    "css/global.css",
+    "css/regles.css"
   ],
   "app.js": [
     "js/core/util.js",
@@ -48,6 +57,7 @@
     "js/ui/views/sheet.js",
     "js/ui/views/voies.js",
     "js/ui/views/mj.js",
+    "js/ui/views/regles.js",
     "js/ui/events.js",
     "js/ui/actions.js",
     "js/ui/forms.js",

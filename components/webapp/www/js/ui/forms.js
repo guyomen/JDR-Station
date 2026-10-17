@@ -42,13 +42,6 @@ const FORMS = {
     pushCombat();
     render();
   },
-  xp(d) {
-    const gain = n(d.xp);
-    if (!gain || !confirm(`Donner ${gain} XP à chaque personnage ?`)) return;
-    S.chars.forEach(c => change(c, 'xp', n(c.xp) + gain));
-    flush();
-    toast(`${gain} XP distribués`);
-  },
 };
 
 /* ---------- Utilisateur de cet appareil ---------- */

@@ -18,6 +18,9 @@ app.addEventListener('change', e => {
 });
 
 app.addEventListener('click', e => {
+  /* Lien vers l'ancre déjà dans l'URL (sommaire) : pas de hashchange, on y retourne quand même. */
+  const link = e.target.closest('a[href^="#/regles/"]');
+  if (link && link.getAttribute('href') === location.hash && rulesScroll()) return e.preventDefault();
   const el = e.target.closest('[data-a]');
   if (!el || el.disabled) return;
   const fn = ACTIONS[el.dataset.a];
@@ -35,7 +38,7 @@ app.addEventListener('submit', e => {
 $('#roll').addEventListener('click', () => { $('#roll').hidden = true; });
 
 document.addEventListener('focusout', () => setTimeout(() => { if (S.needRender && !isEditing()) render(); }, 60));
-window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+window.addEventListener('hashchange', () => { render(); if (!rulesScroll()) window.scrollTo(0, 0); });
 
 /* Retour au premier plan : reconnexion et écran maintenu allumé (mode écran). */
 document.addEventListener('visibilitychange', () => {

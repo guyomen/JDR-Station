@@ -11,13 +11,15 @@ function update() {
   if (isEditing()) { patchValues(); S.needRender = true; } else render();
 }
 
+let rulesShown = ''; // HTML de l'Espace Règles affiché
 function render() {
   S.needRender = false;
   const app = $('#app');
   const open = $$('details[open][data-k]', app).map(d => d.dataset.k);
   const r = route();
   let html;
-  if (!S.ready) html = '<p class="muted center">Connexion à la station…</p>';
+  if (r[0] === 'regles') html = viewRules(r[1]);
+  else if (!S.ready) html = '<p class="muted center">Connexion à la station…</p>';
   else if (!S.role) html = viewWelcome();
   else if (r[0] === 'c') html = viewSheet(r[1], false);
   else if (r[0] === 'global') html = viewGlobal();
@@ -28,7 +30,9 @@ function render() {
   else if (r[0] === 'mj') html = viewMJ();
   else html = viewHome();
   document.documentElement.classList.toggle('screen', S.screen && r[0] === 'global');
-  app.innerHTML = html;
+  /* Les documents de règles sont longs : pas de re-rendu à chaque message de la station. */
+  if (r[0] !== 'regles' || html !== rulesShown) app.innerHTML = html;
+  rulesShown = r[0] === 'regles' ? html : '';
   open.forEach(k => { const d = $(`details[data-k="${k}"]`, app); if (d) d.open = true; });
   refreshCalc();
   showBg();

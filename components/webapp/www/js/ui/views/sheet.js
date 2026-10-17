@@ -32,7 +32,7 @@ function viewSheet(id, mj) {
     <div class="grid2">
       ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
       ${sel('peuple', 'Peuple', PEUPLE_OPTS)}${sel('profil', 'Profil', PROFIL_OPTS)}
-      ${sel('niveau', 'Niveau', niveaux, ' data-num')}${num('xp', 'Expérience')}
+      ${sel('niveau', 'Niveau', niveaux, ' data-num')}
     </div>
     ${prof ? `<div class="info small">
         <b>${esc(prof.n)}</b> · ${esc(COF2.familles[prof.f].n)}${COF2.familles[prof.f].note ? ` (${esc(COF2.familles[prof.f].note)})` : ''}<br>

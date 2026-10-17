@@ -22,10 +22,12 @@ d'aide, pas d'un substitut à sa lecture.**
 - **Joueurs** : fiche COF2 complète (132 voies du DRS, équipement, états), valeurs calculées selon les
   règles, jets en un clic, image du personnage (miniature), code de reprise pour changer de téléphone.
 - **MJ** : tableau de bord du groupe en temps réel, toutes les fiches, initiative avec PNJ visibles
-  ou masqués, journal des jets et jets secrets, XP, repos, export / import JSON,
+  ou masqués, journal des jets et jets secrets, repos, export / import JSON,
   état de la station (température, stockage, mémoire, Wi-Fi).
 - **Écran partagé** : espace global en plein écran, initiative publique, lieu choisi par le MJ en fond.
   Les images de lieux restent dans le navigateur de l'écran ; seule leur liste est envoyée à la station.
+- **Espace Règles** : pour tous, consultation des documents de [references/COFv2/](references/COFv2/README.md)
+  (aide-mémoire, familles, profils, peuples, voies, voies de prestige, équipement), avec les liens entre documents.
 - **Station** : point d'accès Wi-Fi + portail captif, synchronisation par WebSocket, dés tirés par le
   générateur aléatoire matériel, sauvegarde automatique en flash (SPIFFS).
 
@@ -106,7 +108,8 @@ dépendances dans son `CMakeLists.txt`. Seul `main` lit la configuration et conn
 `web_server` transmet les messages WebSocket à `game` par des fonctions de rappel.
 
 **Appli web.** Les sources sont découpées par responsabilité, mais la station ne sert que trois fichiers
-(`index.html`, `app.css`, `app.js`) : à la compilation, `gen_assets.py` les concatène dans l'ordre de
+(`index.html`, `app.css`, `app.js`), plus les documents de l'Espace Règles (`regles/*.md`, lus dans
+`references/COFv2/` et chargés seulement à la consultation) : à la compilation, `gen_assets.py` les concatène dans l'ordre de
 `bundles.json` et les compresse en gzip. Peu de requêtes par téléphone, donc peu de sockets ouvertes sur
 l'ESP. Les scripts partagent une seule portée : l'ordre de `bundles.json` compte pour le code exécuté
 au chargement (données, puis règles, puis interface, `main.js` en dernier). Un fichier ajouté à `www/`

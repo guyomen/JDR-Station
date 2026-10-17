@@ -98,9 +98,6 @@ function mjTools() {
       <p class="muted small">Les lieux se chargent dans l’espace global, sur l’appareil de l’écran partagé (🖼 Lieux → dossier d’images) :
         la liste est gardée par la station, même quand l’écran est déconnecté.</p>
     </section>
-    <section class="card"><h3>Expérience</h3>
-      <form class="row" data-form="xp"><input name="xp" type="number" inputmode="numeric" placeholder="XP" required><button class="btn">Donner à tout le groupe</button></form>
-    </section>
     <section class="card"><h3>Repos</h3>
       <div class="row"><button data-a="rest-full">Récupération complète du groupe</button></div>
       <p class="muted small">8 h : +1 DR (sans dépasser le maximum) et tous les PM. Les PV se regagnent en dépensant des DR (récupération rapide : 1 DR + ½ niveau PV).</p>
