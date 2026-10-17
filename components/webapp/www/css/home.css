@@ -8,3 +8,8 @@
 .tile b { display: block; font-family: Georgia, serif; font-size: 1.15rem; color: var(--gold); }
 .tile small { color: var(--muted); }
 .tile .go { font-size: 1.6rem; color: var(--muted); }
+
+/* ---------- Première connexion ---------- */
+.welcome { max-width: 420px; margin: 2rem auto; }
+.welcome details { margin-top: .6rem; }
+.roles button:disabled { opacity: 1; color: var(--gold); border-color: var(--gold); }

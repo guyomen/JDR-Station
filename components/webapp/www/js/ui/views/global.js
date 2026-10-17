@@ -9,12 +9,12 @@ function viewGlobal() {
   const online = new Set(S.peers.filter(p => !p.mj).flatMap(p => p.chars.filter(live)));
   const peerWho = p => {
     const names = p.chars.filter(live).map(id => byId(id).name || 'Sans nom');
-    return { names, who: p.mj ? 'Meneur de jeu' : names.length ? names.join(', ') : 'Spectateur' };
+    return { names, who: p.mj ? 'Meneur de jeu' : names.length ? names.join(', ') : p.imgs ? 'Écran partagé' : p.player || 'Spectateur' };
   };
   const peer = p => {
     const { names, who } = peerWho(p);
-    const players = [...new Set(p.chars.filter(live).map(id => byId(id).player).filter(Boolean))];
-    const sub = [p.mj && names.length ? names.join(', ') : players.join(', '), p.dev, `depuis ${mins(p.since)} min`].filter(Boolean).join(' · ');
+    const players = p.player ? [p.player] : [...new Set(p.chars.filter(live).map(id => byId(id).player).filter(Boolean))];
+    const sub = [p.mj && names.length ? [p.player, ...names].filter(Boolean).join(', ') : players.join(', '), p.dev, `depuis ${mins(p.since)} min`].filter(Boolean).join(' · ');
     return `<div class="item peer">
       <span class="dot"></span>
       <b>${p.mj ? '🎲 ' : ''}${esc(who)}${p.id === S.me ? ' <small>(vous)</small>' : ''}</b>

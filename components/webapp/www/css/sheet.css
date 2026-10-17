@@ -65,7 +65,7 @@ summary { cursor: pointer; color: var(--muted); padding: .3rem 0; }
   display: grid; grid-template-columns: 1fr auto; gap: .45rem; padding: .6rem;
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: .5rem;
 }
-.entry .full { grid-column: 1 / -1; }
+.entry .full, .grid2 > .full { grid-column: 1 / -1; }
 .entry .tools { display: flex; gap: .3rem; flex-wrap: wrap; }
 .entry .x { color: var(--red); border-color: transparent; background: transparent; min-height: 34px; }
 .weapon { grid-template-columns: 2fr 1.3fr 1fr; }

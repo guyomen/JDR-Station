@@ -18,6 +18,7 @@ function render() {
   const r = route();
   let html;
   if (!S.ready) html = '<p class="muted center">Connexion à la station…</p>';
+  else if (!S.role) html = viewWelcome();
   else if (r[0] === 'c') html = viewSheet(r[1], false);
   else if (r[0] === 'global') html = viewGlobal();
   else if (r[0] === 'config') html = viewConfig();

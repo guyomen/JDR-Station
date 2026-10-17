@@ -4,7 +4,7 @@ const FORMS = {
   create(d) {
     const c = blankChar();
     c.name = d.name.trim();
-    c.player = (d.player || '').trim();
+    c.player = S.player;
     c.peuple = d.peuple || '';
     c.profil = d.profil || '';
     if (!send({ t: 'create', char: c })) toast('Hors ligne');
@@ -13,6 +13,15 @@ const FORMS = {
     const id = route()[1];
     send({ t: 'claim', id, token: d.code.trim().toUpperCase() });
   },
+  setup(d, form) {
+    const role = form.dataset.role;
+    setPlayer(d.player);
+    setRole(role);
+    if (role === 'mj') FORMS.login(d);
+    location.hash = homeOf(role);
+    render();
+  },
+  player(d) { setPlayer(d.player); toast('Nom enregistré'); render(); },
   bg(d) { setBg(d.bg); },
   login(d) { S.pin = d.pin; if (!send({ t: 'auth', pin: d.pin })) toast('Hors ligne'); },
   roll(d, form) {
@@ -42,6 +51,35 @@ const FORMS = {
     toast(`${gain} XP distribués`);
   },
 };
+
+/* ---------- Utilisateur de cet appareil ---------- */
+const homeOf = role => (role === 'ecran' ? '#/global' : role === 'mj' ? '#/mj' : '#/joueur');
+function setRole(role) {
+  S.role = role;
+  save('role', role);
+}
+/* Changement de profil : on quitte proprement l'ancien (MJ déconnecté, mode écran arrêté). */
+function switchRole(role) {
+  if (role !== 'mj') mjLogout();
+  if (role !== 'ecran' && S.screen) setScreen(false);
+  setRole(role);
+  if (role === 'ecran') setScreen(true);
+  if (role) location.hash = homeOf(role);
+  sendPresence();
+}
+function mjLogout() {
+  if (!S.isMJ && !S.pin) return;
+  S.isMJ = false; S.pin = ''; S.tokens = {};
+  save('pin', '');
+}
+/* Le nom est repris sur tous les personnages de l'appareil. */
+function setPlayer(name) {
+  S.player = (name || '').trim();
+  save('player', S.player);
+  S.chars.filter(c => S.mine[c.id] && c.player !== S.player).forEach(c => change(c, 'player', S.player));
+  flush();
+  sendPresence();
+}
 
 function importFile(file) {
   if (!file) return;

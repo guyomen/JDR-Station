@@ -1,4 +1,4 @@
-/* Appareils connectés (en mémoire seulement) : [{id: fd, mj, dev, chars: [ids], since, imgs?}]. */
+/* Appareils connectés (en mémoire seulement) : [{id: fd, mj, dev, player, chars: [ids], since, imgs?}]. */
 #include <string.h>
 #include <strings.h>
 #include "game_priv.h"
@@ -36,6 +36,7 @@ void peers_on_presence(const cJSON *m, int fd, game_out_t *out)
     cJSON_AddNumberToObject(p, "id", fd);
     cJSON_AddBoolToObject(p, "mj", party_is_mj(m));
     json_add_str_trunc(p, "dev", json_str(m, "dev"), 16);
+    json_add_str_trunc(p, "player", json_str(m, "player"), 30);
     cJSON_AddNumberToObject(p, "since", since);
     cJSON *ids = cJSON_AddArrayToObject(p, "chars");
     const cJSON *mine = cJSON_GetObjectItem(m, "mine");

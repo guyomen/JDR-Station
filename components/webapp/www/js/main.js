@@ -47,7 +47,9 @@ document.addEventListener('visibilitychange', () => {
 setInterval(() => { if (route()[0] === 'global' && !isEditing()) render(); }, 30000);
 
 /* ---------- Démarrage ---------- */
+if (S.role === 'ecran' && !S.screen) { S.screen = true; save('screen', true); }
 if (S.screen && route()[0] !== 'global') location.hash = '#/global';
+else if (!route().length && S.role) location.hash = homeOf(S.role);
 keepAwake();
 refreshImgs();
 connect();

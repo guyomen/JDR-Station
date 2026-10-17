@@ -2,6 +2,9 @@
 
 const S = {
   ready: false, chars: [], log: [], clock: Date.now(),
+  /* Un appareil = un utilisateur : profil choisi à la première connexion (joueur, mj ou ecran). */
+  role: load('role', load('screen', false) ? 'ecran' : load('pin', '') ? 'mj' : ''),
+  player: load('player', ''),      // nom de l'utilisateur de cet appareil, repris sur ses personnages
   mine: load('mine', {}),          // id -> code de reprise (personnages de cet appareil)
   pin: load('pin', ''), isMJ: false, tokens: {},
   pending: {},                     // id -> { chemin: valeur } en attente d'envoi

@@ -23,7 +23,7 @@ function viewSheet(id, mj) {
 
   const perso = `
     <div class="grid2">
-      ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', ' maxlength="30"')}
+      ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
       ${sel('peuple', 'Peuple', PEUPLE_OPTS)}${sel('profil', 'Profil', PROFIL_OPTS)}
       ${sel('niveau', 'Niveau', niveaux, ' data-num')}${num('xp', 'Expérience')}
     </div>

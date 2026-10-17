@@ -15,13 +15,13 @@ function viewPlayer() {
   return `
   <div class="sheet-head"><a class="back" href="#/">‹</a><h1>Espace joueur</h1></div>
   <section class="card">
+    <p>🧝 <b>${esc(S.player || 'Sans nom')}</b> <a class="small" href="#/config">· changer</a></p>
     <h2>Mes personnages</h2>
     ${mine.length ? `<div class="list">${mine.map(item).join('')}</div>` : '<p class="muted">Aucun personnage sur cet appareil pour l’instant.</p>'}
     <h3>Nouveau personnage</h3>
     <form class="col" data-form="create">
       <div class="grid2">
-        <input name="name" placeholder="Nom du personnage" maxlength="40" required>
-        <input name="player" placeholder="Joueur / joueuse" maxlength="30">
+        <input class="full" name="name" placeholder="Nom du personnage" maxlength="40" required>
         ${selectHTML('', '', PEUPLE_OPTS, ' name="peuple"')}
         ${selectHTML('', '', PROFIL_OPTS, ' name="profil"')}
       </div>

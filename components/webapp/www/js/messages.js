@@ -67,7 +67,15 @@ function onMsg(m) {
       location.hash = '#/c/' + m.id;
       break;
     case 'claim':
-      if (m.ok) { S.mine[m.id] = m.token; save('mine', S.mine); sendPresence(); toast('Personnage récupéré !'); update(); }
+      if (m.ok) {
+        S.mine[m.id] = m.token;
+        save('mine', S.mine);
+        const c = byId(m.id);
+        if (c && S.player && c.player !== S.player) change(c, 'player', S.player, true);
+        sendPresence();
+        toast('Personnage récupéré !');
+        update();
+      }
       else toast('Code incorrect');
       break;
     case 'err':

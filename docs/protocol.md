@@ -29,7 +29,7 @@ C'est une protection « entre amis » : le réseau est local et le trafic n'est 
 | `roll` | `who`, `label`, `n`, `f`, `mod`, `keep: "h"\|"l"`, `rq`, `secret`, `pin` | `log` (jet secret du MJ) | `log` |
 | `import` | `pin`, `chars`, `tokens` | `auth` | `state` |
 | `clearlog` | `pin` | | `state` |
-| `presence` | `dev`, `mine: {id: token}`, `pin`, `imgs: [id]` | `you {id}` | `peers` |
+| `presence` | `dev`, `player`, `mine: {id: token}`, `pin`, `imgs: [id]` | `you {id}` | `peers` |
 | `combat` | `pin`, `full`, `pub` | | `combat {combat: pub}` |
 
 Précisions :
@@ -38,7 +38,7 @@ Précisions :
   Tout ou rien : si un chemin est invalide, aucune modification n'est appliquée. `id` n'est pas modifiable.
 - **roll** : `n` dés à `f` faces + `mod`. `keep` (dé bonus / malus) lance deux d20 et garde le
   meilleur / le pire. `rq` identifie la demande pour que seul l'expéditeur affiche le résultat.
-- **presence** : un appareil annonce ses personnages (vérifiés par leur code), son rôle MJ et,
+- **presence** : un appareil annonce le nom de son utilisateur, ses personnages (vérifiés par leur code), son rôle MJ et,
   en mode écran partagé, les ID des images de lieux qu'il possède.
 - **combat** : le MJ envoie la version complète (`full`, gardée pour lui, renvoyée dans `auth`)
   et la version publique (`pub` : PNJ visibles, santé en couleur, lieu affiché `bg`).
@@ -51,7 +51,7 @@ Précisions :
 | `char` | `char` : fiche créée ou modifiée |
 | `del` | `id` : fiche supprimée |
 | `log` | `e` : jet de dés `{ts, who, label, f, faces, rolls, nat, total, keep, rq, secret}` |
-| `peers` | `list` : appareils connectés `[{id, mj, dev, chars, since, imgs}]` |
+| `peers` | `list` : appareils connectés `[{id, mj, dev, player, chars, since, imgs}]` |
 | `combat` | `combat` : version publique du combat |
 | `auth`, `created`, `claim`, `you` | réponses (voir plus haut) |
 | `err` | `m` : message d'erreur à afficher |

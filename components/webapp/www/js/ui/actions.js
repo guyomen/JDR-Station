@@ -79,6 +79,17 @@ const ACTIONS = {
     send({ t: 'delete', id: c.id, ...authFor(c.id) });
   },
   screen() { setScreen(!S.screen); },
+  setupscreen() { switchRole('ecran'); },
+  role(el) { switchRole(el.dataset.v); },
+  resetrole() {
+    if (!confirm('Changer l’utilisateur de cet appareil ? Ses personnages restent accessibles avec leur code de reprise.')) return;
+    switchRole('');
+    S.mine = {};
+    save('mine', S.mine);
+    setPlayer('');
+    location.hash = '#/';
+    render();
+  },
   screenon() { if (!S.screen) setScreen(true); location.hash = '#/global'; },
   fixbg() { setScreen(false); location.hash = '#/config'; },
   imgdir() { pickImgs(true); },
@@ -160,5 +171,5 @@ const ACTIONS = {
     a.remove();
   },
   clearlog() { if (confirm('Vider le journal des dés ?')) send({ t: 'clearlog', pin: S.pin }); },
-  mjlogout() { S.isMJ = false; S.pin = ''; S.tokens = {}; save('pin', ''); location.hash = '#/'; },
+  mjlogout() { mjLogout(); location.hash = '#/'; },
 };

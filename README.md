@@ -66,7 +66,10 @@ Réglages du menu **JDR Station** (`idf.py menuconfig`) :
 1. Alimentez l'ESP32-C6.
 2. Sur chaque téléphone, rejoignez le Wi-Fi **JDR-Station** (mot de passe `chroniques`).
 3. L'appli s'ouvre toute seule ; sinon, allez sur **http://192.168.4.1**.
-4. Joueurs : « Créer » un personnage. MJ : « Espace MJ » puis le code PIN.
+4. À la première connexion, chaque appareil indique qui l'utilise : joueur / joueuse (son nom),
+   meneur de jeu (nom + code PIN) ou écran partagé. Ce choix est retenu : ensuite, l'appareil
+   s'ouvre directement sur son espace. Il se change dans « Réglages de cet appareil ».
+5. Joueurs : « Créer » un personnage (le nom du joueur y est repris automatiquement).
 
 Conseils :
 - Si le téléphone affiche « Pas d'accès Internet », choisissez **Rester connecté**.

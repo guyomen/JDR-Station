@@ -5,7 +5,21 @@ function viewConfig() {
   const bg = curBg();
   const d = S.imgDir;
   const when = d && new Date(d.at).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  const [icon, label, space] = ROLES[S.role] || ROLES.joueur;
   return `<div class="sheet-head"><a class="back" href="#/">‹</a><h1>Réglages de cet appareil</h1></div>
+  <section class="card">
+    <h2>Utilisateur de cet appareil</h2>
+    <p>${icon} <b>${label}</b>${S.role !== 'ecran' && S.player ? ` · ${esc(S.player)}` : ''}
+      <small class="muted">· à la connexion : ${space}</small></p>
+    ${S.role !== 'ecran' ? `<form class="row" data-form="player">
+        <input name="player" value="${esc(S.player)}" placeholder="Votre nom" maxlength="30" required>
+        <button class="btn">Renommer</button>
+      </form>` : ''}
+    <div class="row roles">
+      ${Object.entries(ROLES).map(([r, [i, l]]) => `<button class="sm${r === S.role ? ' on' : ''}" data-a="role" data-v="${r}"${r === S.role ? ' disabled' : ''}>${i} ${l}</button>`).join('')}
+    </div>
+    <div class="row"><button class="danger" data-a="resetrole">Changer d’utilisateur</button></div>
+  </section>
   <section class="card">
     <h2>Images de lieux <span class="badge">${S.imgs.length}</span></h2>
     <p class="muted small">Pour l’écran partagé : le MJ choisit un lieu par son ID, cet appareil affiche l’image correspondante en fond.
