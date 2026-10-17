@@ -5,6 +5,7 @@
 .init li.npc[data-hp=g] { border-left-color: var(--green); }
 .init li.npc[data-hp=y] { border-left-color: var(--yellow); }
 .init li.npc[data-hp=r] { border-left-color: var(--red); }
+.init li.npc[data-hp=d] { border-left-color: #000; }
 .init li.masked { opacity: .6; border-style: dashed; }
 .init .who { display: flex; align-items: center; gap: .3rem; min-width: 0; }
 .init .pvs { display: flex; align-items: center; gap: .15rem; }

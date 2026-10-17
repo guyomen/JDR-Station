@@ -82,7 +82,7 @@ function mjInit() {
     </form>
     ${C.npcs.length ? `<div class="row"><button class="sm" data-a="npc-allshow" data-v="1">👁 Tout montrer</button><button class="sm" data-a="npc-allshow" data-v="0">🚫 Tout masquer</button><button class="sm danger" data-a="npc-clear">Retirer tous les PNJ</button></div>` : ''}
     <p class="muted small">Init des créatures = 10 + PER (+ bonus). Égalité : les PJ d’abord. 👁 = visible dans l’espace global : initiative, états et santé en couleur
-      (vert, jaune sous 2/3 des PV, rouge sous 1/3), jamais les PV.</p>`;
+      (vert, jaune sous 2/3 des PV, rouge sous 1/3, noir = mort sous 0 PV), jamais les PV. Un mort reste dans l’initiative.</p>`;
 }
 
 function mjTools() {

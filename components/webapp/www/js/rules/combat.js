@@ -1,9 +1,11 @@
 /* Combat : PNJ, monstres, santé en couleur (format partagé avec la station). */
 
 const KIND = { monstre: '👹', pnj: '👤' };
-const HP = { g: 'En forme', y: 'Blessé', r: 'Gravement blessé' };
-/* Santé en couleur : rouge sous 1/3 des PV, jaune sous 2/3, vert au-delà. */
+const HP = { g: 'En forme', y: 'Blessé', r: 'Gravement blessé', d: 'Mort' };
+/* Santé en couleur : noir (mort) sous 0 PV, rouge sous 1/3 des PV, jaune sous 2/3, vert au-delà.
+   Un mort reste dans l'initiative (il peut être relevé). */
 function hpLevel(pv, max) {
+  if (pv < 0) return 'd';
   if (!(max > 0)) return '';
   const r = pv / max;
   return r < 1 / 3 ? 'r' : r < 2 / 3 ? 'y' : 'g';

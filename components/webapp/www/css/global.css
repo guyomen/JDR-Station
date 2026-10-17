@@ -21,6 +21,7 @@
 .ginit [data-hp=g] .hp { background: var(--green); }
 .ginit [data-hp=y] .hp { background: var(--yellow); }
 .ginit [data-hp=r] .hp { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.ginit [data-hp=d] .hp { background: #000; box-shadow: 0 0 0 1px var(--muted); }
 .gcard.cur { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 12px rgba(217, 165, 74, .35); }
 
 /* ---------- Espace global : mise en page, mode écran partagé ---------- */

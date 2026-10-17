@@ -95,7 +95,8 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 **Initiative** — ordre d'initiative des PJ et des PNJ, compteur de tours, bouton **Suivant ▶** (↺ revient au tour 1).
 - Ajoutez les PNJ et monstres à la volée (nom, initiative, PV, nombre d'exemplaires numérotés).
 - 👁 rend un PNJ visible dans l'espace global : les joueurs voient son initiative, ses états et
-  sa santé en couleur (vert, jaune sous 2/3 des PV, rouge sous 1/3), jamais ses PV.
+  sa santé en couleur (vert, jaune sous 2/3 des PV, rouge sous 1/3, noir = mort quand
+  le MJ passe ses PV en négatif), jamais ses PV. Un mort reste dans l'initiative.
 
 **Dés** — journal de tous les jets, et jets secrets que vous seul voyez.
 
