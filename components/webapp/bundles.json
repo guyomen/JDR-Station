@@ -1,0 +1,56 @@
+{
+  "_comment": [
+    "Fichiers servis par la station (clé = URL) et sources concaténées dans l'ordre, chemins relatifs à www/.",
+    "Les scripts partagent une seule portée : l'ordre compte pour le code exécuté au chargement",
+    "(données avant règles, règles avant interface, main.js en dernier)."
+  ],
+  "index.html": ["index.html"],
+  "app.css": [
+    "css/base.css",
+    "css/sheet.css",
+    "css/dice.css",
+    "css/mj.css",
+    "css/voies.css",
+    "css/home.css",
+    "css/initiative.css",
+    "css/global.css"
+  ],
+  "app.js": [
+    "js/core/util.js",
+    "js/core/dom.js",
+    "js/core/storage.js",
+
+    "js/data/cof2_drs.js",
+    "js/data/cof2.js",
+
+    "js/rules/tables.js",
+    "js/rules/character.js",
+    "js/rules/normalize.js",
+    "js/rules/dice.js",
+    "js/rules/combat.js",
+
+    "js/state.js",
+    "js/net.js",
+    "js/messages.js",
+
+    "js/features/combat.js",
+    "js/features/images.js",
+    "js/features/screen.js",
+
+    "js/ui/render.js",
+    "js/ui/widgets.js",
+    "js/ui/dice.js",
+    "js/ui/views/home.js",
+    "js/ui/views/config.js",
+    "js/ui/views/player.js",
+    "js/ui/views/global.js",
+    "js/ui/views/sheet.js",
+    "js/ui/views/voies.js",
+    "js/ui/views/mj.js",
+    "js/ui/events.js",
+    "js/ui/actions.js",
+    "js/ui/forms.js",
+
+    "js/main.js"
+  ]
+}
