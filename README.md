@@ -5,6 +5,12 @@ L'ESP32-C6 crée son propre réseau Wi-Fi : les joueurs s'y connectent avec leur
 remplissent leur fiche de personnage, lancent les dés, et le MJ suit tout le groupe en direct.
 Aucune connexion Internet n'est nécessaire.
 
+## Disclaimer 
+
+Toutes les informations relative a Chroniques oubliées ont été copier a partir de https://drs.chroniques-oubliees.fr en acces libre.
+
+**IL EST NECESSAIRE TOUTE FOIS D'AVOIR LE LIVRE OFFICIEL POUR LES REGLES ET AUTRES, IL NE S'AGIT QUE D'UN OUTIL D'AIDE PAS UN SUBSTITUE A LA LECTURE**
+
 ## Fonctionnalités
 
 **Joueurs** (téléphone)
