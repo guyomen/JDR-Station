@@ -65,17 +65,24 @@ function calc(c) {
   for (const v of c.voies) {
     const d = COF2.voies[v.id];
     if (!d) continue;
+    const vfx = variante(v) && 'fx' in variante(v) ? variante(v).fx : d.fx;
     for (let r = 1; r <= Math.min(5, n(v.rang)); r++) {
       if (d.caps[r - 1].spell) sorts++;
-      if (d.fx && d.fx[r]) acquired.push(d.fx[r]);
+      if (vfx && vfx[r]) acquired.push({ ...vfx[r], src: d.caps[r - 1].name });
     }
   }
   for (const e of acquired) {
     if (e.car) for (const k in e.car) car[k] += e.car[k];
     if (e.pmcar) pmcar = e.pmcar;
   }
+  const val = v => (typeof v === 'string' ? car[v] : n(v));
+  const arme = [];
   for (const e of acquired) {
-    for (const k in fx) if (e[k] != null) fx[k] += typeof e[k] === 'string' ? car[e[k]] : e[k];
+    for (const k in fx) if (e[k] != null) fx[k] += val(e[k]);
+    for (const cat in e.arme || {}) {
+      const b = e.arme[cat];
+      arme.push({ cat, src: e.src, att: val(b.att), dm: val(b.dm), crit: n(b.crit), portee: n(b.portee) || 1 });
+    }
   }
   const f = famille(c) || DEFAULT_FAM;
   const niv = Math.max(1, n(c.niveau));
@@ -85,7 +92,7 @@ function calc(c) {
   const div = c.div;
   const prof = COF2.profils[c.profil];
   return {
-    car, sorts, fam: famille(c), drType: f.dr,
+    car, sorts, arme, fam: famille(c), drType: f.dr,
     lanceur: !!(prof && prof.magie) || sorts > 0 || fx.pm > 0 || n(div.pm) > 0,
     agiCap: Math.min(car.AGI, arm.agi),
     max: {
@@ -101,21 +108,54 @@ function calc(c) {
     magique: atk + car.VOL + n(div.magique),
   };
 }
+/* Variante choisie pour une voie (COF2.variantes), ou null pour la version standard. */
+const variante = v => { const vs = COF2.variantes[v.id]; return (vs && v.variante && typeof vs[v.variante] === 'object' && vs[v.variante]) || null; };
+const voieNom = v => (variante(v) && variante(v).v) || voieDef(v).n;
 const curOf = (c, k, k2 = calc(c)) => (c[k].cur == null ? k2.max[k] : n(c[k].cur));
 
 function weaponOf(w) {
   if (w.id === 'autre' || !WEAPONS[w.id]) return { nom: w.nom || 'Arme', att: w.att || 'contact', dm: w.dm || '1d6', note: '', custom: true };
   return WEAPONS[w.id];
 }
+/* Bonus saisi à la main : nombres et caractéristiques (« PER », « 2 », « AGI+1 »…) ; null si illisible. */
+function bonusOf(s, k, c) {
+  const str = String(s || '').toUpperCase().replace(/\s+/g, '');
+  if (!/^([+-]?(\d+|[A-Z]{3}))*$/.test(str)) return null;
+  let t = 0;
+  for (const [, sign, tok] of str.matchAll(/([+-]?)(\d+|[A-Z]{3})/g)) {
+    const v = /^\d+$/.test(tok) ? +tok : tok in k.car ? k.car[tok] : tok === 'NIV' ? n(c.niveau) : null;
+    if (v == null) return null;
+    t += sign === '-' ? -v : v;
+  }
+  return t;
+}
 function weaponStats(c, w, k = calc(c)) {
   const W = weaponOf(w);
   const bonus = n(w.bonus);
-  const att = (k[W.att] != null ? k[W.att] : k.contact) + bonus;
-  let mod = bonus;
+  let att = (k[W.att] != null ? k[W.att] : k.contact) + bonus + n(w.batt);
+  const bdm = bonusOf(w.bdm, k, c);
+  let mod = bonus + (bdm || 0);
+  let crit = W.crit || 20;
+  let portee = W.portee;
   if (W.att === 'contact' && !W.nofor && !W.custom) mod += k.car.FOR;
-  const dm = W.custom ? W.dm : W.dm + (mod ? sgn(mod) : '');
-  return { W, att, dm, crit: W.crit || 20 };
+  /* Bonus des capacités de voie liés à la catégorie d'arme (Archer émérite, Haches et marteaux…). */
+  const cats = [W.att, ...String(W.cat || '').split(' ')];
+  const src = bdm == null ? ['bonus DM illisible (ex. PER, 2, AGI+1)'] : [];
+  for (const b of k.arme) {
+    if (!cats.includes(b.cat)) continue;
+    att += b.att;
+    mod += b.dm;
+    crit -= b.crit;
+    if (portee) portee *= b.portee;
+    src.push([b.src, b.att && `${sgn(b.att)} att.`, b.dm && `${sgn(b.dm)} DM`, b.crit && `crit. +${b.crit}`, b.portee > 1 && `portée ×${b.portee}`].filter(Boolean).join(' '));
+  }
+  const dm = W.dm + (mod ? sgn(mod) : '');
+  return { W, att, dm, crit, portee, src };
 }
+const wstatHTML = st => {
+  const info = [st.portee ? `portée ${st.portee} m` : '', st.crit < 20 ? `critique ${st.crit}-20` : '', st.W.note, ...st.src].filter(Boolean).join(' · ');
+  return `<b>${sgn(st.att)}</b> attaque · <b>${esc(st.dm)}</b> DM${info ? ` <span class="muted small">· ${esc(info)}</span>` : ''}`;
+};
 
 /* ===================== Utilitaires ===================== */
 const $ = (s, r = document) => r.querySelector(s);
@@ -223,6 +263,7 @@ function normCombat(raw) {
     })),
     turn: { cur: t.cur || '', round: n(t.round) || 1 },
     next: n(o.next) || 1,
+    bg: imgId(o.bg),               // lieu affiché en fond de l'écran partagé (ID d'une image locale à l'écran)
   };
 }
 /* Ordre d'initiative (PJ + PNJ), du plus haut au plus bas ; à égalité, les PJ d'abord. */
@@ -245,6 +286,7 @@ function pushCombat() {
   S.pub = normCombat({
     npcs: vis.map(p => ({ id: p.id, kind: p.kind, name: p.name, init: p.init, etats: p.etats, hp: hpLevel(p.pv, p.pvmax) })),
     turn: { cur, round: C.turn.round },
+    bg: C.bg,
   });
   S.combatDirty = true;
   clearTimeout(combatT);
@@ -252,7 +294,7 @@ function pushCombat() {
 }
 function flushCombat() {
   if (!S.combatDirty) return;
-  const pub = { npcs: S.pub.npcs.map(({ id, kind, name, init, etats, hp }) => ({ id, kind, name, init, etats, hp })), turn: S.pub.turn };
+  const pub = { npcs: S.pub.npcs.map(({ id, kind, name, init, etats, hp }) => ({ id, kind, name, init, etats, hp })), turn: S.pub.turn, bg: S.pub.bg };
   if (send({ t: 'combat', pin: S.pin, full: S.combat, pub })) S.combatDirty = false;
 }
 
@@ -270,6 +312,8 @@ const S = {
   openCaps: new Set(),             // descriptions de capacités dépliées
   needRender: false, ws: null,
   peers: [], me: -1,               // appareils connectés (cf. presence), dont celui-ci
+  imgs: [], thumbs: {}, imgErr: false, // images de lieux de cet appareil, miniatures, stockage local indisponible
+  imgDir: load('imgdir', null),    // dossier d'images synchronisé : { name, n, at }
 };
 const byId = id => S.chars.find(c => c.id === id);
 
@@ -305,7 +349,7 @@ function deviceName() {
     : /Windows/.test(ua) ? 'PC' : /Mac/.test(ua) ? 'Mac' : /Linux|CrOS/.test(ua) ? 'Ordinateur' : 'Appareil';
 }
 /* Annonce à la station qui est derrière cet appareil (à refaire quand S.mine ou le rôle MJ change). */
-const sendPresence = () => send({ t: 'presence', dev: deviceName(), mine: S.mine, ...(S.pin ? { pin: S.pin } : {}) });
+const sendPresence = () => send({ t: 'presence', dev: deviceName(), mine: S.mine, ...(S.pin ? { pin: S.pin } : {}), ...(S.screen ? { imgs: S.imgs } : {}) });
 
 const authFor = id => (S.isMJ ? { pin: S.pin } : { token: S.mine[id] });
 
@@ -436,6 +480,7 @@ function render() {
   if (!S.ready) html = '<p class="muted center">Connexion à la station…</p>';
   else if (r[0] === 'c') html = viewSheet(r[1], false);
   else if (r[0] === 'global') html = viewGlobal();
+  else if (r[0] === 'config') html = viewConfig();
   else if (r[0] === 'joueur') html = viewPlayer();
   else if (r[0] === 'mj' && !S.isMJ) html = viewLogin();
   else if (r[0] === 'mj' && r[1] === 'c') html = viewSheet(r[2], true);
@@ -445,6 +490,7 @@ function render() {
   app.innerHTML = html;
   open.forEach(k => { const d = $(`details[data-k="${k}"]`, app); if (d) d.open = true; });
   refreshCalc();
+  showBg();
 }
 
 function patchValues() {
@@ -480,6 +526,7 @@ function refreshCalc() {
       else if (key.startsWith('car.')) { const ck = key.slice(4); v = k.car[ck] !== n(c.car[ck]) ? `→ ${sgn(k.car[ck])}` : ''; }
       else if (key === 'drtype') v = 'd' + k.drType;
       else if (key === 'sorts') v = k.sorts;
+      else if (key.startsWith('arme.')) { const w = c.armes[+key.slice(5)]; if (w) el.innerHTML = wstatHTML(weaponStats(c, w, k)); }
       if (v !== undefined) el.textContent = v;
     });
     $$('[data-bar]', scope).forEach(el => {
@@ -516,7 +563,39 @@ function viewHome() {
     ${tile('#/joueur', '🧝', 'Espace joueur', mine ? `${mine} personnage${mine > 1 ? 's' : ''} sur cet appareil` : 'Créer ou reprendre son personnage')}
     ${tile('#/global', '👥', 'Espace global', `${S.peers.length} connecté${S.peers.length > 1 ? 's' : ''} · état du groupe`)}
     ${tile('#/mj', '🎲', 'Espace MJ', S.isMJ ? 'Connecté en MJ' : 'Réservé au meneur de jeu')}
+    ${tile('#/config', '⚙', 'Réglages de cet appareil', S.imgs.length ? `${S.imgs.length} image${S.imgs.length > 1 ? 's' : ''} de lieux` : 'Dossier d’images pour l’écran partagé')}
   </div>`;
+}
+
+/* ---------- Réglages propres à cet appareil (rien n'est stocké sur la station) ---------- */
+function viewConfig() {
+  const bg = curBg();
+  const d = S.imgDir;
+  const when = d && new Date(d.at).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  return `<div class="sheet-head"><a class="back" href="#/">‹</a><h1>Réglages de cet appareil</h1></div>
+  <section class="card">
+    <h2>Images de lieux <span class="badge">${S.imgs.length}</span></h2>
+    <p class="muted small">Pour l’écran partagé : le MJ choisit un lieu par son ID, cet appareil affiche l’image correspondante en fond.
+      L’ID est le nom du fichier sans extension (« Ville.jpg » → <span class="code small">ville</span>).
+      Les images sont copiées dans le navigateur de cet appareil, jamais sur la station : après avoir modifié le dossier, resynchronisez-le.</p>
+    ${d ? `<p>📁 <b>${esc(d.name)}</b> <small class="muted">· ${d.n} image${d.n > 1 ? 's' : ''} · synchronisé le ${esc(when)}</small></p>` : ''}
+    <div class="row">
+      <button class="btn" data-a="imgdir">📁 ${d ? 'Resynchroniser le dossier' : 'Choisir le dossier d’images'}</button>
+      <button data-a="imgadd">＋ Ajouter des fichiers</button>
+      ${S.imgs.length ? '<button class="danger" data-a="imgclear">Tout effacer</button>' : ''}
+    </div>
+    ${bg && !S.imgs.includes(bg) ? `<p class="small">⚠ Le MJ a choisi « ${esc(bg)} », absent de cet appareil.</p>` : ''}
+    ${S.imgs.length ? `<div class="thumbs">${S.imgs.map(id => `<figure class="thumb${id === bg ? ' on' : ''}">
+        ${S.thumbs[id] ? `<img src="${S.thumbs[id]}" alt="">` : '<span class="noimg">?</span>'}
+        <figcaption><span class="code small">${esc(id)}</span><button class="x" data-a="imgdel" data-v="${esc(id)}" title="Supprimer">✕</button></figcaption>
+      </figure>`).join('')}</div>`
+      : `<p class="muted">${S.imgErr ? '⚠ Stockage local indisponible dans ce navigateur (navigation privée ?).' : 'Aucune image sur cet appareil.'}</p>`}
+  </section>
+  <section class="card">
+    <h2>Écran partagé</h2>
+    <p class="muted small">Affiche l’espace global en plein écran pour toute la table, avec le lieu choisi par le MJ en fond.</p>
+    <div class="row"><button class="btn" data-a="screenon">📺 ${S.screen ? 'Reprendre le' : 'Passer en'} mode écran</button></div>
+  </section>`;
 }
 
 /* ---------- Espace joueur : ses personnages, création, reprise ---------- */
@@ -603,8 +682,11 @@ function viewGlobal() {
   const away = S.chars.filter(c => !online.has(c.id));
   const awayPV = c => { const k = calc(c); return `${curOf(c, 'pv', k)}/${k.max.pv} PV`; };
 
+  const bg = curBg();
+  const missing = bg && !S.imgs.includes(bg)
+    ? `<button class="bgmiss" data-a="fixbg">⚠ Lieu « ${esc(bg)} » absent de cet écran : voir les réglages</button>` : '';
   const head = scr
-    ? '<button class="scr-exit" data-a="screen" title="Quitter le mode écran">✕</button>'
+    ? `<button class="scr-exit" data-a="screen" title="Quitter le mode écran">✕</button>${missing}`
     : `<div class="sheet-head"><a class="back" href="#/">‹</a><h1 class="grow">Espace global</h1>
         <button class="sm" data-a="screen" title="Pour un écran partagé visible par toute la table">📺 Mode écran</button></div>`;
   const init = rows.length ? `<section class="card ginit-card">
@@ -757,15 +839,16 @@ function weaponRow(c, w, i, k, dis, del) {
     <label class="f"><span>Nom</span><input data-p="armes.${i}.nom" value="${esc(w.nom)}"${dis}></label>
     <label class="f"><span>Attaque</span>${selectHTML(`armes.${i}.att`, w.att || 'contact', ATTACKS, dis)}</label>
     <label class="f"><span>DM</span><input data-p="armes.${i}.dm" value="${esc(w.dm)}" placeholder="1d8+FOR"${dis}></label>` : '';
-  const info = [st.W.portee ? `portée ${st.W.portee} m` : '', st.crit < 20 ? `critique ${st.crit}-20` : '', st.W.note].filter(Boolean).join(' · ');
   return `<div class="entry weapon">
     <label class="f full"><span>Arme</span>${selectHTML(`armes.${i}.id`, w.id, opts, dis)}</label>
     ${custom}
-    <div class="full wstat"><b>${sgn(st.att)}</b> attaque · <b>${esc(st.dm)}</b> DM${info ? ` <span class="muted small">· ${esc(info)}</span>` : ''}</div>
+    <div class="full wstat" data-calc="arme.${i}">${wstatHTML(st)}</div>
     <div class="tools">
       <button class="sm" data-a="roll" data-roll="atk:${i}" data-label="Attaque ${esc(st.W.nom)}">🎯 Attaque</button>
       <button class="sm" data-a="roll" data-roll="dm:${i}" data-label="DM ${esc(st.W.nom)}">💥 DM</button>
       <label class="f inline"><span>Bonus magique</span>${selectHTML(`armes.${i}.bonus`, n(w.bonus), [0, 1, 2, 3, 4, 5].map(b => [b, b ? '+' + b : '—']), ' data-num' + dis)}</label>
+      <label class="f inline" title="Autre bonus en attaque (arme de prédilection…)"><span>Att.</span><input type="number" data-p="armes.${i}.batt" data-num value="${n(w.batt) || ''}" placeholder="0"${dis}></label>
+      <label class="f inline" title="Autre bonus aux DM : nombre et/ou caractéristique (ex. PER, 2, AGI+1)"><span>DM</span><input data-p="armes.${i}.bdm" value="${esc(w.bdm)}" placeholder="ex. PER"${dis}></label>
       <span class="grow"></span>${del('armes', i)}
     </div>
   </div>`;
@@ -831,10 +914,13 @@ function voiesPane(c, can, k) {
       </div>`;
     }).join('');
     return `<div class="entry voie">
-      <div class="vhead"><b>${esc(d.n)}</b>${pre ? '<span class="badge">prestige</span>' : ''}<span class="badge">rang ${pre && rang ? rang + 3 : rang}</span>
+      <div class="vhead"><b>${esc(voieNom(v))}</b>${pre ? '<span class="badge">prestige</span>' : ''}<span class="badge">rang ${pre && rang ? rang + 3 : rang}</span>
         <button class="x" data-a="del" data-list="voies" data-i="${i}" title="Retirer la voie">✕</button></div>
       ${d.intro ? `<details class="small"><summary>Présentation</summary>${md(d.intro)}</details>` : ''}
       ${d.kind === 'libre' ? `<label class="f"><span>Nom de la voie</span><input data-p="voies.${i}.nom" value="${esc(v.nom)}"${dis}></label>` : ''}
+      ${COF2.variantes[v.id] ? `<label class="f"><span>Variante</span>${selectHTML(`voies.${i}.variante`, variante(v) ? v.variante : '',
+        Object.entries(COF2.variantes[v.id]).map(([key, o]) => [key === 'std' ? '' : key, typeof o === 'string' ? o : o.n]), dis)}</label>` : ''}
+      ${variante(v) && variante(v).note ? `<p class="small muted">${esc(variante(v).note)}</p>` : ''}
       <div class="caps">${caps}</div>
       <label class="f"><span>Notes (capacité choisie, précisions…)</span><input data-p="voies.${i}.notes" value="${esc(v.notes)}"${dis}></label>
     </div>`;
@@ -978,7 +1064,7 @@ function mjGroup() {
       c.bouclier && `🛡 ${esc(BOUCLIERS[c.bouclier].nom)}`,
       ...c.armes.map(w => { const st = weaponStats(c, w, k); return `⚔ ${esc(st.W.nom)} ${sgn(st.att)} · ${esc(st.dm)}`; }),
     ].filter(Boolean);
-    const voies = c.voies.map(v => `${esc(voieDef(v).n.replace(/^Voie (de la |du |des |de l’|de l'|d’)?/, ''))} ${n(v.rang)}`).join(', ');
+    const voies = c.voies.map(v => `${esc(voieNom(v).replace(/^Voie (de la |du |des |de l’|de l'|d’)?/, ''))} ${n(v.rang)}`).join(', ');
     return `<article class="card mjcard" data-id="${c.id}">
       <header>
         <div class="grow"><b data-calc="name"></b><small>${esc(prof ? prof.n : 'Profil ?')} niv. ${esc(c.niveau)} · ${esc(c.player || '—')}</small></div>
@@ -1043,7 +1129,16 @@ function mjInit() {
 }
 
 function mjTools() {
-  return `<section class="card"><h3>Expérience</h3>
+  const ids = [...new Set(S.peers.flatMap(p => p.imgs || []))].sort();
+  const bg = S.combat.bg;
+  return `<section class="card"><h3>Lieu affiché sur l’écran partagé</h3>
+      <form class="row" data-form="bg"><input name="bg" list="bglist" placeholder="ID du lieu (ex : ville)" value="${esc(bg)}" autocomplete="off">
+        <datalist id="bglist">${ids.map(id => `<option value="${esc(id)}">`).join('')}</datalist>
+        <button class="btn">Afficher</button>${bg ? '<button type="button" data-a="bg-clear">Aucun</button>' : ''}</form>
+      ${ids.length ? `<div class="chips">${ids.map(id => `<button class="chip sm ${id === bg ? 'on' : ''}" data-a="bg-set" data-v="${esc(id)}">${esc(id)}</button>`).join('')}</div>` : ''}
+      <p class="muted small">Les images sont sur l’appareil en mode écran (⚙ Réglages de cet appareil → dossier d’images) ; leurs ID s’affichent ici quand il est connecté.</p>
+    </section>
+    <section class="card"><h3>Expérience</h3>
       <form class="row" data-form="xp"><input name="xp" type="number" inputmode="numeric" placeholder="XP" required><button class="btn">Donner à tout le groupe</button></form>
     </section>
     <section class="card"><h3>Repos</h3>
@@ -1148,7 +1243,7 @@ const ACTIONS = {
     const list = el.dataset.list;
     const i = +el.dataset.i;
     const item = c[list][i];
-    const label = list === 'voies' ? voieDef(item).n : list === 'armes' ? weaponOf(item).nom : item && item.nom;
+    const label = list === 'voies' ? voieNom(item) : list === 'armes' ? weaponOf(item).nom : item && item.nom;
     if (label && !confirm(`Supprimer « ${label} » ?`)) return;
     change(c, list, c[list].filter((_, j) => j !== i), true);
     render();
@@ -1177,17 +1272,21 @@ const ACTIONS = {
     if (!confirm(`Supprimer définitivement ${c.name || 'ce personnage'} ?`)) return;
     send({ t: 'delete', id: c.id, ...authFor(c.id) });
   },
-  screen() {
-    S.screen = !S.screen;
-    save('screen', S.screen);
-    const d = document;
-    try {
-      if (S.screen && d.documentElement.requestFullscreen) d.documentElement.requestFullscreen().catch(() => {});
-      else if (!S.screen && d.fullscreenElement) d.exitFullscreen();
-    } catch (err) { /* plein écran indisponible */ }
-    keepAwake();
-    render();
+  screen() { setScreen(!S.screen); },
+  screenon() { if (!S.screen) setScreen(true); location.hash = '#/global'; },
+  fixbg() { setScreen(false); location.hash = '#/config'; },
+  imgdir() { pickImgs(true); },
+  imgadd() { pickImgs(false); },
+  imgclear() {
+    if (!confirm('Effacer toutes les images de cet appareil ?')) return;
+    IMG.clear().then(() => { S.imgDir = null; save('imgdir', null); refreshImgs(); }, () => toast('Effacement impossible'));
   },
+  imgdel(el) {
+    if (!confirm(`Supprimer l’image « ${el.dataset.v} » de cet écran ?`)) return;
+    IMG.del(el.dataset.v).then(refreshImgs, () => toast('Suppression impossible'));
+  },
+  'bg-set'(el) { setBg(el.dataset.v); },
+  'bg-clear'() { setBg(''); },
   'turn-next'() {
     const C = S.combat;
     const rows = initOrder(C.npcs);
@@ -1284,6 +1383,7 @@ const FORMS = {
     const id = route()[1];
     send({ t: 'claim', id, token: d.code.trim().toUpperCase() });
   },
+  bg(d) { setBg(d.bg); },
   login(d) { S.pin = d.pin; if (!send({ t: 'auth', pin: d.pin })) toast('Hors ligne'); },
   roll(d, form) {
     const c = charOf(form);
@@ -1336,7 +1436,110 @@ function importFile(file) {
   reader.readAsText(file);
 }
 
+/* ===================== Lieux : images de fond du mode écran =====================
+ * Stockées dans le navigateur de l'écran (IndexedDB), jamais sur la station : le MJ ne diffuse que l'ID. */
+function imgId(v) {
+  return String(v || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 32);
+}
+const IMG = (() => {
+  let dbp;
+  const db = () => dbp || (dbp = new Promise((ok, ko) => {
+    const r = indexedDB.open('jdr-images', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('img');
+    r.onsuccess = () => ok(r.result);
+    r.onerror = () => { dbp = null; ko(r.error); };
+  }));
+  const tx = (mode, fn) => db().then(d => new Promise((ok, ko) => {
+    const t = d.transaction('img', mode);
+    const rq = fn(t.objectStore('img'));
+    t.oncomplete = () => ok(rq.result);
+    t.onerror = t.onabort = () => ko(t.error);
+  }));
+  return {
+    get: id => tx('readonly', st => st.get(id)),
+    put: (id, blob) => tx('readwrite', st => st.put(blob, id)),
+    del: id => tx('readwrite', st => st.delete(id)),
+    keys: () => tx('readonly', st => st.getAllKeys()),
+    clear: () => tx('readwrite', st => st.clear()),
+  };
+})();
+const curBg = () => (S.isMJ ? S.combat : S.pub).bg;
+function setBg(v) {
+  S.combat.bg = imgId(v);
+  pushCombat();
+  render();
+}
+/* Liste des images de cet écran, avec une miniature pour chacune. */
+function refreshImgs() {
+  return IMG.keys().then(keys => Promise.all(keys.map(k => IMG.get(k))).then(blobs => {
+    Object.values(S.thumbs).forEach(u => URL.revokeObjectURL(u));
+    S.thumbs = {};
+    keys.forEach((k, i) => { if (blobs[i]) S.thumbs[k] = URL.createObjectURL(blobs[i]); });
+    S.imgs = keys.map(String).sort();
+    S.imgErr = false;
+    sendPresence();
+    bgShown = null; // une image a pu être remplacée
+    update();
+  })).catch(() => { S.imgErr = true; update(); });
+}
+/* Sélection de fichiers ou d'un dossier entier (sous-dossiers compris). Le navigateur ne peut pas relire
+ * un dossier tout seul depuis une page http : on copie son contenu, à resynchroniser après modification.
+ * Champ hors de #app : un re-rendu pendant la sélection ne doit pas faire perdre l'import. */
+function pickImgs(dir) {
+  const inp = document.createElement('input');
+  Object.assign(inp, { type: 'file', accept: 'image/*', multiple: true, hidden: true, webkitdirectory: dir });
+  inp.addEventListener('change', () => { importImgs(inp.files, dir); inp.remove(); });
+  document.body.append(inp);
+  inp.click();
+}
+function importImgs(files, dir) {
+  const idOf = f => imgId(f.name.replace(/\.[^.]*$/, ''));
+  const list = [...files].filter(f => (f.type.startsWith('image/') || /\.(jpe?g|png|gif|webp|avif|bmp|svg)$/i.test(f.name)) && idOf(f));
+  if (!list.length) return toast('Aucune image trouvée');
+  /* Un dossier remplace toute la bibliothèque : les images retirées du dossier disparaissent. */
+  (dir ? IMG.clear() : Promise.resolve())
+    .then(() => Promise.all(list.map(f => IMG.put(idOf(f), f))))
+    .then(() => {
+      if (dir) {
+        S.imgDir = { name: (list[0].webkitRelativePath || '').split('/')[0] || 'Dossier', n: new Set(list.map(idOf)).size, at: Date.now() };
+        save('imgdir', S.imgDir);
+      }
+      toast(dir ? `${S.imgDir.n} image(s) synchronisée(s)` : `Ajouté : ${list.map(idOf).join(', ')}`);
+      refreshImgs();
+    }, () => toast('Enregistrement impossible (stockage plein ou navigation privée ?)'));
+}
+/* Calque de fond derrière l'espace global, uniquement en mode écran. */
+let bgShown = null, bgUrl = '';
+function showBg() {
+  const id = S.screen && route()[0] === 'global' ? curBg() : '';
+  if (id === bgShown) return;
+  bgShown = id;
+  let el = $('#bg');
+  if (!el) { el = document.createElement('div'); el.id = 'bg'; document.body.prepend(el); }
+  const set = blob => {
+    if (bgShown !== id) return; // l'ID a changé entre-temps
+    if (bgUrl) URL.revokeObjectURL(bgUrl);
+    bgUrl = blob ? URL.createObjectURL(blob) : '';
+    el.style.backgroundImage = bgUrl ? `url("${bgUrl}")` : '';
+    document.documentElement.classList.toggle('hasbg', !!bgUrl);
+  };
+  if (!id) set(null); else IMG.get(id).then(set, () => set(null));
+}
+
 /* Écran partagé : il s'ouvre directement sur l'espace global, reste allumé et se rafraîchit seul. */
+function setScreen(on) {
+  S.screen = on;
+  save('screen', on);
+  const d = document;
+  try {
+    if (on && d.documentElement.requestFullscreen) d.documentElement.requestFullscreen().catch(() => {});
+    else if (!on && d.fullscreenElement) d.exitFullscreen();
+  } catch (err) { /* plein écran indisponible */ }
+  keepAwake();
+  sendPresence();
+  render();
+}
 let wakeLock = null;
 function keepAwake() {
   try {
@@ -1349,5 +1552,6 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) keep
 setInterval(() => { if (route()[0] === 'global' && !isEditing()) render(); }, 30000);
 if (S.screen && route()[0] !== 'global') location.hash = '#/global';
 keepAwake();
+refreshImgs();
 
 connect();

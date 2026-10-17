@@ -14,8 +14,8 @@
  *   roll     {who, label, n, f, mod, keep:"h"|"l", rq, secret, pin}  -> diffusion log
  *   import   {pin, chars, tokens}      -> diffusion state            (MJ)
  *   clearlog {pin}                     -> diffusion state            (MJ)
- *   presence {dev, mine:{id:token}, pin} -> you {id} + diffusion peers
- *   combat   {pin, full, pub}          -> diffusion combat {combat: pub}  (MJ)
+ *   presence {dev, mine:{id:token}, pin, imgs:[id]} -> you {id} + diffusion peers
+ *   combat   {pin, full, pub}          -> diffusion combat {combat: pub}  (MJ ; bg = lieu de l'écran)
  *
  * state contient la version publique du combat, auth (MJ) la version complète.
  * Station -> clients : state, char, del, log, peers {list}, combat, err {m}

@@ -244,6 +244,7 @@ summary { cursor: pointer; color: var(--muted); padding: .3rem 0; }
 .eff { color: #a6dc9f; font-weight: 700; }
 .f.inline { flex-direction: row; align-items: center; gap: .4rem; }
 .f.inline select { width: auto; min-height: 32px; padding: .2rem .4rem; }
+.f.inline input { width: 4.5rem; min-height: 32px; padding: .2rem .4rem; }
 .wstat { padding: .1rem 0; }
 .wstat b { color: var(--gold); }
 .voie { grid-template-columns: 1fr; }
@@ -383,3 +384,19 @@ html.screen .gcard .resnum { font-size: 1.1rem; }
   border-radius: 50%; opacity: .25;
 }
 .scr-exit:hover, .scr-exit:focus { opacity: 1; }
+
+/* Lieu en fond du mode écran : image locale à l'écran, assombrie pour garder le texte lisible */
+#bg { position: fixed; inset: 0; z-index: -1; background: center / cover no-repeat; }
+html.hasbg body { background: transparent; }
+html.hasbg #bg::after { content: ''; position: absolute; inset: 0; background: rgba(22, 17, 13, .45); }
+html.hasbg .card { background: rgba(35, 27, 21, .82); backdrop-filter: blur(3px); }
+html.hasbg .gmain > h2, html.hasbg .gfoot { text-shadow: 0 1px 4px #000; }
+.thumbs { margin-top: .8rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: .5rem; }
+.thumb { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg); }
+.thumb.on { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+.thumb img, .thumb .noimg { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.thumb .noimg { display: grid; place-items: center; color: var(--muted); }
+.thumb figcaption { display: flex; align-items: center; justify-content: space-between; gap: .3rem; padding: .2rem .35rem; }
+.thumb figcaption .code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bgmiss { position: fixed; bottom: .5rem; right: .5rem; z-index: 30; min-height: 0; padding: .35rem .7rem; font-size: .85rem; opacity: .6; }
+.bgmiss:hover, .bgmiss:focus { opacity: 1; }

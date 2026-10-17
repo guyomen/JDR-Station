@@ -15,6 +15,7 @@
 #define MAX_PATH_SEGS 6
 #define MAX_KEY_LEN   32
 #define MAX_COMBAT_JSON 6144
+#define MAX_IMGS      40   /* ID d'images annoncés par un écran partagé */
 
 /* ---------- Petits utilitaires JSON ---------- */
 
@@ -470,6 +471,21 @@ static void on_presence(const cJSON *m, int fd, game_out_t *out)
         const char *ref = find_char(kv->string, NULL) ? jstr(tokens(), kv->string) : NULL;
         if (ref && cJSON_IsString(kv) && strcasecmp(kv->valuestring, ref) == 0)
             cJSON_AddItemToArray(ids, cJSON_CreateString(kv->string));
+    }
+
+    /* Écran partagé : ID des images de lieux qu'il a en local (proposés au MJ). */
+    const cJSON *imgs = cJSON_GetObjectItem(m, "imgs");
+    if (cJSON_IsArray(imgs)) {
+        cJSON *arr = cJSON_AddArrayToObject(p, "imgs");
+        int count = 0;
+        const cJSON *img;
+        cJSON_ArrayForEach(img, imgs) {
+            if (!cJSON_IsString(img) || count++ >= MAX_IMGS) continue;
+            cJSON *tmp = cJSON_CreateObject();
+            add_str_trunc(tmp, "v", img->valuestring, 32);
+            cJSON_AddItemToArray(arr, cJSON_DetachItemFromObject(tmp, "v"));
+            cJSON_Delete(tmp);
+        }
     }
 
     if (old) cJSON_ReplaceItemInArray(peers(), index, p);

@@ -133,6 +133,10 @@ void web_server_start(void)
     cfg.send_wait_timeout = 3;
     cfg.close_fn = on_close;
 
+    /* Sondes captive portal (connecttest.txt, wpad.dat…) et clients WS disparus : bruit normal. */
+    esp_log_level_set("httpd_uri", ESP_LOG_ERROR);
+    esp_log_level_set("httpd_ws", ESP_LOG_ERROR);
+
     ESP_ERROR_CHECK(httpd_start(&s_server, &cfg));
 
     const httpd_uri_t uris[] = {
