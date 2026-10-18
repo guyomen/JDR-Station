@@ -36,7 +36,7 @@ const FORMS = {
     for (let i = 1; i <= qty; i++) {
       C.npcs.push({
         id: 'n' + C.next++, kind: d.kind === 'pnj' ? 'pnj' : 'monstre', name: qty > 1 ? `${d.name} ${i}` : d.name,
-        init: n(d.init), pv: n(d.pv), pvmax: n(d.pv), etats: [], show: !!d.show,
+        init: n(d.init), pv: Math.max(0, n(d.pv)), pvmax: Math.max(0, n(d.pv)), etats: [], show: !!d.show,
       });
     }
     pushCombat();

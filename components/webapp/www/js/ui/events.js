@@ -12,7 +12,7 @@ function onField(e) {
     const [id, key] = el.dataset.npc.split('.');
     const npc = npcById(id);
     if (!npc) return;
-    npc[key] = key === 'name' ? el.value : n(el.value);
+    npc[key] = key === 'name' ? el.value : key === 'init' ? n(el.value) : Math.max(0, n(el.value)); // pas de PV négatifs
     pushCombat();
     if (e.type === 'change') render();
     return;

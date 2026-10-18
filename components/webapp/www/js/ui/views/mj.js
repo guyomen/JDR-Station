@@ -52,6 +52,7 @@ function mjInit() {
   const C = S.combat;
   const rows = initOrder(C.npcs);
   const cur = curKey(rows, C.turn.cur);
+  const hit = attr => [1, 5].map(d => `<button class="sm" data-a="pv-hit" ${attr} data-d="${d}" title="Retirer ${d} PV">−${d}</button>`).join('');
   const etats = p => COF2.etats.map(([e, d]) => `<button class="chip sm ${p.etats.includes(e) ? 'on' : ''}" data-a="npc-etat" data-n="${p.id}" data-v="${esc(e)}" title="${esc(d)}">${esc(e)}</button>`).join('');
   return `<div class="row"><b class="grow">Tour ${C.turn.round}</b>
       <button data-a="turn-next" class="btn">Suivant ▶</button><button data-a="turn-reset" title="Recommencer au tour 1">↺</button></div>
@@ -59,14 +60,14 @@ function mjInit() {
       const on = r.key === cur ? ' cur' : '';
       if (r.pj) {
         const k = calc(r.c);
-        return `<li class="pj${on}"><span class="ini">${r.init}</span><span class="who">${esc(r.c.name || 'Sans nom')}</span><span class="small muted">${curOf(r.c, 'pv', k)}/${k.max.pv} PV</span><span></span></li>`;
+        return `<li class="pj${on}" data-id="${r.c.id}"><span class="ini">${r.init}</span><span class="who">${esc(r.c.name || 'Sans nom')}</span><span class="small muted">${curOf(r.c, 'pv', k)}/${k.max.pv} PV</span><span class="acts">${hit('')}</span></li>`;
       }
       const p = r.p;
       return `<li class="npc${on}${p.show ? '' : ' masked'}" data-hp="${hpLevel(p.pv, p.pvmax)}">
           <input type="number" inputmode="numeric" class="ini" data-npc="${p.id}.init" value="${esc(p.init)}">
           <span class="who">${KIND[p.kind]}<input data-npc="${p.id}.name" value="${esc(p.name)}" maxlength="30"></span>
-          <span class="pvs"><input type="number" inputmode="numeric" data-npc="${p.id}.pv" value="${esc(p.pv)}" title="PV">/<input type="number" inputmode="numeric" data-npc="${p.id}.pvmax" value="${esc(p.pvmax)}" title="PV max"></span>
-          <span class="acts"><button class="sm eye ${p.show ? 'on' : ''}" data-a="npc-show" data-n="${p.id}" title="${p.show ? 'Visible' : 'Masqué'} dans l’espace global">${p.show ? '👁' : '🚫'}</button><button class="x" data-a="npc-del" data-n="${p.id}" title="Supprimer">✕</button></span>
+          <span class="pvs"><input type="number" inputmode="numeric" min="0" data-npc="${p.id}.pv" value="${esc(p.pv)}" title="PV">/<input type="number" inputmode="numeric" min="0" data-npc="${p.id}.pvmax" value="${esc(p.pvmax)}" title="PV max"></span>
+          <span class="acts">${hit(`data-n="${p.id}"`)}<button class="sm eye ${p.show ? 'on' : ''}" data-a="npc-show" data-n="${p.id}" title="${p.show ? 'Visible' : 'Masqué'} dans l’espace global">${p.show ? '👁' : '🚫'}</button><button class="x" data-a="npc-del" data-n="${p.id}" title="Supprimer">✕</button></span>
           <details class="npcx" data-k="npc-${p.id}"><summary>États${p.etats.length ? ' : ' + esc(p.etats.join(', ')) : ''}</summary><div class="chips">${etats(p)}</div></details>
         </li>`;
     }).join('')}
@@ -82,7 +83,7 @@ function mjInit() {
     </form>
     ${C.npcs.length ? `<div class="row"><button class="sm" data-a="npc-allshow" data-v="1">👁 Tout montrer</button><button class="sm" data-a="npc-allshow" data-v="0">🚫 Tout masquer</button><button class="sm danger" data-a="npc-clear">Retirer tous les PNJ</button></div>` : ''}
     <p class="muted small">Init des créatures = 10 + PER (+ bonus). Égalité : les PJ d’abord. 👁 = visible dans l’espace global : initiative, états et santé en couleur
-      (vert, jaune sous 2/3 des PV, rouge sous 1/3, noir = mort sous 0 PV), jamais les PV. Un mort reste dans l’initiative.</p>`;
+      (vert à 100 % des PV, rouge à 1 PV restant, sinon jaune à 2/3 des PV ou moins et rouge à 1/3 ou moins, noir = mort à 0 PV), jamais les PV. Un mort reste dans l’initiative.</p>`;
 }
 
 function mjTools() {

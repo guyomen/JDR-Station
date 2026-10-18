@@ -133,6 +133,19 @@ const ACTIONS = {
     pushCombat();
     render();
   },
+  /* Initiative : retirer des PV (jamais sous 0 ; à 0, un PNJ est mort, un PJ pas forcément). */
+  'pv-hit'(el, c) {
+    const d = n(el.dataset.d);
+    if (el.dataset.n) {
+      const p = npcById(el.dataset.n);
+      if (!p) return;
+      p.pv = Math.max(0, n(p.pv) - d);
+      pushCombat();
+    } else if (c) {
+      change(c, 'pv.cur', Math.max(0, curOf(c, 'pv', calc(c)) - d), true);
+    }
+    render();
+  },
   'npc-del'(el) {
     S.combat.npcs = S.combat.npcs.filter(p => p.id !== el.dataset.n);
     pushCombat();
