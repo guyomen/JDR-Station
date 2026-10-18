@@ -36,15 +36,27 @@ Le détail de chaque écran est dans le [manuel](docs/manual.md).
 
 ## Compilation et flash
 
-Prérequis : ESP-IDF v5.4 (déjà installé dans `C:\Users\gga\esp\v5.4\esp-idf`).
+Prérequis : ESP-IDF V 6.1 installé et configuré pour la cible `esp32c6`.
 
 ```powershell
-. C:\Users\gga\esp\v5.4\esp-idf\export.ps1
+$IDF_PATH = 'C:\chemin\vers\esp-idf'
+. "$IDF_PATH\export.ps1"
 cd <dossier du projet>
 idf.py set-target esp32c6     # une seule fois
 idf.py menuconfig             # optionnel : menu « JDR Station »
 idf.py -p COM5 flash monitor  # adaptez le port COM
 ```
+
+Si `export.ps1` signale que l'environnement Python ESP-IDF est introuvable, installez les outils
+pour ce même dépôt ESP-IDF, une seule fois, puis relancez l'export :
+
+```powershell
+& "$IDF_PATH\install.ps1" esp32c6
+. "$IDF_PATH\export.ps1"
+```
+
+Avec une installation gérée par ESP-IDF EIM, utilisez le terminal et le chemin ESP-IDF configurés
+par EIM. Ne mélangez pas ce chemin avec celui d'une autre installation ou d'un autre dépôt ESP-IDF.
 
 Réglages du menu **JDR Station** (`idf.py menuconfig`) :
 
