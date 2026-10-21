@@ -115,6 +115,11 @@ const ACTIONS = {
     IMG.del(el.dataset.v).then(() => { setFit(el.dataset.v, 'cover'); setLieuBg(el.dataset.v, 'black'); refreshImgs(true); }, () => toast('Suppression impossible'));
   },
   'lieux-send'() { sendLieux(); },
+  'lieux-reset'() {
+    if (!confirm('Vider la liste des lieux de la station ? Les images restent sur l’appareil de l’écran partagé.')) return;
+    if (!send({ t: 'lieux', list: [] })) return toast('Hors ligne');
+    if (S.combat.bg) setBg('');
+  },
   imgbg(el) { setLieuBg(el.dataset.v, S.imgBg[el.dataset.v] ? 'black' : 'white'); render(); },
   'bg-set'(el) { setBg(el.dataset.v); },
   'bg-clear'() { setBg(''); },

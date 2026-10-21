@@ -107,7 +107,8 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
 **Outils**
 - **Lieu affiché sur l'écran partagé** : choisissez un lieu dans la liste, ou « Aucun ».
   La liste vient de l'écran partagé (voir ci-dessous) et reste disponible même quand
-  l'écran est éteint.
+  l'écran est éteint. **Réinitialiser la liste des lieux** la vide sur la station (et retire le
+  lieu affiché) ; les images restent sur l'écran, qui peut la renvoyer avec **📡 Annoncer ces lieux**.
 - **Règles de la table** : les documents de l'Espace Règles sont aussi les règles de la fiche
   (voies et leurs bonus, profils, peuples, armes, armures, états). Pour les adapter à votre table :
   1. **⬇ Tout télécharger** (un fichier .zip), ou ⬇ à côté d'un seul document ;

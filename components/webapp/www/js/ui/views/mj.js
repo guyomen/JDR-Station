@@ -97,8 +97,10 @@ function mjTools() {
         </div>`
         : '<p class="muted">Aucun lieu disponible.</p>'}
       ${gone ? `<p class="small">⚠ Le lieu affiché (« ${esc(bg)} ») n’est plus dans la liste. <button class="sm" data-a="bg-clear">Ne plus l’afficher</button></p>` : ''}
+      ${S.lieux.length ? '<div class="row"><button class="sm danger" data-a="lieux-reset">Réinitialiser la liste des lieux</button></div>' : ''}
       <p class="muted small">Les lieux se chargent dans l’espace global, sur l’appareil de l’écran partagé (🖼 Lieux → dossier d’images) :
-        la liste est gardée par la station, même quand l’écran est déconnecté.</p>
+        la liste est gardée par la station, même quand l’écran est déconnecté. La réinitialiser vide la liste de la station
+        sans toucher aux images de l’écran, qui peut la renvoyer (📡 Annoncer ces lieux).</p>
     </section>
     <section class="card"><h3>Repos</h3>
       <div class="row"><button data-a="rest-full">Récupération complète du groupe</button></div>
