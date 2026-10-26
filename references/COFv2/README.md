@@ -18,13 +18,16 @@ DRS = [Document de référence du système](https://drs.chroniques-oubliees.fr/f
 des règles publiée par Black Book Éditions. © Black Book Éditions : ces fichiers servent de référence
 personnelle pour le projet ; ne pas les redistribuer.
 
-## Deux façons de changer les règles
+## Trois façons de changer les règles
 
 - **À la table, sans recompiler** : le MJ télécharge les documents depuis l'appli (Espace MJ › Outils ›
   *Règles de la table*), les modifie, puis les renvoie. L'appli les vérifie et affiche un rapport :
   voies ajoutées ou modifiées, bonus non reconnus… Après l'envoi, tous les appareils rechargent l'appli
   avec les nouvelles règles. La station les garde dans sa mémoire flash et les documents d'origine
   restent dans le firmware : un bouton permet d'y revenir.
+- **Contenu maison, depuis l'appli** : le MJ crée ou modifie voies, profils et peuples avec un formulaire
+  (Espace MJ › Outils › *Contenu maison*). Ils sont écrits dans une section `# Contenu maison` à la fin de
+  voies.md, prestige.md, profils.md et peuples.md (voir plus bas), puis envoyés comme ci-dessus.
 - **Dans le dépôt** : modifier les fichiers ici et reflasher. Ce sont alors les règles d'origine de la station ;
   leur fidélité au livre et au DRS est à la charge du développeur. Les avertissements de lecture s'affichent
   dans l'Espace MJ (Outils › *Règles de la table*).
@@ -163,3 +166,16 @@ Le tableau dont la première colonne est **État** donne les états de la fiche 
 **Série** donne les séries de caractéristiques, le tableau **Rang** / *Niveau requis* le niveau nécessaire
 à chaque rang, et le tableau **Idéal héroïque** / **Travers** les listes de la fiche.
 
+## Contenu maison
+
+Le contenu maison est tout ce qui suit la ligne `# Contenu maison` d'un document. L'appli
+([features/maison.js](../../components/webapp/www/js/features/maison.js)) le relit et le réécrit en entier à
+chaque validation, avec les balises ci-dessus ; le texte qui précède cette ligne n'est jamais modifié.
+
+- **voies.md**, **prestige.md**, **profils.md** : entrées regroupées par famille, chaque groupe ouvert par
+  `<a id="famille-…"></a>` et un titre `## …` (le titre de la famille, en double avec celui du contenu d'origine) ;
+- **peuples.md** : peuples à la suite (`## Nom`, `### Caractéristiques`, autres sections `###`, ligne
+  **Voie(s)**).
+
+Écrit à la main, ce contenu reste lisible par l'appli, mais l'écran *Contenu maison* le remet dans sa forme
+à la première validation.

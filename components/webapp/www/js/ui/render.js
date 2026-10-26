@@ -32,6 +32,7 @@ function render() {
   else if (r[0] === 'joueur') html = viewPlayer();
   else if (r[0] === 'mj' && !S.isMJ) html = viewLogin();
   else if (r[0] === 'mj' && r[1] === 'c') html = viewSheet(r[2], true);
+  else if (r[0] === 'mj' && r[1] === 'maison') html = viewMaison();
   else if (r[0] === 'mj') html = viewMJ();
   else html = viewHome();
   document.documentElement.classList.toggle('screen', S.screen && r[0] === 'global');

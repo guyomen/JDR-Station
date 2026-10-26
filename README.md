@@ -84,7 +84,8 @@ PC, voies), peuples, armes, armures, états, niveaux requis… Le format des bal
 [README des références](references/COFv2/README.md#balises-lues-par-la-fiche).
 
 Le MJ peut remplacer ces documents depuis l'appli (Outils › *Règles de la table*) sans recompiler : voies
-modifiées ou ajoutées, nouvelles armes, bonus corrigés… La station les garde en flash
+modifiées ou ajoutées, nouvelles armes, bonus corrigés… L'écran *Contenu maison* lui permet aussi d'ajouter
+voies, profils et peuples avec un formulaire, écrits à la fin des documents. La station les garde en flash
 (`/data/regles/`), les documents d'origine restent dans le firmware.
 
 - lecture des documents : [rules/parse.js](components/webapp/www/js/rules/parse.js) ;
@@ -93,6 +94,9 @@ modifiées ou ajoutées, nouvelles armes, bonus corrigés… La station les gard
 - calculs de la fiche : fonction `calc()` de [rules/character.js](components/webapp/www/js/rules/character.js)
   (formules rappelées dans le [manuel](docs/manual.md#comment-la-fiche-est-calculée)) ;
 - envoi des documents par le MJ : [features/rules_admin.js](components/webapp/www/js/features/rules_admin.js) ;
+- contenu maison (voies, profils, peuples saisis par le MJ, écrits en fin de document) :
+  [features/maison.js](components/webapp/www/js/features/maison.js), écran
+  [ui/views/maison.js](components/webapp/www/js/ui/views/maison.js) ;
 - conversion des fiches de l'ancienne version (peuple, profil, armure et voies reconnus par leur nom,
   « PR » remplacés par les DR) : [rules/normalize.js](components/webapp/www/js/rules/normalize.js).
 
@@ -121,9 +125,9 @@ components/
       rules/          lecture des documents de règles, tables de jeu, calculs de la fiche, conversion
                       des anciennes fiches, dés, chargement au démarrage
       features/       initiative du MJ, images de lieux, miniatures des personnages, mode écran partagé,
-                      règles de la table (MJ)
+                      règles de la table et contenu maison (MJ)
       ui/             rendu, composants, actions ; ui/views/ : un fichier par écran
-                      (regles.js : Espace Règles et son rendu Markdown)
+                      (regles.js : Espace Règles et son rendu Markdown ; maison.js : contenu maison)
       state.js, net.js, messages.js, main.js
     bundles.json      fichiers servis (dont regles/*.md) et ordre de concaténation des sources
     gen_assets.py     assemblage + gzip + tableau C (lancé à la compilation)

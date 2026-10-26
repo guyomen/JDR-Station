@@ -26,7 +26,8 @@ components/
   webapp/www/          appli web sans dépendance (HTML/CSS/JS vanilla)
     js/core/           util, DOM ($, $$), storage (load/save localStorage préfixé jdr.)
     js/rules/          lecture des .md de règles, tables, calc() de la fiche, normalisation, dés
-    js/features/       combat (MJ), images (lieux, IndexedDB), avatars, screen (écran partagé), rules_admin
+    js/features/       combat (MJ), images (lieux, IndexedDB), avatars, screen (écran partagé), rules_admin,
+                       maison (voies/profils/peuples du MJ, section « # Contenu maison » en fin de document)
     js/ui/             render.js (routage #/… + render/update), actions.js (ACTIONS), events.js, widgets,
                        views/ : un fichier par écran (mj.js, sheet.js, global.js, config.js…)
     js/state.js        objet global S ; net.js (connect, send, change/queue = patch) ; messages.js (onMsg)

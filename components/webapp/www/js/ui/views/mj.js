@@ -111,6 +111,8 @@ function mjTools() {
         profils, peuples, armes, armures, états. Téléchargez-les, modifiez-les (texte, nouvelles voies, bonus…), puis envoyez
         les fichiers modifiés : ils sont vérifiés, puis toute la table passe aux nouvelles règles.</p>
       <div data-rules-admin>${rulesAdminHTML()}</div>
+      <div class="row"><a class="btn ghost" href="#/mj/maison">✎ Contenu maison</a>
+        <span class="muted small grow">Créer ou modifier des voies, profils et peuples propres à la table, sans éditer les fichiers.</span></div>
     </section>
     <section class="card"><h3>Sauvegarde</h3>
       <div class="row"><button data-a="export">⬇ Exporter (JSON)</button>

@@ -8,6 +8,7 @@ const charOf = el => { const s = el.closest('[data-id]'); return s ? byId(s.data
 
 function onField(e) {
   const el = e.target;
+  if (el.dataset.m || el.dataset.mAdd) return maisonField(el);
   if (el.dataset.npc) {
     const [id, key] = el.dataset.npc.split('.');
     const npc = npcById(id);

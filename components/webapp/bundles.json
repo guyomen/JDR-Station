@@ -46,6 +46,7 @@
     "js/features/avatars.js",
     "js/features/screen.js",
     "js/features/rules_admin.js",
+    "js/features/maison.js",
 
     "js/ui/render.js",
     "js/ui/widgets.js",
@@ -58,6 +59,7 @@
     "js/ui/views/voies.js",
     "js/ui/views/mj.js",
     "js/ui/views/regles.js",
+    "js/ui/views/maison.js",
     "js/ui/events.js",
     "js/ui/actions.js",
     "js/ui/forms.js",

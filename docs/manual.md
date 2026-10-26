@@ -123,6 +123,24 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
   Un document modifié porte le badge « de la table » ; **↺** le remet d'origine (pensez à le télécharger
   avant). Si des documents envoyés sont illisibles, la partie continue avec les règles d'origine et
   l'appli le signale ici.
+- **✎ Contenu maison** (sous Règles de la table) : créer, modifier ou supprimer des **voies** (de profil,
+  de peuple ou de prestige), des **profils** et des **peuples** propres à votre table, avec un formulaire,
+  sans éditer de fichier. Les familles ne changent pas.
+  1. **+ Nouvelle voie** (ou profil, peuple), ou ✎ sur un élément existant ; l'identifiant se propose à
+     partir du nom et ne change plus ensuite (les fiches s'en servent) ;
+  2. une voie : son type (profil ou peuple, rangs 1 à 5 ; prestige, rangs 4 à 8), sa famille, puis pour
+     chaque capacité son nom, son type d'action, « sort », son texte et ses **bonus permanents**
+     (`DEF +1 · Init +CHA`, `armes arc : DM +PER`… : voir l'aide sous les capacités). Un profil : ses
+     valeurs (PV, DR, points de chance…) et sa liste de voies ; un peuple : ses caractéristiques et ses voies ;
+  3. **Valider** range l'élément dans les documents de travail (après vérification : identifiant libre, texte
+     relu à l'identique) ; rien n'est encore envoyé ;
+  4. **Vérifier et envoyer…** affiche le même rapport que l'envoi de fichiers, puis **⬆ Envoyer à la station**.
+
+  Le contenu maison s'ajoute à la fin des documents (section « Contenu maison » de l'Espace Règles), sans
+  toucher aux règles d'origine. Une voie qui n'est dans la liste d'aucun profil ni peuple est proposée sur
+  la fiche dans « Autres voies ». Supprimer un élément utilisé par un personnage est signalé avant de le
+  faire. Les variantes de voie ne se saisissent pas dans le formulaire : écrites dans un fichier, elles
+  sont conservées.
 - **Repos** : récupération complète du groupe (+1 DR, tous les PM).
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
   personnages de la station). Les images des personnages ne sont pas dans l'export : après un

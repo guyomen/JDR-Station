@@ -12,6 +12,17 @@ const ACTIONS = {
   'rules-send'() { sendRules(); },
   'rules-cancel'() { S.rulesDraft = null; paintRulesAdmin(); },
   'rules-retry'() { startApp(); },
+  /* Contenu maison (features/maison.js) */
+  'maison-edit'(el) { maisonEdit(el.dataset.kind, el.dataset.v); render(); window.scrollTo(0, 0); },
+  'maison-del'(el) { maisonDelete(el.dataset.kind, el.dataset.v); render(); },
+  'maison-ok'() { if (maisonApply()) { render(); window.scrollTo(0, 0); } else render(); },
+  'maison-cancel'() { S.maison.edit = null; render(); },
+  'maison-unvoie'(el) { const ed = S.maison.edit; ed.data.voies = ed.data.voies.filter(id => id !== el.dataset.v); render(); },
+  'maison-submit'() { maisonSubmit(); },
+  'maison-reset'() {
+    if (!confirm('Abandonner les modifications du contenu maison qui n’ont pas été envoyées ?')) return;
+    S.maison = null; S.rulesDraft = null; render();
+  },
   keep(el) {
     S.keep = el.dataset.v;
     $$('[data-a=keep]').forEach(b => b.classList.toggle('on', b.dataset.v === S.keep));

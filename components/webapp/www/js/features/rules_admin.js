@@ -13,6 +13,7 @@ function refreshRulesIndex() {
     .catch(() => {});
 }
 function paintRulesAdmin() {
+  if (route()[1] === 'maison') return render(); // écran Contenu maison : rapport affiché dans la vue
   const el = $('[data-rules-admin]');
   if (el) el.innerHTML = rulesAdminHTML();
 }
@@ -105,6 +106,11 @@ async function pickRulesFiles(files) {
   }
   if (unknown.length) toast(`Ignoré : ${unknown.join(', ')} (noms attendus : ${Object.keys(RULES_DOCS).map(d => d + '.md').join(', ')})`);
   if (!changed.length) { if (!unknown.length) toast('Aucun changement par rapport aux règles en vigueur'); return; }
+  draftRules(texts, changed);
+}
+
+/* Documents à envoyer (texts : tous, changed : ceux modifiés) : vérification puis rapport (S.rulesDraft). */
+function draftRules(texts, changed) {
   const r = readRules(texts);
   if (!r.error) {
     try { buildRules(r.model, w => r.warnings.push(w)); } catch (e) { r.error = e.message; }
