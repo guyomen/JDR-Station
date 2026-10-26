@@ -1,5 +1,5 @@
-/* Lecture des documents de règles (references/COFv2/*.md) : produit le même modèle que
- * tools/drs/md2drs.py (drs.json), à garder synchronisés. Format des balises : references/COFv2/README.md. */
+/* Lecture des documents de règles (references/COFv2/*.md) : seule lecture du projet.
+ * Format des balises : references/COFv2/README.md. */
 
 const RX_ANCHOR = /^<a id="([\w-]+)"><\/a>\s*$/;
 const RX_HEADING = /^(#{1,6})\s+(.*?)\s*$/;

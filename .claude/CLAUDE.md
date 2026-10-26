@@ -33,7 +33,6 @@ components/
   webapp/bundles.json  fichiers servis + ordre de concaténation (portée JS unique, main.js en dernier)
   webapp/gen_assets.py concatène + gzip → tableau C à la compilation
 references/COFv2/      règles en Markdown = données de jeu (aucune donnée de jeu codée en dur)
-tools/drs/             md2drs.py (.md → drs.json), gen_refs.py
 ```
 
 ## Conventions
@@ -61,8 +60,6 @@ tools/drs/             md2drs.py (.md → drs.json), gen_refs.py
 ```powershell
 python -I components/webapp/gen_assets.py --dist build/www   # assemble l'appli (détecte un fichier non déclaré)
 node --check build/www/app.js                                # syntaxe JS, si Node est installé
-python -I tools/drs/md2drs.py                                # après modification des .md de règles
-python -I tools/drs/gen_refs.py --check
 ```
 
 Compilation complète : `idf.py build` dans un terminal ESP-IDF (voir README) ; cible `esp32c6`.
@@ -73,5 +70,5 @@ Compilation complète : `idf.py build` dans un terminal ESP-IDF (voir README) ; 
   `MAX_*` dans `game_priv.h` et la section Limites de `docs/protocol.md`.
 - Les images de lieux restent dans le navigateur de l'écran (IndexedDB) ; la station ne garde que la
   liste `{id, n}` (message `lieux`, remplace la liste) et le MJ choisit `bg` dans le combat public.
-- La lecture des règles existe en JS (`rules/parse.js`) et en Python (`tools/drs/md2drs.py`) : à garder
-  synchronisées.
+- Les règles ne sont lues qu'en JS (`rules/parse.js`) ; un document modifié se vérifie dans l'appli (envoi des
+  règles par le MJ : rapport et avertissements).

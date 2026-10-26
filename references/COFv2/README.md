@@ -13,7 +13,6 @@ et les affiche dans l'**Espace Règles**. Les modifier change donc les règles d
 | [peuples.md](peuples.md) | Les peuples et la voie du mage : caractéristiques, repères, noms, voie de peuple | nom, modificateurs, voies de peuple | DRS |
 | [voies.md](voies.md) | Les voies de profil et de peuple (5 capacités chacune) | tout, bonus et variantes compris | DRS |
 | [prestige.md](prestige.md) | Les voies de prestige (rangs 4 à 8) | tout | DRS |
-| [drs.json](drs.json) | Les mêmes données, structurées : généré depuis les `.md` par `md2drs.py` | — | — |
 
 DRS = [Document de référence du système](https://drs.chroniques-oubliees.fr/fantasy), la version web officielle
 des règles publiée par Black Book Éditions. © Black Book Éditions : ces fichiers servent de référence
@@ -26,8 +25,9 @@ personnelle pour le projet ; ne pas les redistribuer.
   voies ajoutées ou modifiées, bonus non reconnus… Après l'envoi, tous les appareils rechargent l'appli
   avec les nouvelles règles. La station les garde dans sa mémoire flash et les documents d'origine
   restent dans le firmware : un bouton permet d'y revenir.
-- **Dans le dépôt** : modifier les fichiers ici, puis lancer `md2drs.py` (voir plus bas) et reflasher.
-  Ce sont alors les règles d'origine de la station.
+- **Dans le dépôt** : modifier les fichiers ici et reflasher. Ce sont alors les règles d'origine de la station ;
+  leur fidélité au livre et au DRS est à la charge du développeur. Les avertissements de lecture s'affichent
+  dans l'Espace MJ (Outils › *Règles de la table*).
 
 Le texte libre (descriptions, règles, tableaux sans balise) se modifie comme n'importe quel Markdown.
 Seules les balises ci-dessous sont lues par la fiche.
@@ -163,57 +163,3 @@ Le tableau dont la première colonne est **État** donne les états de la fiche 
 **Série** donne les séries de caractéristiques, le tableau **Rang** / *Niveau requis* le niveau nécessaire
 à chaque rang, et le tableau **Idéal héroïque** / **Travers** les listes de la fiche.
 
-## Outils
-
-Scripts Python 3 de [tools/drs/](../../tools/drs/) :
-
-```powershell
-python -I tools/drs/md2drs.py               # .md -> drs.json (avertit des liens et voies inconnus)
-python -I tools/drs/gen_refs.py --check     # vérifie que md2drs.py ne perd rien (md -> json -> md)
-python -I tools/drs/gen_refs.py             # remet voies, prestige, profils, familles et peuples au format canonique
-```
-
-`md2drs.py` lit les documents comme l'appli ([rules/parse.js](../../components/webapp/www/js/rules/parse.js)) :
-une modification du format se fait dans les deux. `gen_refs.py` ne touche jamais `regles.md` ni `equipement.md`.
-
-**Import initial depuis le site du DRS** (déjà fait, à ne relancer que pour repartir de zéro) :
-`scrape.py` puis `parse_drs.py` produisent une extraction brute, sans balises **Bonus** ni variantes ni
-familles. Écrivez-la dans un autre fichier que `drs.json` : la fusion avec les documents existants se fait à la main.
-
-```powershell
-python -I tools/drs/scrape.py <dossier_brut> tools/drs/slugs.txt          # ~170 pages, 1 requête/s
-python -I tools/drs/parse_drs.py <dossier_brut> <dossier_brut>/drs_brut.json
-```
-
-## Structure de drs.json
-
-```jsonc
-{
-  "source": "https://drs.chroniques-oubliees.fr/fantasy",
-  "familles": { "mage": { "name": "Mages", "note": "…", "r2niv1": true, "alt": "mage" }, … },
-  "profils": {
-    "barbare": { "name": "Barbare", "famille": "combattant", "desc": "…",
-                 "pv1": "10 + CON", "pvniv": "5", "dr": "d10", "drn": "2 + CON", "pc": "2 + CHA",
-                 "car": "FOR, CON, AGI", "magie": "", "bonus": [ "…" ],
-                 "armes": "…", "equipement": "…", "extra": "…", "voies": [ "brute", "pagne", … ] }, …
-  },
-  "peuples": { "gnome": { "name": "Gnome", "body": "…Markdown…", "voies": [ "gnome" ] }, … },
-  "voies": {
-    "archer": {
-      "name": "Voie de l'archer", "famille": "aventurier", "prestige": false, "intro": "",
-      "caps": [ { "rang": 1, "name": "Sens affûtés", "spell": false, "action": "",   // A, L, M, G ou ""
-                  "text": "…Markdown…", "bonus": "Init +1 · armes arc : DM +PER" }, … ],
-      "variantes": { "std": "Arc", "list": [ { "id": "lancer", "name": "Lancer (…)", "voie": "Voie du lancer",
-                                               "note": "…", "bonus": { "1": "armes jet : DM +FOR, portée ×2" } } ] }
-    }, …
-  },
-  "armes": [ { "id": "hache", "name": "Hache", "att": "contact", "dm": "1d8", "portee": 0, "crit": 20,
-               "prix": "6 pa", "type": "Tranchants", "mots": [ "hache" ], "notes": "" }, … ],
-  "armures": [ { "id": "cotte", "name": "Cotte de mailles", "def": 5, "agi": 3, "prix": "25 pa" }, … ],
-  "boucliers": [ { "id": "petit", "name": "Petit bouclier", "def": 1, "prix": "2 pa" }, … ],
-  "etats": [ { "name": "Affaibli", "effet": "…" }, … ],
-  "series": [ { "name": "Expert", "valeurs": "+3, +2, +1, +1, 0, 0, −1" }, … ],
-  "niveaux": { "1": 1, "2": 2, "3": 3, "4": 5, … },
-  "ideaux": [ "Abnégation", … ], "travers": [ "Alcoolique", … ]
-}
-```

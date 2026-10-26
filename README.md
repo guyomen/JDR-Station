@@ -87,8 +87,7 @@ Le MJ peut remplacer ces documents depuis l'appli (Outils › *Règles de la tab
 modifiées ou ajoutées, nouvelles armes, bonus corrigés… La station les garde en flash
 (`/data/regles/`), les documents d'origine restent dans le firmware.
 
-- lecture des documents : [rules/parse.js](components/webapp/www/js/rules/parse.js), même lecture en
-  Python dans [tools/drs/md2drs.py](tools/drs/md2drs.py) (`.md` → `drs.json`) : à garder synchronisés ;
+- lecture des documents : [rules/parse.js](components/webapp/www/js/rules/parse.js) ;
 - tables de jeu et bonus : [rules/tables.js](components/webapp/www/js/rules/tables.js) ; chargement, repli
   sur les documents d'origine s'ils sont illisibles : [rules/load.js](components/webapp/www/js/rules/load.js) ;
 - calculs de la fiche : fonction `calc()` de [rules/character.js](components/webapp/www/js/rules/character.js)
@@ -97,12 +96,9 @@ modifiées ou ajoutées, nouvelles armes, bonus corrigés… La station les gard
 - conversion des fiches de l'ancienne version (peuple, profil, armure et voies reconnus par leur nom,
   « PR » remplacés par les DR) : [rules/normalize.js](components/webapp/www/js/rules/normalize.js).
 
-Après une modification des `.md` dans le dépôt :
-
-```powershell
-python -I tools/drs/md2drs.py            # met à jour drs.json, signale liens et voies inconnus
-python -I tools/drs/gen_refs.py --check  # vérifie que la lecture ne perd rien
-```
+Les documents d'origine transcrivent le livre et le DRS : leur fidélité est à la charge du développeur. Après une
+modification, les avertissements de lecture (bonus non reconnus, voies inconnues…) s'affichent dans l'Espace MJ
+(Outils › *Règles de la table*).
 
 ## Architecture
 
@@ -134,7 +130,6 @@ components/
 docs/manual.md        manuel d'utilisation (joueurs, MJ, écran partagé)
 docs/protocol.md      messages WebSocket, droits, persistance, limites
 references/COFv2/     règles en Markdown : données de jeu de l'appli et Espace Règles (voir son README)
-tools/drs/            md2drs.py (.md → drs.json), gen_refs.py (format canonique), import initial du DRS
 ```
 
 **Firmware.** Chaque composant expose une API minimale dans son dossier `include/` et déclare ses
