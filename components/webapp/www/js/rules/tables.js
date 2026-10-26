@@ -70,8 +70,12 @@ const firstNum = (s, def) => { const m = String(s || '').match(/\d+/); return m 
 function buildRules(D, warn = () => {}) {
   const fams = Object.fromEntries(Object.entries(D.familles || {}).map(([k, f]) => [k, { n: f.name, note: f.note, r2niv1: !!f.r2niv1, alt: f.alt || '' }]));
   const profils = {};
-  for (const [k, p] of Object.entries(D.profils || {})) {
-    if (!fams[p.famille]) warn(`profil « ${p.name} » : famille inconnue « ${p.famille} »`);
+  for (const [k, p0] of Object.entries(D.profils || {})) {
+    if (!fams[p0.famille]) warn(`profil « ${p0.name} » : famille inconnue « ${p0.famille} »`);
+    /* PV, DR et points de chance : ceux de la famille, sauf si le profil les redonne. */
+    const f = (D.familles || {})[p0.famille] || {};
+    const p = { ...p0, ...Object.fromEntries(['pv1', 'pvniv', 'dr', 'drn', 'pc'].map(x => [x, p0[x] || f[x] || ''])) };
+    if (!p.pv1) warn(`profil « ${p.name} » : PV introuvables (ni dans le profil, ni dans sa famille)`);
     profils[k] = {
       n: p.name, f: p.famille, car: p.car, magie: p.magie, desc: p.desc, armes: p.armes, equip: p.equipement, extra: p.extra,
       bonus: p.bonus, voies: p.voies.filter(v => D.voies[v]),

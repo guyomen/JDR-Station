@@ -2,16 +2,16 @@
 
 > Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
-La famille d'un profil se règle dans [profils.md](profils.md) ; les lignes **Particularité**, **Rang 2 dès le niveau 1** et **Voie remplaçant la voie de peuple** sont lues par la fiche. Les listes de profils et de voies sont un récapitulatif.
+La famille d'un profil se règle dans [profils.md](profils.md). Les lignes **PV niveau 1**, **PV par niveau**, **Dé de récupération**, **DR au niveau 1** et **Points de chance** valent pour tous les profils de la famille ; elles sont lues par la fiche, comme **Particularité**, **Rang 2 dès le niveau 1** et **Voie remplaçant la voie de peuple**. Les listes de profils et de voies sont un récapitulatif.
 
-| Famille | Profils | PV niv. 1 | PV / niveau | DR | PC | Particularité |
-|---|---|---|---|---|---|---|
-| Aventuriers | [Arquebusier](profils.md#arquebusier), [Barde](profils.md#barde), [Rôdeur](profils.md#rodeur), [Voleur](profils.md#voleur) | 8 + CON | 4 + CON | d8 | 3 + CHA | +1 PC |
-| Combattants | [Barbare](profils.md#barbare), [Chevalier](profils.md#chevalier), [Guerrier](profils.md#guerrier) | 10 + CON | 5 + CON | d10 | 2 + CHA | — |
-| Mages | [Ensorceleur](profils.md#ensorceleur), [Forgesort](profils.md#forgesort), [Magicien](profils.md#magicien), [Sorcier](profils.md#sorcier) | 6 + CON | 3 + CON | d6 | 2 + CHA | +1 capacité de rang 2 au niveau 1, voie du mage possible |
-| Mystiques | [Druide](profils.md#druide), [Moine](profils.md#moine), [Prêtre](profils.md#pretre) | 8 + CON | 4 + CON | d8 | 2 + CHA | +1 DR |
+| Famille | Profils | Particularité |
+|---|---|---|
+| Aventuriers | [Arquebusier](profils.md#arquebusier), [Barde](profils.md#barde), [Rôdeur](profils.md#rodeur), [Voleur](profils.md#voleur) | +1 PC |
+| Combattants | [Barbare](profils.md#barbare), [Chevalier](profils.md#chevalier), [Guerrier](profils.md#guerrier) | — |
+| Mages | [Ensorceleur](profils.md#ensorceleur), [Forgesort](profils.md#forgesort), [Magicien](profils.md#magicien), [Sorcier](profils.md#sorcier) | +1 capacité de rang 2 au niveau 1, voie du mage possible |
+| Mystiques | [Druide](profils.md#druide), [Moine](profils.md#moine), [Prêtre](profils.md#pretre) | +1 DR |
 
-Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystiques) ; PV = PV niv. 1 puis + (PV / niveau) à chaque niveau.
+Rappel : PV = PV niveau 1 puis + (PV par niveau) à chaque niveau ; DR au niveau 1 = nombre de dés de récupération.
 
 <a id="famille-generique"></a>
 ## Génériques
@@ -20,6 +20,16 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 <a id="famille-aventurier"></a>
 ## Aventuriers
+
+**PV niveau 1 :** 8 + CON
+
+**PV par niveau :** 4 + CON
+
+**Dé de récupération :** d8
+
+**DR au niveau 1 :** 2 + CON
+
+**Points de chance :** 3 + CHA
 
 **Particularité :** +1 PC
 
@@ -32,6 +42,16 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 <a id="famille-combattant"></a>
 ## Combattants
 
+**PV niveau 1 :** 10 + CON
+
+**PV par niveau :** 5 + CON
+
+**Dé de récupération :** d10
+
+**DR au niveau 1 :** 2 + CON
+
+**Points de chance :** 2 + CHA
+
 **Profils :** [Barbare](profils.md#barbare), [Chevalier](profils.md#chevalier), [Guerrier](profils.md#guerrier)
 
 **Voies de profil :** [Voie de la brute](voies.md#brute), [Voie du pagne](voies.md#pagne), [Voie du pourfendeur](voies.md#pourfendeur), [Voie du primitif](voies.md#primitif), [Voie de la rage](voies.md#rage), [Voie du cavalier](voies.md#cavalier), [Voie de la guerre](voies.md#guerre), [Voie du meneur d'hommes](voies.md#meneur-hommes), [Voie de la noblesse](voies.md#noblesse), [Voie du preux](voies.md#preux), [Voie du bouclier](voies.md#bouclier), [Voie du combat](voies.md#combat), [Voie du maître d'armes](voies.md#maitre-armes), [Voie de la résistance](voies.md#resistance), [Voie du soldat](voies.md#soldat)
@@ -40,6 +60,16 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 <a id="famille-mage"></a>
 ## Mages
+
+**PV niveau 1 :** 6 + CON
+
+**PV par niveau :** 3 + CON
+
+**Dé de récupération :** d6
+
+**DR au niveau 1 :** 2 + CON
+
+**Points de chance :** 2 + CHA
 
 **Particularité :** +1 capacité de rang 2 au niveau 1, voie du mage possible
 
@@ -55,6 +85,16 @@ Rappels (livre de règles) : DR au niveau 1 = 2 + CON dés (+1 pour les mystique
 
 <a id="famille-mystique"></a>
 ## Mystiques
+
+**PV niveau 1 :** 8 + CON
+
+**PV par niveau :** 4 + CON
+
+**Dé de récupération :** d8
+
+**DR au niveau 1 :** 3 + CON
+
+**Points de chance :** 2 + CHA
 
 **Particularité :** +1 DR
 

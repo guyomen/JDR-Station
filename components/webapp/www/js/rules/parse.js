@@ -73,10 +73,13 @@ function parseVoies(text, prestige, out, warn) {
 }
 
 /* ---------- profils.md ---------- */
-const PROFIL_FIELDS = {
-  'PV niveau 1': 'pv1', 'PV par niveau': 'pvniv', 'Dé de récupération': 'dr', 'Points de chance': 'pc',
-  'DR au niveau 1': 'drn', 'Caractéristiques clés': 'car', 'Caractéristique de magie': 'magie',
+/* Valeurs fixées par la famille (familles.md) ; un profil peut les redonner pour s'en écarter. */
+const FAMILLE_FIELDS = {
+  'PV niveau 1': 'pv1', 'PV par niveau': 'pvniv', 'Dé de récupération': 'dr', 'Points de chance': 'pc', 'DR au niveau 1': 'drn',
 };
+const PROFIL_FIELDS = { ...FAMILLE_FIELDS, 'Caractéristiques clés': 'car', 'Caractéristique de magie': 'magie' };
+/* « PV par niveau » : seule la part fixe compte, la fiche ajoute CON à chaque niveau. */
+const fieldValue = (k, v) => (v === '—' || v === '-' ? '' : k === 'PV par niveau' ? v.replace(/\s*\+\s*CON$/, '') : v);
 function parseProfils(text, warn) {
   const out = {};
   let famille = '', pr = null, anchor = null, mode = '';
@@ -116,10 +119,7 @@ function parseProfils(text, warn) {
     if (line.startsWith('- ')) {
       const parts = line.slice(2).split(' · ').map(p => mdLabel(p.trim()));
       if (parts.length && parts.every(p => p && PROFIL_FIELDS[p[0]])) {
-        for (const [k, v0] of parts) {
-          const v = v0 === '—' || v0 === '-' ? '' : v0;
-          pr[PROFIL_FIELDS[k]] = k === 'PV par niveau' ? v.replace(/\s*\+\s*CON$/, '') : v;
-        }
+        for (const [k, v] of parts) pr[PROFIL_FIELDS[k]] = fieldValue(k, v);
       } else pr.bonus.push(line.slice(2));
       continue;
     }
@@ -163,7 +163,7 @@ function parseFamilles(text) {
     const h = line.match(RX_HEADING);
     if (h) {
       fa = null;
-      if (anchor && anchor.startsWith('famille-')) fa = out[anchor.slice(8)] = { name: h[2], note: '', r2niv1: false, alt: '' };
+      if (anchor && anchor.startsWith('famille-')) fa = out[anchor.slice(8)] = { name: h[2], note: '', r2niv1: false, alt: '', pv1: '', pvniv: '', dr: '', drn: '', pc: '' };
       anchor = null;
       continue;
     }
@@ -173,6 +173,7 @@ function parseFamilles(text) {
     if (lb[0] === 'Particularité') fa.note = lb[1];
     else if (lb[0] === 'Rang 2 dès le niveau 1') fa.r2niv1 = ['oui', 'yes', '1', 'vrai'].includes(fold(lb[1]));
     else if (lb[0] === 'Voie remplaçant la voie de peuple') { const l = lb[1].match(RX_LINK_ID); fa.alt = l ? l[1] : ''; }
+    else if (FAMILLE_FIELDS[lb[0]]) fa[FAMILLE_FIELDS[lb[0]]] = fieldValue(lb[0], lb[1]);
   }
   return out;
 }

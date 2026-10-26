@@ -58,8 +58,8 @@ function maisonNorm(kind, e) {
       caps: e.caps.map(c => ({ name: mdOne(c.name), spell: !!c.spell, action: c.action || '', text: mdBlock(c.text), bonus: mdOne(c.bonus) })) };
   }
   if (kind === 'profil') {
-    return { ...e, name: mdOne(e.name), desc: mdOne(e.desc), pv1: val(e.pv1), pvniv: val(e.pvniv).replace(/\s*\+\s*CON$/i, ''),
-      dr: val(e.dr), pc: val(e.pc), drn: val(e.drn), car: val(e.car), magie: val(e.magie),
+    /* PV, DR et points de chance viennent de la famille (familles.md) : jamais écrits dans le profil. */
+    return { ...e, name: mdOne(e.name), desc: mdOne(e.desc), pv1: '', pvniv: '', dr: '', pc: '', drn: '', car: val(e.car), magie: val(e.magie),
       bonus: mdLines(e.bonus).map(l => l.trim().replace(/^- /, '')).filter(Boolean).join('\n'),
       armes: mdOne(e.armes), equipement: mdOne(e.equipement), extra: mdBlock(e.extra) };
   }
@@ -98,8 +98,7 @@ function maisonWriteProfil(p, model) {
   const val = s => s || '—';
   const out = [`<a id="${p.id}"></a>`, `### ${p.name}`, ''];
   if (p.desc) out.push(`*${p.desc}*`, '');
-  out.push(`- **PV niveau 1** : ${val(p.pv1)} · **PV par niveau** : ${p.pvniv ? p.pvniv + ' + CON' : '—'} · **Dé de récupération** : ${val(p.dr)} · **Points de chance** : ${val(p.pc)}`);
-  out.push(`- **DR au niveau 1** : ${val(p.drn)} · **Caractéristiques clés** : ${val(p.car)} · **Caractéristique de magie** : ${val(p.magie)}`);
+  out.push(`- **Caractéristiques clés** : ${val(p.car)} · **Caractéristique de magie** : ${val(p.magie)}`);
   if (p.bonus) out.push(...mdLines(p.bonus).map(l => `- ${l}`));
   out.push('');
   if (p.armes) out.push(`**Armes & armures.** ${p.armes}`, '');
@@ -200,22 +199,13 @@ function maisonSet(texts) {
 }
 const maisonChanged = () => (S.maison ? Object.keys(RULES_DOCS).filter(d => S.maison.texts[d] !== RULES.texts[d]) : []);
 
-/* Valeurs d'un profil fixées par sa famille (PV, DR, points de chance) : reprises d'un autre profil de la
- * même famille dans profils.md ; null si la famille n'en a aucun. */
-const MAISON_FAM_FIELDS = ['pv1', 'pvniv', 'dr', 'drn', 'pc'];
-function maisonFamValues(famille, model, except) {
-  const p = Object.entries(model.profils).find(([id, x]) => x.famille === famille && id !== except);
-  return p ? Object.fromEntries(MAISON_FAM_FIELDS.map(k => [k, p[1][k]])) : null;
-}
-
 function maisonBlank(kind) {
   if (kind === 'voie') {
     return { id: '', doc: 'voies', famille: maisonFamilles('voie', 'voies')[0][0], name: '', intro: '',
       caps: [0, 1, 2, 3, 4].map(() => ({ name: '', spell: false, action: '', text: '', bonus: '' })) };
   }
   if (kind === 'profil') {
-    const famille = maisonFamilles('profil')[0][0];
-    return { id: '', famille, name: '', desc: '', pv1: '', pvniv: '', dr: '', pc: '', drn: '', ...maisonFamValues(famille, S.maison.model),
+    return { id: '', famille: maisonFamilles('profil')[0][0], name: '', desc: '', pv1: '', pvniv: '', dr: '', pc: '', drn: '',
       car: '', magie: '', bonus: '', armes: '', equipement: '', extra: '', voies: [] };
   }
   return { id: '', name: '', desc: '', car: '', autres: '', voies: [] };
@@ -232,7 +222,6 @@ function maisonEdit(kind, id) {
 function maisonApply() {
   const M = S.maison;
   const { kind, orig, data } = M.edit;
-  if (kind === 'profil') Object.assign(data, maisonFamValues(data.famille, M.model, orig));
   const err = maisonCheck(kind, data, orig, M.model);
   if (err.length) { M.err = err; return false; }
   const entries = maisonRead(M.texts);
@@ -290,7 +279,6 @@ function maisonField(el) {
   if (el.tagName === 'SELECT') {
     const fams = maisonFamilles(ed.kind, ed.data.doc);
     if (!fams.some(([k]) => k === ed.data.famille)) ed.data.famille = fams[0][0];
-    if (ed.kind === 'profil') Object.assign(ed.data, maisonFamValues(ed.data.famille, S.maison.model, ed.orig));
     render();
   }
 }

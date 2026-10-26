@@ -2,7 +2,7 @@
 
 > Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
-Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil est la section où il se trouve.
+Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil est la section où il se trouve ; elle fixe ses PV, son dé et ses DR de récupération et ses points de chance ([familles.md](familles.md)).
 
 <a id="famille-aventurier"></a>
 ## Aventuriers
@@ -12,8 +12,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *L’arquebusier est un dur à cuire, un mercenaire qui vient généralement d’un pays lointain et maîtrise un style de combat exotique : les armes à feu et les explosifs.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 3 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : AGI, INT, CON · **Caractéristique de magie** : —
+- **Caractéristiques clés** : AGI, INT, CON · **Caractéristique de magie** : —
 
 **Armes & armures.** L’arquebusier sait manier toutes les armes de contact à une main, les armes à distance, armes à poudre incluses. Un arquebusier sait fabriquer sa propre poudre et elle ne risque pas d’exploser malgré lui (voir la section Équipement). Les voies d’arquebusier limitent l’armure à la chemise de mailles et interdisent l’utilisation du bouclier.
 
@@ -36,8 +35,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le barde est un personnage polyvalent qui utilise la magie et le spectacle pour divertir et parvenir à ses fins. Il est aussi habitué aux ruses qu’à la diplomatie. Ses capacités sont globalement moins tournées vers le combat et davantage vers les interactions douces.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 3 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : CHA, AGI, VOL · **Caractéristique de magie** : CHA
+- **Caractéristiques clés** : CHA, AGI, VOL · **Caractéristique de magie** : CHA
 
 **Armes & armures.** Le barde sait manier les armes à une main. Les voies de barde limitent l’armure au cuir renforcé et interdisent l’utilisation du bouclier. Il est nécessaire d’avoir une main libre pour utiliser les capacités de bardes (ni arme secondaire ni bouclier).
 
@@ -56,8 +54,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le rôdeur est à l’aise dans les forêts ténébreuses, où il traque les animaux dangereux et les créatures monstrueuses ou, au contraire, se fait l’ami des bêtes et le protecteur des lieux sauvages.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 3 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : AGI, PER, CON · **Caractéristique de magie** : —
+- **Caractéristiques clés** : AGI, PER, CON · **Caractéristique de magie** : —
 
 **Armes & armures.** Le rôdeur sait manier les armes de contact à une main et toutes les armes à distance. Les voies de rôdeur limitent l’armure au cuir renforcé et interdisent le port du bouclier.
 
@@ -76,8 +73,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le voleur crochète les portes, détecte les pièges et préfère piller les cadavres des ennemis que se salir les mains pendant le combat. Toutefois, s’il doit combattre, il possède un répertoire impressionnant de coups tordus qui font de lui un redoutable adversaire.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 3 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : AGI, INT, CHA · **Caractéristique de magie** : —
+- **Caractéristiques clés** : AGI, INT, CHA · **Caractéristique de magie** : —
 
 **Armes & armures.** Le voleur sait manier les armes de contact à une main et toutes les armes à distance. Les voies de voleur limitent l’armure au cuir simple et interdisent l’utilisation du bouclier.
 
@@ -99,8 +95,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le barbare est un combattant sauvage issu d’une culture primitive. Il affronte ses ennemis avec rage sans se cacher derrière une lourde armure.*
 
-- **PV niveau 1** : 10 + CON · **PV par niveau** : 5 + CON · **Dé de récupération** : d10 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
+- **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
 
 **Armes & armures.** Le barbare sait manier toutes les armes au contact, toutes les armes à distance (sauf les arbalètes et les armes d’une technologie trop complexe). Les voies de barbare limitent l’armure au cuir renforcé. Le barbare peut en revanche utiliser tous les boucliers.
 
@@ -119,8 +114,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le chevalier est un noble guerrier errant, monté sur un puissant destrier et protégé par une armure lourde. Il parcourt la campagne en quête de torts à redresser et d’occasions de mettre son courage à l’épreuve.*
 
-- **PV niveau 1** : 10 + CON · **PV par niveau** : 5 + CON · **Dé de récupération** : d10 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : FOR, CHA, CON · **Caractéristique de magie** : —
+- **Caractéristiques clés** : FOR, CHA, CON · **Caractéristique de magie** : —
 
 **Armes & armures.** Le chevalier sait manier toutes les armes de contact, mais il dédaigne les armes à distance qu’il considère comme des armes de couard. Les voies de chevalier limitent l’armure à celle de plaque (l’armure de plaque complète nécessite une capacité particulière). Il peut utiliser tous les boucliers.
 
@@ -139,8 +133,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le guerrier est un combattant émérite qui ne craint pas le danger et qui affronte ses ennemis l’arme à la main. De tous les profils de combattant, il est le plus spécialisé et le plus complet dans l’art du combat au corps à corps.*
 
-- **PV niveau 1** : 10 + CON · **PV par niveau** : 5 + CON · **Dé de récupération** : d10 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
+- **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
 
 **Armes & armures.** Le guerrier sait manier toutes les armes de contact et toutes les armes à distance. Les voies de guerrier limitent l’armure à la cotte de mailles. Il peut utiliser tous les boucliers.
 
@@ -162,8 +155,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *L’ensorceleur tire son pouvoir d’un talent inné pour la magie. Il pratique une magie subtile à base de tromperie et de contrôle, et possède peu de sorts de destruction massive.*
 
-- **PV niveau 1** : 6 + CON · **PV par niveau** : 3 + CON · **Dé de récupération** : d6 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : CHA, VOL, AGI · **Caractéristique de magie** : CHA
+- **Caractéristiques clés** : CHA, VOL, AGI · **Caractéristique de magie** : CHA
 - **+1 capacité de rang 2** à la création du personnage
 - Accès à la **voie du mage** en remplacement de la voie de peuple.
 
@@ -184,8 +176,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *À la fois artisan et enchanteur, artiste et magicien, le forgesort lie les énergies occultes à la matière qu’il façonne pour créer des artefacts magiques ou des breuvages aux propriétés fantastiques. Le forgesort est aussi le seul utilisateur de magie profane à pouvoir porter une armure.*
 
-- **PV niveau 1** : 6 + CON · **PV par niveau** : 3 + CON · **Dé de récupération** : d6 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : INT, VOL, CON · **Caractéristique de magie** : INT
+- **Caractéristiques clés** : INT, VOL, CON · **Caractéristique de magie** : INT
 - **+1 capacité de rang 2** à la création du personnage
 - Accès à la **voie du mage** en remplacement de la voie de peuple.
 
@@ -210,8 +201,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le magicien est un érudit qui a fait de longues études sur les fondements théoriques de la magie avant d’être capable de lancer ses premiers sorts. Toutefois, ce n’est pas qu’un rat de bibliothèque, il fait aussi appel à la magie pour se débarrasser de ses ennemis et pour aider ses compagnons. Son bien le plus précieux est son grimoire où il a inscrit tous ses sorts.*
 
-- **PV niveau 1** : 6 + CON · **PV par niveau** : 3 + CON · **Dé de récupération** : d6 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : INT, VOL, AGI · **Caractéristique de magie** : INT
+- **Caractéristiques clés** : INT, VOL, AGI · **Caractéristique de magie** : INT
 - **+1 capacité de rang 2** à la création du personnage
 - Accès à la **voie du mage** en remplacement de la voie de peuple.
 
@@ -232,8 +222,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le sorcier est un lanceur de sorts qui s’intéresse aux forces obscures et au pouvoir de la mort. Parfois nommés nécromanciens ou démonistes, les sorciers sont généralement considérés comme maléfiques et sont peu appréciés. Toutefois, cela dépend des cultures : après tout, est‑il plus maléfique de vider un ennemi de son sang que de le découper à coup de hache ou de le carboniser à coup de Explosion de feu ? C’est une des questions que soulève le sorcier ! Interprétez‑le de façon subtile afin d’en faire un personnage plutôt sombre ou désespéré, mais pas nécessairement « mauvais ».*
 
-- **PV niveau 1** : 6 + CON · **PV par niveau** : 3 + CON · **Dé de récupération** : d6 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : INT, VOL, CON · **Caractéristique de magie** : INT
+- **Caractéristiques clés** : INT, VOL, CON · **Caractéristique de magie** : INT
 - **+1 capacité de rang 2** à la création du personnage
 - Accès à la **voie du mage** en remplacement de la voie de peuple.
 
@@ -257,8 +246,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le druide est un prêtre de la nature qui défend sa pureté originelle et tire ses pouvoirs de la vie, des animaux et des plantes.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 3 + CON · **Caractéristiques clés** : PER, VOL, CON ou AGI · **Caractéristique de magie** : PER
+- **Caractéristiques clés** : PER, VOL, CON ou AGI · **Caractéristique de magie** : PER
 - **+1** dé de récupération
 
 **Armes & armures.** Le druide sait manier la dague, le bâton noueux (équivalent au bâton ferré), l’épieu, le javelot et l’arc court. Les voies de druide limitent l’armure au cuir simple. Il peut utiliser le petit bouclier en bois (DEF +1).
@@ -282,8 +270,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le moine combat à mains nues et utilise le contrôle qu’il a sur son esprit et son corps pour transformer ce dernier en arme de chair. Il peut être issu d’un monastère et pratiquer les arts martiaux, mais vous pouvez aussi développer toutes sortes de combattants à mains nues, depuis un gladiateur formé à la lutte, en passant par un enfant sauvage qui n’a jamais eu d’autre arme que ce que dame nature lui a donné. Toutefois, le profil de moine ne se cantonne pas au combat à mains nues, il couvre tous les combattants acrobates qui réalisent des prouesses martiales. Les capacités de moine peuvent être déclinées avec une arme de prédilection et elles ouvrent alors une infinité de profils hybrides.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 3 + CON · **Caractéristiques clés** : VOL, PER, AGI · **Caractéristique de magie** : —
+- **Caractéristiques clés** : VOL, PER, AGI · **Caractéristique de magie** : —
 - **+1** dé de récupération
 
 **Armes & armures.** Le moine sait manier toutes les armes (sauf les armes à poudre), y compris celles à deux mains, mais la plupart des moines n’y font pas appel et sont plus efficaces à mains nues. En effet, tous les moines infligent des DM létaux avec les attaques à mains nues lorsqu’ils le souhaitent. Les voies de moine interdisent de porter une armure ou d’utiliser un bouclier.
@@ -309,8 +296,7 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 *Le prêtre perçoit la nature divine du monde et les desseins des dieux. Il utilise l’énergie transmise par sa divinité pour mener à bien ses missions avec la force de la foi, mais aussi celle des armes si nécessaire.*
 
-- **PV niveau 1** : 8 + CON · **PV par niveau** : 4 + CON · **Dé de récupération** : d8 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 3 + CON · **Caractéristiques clés** : CHA, VOL, FOR · **Caractéristique de magie** : CHA
+- **Caractéristiques clés** : CHA, VOL, FOR · **Caractéristique de magie** : CHA
 - **+1** dé de récupération
 
 **Armes & armures.** Le prêtre sait manier les armes contondantes à une main ainsi que le bâton ferré. Les prêtres ont l’interdiction morale de faire couler le sang (!) et n’utilisent donc pas les armes tranchantes ou perçantes pour des raisons religieuses. L’arme sacrée d’un prêtre spécialiste constitue une exception. Les voies de prêtre limitent l’armure à la chemise de mailles et permettent d’utiliser le petit bouclier (DEF +1).

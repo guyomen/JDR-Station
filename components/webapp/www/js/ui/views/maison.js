@@ -105,11 +105,12 @@ function maisonVoiesPicker(e, model, peuple) {
 }
 
 function maisonProfilForm(e, model) {
+  const f = model.familles[e.famille] || {};
   return `${mSelect('Famille', 'famille', e.famille, maisonFamilles('profil'))}
     ${mArea('Description', 'desc', e.desc, 'Une phrase, affichée en italique', 2)}
-    <p class="small">PV niveau 1 <b>${esc(e.pv1 || '—')}</b> · PV par niveau <b>${esc(e.pvniv ? e.pvniv + ' + CON' : '—')}</b> ·
-      dé de récupération <b>${esc(e.dr || '—')}</b> · DR au niveau 1 <b>${esc(e.drn || '—')}</b> · points de chance <b>${esc(e.pc || '—')}</b>
-      <span class="muted">: valeurs de la famille ${esc(maisonFam(e.famille))}, comme pour ses autres profils.</span></p>
+    <p class="small">PV niveau 1 <b>${esc(f.pv1 || '—')}</b> · PV par niveau <b>${esc(f.pvniv ? f.pvniv + ' + CON' : '—')}</b> ·
+      dé de récupération <b>${esc(f.dr || '—')}</b> · DR au niveau 1 <b>${esc(f.drn || '—')}</b> · points de chance <b>${esc(f.pc || '—')}</b>
+      <span class="muted">: valeurs de la famille ${esc(maisonFam(e.famille))} (familles.md).</span></p>
     <div class="mgrid">
       ${mInput('Caractéristiques clés', 'car', e.car, 'FOR, CON, AGI')}
       ${mInput('Caractéristique de magie', 'magie', e.magie, '— ou INT, VOL…')}

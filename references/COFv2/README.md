@@ -52,10 +52,18 @@ existent aussi. Dans **familles.md**, chaque section peut porter :
 <a id="famille-mage"></a>
 ## Mages
 
+**PV niveau 1 :** 6 + CON
+**PV par niveau :** 3 + CON
+**Dé de récupération :** d6
+**DR au niveau 1 :** 2 + CON
+**Points de chance :** 2 + CHA
 **Particularité :** +1 capacité de rang 2 au niveau 1, voie du mage possible
 **Rang 2 dès le niveau 1 :** oui
 **Voie remplaçant la voie de peuple :** [Voie du mage](voies.md#mage)
 ```
+
+Les cinq premières lignes valent pour tous les profils de la famille (seuls les nombres comptent : `6 + CON`
+→ 6 ; « PV par niveau » : la fiche ajoute CON à chaque niveau).
 
 ### Voies (voies.md, prestige.md)
 
@@ -120,8 +128,7 @@ Texte de la capacité (Markdown libre, plusieurs paragraphes possibles).
 
 *Description en italique.*
 
-- **PV niveau 1** : 10 + CON · **PV par niveau** : 5 + CON · **Dé de récupération** : d10 · **Points de chance** : 2 + CHA
-- **DR au niveau 1** : 2 + CON · **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
+- **Caractéristiques clés** : FOR, CON, AGI · **Caractéristique de magie** : —
 - Autre particularité (texte libre, affiché sur la fiche)
 
 **Armes & armures.** …
@@ -135,8 +142,9 @@ Texte de la capacité (Markdown libre, plusieurs paragraphes possibles).
 - [Voie du bouclier](voies.md#bouclier) — résumé libre
 ```
 
-La fiche lit les deux lignes de valeurs (seuls les nombres comptent : `10 + CON` → 10) et les liens de la
-liste **Voies**.
+La fiche lit la ligne des caractéristiques et les liens de la liste **Voies**. PV, dé et DR de récupération
+et points de chance sont ceux de la famille (familles.md) ; un profil peut les redonner sur cette ligne
+(`· **PV niveau 1** : 12 + CON`…) pour s'en écarter.
 
 ### Peuples (peuples.md)
 
