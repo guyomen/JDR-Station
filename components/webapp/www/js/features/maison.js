@@ -200,13 +200,22 @@ function maisonSet(texts) {
 }
 const maisonChanged = () => (S.maison ? Object.keys(RULES_DOCS).filter(d => S.maison.texts[d] !== RULES.texts[d]) : []);
 
+/* Valeurs d'un profil fixées par sa famille (PV, DR, points de chance) : reprises d'un autre profil de la
+ * même famille dans profils.md ; null si la famille n'en a aucun. */
+const MAISON_FAM_FIELDS = ['pv1', 'pvniv', 'dr', 'drn', 'pc'];
+function maisonFamValues(famille, model, except) {
+  const p = Object.entries(model.profils).find(([id, x]) => x.famille === famille && id !== except);
+  return p ? Object.fromEntries(MAISON_FAM_FIELDS.map(k => [k, p[1][k]])) : null;
+}
+
 function maisonBlank(kind) {
   if (kind === 'voie') {
     return { id: '', doc: 'voies', famille: maisonFamilles('voie', 'voies')[0][0], name: '', intro: '',
       caps: [0, 1, 2, 3, 4].map(() => ({ name: '', spell: false, action: '', text: '', bonus: '' })) };
   }
   if (kind === 'profil') {
-    return { id: '', famille: maisonFamilles('profil')[0][0], name: '', desc: '', pv1: '', pvniv: '', dr: '', pc: '', drn: '',
+    const famille = maisonFamilles('profil')[0][0];
+    return { id: '', famille, name: '', desc: '', pv1: '', pvniv: '', dr: '', pc: '', drn: '', ...maisonFamValues(famille, S.maison.model),
       car: '', magie: '', bonus: '', armes: '', equipement: '', extra: '', voies: [] };
   }
   return { id: '', name: '', desc: '', car: '', autres: '', voies: [] };
@@ -223,6 +232,7 @@ function maisonEdit(kind, id) {
 function maisonApply() {
   const M = S.maison;
   const { kind, orig, data } = M.edit;
+  if (kind === 'profil') Object.assign(data, maisonFamValues(data.famille, M.model, orig));
   const err = maisonCheck(kind, data, orig, M.model);
   if (err.length) { M.err = err; return false; }
   const entries = maisonRead(M.texts);
@@ -280,6 +290,7 @@ function maisonField(el) {
   if (el.tagName === 'SELECT') {
     const fams = maisonFamilles(ed.kind, ed.data.doc);
     if (!fams.some(([k]) => k === ed.data.famille)) ed.data.famille = fams[0][0];
+    if (ed.kind === 'profil') Object.assign(ed.data, maisonFamValues(ed.data.famille, S.maison.model, ed.orig));
     render();
   }
 }

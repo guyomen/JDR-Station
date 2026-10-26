@@ -130,8 +130,9 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
      partir du nom et ne change plus ensuite (les fiches s'en servent) ;
   2. une voie : son type (profil ou peuple, rangs 1 à 5 ; prestige, rangs 4 à 8), sa famille, puis pour
      chaque capacité son nom, son type d'action, « sort », son texte et ses **bonus permanents**
-     (`DEF +1 · Init +CHA`, `armes arc : DM +PER`… : voir l'aide sous les capacités). Un profil : ses
-     valeurs (PV, DR, points de chance…) et sa liste de voies ; un peuple : ses caractéristiques et ses voies ;
+     (`DEF +1 · Init +CHA`, `armes arc : DM +PER`… : voir l'aide sous les capacités). Un profil : sa
+     famille (qui fixe PV, dé et DR de récupération, points de chance, repris de ses autres profils), ses
+     caractéristiques clés et de magie, et sa liste de voies ; un peuple : ses caractéristiques et ses voies ;
   3. **Valider** range l'élément dans les documents de travail (après vérification : identifiant libre, texte
      relu à l'identique) ; rien n'est encore envoyé ;
   4. **Vérifier et envoyer…** affiche le même rapport que l'envoi de fichiers, puis **⬆ Envoyer à la station**.
