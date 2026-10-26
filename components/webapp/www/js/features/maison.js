@@ -67,10 +67,10 @@ function maisonNorm(kind, e) {
 }
 
 /* ---------- Écriture (entrées déjà normalisées) ---------- */
+/* Lien vers une voie (le résumé de ses capacités est ajouté à l'affichage, cf. voieResume). */
 function maisonVoieLink(id, model) {
   const v = model.voies[id];
-  if (!v) return `[${id}](voies.md#${id})`;
-  return `[${v.name}](${v.prestige ? 'prestige' : 'voies'}.md#${id}) — ${v.caps.map(c => `${c.rang} ${c.name}${c.spell ? '*' : ''}`).join(' · ')}`;
+  return v ? `[${v.name}](${v.prestige ? 'prestige' : 'voies'}.md#${id})` : `[${id}](voies.md#${id})`;
 }
 
 function maisonWriteVoie(v) {
@@ -145,8 +145,8 @@ function maisonWrite(texts, entries, model) {
   return out;
 }
 
-/* Réécriture complète ; si une voie change, une seconde passe met à jour les liens (nom, capacités) des
- * profils et peuples maison qui la citent. */
+/* Réécriture complète ; si une voie change, une seconde passe met à jour le nom des liens des profils et
+ * peuples maison qui la citent. */
 function maisonRewrite(texts, entries, model, kind) {
   const out = { ...texts, ...maisonWrite(texts, entries, model) };
   return kind === 'voie' ? { ...out, ...maisonWrite(out, entries, readRules(out).model) } : out;

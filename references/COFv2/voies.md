@@ -2,7 +2,7 @@
 
 > Source : [DRS Chroniques Oubliées Fantasy](https://drs.chroniques-oubliees.fr/fantasy) (Black Book Éditions). Format des balises : voir [README](README.md).
 
-Chaque voie a 5 capacités (rangs 1 à 5). `*` / « sort » = capacité de sort (compte pour les PM). Actions : A = attaque, L = limitée, M = mouvement, G = gratuite. **Bonus** : bonus permanents appliqués automatiquement par la fiche.
+Chaque voie a 5 capacités (rangs 1 à 5). `*` / « sort » = capacité de sort (compte pour les PM). Actions : A = attaque, L = limitée, M = mouvement, G = gratuite. **Bonus** : bonus permanents appliqués automatiquement par la fiche. Le regroupement par profil sert à la lecture : la fiche lit les listes **Voies** de [profils.md](profils.md).
 
 ## Sommaire
 

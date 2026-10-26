@@ -29,7 +29,7 @@ Le demi‐elfe a hérité des qualités de ses deux parents (humain et elfe). Il
 
 Les noms des personnages demi‑elfes reflètent souvent leur double nature et ils se composent d’un prénom elfique et d’un nom de famille humain. L’inverse est plus rare car les elfes n’acceptent pas qu’une créature avec une durée de vie aussi brève porte le nom de leur lignée.
 
-**Voie(s) :** [Voie de l'elfe haut](voies.md#elfe-haut) — 1 Lumière intérieure · 2 Force d'âme · 3 Talent pour la magie · 4 Immortel · 5 Supériorité elfique, [Voie de l'elfe sylvain](voies.md#elfe-sylvain) — 1 Lumière des étoiles · 2 Enfant de la forêt · 3 Archer émérite · 4 Flèche sanglante · 5 Supériorité elfique, [Voie de l'humain](voies.md#humain) — 1 Diversité · 2 Instinct de survie · 3 Touche-à-tout · 4 Loup parmi les loups · 5 Polyvalence
+**Voie(s) :** [Voie de l'elfe haut](voies.md#elfe-haut), [Voie de l'elfe sylvain](voies.md#elfe-sylvain), [Voie de l'humain](voies.md#humain)
 
 <a id="demi-orc"></a>
 ## Demi-orc
@@ -64,7 +64,7 @@ Les noms féminins sont généralement les mêmes que les noms masculins mais av
 
 **Féminin.** Aoga, Bargula, Caroka, Droga, Eroka, Farga, Goroga, Hurla, Jorgula, Kroka, Krusha, Lugna, Moga, Noroka, Rorka, Urdua, etc.
 
-**Voie(s) :** [Voie du demi-orc](voies.md#demi-orc) — 1 Impressionnant · 2 Talent pour la violence · 3 Critique brutal · 4 Attaque sanglante · 5 Colosse
+**Voie(s) :** [Voie du demi-orc](voies.md#demi-orc)
 
 <a id="elfe-haut"></a>
 ## Elfe haut
@@ -95,7 +95,7 @@ Les elfes hauts privilégient les noms aux sonorités douces mais complexes. L, 
 
 **Féminin.** Elberenh, Elidhwen, Ellenúviel, Laurelinn, Linaëwen, Laendorië, Maelwë, Maerwen, Nennenvaël, Ninwelotë, Tintaëlle, etc.
 
-**Voie(s) :** [Voie de l'elfe haut](voies.md#elfe-haut) — 1 Lumière intérieure · 2 Force d'âme · 3 Talent pour la magie · 4 Immortel · 5 Supériorité elfique
+**Voie(s) :** [Voie de l'elfe haut](voies.md#elfe-haut)
 
 <a id="elfe-sylvain"></a>
 ## Elfe sylvain
@@ -126,7 +126,7 @@ Les elfes des bois ont des noms assez similaires à ceux des elfes hauts, quoiqu
 
 **Féminin.** Aëldill, Aluinill, Aliann, Dianaë, Eilinelle, Elenwëe, Lúthill, Nínielle, Nolwaënn, Mírielle, Keltienn, etc.
 
-**Voie(s) :** [Voie de l'elfe sylvain](voies.md#elfe-sylvain) — 1 Lumière des étoiles · 2 Enfant de la forêt · 3 Archer émérite · 4 Flèche sanglante · 5 Supériorité elfique
+**Voie(s) :** [Voie de l'elfe sylvain](voies.md#elfe-sylvain)
 
 <a id="gnome"></a>
 ## Gnome
@@ -157,7 +157,7 @@ Les gnomes aiment les prénoms que les humains jugent désuets. Ils ont aussi un
 
 **Féminin.** Thérèse Aliserwilp, Huguette Uhldimmerstelp, Rose Molkenpulp, Eugénie Bimpbelinedor, etc.
 
-**Voie(s) :** [Voie du gnome](voies.md#gnome) — 1 Don étrange · 2 Petit pote · 3 Insignifiant · 4 Merveille technologique · 5 Bonne nature
+**Voie(s) :** [Voie du gnome](voies.md#gnome)
 
 <a id="halfelin"></a>
 ## Halfelin
@@ -188,7 +188,7 @@ Les halfelins mâles utilisent des prénoms courts qui ressemblent à des diminu
 
 **Féminin.** Églantine, Lila, Jacinthe, Marguerite, Muguette, Pâquerette, Prune, Rose, etc.
 
-**Voie(s) :** [Voie du halfelin](voies.md#halfelin) — 1 Petite taille · 2 Résistance légendaire · 3 Bon pour le moral · 4 Petit veinard · 5 Vif et bien nourri
+**Voie(s) :** [Voie du halfelin](voies.md#halfelin)
 
 <a id="humain"></a>
 ## Humain
@@ -218,7 +218,7 @@ Les humains ont les prénoms et les noms les plus variés qu’il soit. Vous pou
 
 **Féminin.** Annia, Alaina, Berthille, Bérénia, Télinne, Koralie, Floraline, Gadrielle, Jocynthe, Kéline, Myrthinne, Marille, Naelwen, Natasha, Odaelle, Prescille, Sorsha, Véronelle, Wendoline, etc.
 
-**Voie(s) :** [Voie de l'humain](voies.md#humain) — 1 Diversité · 2 Instinct de survie · 3 Touche-à-tout · 4 Loup parmi les loups · 5 Polyvalence
+**Voie(s) :** [Voie de l'humain](voies.md#humain)
 
 <a id="nain"></a>
 ## Nain
@@ -251,7 +251,7 @@ Chez les femmes, la terminaison en ‑hild ou ‑id est la plus courante.
 
 **Féminin.** Astrid, Arnhild, Berthild, Brynild, Eldrid, Ermenhild, Frida, Gerda, Grimhild, Gudrun, Helga, Hilda, Ingrid, Klothild, Sigrid, Strida etc.
 
-**Voie(s) :** [Voie du nain](voies.md#nain) — 1 Habitant des tunnels · 2 Haches et marteaux · 3 Résistance à la magie · 4 Fils du roc · 5 Ténacité
+**Voie(s) :** [Voie du nain](voies.md#nain)
 
 <a id="mage"></a>
 ## Mage
@@ -264,4 +264,4 @@ Il ne conserve que la capacité de rang 1 de sa voie de peuple, acquise dès la 
 
 Si vous comptez jouer un mage pur (c’est‐à‐dire que vous ne songez pas à un profil hybride d’une autre famille que les mages), nous vous conseillons de choisir cette voie qui améliore à la fois la polyvalence et la puissance de feu à haut niveau.
 
-**Voie(s) :** [Voie du mage](voies.md#mage) — 1 Capacité de peuple + occultisme · 2 Maîtrise de la magie* · 3 Tour de magie* · 4 Esprit supérieur · 5 Tempête de mana
+**Voie(s) :** [Voie du mage](voies.md#mage)

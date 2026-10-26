@@ -142,7 +142,7 @@ On gagne un niveau à la fin d'une aventure ou d'une étape importante de campag
 
 Le texte complet, issu du DRS, est dans les documents dédiés :
 
-- [Familles de profils](familles.md) : PV, DR, PC et particularités de chaque famille, listes des voies de profil et de prestige.
+- [Familles de profils](familles.md) : PV, DR, PC et particularités de chaque famille.
 - [Profils](profils.md) : les 14 profils, armes et armures, équipement de départ, leurs 5 voies.
 - [Peuples](peuples.md) : modificateurs de caractéristiques, repères, noms, voie de peuple.
 - [Voies de profil et de peuple](voies.md) : les 5 capacités de chaque voie.
@@ -160,19 +160,9 @@ Chaque peuple donne une **voie de peuple** (rang 1 gratuit). Les mages peuvent l
 | Mages | INT (CHA pour l'ensorceleur) | aucune (sauf forgesort) |
 | Mystiques | VOL | selon le profil |
 
-### Caractéristiques clés des profils (par ordre d'importance)
+### Caractéristiques clés des profils
 
-| Profil | Caractéristiques | | Profil | Caractéristiques |
-|---|---|---|---|---|
-| Arquebusier | AGI, INT, CON | | Ensorceleur | CHA, VOL, AGI |
-| Barde | CHA, AGI, VOL | | Forgesort | INT, VOL, CON |
-| Rôdeur | AGI, PER, CON | | Magicien | INT, VOL, AGI |
-| Voleur | AGI, INT, CHA | | Sorcier | INT, VOL, CON |
-| Barbare | FOR, CON, AGI | | Druide | PER, VOL, CON ou AGI |
-| Chevalier | FOR, CHA, CON | | Moine | VOL, PER, AGI |
-| Guerrier | FOR, CON, AGI | | Prêtre | CHA, VOL, FOR |
-
-**Caractéristique de magie** (mettre au moins +1) : INT pour magicien, forgesort, sorcier · CHA pour ensorceleur, barde, prêtre · PER pour druide.
+Chaque profil indique ses caractéristiques clés (par ordre d'importance) et sa caractéristique de magie (mettre au moins +1) : voir [Profils](profils.md).
 
 ## 4. Règles de jeu (p. 198-246)
 

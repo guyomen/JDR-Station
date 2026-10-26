@@ -8,7 +8,7 @@ et les affiche dans l'**Espace Règles**. Les modifier change donc les règles d
 |---|---|---|---|
 | [regles.md](regles.md) | Aide-mémoire : création, progression, tests, combat, magie, aventure | états, séries de caractéristiques, niveaux requis par rang, idéaux et travers | Livre (PDF) |
 | [equipement.md](equipement.md) | Monnaie, matériel, montures, auberge, armes, armures et boucliers, qualité, exotique | armes, armures, boucliers | Livre (PDF) |
-| [familles.md](familles.md) | Les familles de profils : particularités, voies de profil et de prestige | particularité, rang 2 au niveau 1, voie remplaçant la voie de peuple | DRS |
+| [familles.md](familles.md) | Les familles de profils : PV, DR, points de chance, particularités | tout | DRS |
 | [profils.md](profils.md) | Les profils : description, PV, DR, PC, armes et armures, équipement, voies | tout | DRS |
 | [peuples.md](peuples.md) | Les peuples et la voie du mage : caractéristiques, repères, noms, voie de peuple | nom, modificateurs, voies de peuple | DRS |
 | [voies.md](voies.md) | Les voies de profil et de peuple (5 capacités chacune) | tout, bonus et variantes compris | DRS |
@@ -139,12 +139,16 @@ Texte de la capacité (Markdown libre, plusieurs paragraphes possibles).
 
 **Voies :**
 
-- [Voie du bouclier](voies.md#bouclier) — résumé libre
+- [Voie du bouclier](voies.md#bouclier)
 ```
 
 La fiche lit la ligne des caractéristiques et les liens de la liste **Voies**. PV, dé et DR de récupération
 et points de chance sont ceux de la famille (familles.md) ; un profil peut les redonner sur cette ligne
 (`· **PV niveau 1** : 12 + CON`…) pour s'en écarter.
+
+L'Espace Règles ajoute derrière un lien vers une voie qui termine une ligne ou une liste (`[A](voies.md#a), [B](voies.md#b)`)
+le résumé de ses capacités (`— 1 Cri de guerre · 2 … `, `*` = sort), lu dans les règles en vigueur : il n'est pas
+à écrire dans les documents.
 
 ### Peuples (peuples.md)
 

@@ -24,11 +24,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'artilleur](voies.md#artilleur) — 1 Mécanismes · 2 Arme à répétition · 3 Tir de barrage · 4 Canon double · 5 Couleuvrine
-- [Voie des explosifs](voies.md#explosifs) — 1 Tir de grenaille · 2 Démolition · 3 Poudre puissante · 4 Piège explosif · 5 Boulet explosif
-- [Voie du mercenaire](voies.md#mercenaire) — 1 Pilier de bar · 2 Mort-ou-vif · 3 Combattant aguerri · 4 Constitution héroïque · 5 Combat de masse
-- [Voie du pistolero](voies.md#pistolero) — 1 Plus vite que son ombre · 2 Ajuster le tir · 3 Tir double · 4 Agilité héroïque · 5 As de la gâchette
-- [Voie de la précision](voies.md#precision) — 1 Joli coup · 2 Défaut dans la cuirasse · 3 Tir précis · 4 Tireur d'élite · 5 Tir fatal
+- [Voie de l'artilleur](voies.md#artilleur)
+- [Voie des explosifs](voies.md#explosifs)
+- [Voie du mercenaire](voies.md#mercenaire)
+- [Voie du pistolero](voies.md#pistolero)
+- [Voie de la précision](voies.md#precision)
 
 <a id="barde"></a>
 ### Barde
@@ -43,11 +43,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'escrime](voies.md#escrime) — 1 Précision · 2 Feinte · 3 Intelligence du combat · 4 Attaque flamboyante · 5 Botte mortelle
-- [Voie du musicien](voies.md#musicien) — 1 Chant des héros* · 2 Chant du réconfort* · 3 Attaque sonore* · 4 Zone de silence* · 5 Danse irresistible*
-- [Voie du saltimbanque](voies.md#saltimbanque) — 1 Acrobate · 2 Grâce féline · 3 Lanceur de couteaux · 4 Liberté d'action · 5 Esquive acrobatique
-- [Voie de la séduction](voies.md#seduction) — 1 Charmant · 2 Dentelle et rapière · 3 Baratineur de génie · 4 Charisme héroïque · 5 Suggestion*
-- [Voie du vagabond](voies.md#vagabond) — 1 Rumeurs et légendes · 2 Éclectique · 3 Attirail · 4 Comprehension des langues* · 5 Déguisement*
+- [Voie de l'escrime](voies.md#escrime)
+- [Voie du musicien](voies.md#musicien)
+- [Voie du saltimbanque](voies.md#saltimbanque)
+- [Voie de la séduction](voies.md#seduction)
+- [Voie du vagabond](voies.md#vagabond)
 
 <a id="rodeur"></a>
 ### Rôdeur
@@ -62,11 +62,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'archer](voies.md#archer) — 1 Archer émérite · 2 Tir chirurgical · 3 Dans le mille · 4 Tir rapide · 5 Flèche de mort
-- [Voie du combat à deux armes](voies.md#combat-deux-armes) — 1 Attaque à suivre · 2 Parade croisée · 3 Droite-gauche · 4 Combattant héroïque · 5 Double peine
-- [Voie du compagnon animal](voies.md#compagnon-animal) — 1 Le loup · 2 Travail d'équipe · 3 Lien empathique · 4 Loup alpha · 5 Tactiques de meute
-- [Voie de la survie](voies.md#survie) — 1 Survie · 2 Nature nourricière · 3 Grand pas · 4 Constitution héroïque · 5 Increvable
-- [Voie du traqueur](voies.md#traqueur) — 1 Éclaireur · 2 Attaque éclair · 3 Chasseur émérite · 4 Perception héroïque · 5 Repli
+- [Voie de l'archer](voies.md#archer)
+- [Voie du combat à deux armes](voies.md#combat-deux-armes)
+- [Voie du compagnon animal](voies.md#compagnon-animal)
+- [Voie de la survie](voies.md#survie)
+- [Voie du traqueur](voies.md#traqueur)
 
 <a id="voleur"></a>
 ### Voleur
@@ -81,11 +81,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'assassin](voies.md#assassin) — 1 Discrétion · 2 Attaque sournoise · 3 Attaque par surprise · 4 Disparition · 5 Ouverture mortelle
-- [Voie de l'aventurier](voies.md#aventurier) — 1 Baratin · 2 Provocation · 3 Souplesse du félin · 4 Charisme héroïque · 5 Attaque paralysante
-- [Voie du déplacement](voies.md#deplacement) — 1 Agile · 2 Réflexes félins · 3 Acrobaties · 4 Agilité héroïque · 5 Esquive de la magie
-- [Voie du roublard](voies.md#roublard) — 1 Doigts agiles · 2 Aux aguets · 3 Feindre la mort · 4 Expert en criminalité · 5 Maître du poison
-- [Voie du spadassin](voies.md#spadassin) — 1 Attaque en finesse · 2 Esquive fatale · 3 Frappe chirurgicale · 4 Ambidextrie · 5 Botte secrète
+- [Voie de l'assassin](voies.md#assassin)
+- [Voie de l'aventurier](voies.md#aventurier)
+- [Voie du déplacement](voies.md#deplacement)
+- [Voie du roublard](voies.md#roublard)
+- [Voie du spadassin](voies.md#spadassin)
 
 <a id="famille-combattant"></a>
 ## Combattants
@@ -103,11 +103,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de la brute](voies.md#brute) — 1 Argument de taille · 2 Tour de force · 3 Attaque brutale · 4 Force héroïque · 5 Briseur d'os
-- [Voie du pagne](voies.md#pagne) — 1 Vigueur · 2 Peau de pierre · 3 Tatouages · 4 Constitution héroïque · 5 Peau d'acier
-- [Voie du pourfendeur](voies.md#pourfendeur) — 1 Réflexes éclair · 2 Charge · 3 Enchaînement · 4 Déchaînement d'acier · 5 Attaque tourbillon
-- [Voie du primitif](voies.md#primitif) — 1 Proche de la nature · 2 Armure de vent · 3 Vigilance · 4 Résistance à la magie · 5 Vitalité débordante
-- [Voie de la rage](voies.md#rage) — 1 Cri de guerre · 2 Défier la mort · 3 Rage du berserk · 4 Même pas mal · 5 Furie du berserk
+- [Voie de la brute](voies.md#brute)
+- [Voie du pagne](voies.md#pagne)
+- [Voie du pourfendeur](voies.md#pourfendeur)
+- [Voie du primitif](voies.md#primitif)
+- [Voie de la rage](voies.md#rage)
 
 <a id="chevalier"></a>
 ### Chevalier
@@ -122,11 +122,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie du cavalier](voies.md#cavalier) — 1 Fidèle monture · 2 Cavalier émérite · 3 Charge · 4 Monture magique · 5 Monture fantastique
-- [Voie de la guerre](voies.md#guerre) — 1 Armure sur mesure · 2 Encaisser un coup · 3 Frappe du justicier · 4 Force héroïque · 5 Mon armure est une arme
-- [Voie du meneur d'hommes](voies.md#meneur-hommes) — 1 Sans peur · 2 Intercepter · 3 Exemplaire · 4 Charge fantastique · 5 Ordre de bataille
-- [Voie de la noblesse](voies.md#noblesse) — 1 Éduqué · 2 Écuyer · 3 Autorité naturelle · 4 Massacrer la piétaille · 5 Formation d'élite
-- [Voie du preux](voies.md#preux) — 1 Ignorer la douleur · 2 Piqûres d'insectes · 3 Laissez-le-moi · 4 Charisme héroïque · 5 Seul contre tous
+- [Voie du cavalier](voies.md#cavalier)
+- [Voie de la guerre](voies.md#guerre)
+- [Voie du meneur d'hommes](voies.md#meneur-hommes)
+- [Voie de la noblesse](voies.md#noblesse)
+- [Voie du preux](voies.md#preux)
 
 <a id="guerrier"></a>
 ### Guerrier
@@ -141,11 +141,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie du bouclier](voies.md#bouclier) — 1 Protéger un allié · 2 Parer un coup · 3 Défense au bouclier · 4 Absorber un sort · 5 Renvoi de sort
-- [Voie du combat](voies.md#combat) — 1 Vivacité · 2 Manoœuvre · 3 Attaque puissante · 4 Double attaque · 5 Attaque circulaire
-- [Voie du maître d'armes](voies.md#maitre-armes) — 1 Armes de prédilection · 2 Science du critique · 3 Spécialisation · 4 Attaque parfaite · 5 Riposte
-- [Voie de la résistance](voies.md#resistance) — 1 Robustesse · 2 Résilient · 3 Armure lourde · 4 Constitution héroïque · 5 Dur à cuire
-- [Voie du soldat](voies.md#soldat) — 1 Teigneux · 2 Prouesse · 3 Piqûre de rappel · 4 Force héroïque · 5 Rempart
+- [Voie du bouclier](voies.md#bouclier)
+- [Voie du combat](voies.md#combat)
+- [Voie du maître d'armes](voies.md#maitre-armes)
+- [Voie de la résistance](voies.md#resistance)
+- [Voie du soldat](voies.md#soldat)
 
 <a id="famille-mage"></a>
 ## Mages
@@ -165,11 +165,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'air](voies.md#air) — 1 Murmures dans le vent* · 2 Sous tension* · 3 Télékinésie* · 4 Foudre* · 5 Forme éthérée*
-- [Voie de la divination](voies.md#divination) — 1 Divination* · 2 Détection de l'invisible* · 3 Clairvoyance* · 4 Perception héroïque · 5 Prescience
-- [Voie de l'envoûteur](voies.md#envouteur) — 1 Injonction* · 2 Sommeil* · 3 Confusion* · 4 Amitié* · 5 Domination*
-- [Voie des illusion](voies.md#illusions) — 1 Mirage* · 2 Image décalée* · 3 Sort illusoire* · 4 Imitation* · 5 Exécution mentale*
-- [Voie de l'invocation](voies.md#invocation) — 1 Choc* · 2 Serviteur invisible* · 3 Arme de mana* · 4 Porte dimensionnelle* · 5 Mur de mana*
+- [Voie de l'air](voies.md#air)
+- [Voie de la divination](voies.md#divination)
+- [Voie de l'envoûteur](voies.md#envouteur)
+- [Voie des illusion](voies.md#illusions)
+- [Voie de l'invocation](voies.md#invocation)
 
 <a id="forgesort"></a>
 ### Forgesort
@@ -190,11 +190,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie des artefacts](voies.md#artefacts) — 1 Bâton de mage · 2 Ouverture-fermeture* · 3 Sac sans fond · 4 Frappe des arcanes* · 5 Artefact étrange
-- [Voie des élixirs](voies.md#elixirs) — 1 Fortifiant · 2 Feu grégeois · 3 Élixir de guérison · 4 Élixirs mineurs · 5 Élixirs majeurs
-- [Voie du golem](voies.md#golem) — 1 Grosse tête · 2 Golem · 3 Protecteur · 4 Statuette* · 5 Golem supérieur
-- [Voie du métal](voies.md#metal) — 1 Morsure de la forge* · 2 Métal brûlant* · 3 Magnétisme* · 4 Métal hurlant* · 5 Endurer
-- [Voie des runes](voies.md#runes) — 1 Runes de défense · 2 Rune de puissance* · 3 Rune de protection* · 4 Rune d'énergie* · 5 Rune de garde*
+- [Voie des artefacts](voies.md#artefacts)
+- [Voie des élixirs](voies.md#elixirs)
+- [Voie du golem](voies.md#golem)
+- [Voie du métal](voies.md#metal)
+- [Voie des runes](voies.md#runes)
 
 <a id="magicien"></a>
 ### Magicien
@@ -211,11 +211,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de la magie des arcanes](voies.md#magie-arcanes) — 1 Projectile de mana* · 2 Lévitation* · 3 Forme gazeuse* · 4 Accélération* · 5 Désintégration*
-- [Voie de la magie destructrice](voies.md#magie-destructrice) — 1 Arc de feu* · 2 Saper les forces* · 3 Flèche de feu* · 4 Explosion de feu* · 5 Appel de la foudre*
-- [Voie de la magie élémentaire](voies.md#magie-elementaire) — 1 Asphixie* · 2 Maîtrise des éléments* · 3 Arme élémentaire* · 4 Respiration aquatique* · 5 Armure de pierre*
-- [Voie de la magie protectrice](voies.md#magie-protectrice) — 1 Armure de mana* · 2 Chute ralentie* · 3 Déphasage* · 4 Cercle de protection* · 5 Interruption du temps*
-- [Voie de la magie universelle](voies.md#magie-universelle) — 1 Lumière* · 2 Familier* · 3 Invisibilité* · 4 Vol* · 5 Téléportation*
+- [Voie de la magie des arcanes](voies.md#magie-arcanes)
+- [Voie de la magie destructrice](voies.md#magie-destructrice)
+- [Voie de la magie élémentaire](voies.md#magie-elementaire)
+- [Voie de la magie protectrice](voies.md#magie-protectrice)
+- [Voie de la magie universelle](voies.md#magie-universelle)
 
 <a id="sorcier"></a>
 ### Sorcier
@@ -232,11 +232,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie du démon](voies.md#demon) — 1 Malédiction* · 2 Beauté de la succube* · 3 Pacte démoniaque · 4 Aspect du démon* · 5 Invocation d'un démon*
-- [Voie de la mort](voies.md#mort) — 1 Siphon des âmes · 2 Masque mortuaire* · 3 Baiser du vampire* · 4 Peur* · 5 Briser les cœurs*
-- [Voie de l'outre-tombe](voies.md#outre-tombe) — 1 Un pied dans la tombe* · 2 Armure d'os · 3 Animation des morts* · 4 Ensevelissement* · 5 Armée des morts*
-- [Voie du sang](voies.md#sang) — 1 Saignements* · 2 Sang mordant* · 3 Exsangue · 4 Rituel du sang* · 5 Lien de sang*
-- [Voie de la sombre magie](voies.md#sombre-magie) — 1 Ténèbres* · 2 Reptation* · 3 Strangulation* · 4 Manteau de l'ombre* · 5 Pacte ténébreux
+- [Voie du démon](voies.md#demon)
+- [Voie de la mort](voies.md#mort)
+- [Voie de l'outre-tombe](voies.md#outre-tombe)
+- [Voie du sang](voies.md#sang)
+- [Voie de la sombre magie](voies.md#sombre-magie)
 
 <a id="famille-mystique"></a>
 ## Mystiques
@@ -259,11 +259,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie des animaux](voies.md#animaux) — 1 Langage des animaux · 2 Petit compagnon · 3 Nuée d'insectes* · 4 Masque du prédateur* · 5 Forme animale*
-- [Voie du fauve](voies.md#fauve) — 1 Vitesse du félin · 2 Panthère · 3 Attaque bondissante · 4 Grand félin · 5 Les sept vies du chat
-- [Voie de la nature](voies.md#nature) — 1 Maître de la survie · 2 Terrains difficiles · 3 Bâton de druide · 4 Constitution héroïque · 5 Résistant
-- [Voie du protecteur](voies.md#protecteur) — 1 Baies magiques* · 2 Forêt vivante* · 3 Régénération* · 4 Perception héroïque · 5 Forme d'arbre*
-- [Voie des végétaux](voies.md#vegetaux) — 1 Peau d'écorce* · 2 Prison végétale* · 3 Flèche vivante* · 4 Animation d'un arbre* · 5 Porte végétale*
+- [Voie des animaux](voies.md#animaux)
+- [Voie du fauve](voies.md#fauve)
+- [Voie de la nature](voies.md#nature)
+- [Voie du protecteur](voies.md#protecteur)
+- [Voie des végétaux](voies.md#vegetaux)
 
 <a id="moine"></a>
 ### Moine
@@ -285,11 +285,11 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de l'énergie vitale](voies.md#energie-vitale) — 1 Mains d'énergie · 2 Projection de ki · 3 Invulnérable · 4 Pression mortelle · 5 Ascétisme
-- [Voie de la maîtrise](voies.md#maitrise) — 1 Agilité du singe · 2 Griffes du tigre · 3 Morsure du serpent · 4 Fureur du dragon · 5 Moment de perfection
-- [Voie de la méditation](voies.md#meditation) — 1 Pacifisme · 2 Transe de guérison · 3 Maîtrise du ki · 4 Volonté héroïque · 5 Projection mentale
-- [Voie du poing](voies.md#poing) — 1 Poings de fer · 2 Peau de fer · 3 Parade de projectiles · 4 Déluge de coups · 5 Puissance du ki
-- [Voie du vent](voies.md#vent) — 1 Pas du vent · 2 Course du vent · 3 Course des airs · 4 Agilité héroïque · 5 Passe-muraille
+- [Voie de l'énergie vitale](voies.md#energie-vitale)
+- [Voie de la maîtrise](voies.md#maitrise)
+- [Voie de la méditation](voies.md#meditation)
+- [Voie du poing](voies.md#poing)
+- [Voie du vent](voies.md#vent)
 
 <a id="pretre"></a>
 ### Prêtre
@@ -311,8 +311,8 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 
 **Voies :**
 
-- [Voie de la foi](voies.md#foi) — 1 Prédicateur · 2 Miracle mineur* · 3 Arme de lumière* · 4 Ailes célestes* · 5 Foudres divines*
-- [Voie de la guerre sainte](voies.md#guerre-sainte) — 1 Arme bénie* · 2 Bouclier de la foi · 3 Châtiment divin · 4 Marteau de la foi* · 5 Mot de pouvoir*
-- [Voie de la prière](voies.md#priere) — 1 Bénédiction* · 2 Sanctuaire* · 3 Destruction du mal* · 4 Volonté héroïque · 5 Intervention divine
-- [Voie des soins](voies.md#soins) — 1 Récupération mineure* · 2 Vigueur divine · 3 Récupération majeure* · 4 Phénix · 5 Rétablissement*
-- [Voie de la spiritualité](voies.md#spiritualite) — 1 Vêtements sacrés · 2 Augure* · 3 Délivrance* · 4 Charisme héroïque · 5 Marche des plans*
+- [Voie de la foi](voies.md#foi)
+- [Voie de la guerre sainte](voies.md#guerre-sainte)
+- [Voie de la prière](voies.md#priere)
+- [Voie des soins](voies.md#soins)
+- [Voie de la spiritualité](voies.md#spiritualite)

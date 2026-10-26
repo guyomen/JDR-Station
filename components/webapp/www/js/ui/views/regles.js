@@ -42,9 +42,18 @@ function mdHref(url, doc) {
   return [`#/regles/${d}${m[2] ? '/' + encodeURIComponent(m[2]) : ''}`, false];
 }
 
+/* Lien vers une voie en fin de liste (profils, peuples) : suivi du résumé de ses capacités, lu dans les règles
+ * en vigueur (« [Voie de la rage](voies.md#rage) » → « … — 1 Cri de guerre · 2 … », * = sort). */
+const RX_VOIE_LINK = /(\[[^\]]+\]\((?:voies|prestige)\.md#([\w-]+)\))(?=,\s*\[|\s*$)/g;
+function voieResume(s) {
+  const voies = RULES.model ? RULES.model.voies : {};
+  return s.replace(RX_VOIE_LINK, (all, link, id) => (voies[id]
+    ? `${link} — ${voies[id].caps.map(c => `${c.rang} ${c.name}${c.spell ? '*' : ''}`).join(' · ')}` : all));
+}
+
 function mdInline(s, doc) {
   const codes = [];
-  return esc(s)
+  return esc(voieResume(s))
     .replace(/`([^`]+)`/g, (_, c) => `\u0000${codes.push(c) - 1}\u0000`)
     .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => {
       const h = mdHref(u.replace(/&amp;/g, '&'), doc);
