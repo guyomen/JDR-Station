@@ -25,7 +25,8 @@ components/
   web_server/          HTTP + WS /ws, /av/<id>.jpg, /regles/ ; ne connaît pas game (callbacks)
   webapp/www/          appli web sans dépendance (HTML/CSS/JS vanilla)
     js/core/           util, DOM ($, $$), storage (load/save localStorage préfixé jdr.)
-    js/rules/          lecture des .md de règles, tables, calc() de la fiche, normalisation, dés
+    js/rules/          lecture des .md de règles, tables, calc() de la fiche, normalisation, dés, PNJ,
+                       load.js (RULES_DOCS : liste des documents, à compléter avec bundles.json)
     js/features/       combat (MJ), images (lieux, IndexedDB), avatars, screen (écran partagé), rules_admin,
                        maison (voies/profils/peuples du MJ, section « # Contenu maison » en fin de document)
     js/ui/             render.js (routage #/… + render/update), actions.js (ACTIONS), events.js, widgets,
@@ -42,6 +43,8 @@ references/COFv2/      règles en Markdown = données de jeu (aucune donnée de 
   `www/` doit être déclaré dans `bundles.json` (sinon la compilation échoue), et l'ordre compte.
 - **Boutons** : `<button data-a="nom" data-v="…">` → `ACTIONS['nom'](el, perso)` dans
   [ui/actions.js](../components/webapp/www/js/ui/actions.js). Le perso vient du `[data-id]` parent.
+  Champs de fiche : `data-p="chemin.x"` (saisie → `change()`, ui/events.js) ; formulaires :
+  `<form data-form="nom">` → `FORMS['nom'](données, form)` (ui/forms.js).
 - **Rendu** : vues = fonctions qui renvoient du HTML en template string, `esc()` pour toute donnée.
   `update()` (préserve une saisie en cours) plutôt que `render()` après un message de la station.
 - **Envoi** : `send({ t: 'type', … })` renvoie faux si hors ligne ; droits via `authFor(id)` ou `pin: S.pin`.

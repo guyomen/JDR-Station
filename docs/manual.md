@@ -205,7 +205,8 @@ Accessible à tous depuis l'accueil :
 Accessible à tous depuis l'accueil ou le bouton **📖** en haut de l'écran, même sans avoir choisi
 d'utilisateur. Sept documents, un par onglet :
 - **Aide-mémoire** : création, progression, tests, combat, magie, aventure ;
-- **Familles** et **Profils** : PV, DR, PC, armes et armures, équipement de départ, voies de chaque profil ;
+- **Familles** : PV, DR et points de chance, communs à tous les profils d'une famille ;
+- **Profils** : caractéristiques clés, armes et armures, équipement de départ, voies de chaque profil ;
 - **Peuples** : caractéristiques, repères, noms, voie de peuple ;
 - **Voies** et **Prestige** : texte complet de chaque capacité ;
 - **Équipement** : monnaie, matériel, montures, armes, armures et boucliers, avec leurs prix.
@@ -247,7 +248,7 @@ Attaques = niveau (max. 10) + FOR / AGI / VOL     DM contact = dé + FOR, distan
 | Mes personnages ont disparu après la connexion | La fenêtre de connexion automatique d'iOS / Android oublie tout. Ouvrez **http://192.168.4.1** dans le vrai navigateur, ou ajoutez-le à l'écran d'accueil. |
 | J'ai changé de téléphone | Reprenez votre personnage avec son code de reprise. |
 | Tout est oublié sur un appareil | La navigation privée ou l'effacement des données du site effacent le profil, les personnages et les images de l'appareil. Les fiches restent sur la station. |
-| L'écran affiche « Lieu absent de cet écran » | L'image n'est pas sur cet appareil : touchez l'avertissement et rechargez le dossier d'images. |
+| L'écran affiche « Lieu … absent de cet écran » | L'image n'est pas sur cet appareil : touchez l'avertissement et rechargez le dossier d'images. |
 | « Impossible de charger les règles depuis la station » | La connexion à la station a été coupée : revenez sur le Wi-Fi **JDR-Station** et appuyez sur **Réessayer**. |
 | L'appli se recharge toute seule | Le MJ vient de changer les règles de la table : c'est normal, rien n'est perdu. |
 | « Code MJ incorrect » | Demandez le code à la personne qui a préparé la station (par défaut `1234`). |

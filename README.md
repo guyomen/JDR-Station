@@ -79,8 +79,8 @@ Si vous changez les valeurs par défaut, pensez à les donner aux joueurs : le m
 **Aucune donnée de jeu n'est codée dans l'appli** : tout vient des documents Markdown de
 [references/COFv2/](references/COFv2/README.md) (aide-mémoire, familles, profils, peuples, voies, prestige,
 équipement), embarqués dans le firmware et affichés dans l'Espace Règles. Au démarrage, l'appli les
-télécharge et les lit : voies et capacités, bonus permanents (lignes **Bonus**), variantes, profils (PV, DR,
-PC, voies), peuples, armes, armures, états, niveaux requis… Le format des balises est décrit dans le
+télécharge et les lit : voies et capacités, bonus permanents (lignes **Bonus**), variantes, familles (PV, DR,
+PC), profils (caractéristiques clés, voies), peuples, armes, armures, états, niveaux requis… Le format des balises est décrit dans le
 [README des références](references/COFv2/README.md#balises-lues-par-la-fiche).
 
 Le MJ peut remplacer ces documents depuis l'appli (Outils › *Règles de la table*) sans recompiler : voies
@@ -114,7 +114,8 @@ components/
   sysinfo/            état de la station pour le MJ : température, mémoire, flash, Wi-Fi
   game/               protocole : aiguillage (game.c), fiches (characters.c), dés et journal (dice.c),
                       appareils connectés (peers.c), initiative (combat.c), lieux (lieux.c),
-                      miniatures (avatar.c), droits (party.c)
+                      miniatures (avatar.c), droits (party.c), messages envoyés (messages.c),
+                      utilitaires JSON (util.c) ; limites dans game_priv.h
   web_server/         HTTP + WebSocket /ws, fichiers /av/, règles de la table /regles/ (lecture, envoi
                       du MJ), redirection du portail captif (ne connaît pas game)
   webapp/             appli web embarquée (HTML/CSS/JS, sans dépendance externe)
