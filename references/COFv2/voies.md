@@ -2296,3 +2296,91 @@ Le mage augmente son INT et sa VOL de +1. Désormais, il obtient un *dé bonus* 
 **5. Tempête de mana**
 
 Lorsqu’il lance un sort, le mage peut augmenter les DM de +1d4° (en cas de DM sur la durée, une seule fois) en payant +1 PM pour un sort à cible unique ou +3 PM pour un sort de zone (*Explosion de feu*, *Foudre*, etc.).
+
+# Contenu maison
+
+<a id="famille-mystique"></a>
+## Mystiques
+
+<a id="transformation"></a>
+### Voie de la transformation
+
+La magical girl a reçu un objet de transformation (broche, pendentif, poudrier, bague…) qui lui permet de revêtir sa forme de combattante. Les capacités de cette voie ne fonctionnent que sous sa forme transformée, à l’exception de *Transformation* elle-même.
+
+**1. Transformation** (M)
+
+En prononçant sa formule, la magical girl revêt son costume de combat (action de mouvement). Elle reste transformée tant qu’elle le souhaite, jusqu’à ce qu’elle tombe inconsciente ou qu’elle termine une récupération complète. Transformée, elle gagne +2 en DEF tant qu’elle ne porte aucune armure (bouclier interdit) ; ce bonus passe à +3 au rang 3 et +4 au rang 5. De plus, personne ne peut deviner son identité s’il ne la connaît que sous l’une de ses deux formes. La fiche compte le bonus de DEF en permanence : il s’applique à la forme transformée.
+
+**Bonus** : DEF +2
+
+**2. Arme de cœur**
+
+Transformée, la magical girl peut faire apparaître son arme personnelle (sceptre, baguette, ruban, éventail…) sans action. Cette arme compte comme magique, elle inflige [1d6 + CHA] DM (1d8 au rang 4) et la magical girl utilise son CHA au lieu de sa FOR pour ses tests d’attaque au contact avec elle. L’arme disparaît si elle quitte ses mains.
+
+**3. Rayon d’énergie** (sort, A)
+
+La magical girl projette un rayon de lumière jusqu’à 20 m. Un test d’attaque magique réussi inflige [1d4° + CHA] DM ([2d4° + CHA] au rang 5). Les démons et les morts-vivants subissent +1d4° DM. Le bonus de DEF de *Transformation* passe à +3.
+
+**Bonus** : DEF +1
+
+**4. Forme ailée** (sort, A)
+
+Des ailes de lumière poussent dans le dos de la magical girl, qui peut voler à une vitesse équivalente à son déplacement normal pendant CHA minutes. Rester en vol stationnaire est une action de mouvement.
+
+**5. Attaque finale** (sort, L)
+
+Une fois par combat, la magical girl lance son attaque signature, avec sa formule et sa pose. Elle fait un test d’attaque magique contre une cible à moins de 20 m et lui inflige [4d4° + CHA] DM. Une créature corrompue ou possédée réduite à 0 PV par cette attaque est purifiée plutôt que tuée : elle tombe inconsciente et l’influence qui la contrôlait est brisée. Le bonus de DEF de *Transformation* passe à +4.
+
+**Bonus** : DEF +1
+
+<a id="lien"></a>
+### Voie du lien
+
+Le lien qui unit la magical girl à sa mascotte, la créature qui lui a confié ses pouvoirs, et à ses alliées.
+
+**1. Mascotte**
+
+La magical girl est accompagnée d’une petite créature magique (chat ailé, peluche vivante, fée…) qui parle et la conseille. Elle peut communiquer avec elle par la pensée jusqu’à 1 km et gagne +2 en Initiative lorsque sa mascotte est en vue. La mascotte a une DEF égale à [12 + rang dans la voie] et un nombre de PV égal au niveau de la magical girl. Elle est trop petite pour attaquer. Réduite à 0 PV, elle disparaît et revient après la prochaine récupération complète.
+
+**2. Conseils de la mascotte**
+
+Une fois par scène, lorsque la magical girl rate un test d’INT, de PER ou de CHA, sa mascotte lui souffle un conseil : elle relance le test et garde le meilleur résultat.
+
+**3. Ensemble !** (sort, L)
+
+La magical girl lance un cri de ralliement. Elle et ses alliés à portée de voix gagnent +1 en DEF et en attaque pendant CHA rounds. Ce bonus passe à +2 au rang 5. Une fois par combat.
+
+**4. Main tendue** (L)
+
+La magical girl touche un allié et lui transfère jusqu’à [niveau] PV de ses propres PV. Si l’allié était à 0 PV, il reprend aussitôt connaissance.
+
+**5. Union des cœurs** (A)
+
+Une fois par combat, la magical girl unit ses pouvoirs à ceux de ses alliées. Chaque alliée à moins de 10 m peut renoncer à son action d’attaque du round pour y participer. La magical girl fait alors une attaque magique avec un bonus de +1 par participante, et ajoute +1d4° DM par participante (maximum +3d4°).
+
+<a id="coeur-pur"></a>
+### Voie du cœur pur
+
+La sincérité et l’espoir de la magical girl sont sa meilleure protection, et une arme contre les ténèbres.
+
+**1. Cœur pur**
+
+La magical girl obtient un *dé bonus* aux tests pour résister à la peur et au contrôle mental (injonction, charme, domination…). Elle ajoute son rang dans la voie aux tests de CHA destinés à convaincre par la sincérité.
+
+**2. Bouclier de lumière** (sort, M)
+
+La magical girl entoure une cible à moins de 10 m (elle-même ou un allié) d’un halo protecteur qui lui donne +2 en DEF pendant CHA rounds.
+
+**3. Purification** (sort, L)
+
+En touchant sa cible, la magical girl met fin à un effet de contrôle mental, de peur ou de malédiction, ou à l’un des états *étourdi*, *paralysé*, *ralenti* ou *aveuglé*. Contre un démon ou un mort-vivant, elle peut à la place faire une attaque magique au contact qui inflige [2d4° + CHA] DM.
+
+**4. Charisme héroïque**
+
+La magical girl augmente sa valeur de CHA de +1. Désormais, elle obtient un *dé bonus* aux tests de CHA.
+
+**Bonus** : CHA +1
+
+**5. Ne jamais abandonner**
+
+Une fois par jour, lorsque la magical girl tombe à 0 PV, elle se relève aussitôt avec [niveau + CHA] PV. Ses alliés qui la voient se relever obtiennent un *dé bonus* à leur prochain test.

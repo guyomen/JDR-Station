@@ -316,3 +316,32 @@ Le texte complet des voies est dans [voies.md](voies.md). La famille d'un profil
 - [Voie de la prière](voies.md#priere)
 - [Voie des soins](voies.md#soins)
 - [Voie de la spiritualité](voies.md#spiritualite)
+
+# Contenu maison
+
+<a id="famille-mystique"></a>
+## Mystiques
+
+<a id="magical-girl"></a>
+### Magical girl
+
+*La magical girl est une personne ordinaire à qui une créature magique, sa mascotte, a confié le pouvoir de se transformer pour combattre les ténèbres. Sous sa forme transformée, elle combat avec la lumière, son arme de cœur et le soutien de ses alliées ; le reste du temps, elle garde son identité secrète.*
+
+- **Caractéristiques clés** : CHA, VOL, AGI · **Caractéristique de magie** : CHA
+- **+1** dé de récupération
+
+**Armes & armures.** La magical girl sait manier le bâton et les armes à une main légères, mais elle préfère son arme de cœur. Les voies de magical girl interdisent de porter une armure ou d’utiliser un bouclier.
+
+**Équipement de départ.** Objet de transformation, bâton (DM 1d6).
+
+> Profil d’exemple (contenu maison)
+>
+> Ce profil reprend deux voies existantes, celle du poing (moine) et celle de la foi (prêtre), pour la magical girl qui combat au corps à corps ou qui manie la lumière divine. Il fonctionne aussi en hybride : une moine ou une prêtresse qui prend la voie de la transformation reste dans la famille des mystiques, sans changement de PV.
+
+**Voies :**
+
+- [Voie de la transformation](voies.md#transformation)
+- [Voie du lien](voies.md#lien)
+- [Voie du cœur pur](voies.md#coeur-pur)
+- [Voie du poing](voies.md#poing)
+- [Voie de la foi](voies.md#foi)
