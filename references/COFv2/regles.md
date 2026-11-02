@@ -125,7 +125,7 @@ On gagne un niveau à la fin d'une aventure ou d'une étape importante de campag
 
 *Exception : la capacité de rang 2 des mages au niveau 1. Les rangs 6 à 8 sont réservés aux voies de prestige.
 
-- Dès le niveau 2 : ouvrir de nouvelles voies du profil principal ; voies d'autres profils avec l'accord du MJ (profil hybride, p. 176).
+- Dès le niveau 2 : ouvrir de nouvelles voies du profil principal ; voies d'autres profils avec l'accord du MJ (voir [Profil hybride](#profil-hybride-p-176-178)).
 - **Maximum 6 voies + la voie de peuple.**
 - **Voie de prestige** : à partir du niveau 5, une seule dans toute la carrière, rangs 4 à 8 (niveaux requis 5 / 7 / 9 / 11 / 13).
 - Point de capacité orphelin : échangeable contre 1 PC, ou 1 DR, ou 2 PV, ou 2 PM.
@@ -137,6 +137,56 @@ On gagne un niveau à la fin d'une aventure ou d'une étape importante de campag
 | Niveau | 1-5 | 6-8 | 9-11 | 12-14 | 15+ |
 |---|---|---|---|---|---|
 | d4° | d4 | d6 | d8 | d10 | d12 |
+
+### Profil hybride (p. 176-178)
+
+Réservé aux joueurs expérimentés : un PJ qui change d'orientation (voleur qui apprend la magie, magicien qui apprend à se battre). Le **profil principal** (celui du niveau 1) fixe le DR et l'avantage de famille ; il ne peut jamais être renié.
+
+**Conditions**
+- À un changement de niveau, le joueur peut ouvrir une voie hors de son profil principal, tant qu'**au moins une des 5 voies de son profil n'a reçu aucun point**. Si les 5 voies sont entamées, plus d'hybride possible.
+- L'acquisition doit être **justifiée en jeu** (grimoire, maître d'armes, études payées…). Dans la même famille, l'évolution peut se passer d'entraînement particulier. Les combinaisons interdites (ex. barbare et magicien) sont laissées au MJ.
+- Coût habituel : 1 point pour les rangs 1-2, 2 points à partir du rang 3.
+- La voie de prestige de l'expert est fermée à un hybride qui a pris des voies d'une autre famille.
+
+**Points de vigueur par niveau**
+- Toutes les capacités du niveau dans la même famille : PV de cette famille (aventuriers 4, combattants 5, mages 3, mystiques 4) + CON.
+- Capacités de deux familles : **moyenne des deux**. Un demi-PV s'arrondit à l'inférieur la première fois (le noter sur la fiche), au supérieur la fois suivante, et ainsi de suite.
+- Un point dans la voie de peuple compte pour la famille du profil principal.
+- Conseil (que le MJ peut imposer) : dépenser les 2 points d'un niveau dans la même famille.
+
+> Exemples : combattant rang 2 + mage rang 1 → (5 + 3) / 2 = 4 PV. Mage rang 1 + aventurier rang 1 → 3,5 arrondi à 3, puis 4 au niveau suivant. Guerrier : peuple rang 2 + mage rang 1 → 2,5 + 1,5 = 4 PV.
+
+**Armes et armures**
+- Les armes et armures d'un autre profil sont **maîtrisées** dès **2 rangs** dans une voie de ce profil. Arme non maîtrisée : *dé malus* en attaque.
+- Chaque capacité garde la **restriction d'armure de son profil d'origine** (ex. aucune armure pour une capacité de moine). Variante : règles optionnelles high fantasy (*Atlas d'Osgild*).
+- Quelques capacités élargissent l'armure d'un profil (ex. barbare : *Tour de force*, *Briseur d'os*).
+
+| Famille (PV) | Meilleure armure autorisée par voie |
+|---|---|
+| Aventuriers (4) | arquebusier : chemise de mailles · barde : cuir renforcé · rôdeur : cuir renforcé · voleur : cuir simple |
+| Combattants (5) | barbare : cuir renforcé · chevalier : armure de plaque · guerrier : cotte de mailles |
+| Mages (3) | ensorceleur : aucune · forgesort : cuir simple · magicien : aucune · sorcier : aucune |
+| Mystiques (4) | druide : cuir simple · moine : aucune · prêtre : chemise de mailles |
+
+**Magie et sorts**
+- Un sort utilise la **caractéristique de magie de son profil d'origine** (magicien/prêtre : INT pour les sorts de magicien, CHA pour ceux de prêtre) ; l'**attaque magique reste basée sur la VOL**.
+- Sort en armure : voir [Magie et sorts](#44-magie-et-sorts-p-227-229) (maîtrise de l'armure + surcoût en PM).
+
+**Capacités en doublon** : si deux capacités donnent exactement le même avantage, le MJ peut laisser cocher la seconde gratuitement ; elle n'a aucun effet mais ouvre les rangs suivants.
+
+**Cumul des caractéristiques** : aucun test, aucune valeur (DEF) ni aucun jet de DM ne peut ajouter deux fois la même caractéristique (ex. *Précision* du barde + *Attaque éclair* du rôdeur : l'AGI ne s'ajoute qu'une fois en attaque).
+
+#### Hybride dès le niveau 1
+
+Option pour joueurs expérimentés, après discussion avec le MJ : le concept doit coller au cadre et ne pas viser seulement une combinaison surpuissante.
+
+- **Voies** : choisir 2 voies de 2 profils au choix et prendre le rang 1 de chacune. Le profil principal est l'un des deux.
+- **PV** : PV de la famille de chaque profil additionnés (au lieu du double de la famille), + CON.
+- **DR et avantage** : ceux de la famille du profil principal : aventurier d8 et +1 PC ; combattant d10 ; mage d6 et 1 capacité de rang 2 (obligatoirement dans la voie de mage) ; mystique d8 et +1 DR.
+- **Armes et armures** : celles des deux profils sont maîtrisées, mais chaque capacité reste limitée par l'armure de son profil d'origine.
+- **Équipement** : celui du profil principal ; le MJ peut en échanger une partie contre celui de l'autre profil.
+
+> Exemple : guerrier totem de Maude = voie du pagne (barbare, *Vigueur*) + voie des animaux (druide, *Langage des animaux*), profil principal barbare → 5 + 4 = 9 PV + CON, DR d10. Capacités de druide utilisables en cuir simple au maximum.
 
 ## 3. Peuples, profils et voies
 
@@ -385,7 +435,7 @@ Elle commence quand chacun utilise 2 M par round ou un *Sprinter*. On fait des t
 - **Coût = rang du sort** en PM. Sans assez de PM, pas de sort, sauf par la brûlure de mana.
 - **Concentration accrue** : un sort qui demande une action d'attaque (A) peut devenir une action limitée (L) pour **−2 PM** (minimum 0, donc les rangs 1 et 2 deviennent gratuits). Impossible pour les sorts L, M ou G.
 - **Brûlure de mana** : sans PM, chaque PM manquant coûte **1 DR** en PV, sans aucune RD. **Interdite pour les sorts de soins.**
-- **Sorts en armure** (p. 178, hors plage lue) : le prêtre lance ses sorts avec n'importe quelle armure. Pour les autres, il faut maîtriser l'armure, et le **surcoût en PM = bonus de DEF de l'armure** (sans le bonus magique). Pour les sorts de forgesort ou de druide, on ne compte que l'écart avec la DEF +2 autorisée ; pour le barde, l'écart avec la DEF +3.
+- **Sorts en armure** (p. 178) : le prêtre lance ses sorts avec n'importe quelle armure. Pour les autres, il faut maîtriser l'armure, et le **surcoût en PM = bonus de DEF de l'armure** (sans le bonus magique). Pour les sorts de forgesort ou de druide, on ne compte que l'écart avec la DEF +2 autorisée ; pour le barde, l'écart avec la DEF +3.
 - **Niveau des cibles** : on utilise le niveau (PJ) ou le NC indifféremment.
 - **Sorts de zone** avec un allié au contact de la cible :
   - si l'on privilégie la cible, elle subit les DM normaux et l'allié a +5 au test d'AGI pour diviser ses DM par deux ;
