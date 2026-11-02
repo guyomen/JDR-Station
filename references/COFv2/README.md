@@ -28,6 +28,8 @@ personnelle pour le projet ; ne pas les redistribuer.
 - **Contenu maison, depuis l'appli** : le MJ crée ou modifie voies, profils et peuples avec un formulaire
   (Espace MJ › Outils › *Contenu maison*). Ils sont écrits dans une section `# Contenu maison` à la fin de
   voies.md, prestige.md, profils.md et peuples.md (voir plus bas), puis envoyés comme ci-dessus.
+  Le profil *Magical girl* et ses voies (transformation, lien, cœur pur), en fin de profils.md et voies.md,
+  sont un exemple de contenu maison créé pour le projet : ils ne viennent ni du livre ni du DRS.
 - **Dans le dépôt** : modifier les fichiers ici et reflasher. Ce sont alors les règles d'origine de la station ;
   leur fidélité au livre et au DRS est à la charge du développeur. Les avertissements de lecture s'affichent
   dans l'Espace MJ (Outils › *Règles de la table*).

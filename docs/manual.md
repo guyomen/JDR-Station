@@ -141,12 +141,17 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
   toucher aux règles d'origine. Il n'est **proposé sur les fiches** (choix du peuple, du profil, des voies)
   que si la case **Proposer le contenu maison sur les fiches** est cochée (sous Règles de la table, ou dans
   l'écran Contenu maison) ; décochée par défaut, elle vaut pour toute la table. Une fiche qui utilise déjà
-  du contenu maison le garde, avec les voies de son profil et de son peuple. Un exemple est fourni avec
-  les règles d'origine : le profil mystique **Magical girl** (voies de la transformation, du lien et du
-  cœur pur, plus celles du poing et de la foi). Une voie qui n'est dans la liste d'aucun profil ni peuple est proposée sur
-  la fiche dans « Autres voies ». Supprimer un élément utilisé par un personnage est signalé avant de le
+  du contenu maison le garde, avec les voies de son profil et de son peuple. Une voie qui n'est dans la
+  liste d'aucun profil ni peuple est proposée sur la fiche dans « Autres voies ». Supprimer un élément utilisé par un personnage est signalé avant de le
   faire. Les variantes de voie ne se saisissent pas dans le formulaire : écrites dans un fichier, elles
   sont conservées.
+
+  **Exemple fourni : Magical girl.** Le contenu maison des règles d'origine contient un profil d'exemple,
+  **Magical girl** (famille des mystiques), avec trois voies créées pour l'occasion (transformation, lien,
+  cœur pur) et deux voies existantes (poing, foi). Ce n'est **pas un profil officiel** de Chroniques
+  Oubliées Fantasy : c'est une création maison, montrant ce que permet l'écran Contenu maison. Comme tout
+  contenu maison, il n'est proposé sur les fiches que si la case est cochée ; le MJ peut le modifier ou le
+  supprimer.
 - **Repos** : récupération complète du groupe (+1 DR, tous les PM).
 - **Sauvegarde** : export de la campagne en fichier JSON, et import (qui remplace tous les
   personnages de la station). Les images des personnages ne sont pas dans l'export : après un

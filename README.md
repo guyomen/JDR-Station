@@ -89,6 +89,11 @@ voies, profils et peuples avec un formulaire, écrits à la fin des documents, p
 quand il l'active (option de partie `opts.maison`, gardée par la station). La station les garde en flash
 (`/data/regles/`), les documents d'origine restent dans le firmware.
 
+Les règles d'origine contiennent un **exemple de contenu maison** : le profil *Magical girl* (mystique) et ses
+voies de la transformation, du lien et du cœur pur, à la fin de `profils.md` et `voies.md`. C'est une création
+propre au projet, **pas du contenu officiel** de Chroniques Oubliées Fantasy ; masqué par défaut comme tout
+contenu maison.
+
 - lecture des documents : [rules/parse.js](components/webapp/www/js/rules/parse.js) ;
 - tables de jeu et bonus : [rules/tables.js](components/webapp/www/js/rules/tables.js) ; chargement, repli
   sur les documents d'origine s'ils sont illisibles : [rules/load.js](components/webapp/www/js/rules/load.js) ;
