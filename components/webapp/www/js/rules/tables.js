@@ -68,7 +68,7 @@ const firstNum = (s, def) => { const m = String(s || '').match(/\d+/); return m 
 /* Tables de jeu (forme de COF2) à partir du modèle de parseRules(), sans les mettre en service.
  * warn(message) reçoit les incohérences. */
 function buildRules(D, warn = () => {}) {
-  const fams = Object.fromEntries(Object.entries(D.familles || {}).map(([k, f]) => [k, { n: f.name, note: f.note, r2niv1: !!f.r2niv1, alt: f.alt || '' }]));
+  const fams = Object.fromEntries(Object.entries(D.familles || {}).map(([k, f]) => [k, { n: f.name, note: f.note, r2niv1: !!f.r2niv1, alt: f.alt || '', pvniv: firstNum(f.pvniv, 0) }]));
   const profils = {};
   for (const [k, p0] of Object.entries(D.profils || {})) {
     if (!fams[p0.famille]) warn(`profil « ${p0.name} » : famille inconnue « ${p0.famille} »`);

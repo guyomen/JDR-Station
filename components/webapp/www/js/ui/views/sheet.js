@@ -20,6 +20,9 @@ function viewSheet(id, mj) {
   const pane = (key, body) => `<section class="pane ${tab === key ? 'on' : ''}" data-pane="${key}">${body}</section>`;
   const token = S.mine[id] || S.tokens[id];
   const niveaux = Array.from({ length: 20 }, (_, i) => [i + 1, 'Niveau ' + (i + 1)]);
+  /* Second profil d'un hybride créé au niveau 1 : tous les profils sauf le principal. */
+  const hybOpts = Object.fromEntries(Object.entries(profilOpts()).map(([g, o]) => [g, o.filter(([pid]) => pid !== c.profil)]).filter(([, o]) => o.length));
+  hybOpts[''] = [['', 'Non']];
 
   const perso = `
     <div class="avrow">${avatarHTML(c, 'lg', true)}
@@ -33,9 +36,11 @@ function viewSheet(id, mj) {
       ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
       ${sel('peuple', 'Peuple', peupleOpts())}${sel('profil', 'Profil', profilOpts())}
       ${sel('niveau', 'Niveau', niveaux, ' data-num')}
+      ${prof ? sel('hybride', 'Hybride dès le niveau 1', hybOpts, ' title="Création en hybride : au niveau 1, PV des deux familles au lieu du double de la famille principale"') : ''}
     </div>
     ${prof ? `<div class="info small">
         <b>${esc(prof.n)}</b>${k.fam ? ` · ${esc(k.fam.n)}${k.fam.note ? ` (${esc(k.fam.note)})` : ''}` : ''}<br>
+        ${k.hyb ? `Profil hybride : <b>${esc(k.hyb.profils.join(', '))}</b> (accord du MJ)<br>` : ''}
         Caractéristiques clés : <b>${esc(prof.car)}</b>${prof.magie ? ` · magie : <b>${esc(prof.magie)}</b>` : ''}
         <details data-k="profil"><summary>Description, armes, équipement</summary>
           <p><i>${esc(prof.desc)}</i></p>${prof.bonus.map(md).join('')}
@@ -77,7 +82,7 @@ function viewSheet(id, mj) {
     <details data-k="div"><summary>Bonus divers & calculs</summary>
       <div class="grid3">${DIVERS.map(([key, s]) => num('div.' + key, s)).join('')}</div>
       <p class="muted small">
-        PV = ${k.prof.pv1} + (niveau − 1) × ${k.prof.pvniv} + niveau × CON · DR = ${k.prof.drn} + CON (d${k.drType}) ·
+        PV = ${k.prof.pv1} + (niveau − 1) × ${k.prof.pvniv} + niveau × CON${k.hyb && k.hyb.pv ? ` ${k.hyb.pv > 0 ? '+' : '−'} ${Math.abs(k.hyb.pv)} (hybride : ½ PV de la famille par point de capacité)` : ''} · DR = ${k.prof.drn} + CON (d${k.drType}) ·
         PC = ${k.prof.pc} + CHA · PM = VOL + ${k.sorts} sort(s) · Init = 10 + PER ·
         DEF = 10 + AGI (max. armure) + armure + bouclier · attaques = niveau (max. 10) + FOR / AGI / VOL.
         Les bonus permanents des capacités sont inclus ; ajoutez ici les autres (objets, conditions…).
@@ -111,7 +116,7 @@ function viewSheet(id, mj) {
     <div class="sheet-head">
       <a href="${back}" class="back">‹</a>
       ${avatarHTML(c)}
-      <div class="grow"><h1 data-calc="name"></h1><small class="muted">${esc(prof ? prof.n : 'Profil ?')} · niv. ${esc(c.niveau)}${can ? '' : ' · lecture seule'}</small></div>
+      <div class="grow"><h1 data-calc="name"></h1><small class="muted">${esc(prof ? prof.n : 'Profil ?')}${k.hyb ? ' (hybride)' : ''} · niv. ${esc(c.niveau)}${can ? '' : ' · lecture seule'}</small></div>
       ${keepToggle()}
     </div>
     <nav class="tabs">${tabs.map(([key, l]) => `<button data-a="tab" data-v="${key}" class="${key === tab ? 'on' : ''}">${l}</button>`).join('')}</nav>

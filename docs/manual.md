@@ -65,7 +65,7 @@ La fiche est découpée en onglets :
 
 | Onglet | Contenu |
 |---|---|
-| *Perso* | image, identité, peuple, profil, niveau, caractéristiques, idéal et travers, **code de reprise** |
+| *Perso* | image, identité, peuple, profil (et second profil d'un hybride), niveau, caractéristiques, idéal et travers, **code de reprise** |
 | *Combat* | PV, DR, PC, PM, DEF, initiative, armure, bouclier, armes, états |
 | *Voies* | voies de profil, de peuple et de prestige, rangs acquis |
 | *Sac* | équipement |
@@ -235,6 +235,13 @@ Attaques = niveau (max. 10) + FOR / AGI / VOL     DM contact = dé + FOR, distan
   héroïque »…) s'ajoutent automatiquement et s'affichent en vert.
 - Les bonus conditionnels (sans armure, avec bouclier, objet magique…) se saisissent dans
   « Bonus divers ».
+- **Profil hybride** (voies d'un autre profil, avec l'accord du MJ) : la fiche l'indique et ajuste les PV.
+  Chaque point de capacité dépensé dans la voie d'une autre famille rapporte la moitié des PV par niveau
+  de cette famille au lieu de celle du profil principal (total arrondi à l'inférieur). Pour un hybride
+  créé dès le niveau 1, choisissez le second profil dans « Hybride dès le niveau 1 » : le niveau 1 compte
+  alors les PV des deux familles. DR et PC restent ceux du profil principal. L'onglet *Voies* signale un
+  hybride dont les 5 voies du profil principal sont entamées (interdit). Règles complètes : *Aide-mémoire*,
+  « Profil hybride ».
 - Les fiches de l'ancienne version sont converties à l'ouverture (les « PR » deviennent des DR).
 - Il n'y a pas de points d'expérience dans COF2 : le MJ annonce le passage de niveau (en général à la
   fin d'une aventure) et chacun change le niveau sur sa fiche.

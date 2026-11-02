@@ -38,6 +38,9 @@ function voiesPane(c, can, k) {
   const peupleIds = new Set([...(COF2.peuples[c.peuple] ? COF2.peuples[c.peuple].voies : []), ...(k.fam && k.fam.alt ? [k.fam.alt] : [])]);
   const count = c.voies.filter(v => !peupleIds.has(v.id) && voieDef(v).kind !== 'prestige').length;
   const nPrestige = c.voies.filter(v => voieDef(v).kind === 'prestige').length;
+  /* Hybride : au moins une voie du profil principal doit rester vide. */
+  const prof = COF2.profils[c.profil];
+  const pleines = k.hyb && prof && prof.voies.every(id => c.voies.some(v => v.id === id && n(v.rang) > 0));
   const cards = c.voies.map((v, i) => {
     const d = voieDef(v);
     const pre = d.kind === 'prestige';
@@ -74,6 +77,7 @@ function voiesPane(c, can, k) {
     <p class="small muted">Touchez une capacité pour fixer le rang atteint, ⓘ pour lire sa description. Voies : ${count} / ${MAX_VOIES} (+ voie de peuple${nPrestige ? ', + prestige' : ''}) · ${k.sorts} sort(s) ✦ · coût : rangs 1-2 = 1 point, rang 3+ = 2 points ; 2 points par niveau.</p>
     ${count > MAX_VOIES ? '<p class="warn small">Maximum 6 voies + la voie de peuple.</p>' : ''}
     ${nPrestige > 1 ? '<p class="warn small">Une seule voie de prestige par personnage.</p>' : ''}
+    ${pleines ? `<p class="warn small">Profil hybride : au moins une des voies de ${esc(prof.n)} doit rester sans capacité.</p>` : ''}
     ${!c.voies.length ? '<p class="muted">Au niveau 1 : 2 voies de profil + la voie de peuple, au rang 1 (mages : + 1 capacité de rang 2).</p>' : ''}
     ${cards}
     ${can ? `<label class="f"><span>Nouvelle voie</span>${selectHTML('', '', voieOptions(c), ' data-a-change="addvoie"')}</label>` : ''}`;

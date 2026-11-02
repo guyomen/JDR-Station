@@ -2,7 +2,7 @@
 
 function blankChar() {
   return {
-    name: '', player: '', peuple: '', profil: '', niveau: 1, ideal: '', travers: '',
+    name: '', player: '', peuple: '', profil: '', hybride: '', niveau: 1, ideal: '', travers: '',
     car: Object.fromEntries(CARACS.map(([k]) => [k, 0])),
     pv: { cur: null }, dr: { cur: null }, pc: { cur: null }, pm: { cur: null }, // null = plein
     div: Object.fromEntries(DIVERS.map(([k]) => [k, 0])),
@@ -20,6 +20,40 @@ const famille = c => {
   const p = COF2.profils[c.profil];
   return p ? COF2.familles[p.f] || null : null;
 };
+/* Profil hybride (Aide-mémoire) : profils des voies prises hors du profil principal, et écart de PV avec
+ * un profil pur. Chaque point de capacité rapporte la moitié des PV par niveau de la famille de sa voie
+ * (somme arrondie à l'inférieur) ; l'hybride dès le niveau 1 (c.hybride) y a les PV des deux familles. */
+function hybride(c, prof) {
+  if (!prof) return null;
+  const fam = COF2.familles[prof.f];
+  const own = new Set([...prof.voies, ...(COF2.peuples[c.peuple] ? COF2.peuples[c.peuple].voies : []), ...(fam && fam.alt ? [fam.alt] : [])]);
+  const autres = new Set();
+  let pv = 0;
+  for (const v of c.voies) {
+    const d = COF2.voies[v.id];
+    if (!d || own.has(v.id)) continue;
+    let pvniv;
+    if (d.prestige) {
+      if (d.f === prof.f || familleOuverte(d.f)) continue;
+      const f = COF2.familles[d.f];
+      autres.add(f ? f.n : d.f);
+      pvniv = (f && f.pvniv) || prof.pvniv;
+    } else {
+      const p = Object.values(COF2.profils).find(x => x.voies.includes(v.id));
+      if (!p) continue; // voie rattachée à aucun profil
+      autres.add(p.n);
+      pvniv = p.pvniv;
+    }
+    const points = d.caps.slice(0, n(v.rang)).reduce((s, cap) => s + (cap.rang <= 2 ? 1 : 2), 0);
+    pv += points * (pvniv - prof.pvniv) / 2;
+  }
+  const h = c.hybride !== c.profil && COF2.profils[c.hybride];
+  if (h) {
+    autres.add(h.n);
+    pv += (h.pvniv - prof.pvniv) / 2; // capacité de rang 1 du niveau 1 : PV entiers et non la moitié
+  }
+  return autres.size ? { profils: [...autres], pv: Math.floor(pv) } : null;
+}
 /* Sans profil : valeurs d'un aventurier, pour afficher une fiche cohérente. */
 const DEFAULT_PROF = { pv1: 8, pvniv: 4, dr: 8, drn: 2, pc: 2, magie: '' };
 
@@ -57,12 +91,13 @@ function calc(c) {
   const bou = BOUCLIERS[c.bouclier] || BOUCLIERS[''];
   const div = c.div;
   const prof = COF2.profils[c.profil] || DEFAULT_PROF;
+  const hyb = hybride(c, COF2.profils[c.profil]);
   return {
-    car, sorts, arme, fam: famille(c), prof, drType: prof.dr,
+    car, sorts, arme, fam: famille(c), prof, hyb, drType: prof.dr,
     lanceur: !!prof.magie || sorts > 0 || fx.pm > 0 || n(div.pm) > 0,
     agiCap: Math.min(car.AGI, arm.agi),
     max: {
-      pv: Math.max(1, prof.pv1 + (niv - 1) * prof.pvniv + niv * car.CON + fx.pv + n(div.pv)),
+      pv: Math.max(1, prof.pv1 + (niv - 1) * prof.pvniv + niv * car.CON + (hyb ? hyb.pv : 0) + fx.pv + n(div.pv)),
       dr: Math.max(0, prof.drn + car.CON + fx.dr + n(div.dr)),
       pc: Math.max(0, prof.pc + car.CHA + fx.pc + n(div.pc)),
       pm: Math.max(0, (sorts ? car[pmcar] + sorts : 0) + fx.pm + n(div.pm)),

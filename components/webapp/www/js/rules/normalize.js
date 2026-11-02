@@ -30,6 +30,7 @@ function norm(raw) {
   const c = merge(blankChar(), raw);
   c.peuple = findId(COF2.peuples, LEGACY_IDS[c.peuple] || c.peuple);
   c.profil = findId(COF2.profils, c.profil);
+  c.hybride = findId(COF2.profils, c.hybride);
   if (typeof c.armure !== 'string') c.armure = findId(ARMURES, c.armure && c.armure.nom);
   if (typeof c.bouclier !== 'string') c.bouclier = n(c.bouclier && c.bouclier.def) >= 2 ? 'grand' : n(c.bouclier && c.bouclier.def) ? 'petit' : '';
   c.armes = c.armes.map(w => (w.id ? w : { id: 'autre', nom: w.nom, att: w.att, dm: w.dm }));
