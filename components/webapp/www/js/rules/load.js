@@ -16,6 +16,7 @@ const RULES = {
   origine: false, // true : les documents de la table étaient inutilisables, ceux d'origine sont utilisés
   custom: null,   // documents de la table sur la station : { doc: octets } (cf. /regles/index.json)
   model: null,    // modèle en vigueur (parseRules), pour comparer avec des documents modifiés
+  maison: { voie: new Set(), profil: new Set(), peuple: new Set() }, // identifiants du contenu maison
 };
 
 async function fetchRuleTexts(origine) {
@@ -44,6 +45,8 @@ function applyRules(texts) {
   useRules(buildRules(r.model, w => r.warnings.push(w)));
   RULES.texts = texts;
   RULES.model = r.model;
+  const m = maisonRead(texts);
+  RULES.maison = Object.fromEntries(Object.entries(m).map(([kind, list]) => [kind, new Set(list.map(e => e.id))]));
   return r.warnings;
 }
 

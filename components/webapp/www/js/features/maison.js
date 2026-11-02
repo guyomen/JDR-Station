@@ -18,6 +18,9 @@ function maisonSplit(text) {
 
 const mdOne = s => String(s || '').replace(/\s*\n\s*/g, ' ').trim();            // texte sur une ligne
 const mdBlock = s => String(s || '').replace(/\r/g, '').trim();                  // texte sur plusieurs lignes
+/* Contenu maison masqué sur les fiches tant que le MJ ne l'a pas activé (option de partie « maison »). */
+const maisonMasque = (kind, id) => !S.opts.maison && RULES.maison[kind].has(id);
+
 const maisonFam = f => (f === 'peuple' ? 'Voies de peuple' : (COF2.familles[f] || {}).n || f);
 
 /* ---------- Lecture : entrées de la section maison, sous la forme du formulaire ---------- */

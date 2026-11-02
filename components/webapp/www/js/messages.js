@@ -10,6 +10,7 @@ function onMsg(m) {
       S.peers = m.peers || [];
       S.lieux = m.lieux || [];
       S.avatars = m.avatars || {};
+      S.opts = m.opts || {};
       rulesVersion(m.rv);
       if (!S.isMJ) S.pub = normCombat(m.combat);
       peersChanged();
@@ -56,6 +57,10 @@ function onMsg(m) {
       break;
     case 'avatar':
       if (m.v) S.avatars[m.id] = m.v; else delete S.avatars[m.id];
+      update();
+      break;
+    case 'opts':
+      S.opts = m.opts || {};
       update();
       break;
     case 'lieux':

@@ -21,7 +21,7 @@ function viewSheet(id, mj) {
   const token = S.mine[id] || S.tokens[id];
   const niveaux = Array.from({ length: 20 }, (_, i) => [i + 1, 'Niveau ' + (i + 1)]);
   /* Second profil d'un hybride créé au niveau 1 : tous les profils sauf le principal. */
-  const hybOpts = Object.fromEntries(Object.entries(profilOpts()).map(([g, o]) => [g, o.filter(([pid]) => pid !== c.profil)]).filter(([, o]) => o.length));
+  const hybOpts = Object.fromEntries(Object.entries(profilOpts(c.hybride)).map(([g, o]) => [g, o.filter(([pid]) => pid !== c.profil)]).filter(([, o]) => o.length));
   hybOpts[''] = [['', 'Non']];
 
   const perso = `
@@ -34,7 +34,7 @@ function viewSheet(id, mj) {
     </div>
     <div class="grid2">
       ${txt('name', 'Nom', ' maxlength="40"')}${txt('player', 'Joueur / joueuse', mj ? ' maxlength="30"' : ' readonly title="Nom défini dans l’Espace joueur"')}
-      ${sel('peuple', 'Peuple', peupleOpts())}${sel('profil', 'Profil', profilOpts())}
+      ${sel('peuple', 'Peuple', peupleOpts(c.peuple))}${sel('profil', 'Profil', profilOpts(c.profil))}
       ${sel('niveau', 'Niveau', niveaux, ' data-num')}
       ${prof ? sel('hybride', 'Hybride dès le niveau 1', hybOpts, ' title="Création en hybride : au niveau 1, PV des deux familles au lieu du double de la famille principale"') : ''}
     </div>

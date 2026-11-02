@@ -5,13 +5,14 @@ function voieOptions(c) {
   const prof = COF2.profils[c.profil];
   const peup = COF2.peuples[c.peuple];
   const opt = id => [id, COF2.voies[id].n];
-  const free = ids => ids.filter(id => !taken.has(id)).map(opt);
+  /* Contenu maison masqué : retiré des listes, sauf voies du profil et du peuple déjà choisis. */
+  const free = (ids, tout) => ids.filter(id => !taken.has(id) && (tout || !maisonMasque('voie', id))).map(opt);
   const g = {};
   g['— Ajouter une voie —'] = [['', '— Ajouter une voie —']];
   const fam = prof && COF2.familles[prof.f];
   const famName = f => (COF2.familles[f] ? COF2.familles[f].n : f);
-  if (prof) g[`Profil : ${prof.n}`] = free(prof.voies);
-  if (peup) g[`Peuple : ${peup.n}`] = free(peup.voies);
+  if (prof) g[`Profil : ${prof.n}`] = free(prof.voies, true);
+  if (peup) g[`Peuple : ${peup.n}`] = free(peup.voies, true);
   if (fam && fam.alt && COF2.voies[fam.alt]) g[`${fam.n} (remplace la voie de peuple)`] = free([fam.alt]);
   const prestige = f => Object.keys(COF2.voies).filter(id => COF2.voies[id].prestige && COF2.voies[id].f === f)
     .sort((x, y) => COF2.voies[x].n.localeCompare(COF2.voies[y].n));
@@ -19,7 +20,7 @@ function voieOptions(c) {
   if (prof) g[`Prestige ${famName(prof.f)} (niv. 5+)`] = free(prestige(prof.f));
   for (const f of prestigeFams.filter(familleOuverte)) g[`Prestige ${famName(f)} (niv. 5+)`] = free(prestige(f));
   for (const [pid, p] of Object.entries(COF2.profils)) {
-    if (pid !== c.profil) g[`${p.n} (hybride, accord du MJ)`] = free(p.voies);
+    if (pid !== c.profil && !maisonMasque('profil', pid)) g[`${p.n} (hybride, accord du MJ)`] = free(p.voies);
   }
   for (const f of prestigeFams) {
     if ((!prof || f !== prof.f) && !familleOuverte(f)) g[`Prestige ${famName(f)} (autre famille)`] = free(prestige(f));

@@ -24,6 +24,25 @@ bool party_pin_ok(const char *pin) { return pin && s_mj_pin[0] && strcmp(pin, s_
 cJSON *party_chars(void)  { return cJSON_GetObjectItem(store_root(), "chars"); }
 cJSON *party_tokens(void) { return cJSON_GetObjectItem(store_root(), "tokens"); }
 cJSON *party_log(void)    { return cJSON_GetObjectItem(store_root(), "log"); }
+cJSON *party_opts(void)   { return cJSON_GetObjectItem(store_root(), "opts"); }
+
+/* Options de la partie (MJ) : seules les clés connues, booléennes, sont retenues. */
+void party_on_opts(const cJSON *m, int fd, game_out_t *out)
+{
+    if (!party_is_mj(m)) { out->reply = msg_err("Reserve au MJ"); return; }
+    static const char *const KEYS[] = { "maison" };
+    cJSON *opts = party_opts();
+    for (size_t i = 0; i < sizeof(KEYS) / sizeof(KEYS[0]); i++) {
+        const cJSON *v = cJSON_GetObjectItem(m, KEYS[i]);
+        if (!cJSON_IsBool(v)) continue;
+        cJSON_DeleteItemFromObject(opts, KEYS[i]);
+        cJSON_AddBoolToObject(opts, KEYS[i], cJSON_IsTrue(v));
+    }
+    store_mark_dirty();
+    cJSON *o = msg_new("opts");
+    cJSON_AddItemReferenceToObject(o, "opts", opts);
+    out->broadcast = json_print_free(o);
+}
 
 cJSON *party_find_char(const char *id, int *index)
 {

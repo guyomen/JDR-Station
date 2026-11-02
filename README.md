@@ -85,7 +85,8 @@ PC), profils (caractéristiques clés, voies), peuples, armes, armures, états, 
 
 Le MJ peut remplacer ces documents depuis l'appli (Outils › *Règles de la table*) sans recompiler : voies
 modifiées ou ajoutées, nouvelles armes, bonus corrigés… L'écran *Contenu maison* lui permet aussi d'ajouter
-voies, profils et peuples avec un formulaire, écrits à la fin des documents. La station les garde en flash
+voies, profils et peuples avec un formulaire, écrits à la fin des documents, proposés sur les fiches
+quand il l'active (option de partie `opts.maison`, gardée par la station). La station les garde en flash
 (`/data/regles/`), les documents d'origine restent dans le firmware.
 
 - lecture des documents : [rules/parse.js](components/webapp/www/js/rules/parse.js) ;

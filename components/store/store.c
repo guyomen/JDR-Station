@@ -73,6 +73,7 @@ static void ensure_shape(void)
     ensure_item("lieux", cJSON_CreateArray, cJSON_IsArray);         /* lieux de l'écran partagé */
     ensure_item("avatars", cJSON_CreateObject, cJSON_IsObject);     /* id -> version de la miniature */
     ensure_item("avnext", create_one, cJSON_IsNumber);
+    ensure_item("opts", cJSON_CreateObject, cJSON_IsObject);       /* options de la partie (MJ) */
 }
 
 static bool write_file(const char *txt)

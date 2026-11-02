@@ -35,6 +35,7 @@ C'est une protection « entre amis » : le réseau est local et le trafic n'est 
 | `lieux` | `list: [{id, n}]` | `err` si invalide | `lieux {list}` |
 | `avatar` | `id`, `data` (JPEG en base64, `""` pour retirer), `token` ou `pin` | `err` si refusé | `avatar {id, v}` |
 | `sys` | `pin` | `sys {sys, peers}` | |
+| `opts` | `pin`, `maison` (booléen) | `err` si refusé | `opts {opts}` |
 
 Précisions :
 
@@ -55,18 +56,21 @@ Précisions :
   ([components/sysinfo/](../components/sysinfo/)). `peers` : nombre d'appareils connectés à l'appli.
 - **combat** : le MJ envoie la version complète (`full`, gardée pour lui, renvoyée dans `auth`)
   et la version publique (`pub` : PNJ visibles, santé en couleur, lieu affiché `bg`).
+- **opts** : options de la partie choisies par le MJ, sauvegardées. Seules les clés connues et booléennes sont
+  retenues ; les autres options gardent leur valeur. `maison` : contenu maison proposé sur les fiches (absent = non).
 
 ## Station → client
 
 | `t` | Contenu |
 |---|---|
-| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique), `lieux`, `avatars` (`{id: v}`), `rv` (version des règles de la table) |
+| `state` | `now` (horloge de la station, ms), `chars`, `log`, `peers`, `combat` (version publique), `lieux`, `avatars` (`{id: v}`), `opts` (options de la partie), `rv` (version des règles de la table) |
 | `char` | `char` : fiche créée ou modifiée |
 | `del` | `id` : fiche supprimée |
 | `log` | `e` : jet de dés `{ts, who, label, f, faces, rolls, nat, total, keep, rq, secret}` |
 | `peers` | `list` : appareils connectés `[{id, mj, dev, player, chars, since, screen}]` |
 | `lieux` | `list` : lieux disponibles `[{id, n}]` |
 | `avatar` | `id`, `v` : nouvelle version de la miniature (0 = retirée) |
+| `opts` | `opts` : options de la partie `{maison}` |
 | `combat` | `combat` : version publique du combat |
 | `regles` | `v` : nouvelle version des règles de la table (voir plus bas) |
 | `sys` | `sys` : `{up` (s), `temp` (°C, absent sans capteur), `heap {free, min, big, total}`, `fs {total, used}` (octets), `wifi {ch, rssi: [dBm]}`, `chip`, `cpu` (MHz), `flash` (octets), `idf`, `app`, `built`, `reset`, `tasks}` ; `peers` |
@@ -104,7 +108,7 @@ L'état est sauvegardé dans `/data/party.json` (SPIFFS), quelques secondes apr�
 
 ```json
 { "next": 1, "chars": [], "tokens": { "c1": "ABC123" }, "log": [], "combat": {}, "combat_pub": {}, "lieux": [],
-  "avatars": { "c1": 3 }, "avnext": 4 }
+  "avatars": { "c1": 3 }, "avnext": 4, "opts": { "maison": true } }
 ```
 
 Les fiches sont du JSON libre : c'est l'appli web qui définit leur contenu.

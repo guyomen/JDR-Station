@@ -7,10 +7,13 @@ function selectHTML(p, value, options, attrs = '') {
     : Object.entries(options).filter(([, o]) => o.length).map(([g, o]) => `<optgroup label="${esc(g)}">${o.map(opt).join('')}</optgroup>`).join('');
   return `<select${p ? ` data-p="${p}"` : ''}${attrs}>${body}</select>`;
 }
-const peupleOpts = () => [['', '— Peuple —'], ...Object.entries(COF2.peuples).map(([id, p]) => [id, p.n])];
-function profilOpts() {
+/* Peuples et profils proposés ; garde : valeur actuelle, montrée même si c'est du contenu maison masqué. */
+const peupleOpts = garde => [['', '— Peuple —'],
+  ...Object.entries(COF2.peuples).filter(([id]) => id === garde || !maisonMasque('peuple', id)).map(([id, p]) => [id, p.n])];
+function profilOpts(garde) {
   const g = {};
   for (const [id, p] of Object.entries(COF2.profils)) {
+    if (id !== garde && maisonMasque('profil', id)) continue;
     const fam = COF2.familles[p.f] ? COF2.familles[p.f].n : 'Autres profils';
     (g[fam] = g[fam] || []).push([id, p.n]);
   }

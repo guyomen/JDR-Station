@@ -44,6 +44,9 @@ bool party_pin_ok(const char *pin);
 int party_rules_version(void);
 void party_rules_bump(void);
 bool party_is_owner(const cJSON *m, const char *id);
+/* Options de la partie choisies par le MJ ({ "maison": true }), diffusées dans state et opts. */
+cJSON *party_opts(void);
+void party_on_opts(const cJSON *m, int fd, game_out_t *out);
 
 /* ---------- messages.c : messages envoyés aux clients ---------- */
 cJSON *msg_new(const char *type);

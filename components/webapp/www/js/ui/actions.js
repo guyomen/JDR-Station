@@ -19,6 +19,7 @@ const ACTIONS = {
   'maison-cancel'() { S.maison.edit = null; render(); },
   'maison-unvoie'(el) { const ed = S.maison.edit; ed.data.voies = ed.data.voies.filter(id => id !== el.dataset.v); render(); },
   'maison-submit'() { maisonSubmit(); },
+  'opts-maison'(el) { if (!send({ t: 'opts', pin: S.pin, maison: el.checked })) { el.checked = !el.checked; toast('Hors ligne'); } },
   'maison-reset'() {
     if (!confirm('Abandonner les modifications du contenu maison qui n’ont pas été envoyées ?')) return;
     S.maison = null; S.rulesDraft = null; render();

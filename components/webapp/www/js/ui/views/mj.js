@@ -113,6 +113,7 @@ function mjTools() {
       <div data-rules-admin>${rulesAdminHTML()}</div>
       <div class="row"><a class="btn ghost" href="#/mj/maison">✎ Contenu maison</a>
         <span class="muted small grow">Créer ou modifier des voies, profils et peuples propres à la table, sans éditer les fichiers.</span></div>
+      ${maisonOptHTML()}
     </section>
     <section class="card"><h3>Sauvegarde</h3>
       <div class="row"><button data-a="export">⬇ Exporter (JSON)</button>

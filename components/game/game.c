@@ -34,6 +34,7 @@ static const struct {
     { "combat",   combat_on_update },
     { "lieux",    lieux_on_update },
     { "avatar",   avatar_on_update },
+    { "opts",     party_on_opts },
     { "sys",      on_sys },
 };
 

@@ -138,7 +138,10 @@ attaques, états, armes, voies. Le MJ peut ouvrir et modifier n'importe quelle f
   4. **Vérifier et envoyer…** affiche le même rapport que l'envoi de fichiers, puis **⬆ Envoyer à la station**.
 
   Le contenu maison s'ajoute à la fin des documents (section « Contenu maison » de l'Espace Règles), sans
-  toucher aux règles d'origine. Une voie qui n'est dans la liste d'aucun profil ni peuple est proposée sur
+  toucher aux règles d'origine. Il n'est **proposé sur les fiches** (choix du peuple, du profil, des voies)
+  que si la case **Proposer le contenu maison sur les fiches** est cochée (sous Règles de la table, ou dans
+  l'écran Contenu maison) ; décochée par défaut, elle vaut pour toute la table. Une fiche qui utilise déjà
+  du contenu maison le garde, avec les voies de son profil et de son peuple. Une voie qui n'est dans la liste d'aucun profil ni peuple est proposée sur
   la fiche dans « Autres voies ». Supprimer un élément utilisé par un personnage est signalé avant de le
   faire. Les variantes de voie ne se saisissent pas dans le formulaire : écrites dans un fichier, elles
   sont conservées.

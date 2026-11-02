@@ -26,6 +26,7 @@ function maisonListHTML(M) {
       <p class="muted small">Voies, profils et peuples propres à la table. Ils s’ajoutent à la fin des documents de règles
         (section « Contenu maison ») sans toucher aux règles d’origine, et apparaissent dans l’Espace Règles et sur les fiches.
         Les familles ne changent pas. Une voie qui n’est dans la liste d’aucun profil ni peuple est proposée dans « Autres voies ».</p>
+      ${maisonOptHTML()}
       ${['voie', 'profil', 'peuple'].map(list).join('')}
     </section>
     <section class="card"><h3>Envoi à la station</h3>
@@ -38,6 +39,14 @@ function maisonListHTML(M) {
       <p class="muted small">Après l’envoi, tous les appareils rechargent l’appli avec les nouvelles règles. Les fichiers restent
         téléchargeables depuis Outils › Règles de la table.</p>
     </section>`;
+}
+
+/* Option de partie : contenu maison proposé sur les fiches (désactivé par défaut). */
+function maisonOptHTML() {
+  const nb = ['voie', 'profil', 'peuple'].reduce((s, k) => s + RULES.maison[k].size, 0);
+  return `<label class="chk"><input type="checkbox" data-a="opts-maison"${S.opts.maison ? ' checked' : ''}>
+      Proposer le contenu maison sur les fiches${nb ? ` (${nb} entrée(s) en vigueur)` : ''}</label>
+    <p class="muted small">Désactivé, il n’apparaît plus dans les choix de peuple, de profil et de voie (les fiches qui l’utilisent déjà le gardent).</p>`;
 }
 
 /* ---------- Formulaire ---------- */
